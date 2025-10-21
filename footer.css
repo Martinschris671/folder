@@ -1,0 +1,227 @@
+/* Root Variables & Base Styles */
+:root {
+  --BGPrimary: #fff;
+  --UIText2: rgba(0, 0, 0, 0.65);
+  --UITextPrimaryDisplay: #fe2c55;
+  --Primary: #fe2c55;
+  --ConstTextInverse: #fff;
+  --ui-text-3: rgba(0, 0, 0, 0.48);
+}
+
+/* Element Resets */
+/* button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+} */
+button,
+[role="button"] {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+}
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+/* FIXED FOOTER STYLES */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Added transform for performance on mobile devices */
+  transform: translateZ(0px);
+}
+
+/* Layout & Flexbox */
+.flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
+/* Sizing */
+.w-full {
+  width: 100%;
+}
+.w-26 {
+  width: 26px;
+}
+.h-16 {
+  height: 16px;
+}
+
+/* Spacing */
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.px-6 {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.py-12 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.pb-10 {
+  padding-bottom: 10px;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+.me-4 {
+  margin-inline-end: 4px;
+}
+
+/* Typography */
+.P2-Regular {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.0097em;
+  line-height: 1.3em;
+}
+.H4-Medium {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.004em;
+  line-height: 1.3em;
+}
+.H4-Semibold {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.004em;
+  line-height: 1.3em;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Colors */
+.background-color-BGPrimary {
+  background-color: var(--BGPrimary);
+}
+.background-color-Primary {
+  background-color: var(--Primary);
+}
+.text-color-UIText2 {
+  color: var(--UIText2);
+}
+.text-color-UITextPrimaryDisplay {
+  color: var(--UITextPrimaryDisplay);
+}
+.text-color-ConstTextInverse {
+  color: var(--ConstTextInverse);
+}
+
+/* Borders & Radius */
+.border-0 {
+  border-width: 0;
+}
+.border-solid {
+  border-style: solid;
+}
+.radius-control-large {
+  border-radius: 8px;
+}
+
+/* Miscellaneous & Component-specific */
+.overflow-hidden {
+  overflow: hidden;
+}
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+/* .flip-rtl {
+        transform: scaleX(-1);
+      } */
+.top-0 {
+  top: 0;
+}
+
+/* Component Specific Styles */
+.button-wcWpwN {
+  margin: -8px;
+  padding: 8px;
+}
+.title-tsxBce {
+  max-width: 100px;
+  flex-shrink: 0;
+  margin-inline-end: 16px;
+}
+.total-w9GATo {
+  min-width: 0;
+}
+.list-NLSRe7 {
+  --item-offset: 26px;
+  margin-inline-end: calc(var(--item-offset) * -1);
+}
+.item-kf9f68 {
+  padding-inline-end: var(--item-offset);
+  font-size: inherit;
+  line-height: inherit;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  text-overflow: ellipsis;
+  transition: color 0.15s;
+}

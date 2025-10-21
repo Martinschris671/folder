@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Coins</title>
+    <style>
+        /* Font Faces */
+        @font-face {
+            font-display: fallback;
+            font-family: TikTokFont;
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2) format("woff2");
+        }
+        @font-face {
+            font-display: fallback;
+            font-family: TikTokFont;
+            font-style: normal;
+            font-weight: 500;
+            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2) format("woff2");
+        }
+        @font-face {
+            font-display: fallback;
+            font-family: TikTokFont;
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2) format("woff2");
+        }
+
+        /* Root Variables */
+        :root {
+            /* Fonts */
+            --tux-web-font-body: "TikTokFont", system-ui, -apple-system, sans-serif;
+
+            /* Colors */
+            --BGPrimary: #fff;
+            --Primary: #fe2c55;
+            --TextPrimary: #000;
+            --ConstTextInverse: #fff;
+            --UIPageFlat1: #fff;
+            --UIText2: rgba(0, 0, 0, .65);
+            --TextTertiaryAlt: rgba(0, 0, 0, .56);
+            --BGBrand: rgba(254, 44, 85, .06);
+            --BGInput: rgba(22, 24, 35, .06);
+
+            /* Layout Heights */
+            --header-height: 52px;
+            --footer-height: 156px; /* Approximate height of the footer for padding */
+        }
+
+        /* CORE LAYOUT STRUCTURE */
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Prevents the main page scrollbar */
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: var(--tux-web-font-body);
+        }
+
+        .header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .page-content {
+            height: 100%;
+            overflow-y: auto; /* This makes ONLY the main content scrollable */
+            padding-top: var(--header-height);
+            padding-bottom: var(--footer-height);
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transform: translateZ(0px); /* Performance boost on mobile */
+        }
+        /* END CORE LAYOUT */
+
+        /* Universal Box Sizing */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Element Resets */
+        h1, h2, p, ol { margin: 0; }
+        button { border: 0; margin: 0; padding: 0; background: none; font-family: inherit; }
+        button, [role=button] { cursor: pointer; }
+        img { display: block; max-width: 100%; }
+
+        /* Combined Utility Classes */
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .flow-root { display: flow-root; }
+        .flex-1 { flex: 1 1 0%; }
+        .flex-grow { flex-grow: 1; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .flex-col { flex-direction: column; }
+        .flex-row { flex-direction: row; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-end { justify-content: flex-end; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .w-full { width: 100%; }
+        .p-0 { padding: 0; }
+        .px-8 { padding-left: 8px; padding-right: 8px; }
+        .px-16 { padding-left: 16px; padding-right: 16px; }
+        .py-12 { padding-top: 12px; padding-bottom: 12px; }
+        .pt-4 { padding-top: 4px; }
+        .pb-16 { padding-bottom: 16px; }
+        .m-8 { margin: 8px; }
+        .mx-8 { margin-left: 8px; margin-right: 8px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-16 { margin-bottom: 16px; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .overflow-hidden { overflow: hidden; }
+        .radius-containerslevel0-small { border-radius: 8px; }
+        .rounded-8 { border-radius: 8px; }
+        .radius-control-large { border-radius: 8px; }
+        .background-color-BGPrimary { background-color: var(--BGPrimary); }
+        .border-solid { border-style: solid; }
+        .border-color-Primary { border-color: var(--Primary); }
+        .text-color-TextPrimary { color: var(--TextPrimary); }
+        .select-none { user-select: none; }
+        .appearance-none { appearance: none; }
+        .outline-none { outline: 2px solid transparent; outline-offset: 2px; }
+        
+        /* Typography */
+        .H3-Bold { font-size: 17px; font-weight: 700; }
+        .P1-Medium { font-size: 14px; font-weight: 500; }
+        .P3-Regular { font-size: 12px; font-weight: 400; }
+        .P2-Regular { font-size: 13px; font-weight: 400; line-height: 1.3em; }
+        .H4-Medium { font-size: 15px; font-weight: 500; line-height: 1.3em; }
+        .H4-Semibold { font-size: 15px; font-weight: 500; line-height: 1.3em; }
+        .Headline-Medium { font-size: 16px; font-weight: 500; }
+
+        /* Component-Specific Styles */
+        .TUXNavBar * { transition: color .1s ease, background-color .1s ease; }
+        .tux-nav-bar-icon-action { font-size: 24px; width: 40px; height: 40px; }
+        .tux-separator--horizontal { height: 1px; transform: scaleY(.5); width: 100%; background-color: rgba(22, 24, 35, 0.1); }
+        .button-wcWpwN { margin: -8px; padding: 8px; }
+        .title-tsxBce { max-width: 100px; margin-inline-end: 16px; }
+        .total-w9GATo { min-width: 0; }
+        .list-NLSRe7 { --item-offset: 26px; margin-inline-end: calc(var(--item-offset) * -1); }
+        .item-kf9f68 { padding-inline-end: var(--item-offset); text-align: right; text-overflow: ellipsis; }
+
+        /* Hover Effects for Purchase Buttons */
+        [data-e2e="wallet-coins-packages"] li > div {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+        [data-e2e="wallet-coins-packages"] li > div:hover {
+            transform: scale(1.05);
+        }
+        [data-e2e="wallet-coins-packages"] li > div.background-color-BGInput:hover {
+            background-color: rgba(22, 24, 35, 0.12);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ======================= -->
+    <!--      FIXED HEADER       -->
+    <!-- ======================= -->
+    <div class="header-wrapper">
+        <div data-test-tag="tux-nav-bar" class="TUXNavBar">
+            <header class="flex items-center px-8 overflow-hidden relative" role="navigation" style="height: var(--header-height); background-color: #f5f5f5;">
+                <div class="inline-flex items-center justify-start flex-1 h-full"></div>
+                <div data-test-tag="tux-nav-bar-content" class="truncate flex-1 text-center H3-Bold" style="color: rgb(0, 0, 0); line-height: var(--header-height);">Get Coins</div>
+                <div class="flex-1 inline-flex items-center justify-end h-full">
+                    <button class="tux-nav-bar-icon-action p-0 text-color-TextPrimary flex items-center justify-center">
+                        <svg fill="currentColor" viewBox="0 0 48 48" width="1em" height="1em"><path d="M17 14a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM17 22a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM16 31a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1v-2Z"></path><path d="M6 10a7 7 0 0 1 7-7h22a7 7 0 0 1 7 7v28a7 7 0 0 1-7-7H13a7 7 0 0 1-7-7V10Zm7-3a3 3 0 0 0-3 3v28a3 3 0 0 0 3 3h22a3 3 0 0 0 3-3V10a3 3 0 0 0-3-3H13Z"></path></svg>
+                    </button>
+                    <button class="tux-nav-bar-icon-action p-0 text-color-TextPrimary flex items-center justify-center">
+                        <svg fill="currentColor" viewBox="0 0 48 48" width="1em" height="1em"><path d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"></path><path d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"></path></svg>
+                    </button>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- ============================ -->
+    <!--      SCROLLABLE CONTENT      -->
+    <!-- ============================ -->
+    <div class="page-content">
+        <main class="flex-1">
+             <div class="pt-4">
+                 <div class="m-8 background-color-BGPrimary radius-containerslevel0-small">
+                    <div class="flex flex-col gap-8 px-16 py-12">
+                        <h2 class="text-color-TextPrimary P1-Medium">Recharge</h2>
+                        <!-- Content truncated for brevity -->
+                    </div>
+                    <div role="separator" class="flex flex-shrink-0 tux-separator--horizontal"></div>
+                    <div class="flow-root px-16 py-12">
+                        <ol data-e2e="wallet-coins-packages" class="grid p-0 gap-8" style="grid-template-columns: repeat(3, 1fr);">
+                            <li style="list-style-type: none;">
+                                <div class="radius-containerslevel0-small w-full flex flex-col justify-center items-center relative background-color-BGBrand border-solid border-color-Primary" style="height: 64px; border-width: 1px;">
+                                    <b class="H3-Bold">30</b>
+                                    <div class="P3-Regular" style="color: var(--TextTertiaryAlt)">NGN530</div>
+                                </div>
+                            </li>
+                            <li style="list-style-type: none;">
+                                <div data-e2e="wallet-package-1" class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative" style="background-color: var(--BGInput)">
+                                    <b data-e2e="wallet-package-coin-num-1" class="H3-Bold">350</b>
+                                    <div data-e2e="wallet-package-price-1" class="P3-Regular" style="color: var(--TextTertiaryAlt)">NGN6,200</div>
+                                </div>
+                            </li>
+                             <li style="list-style-type: none;">
+                                <div data-e2e="wallet-package-custom" class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center" style="background-color: var(--BGInput)">
+                                    <div class="P1-Medium">Custom</div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                 <!-- Placeholder for more content -->
+                 <div class="mx-8 mb-8 p-16 background-color-BGPrimary rounded-8">
+                     <h1>More Content Here</h1>
+                     <p style="height: 100vh;">This long content demonstrates that only this middle section scrolls, while the header and footer remain fixed in place.</p>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================= -->
+    <!--      FIXED FOOTER       -->
+    <!-- ======================= -->
+    <footer>
+        <div class="px-16 py-12 background-color-BGPrimary" style="box-shadow: rgba(0, 0, 0, 0.12) 0px -2px 12px 0px; padding-bottom: calc(12px + env(safe-area-inset-bottom));">
+            <div class="mb-16">
+                <div class="flex flex-row justify-between items-start button-wcWpwN">
+                    <div class="flex-shrink-0 P2-Regular title-tsxBce" style="color: var(--UIText2)">Special offer</div>
+                    <div class="flex flex-row justify-end relative total-w9GATo" style="padding-inline-end: 16px;">
+                        <div class="overflow-hidden">
+                            <div class="list-NLSRe7 flex" style="align-items: flex-end;">
+                                <div class="item-kf9f68 H4-Medium" style="color: var(--UITextPrimaryDisplay)"><span>Unlock</span> 5% cash back</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Payment Icons -->
+            <div data-e2e="wallet-buy-now-button">
+                <button class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold" type="button" style="height: 44px;">
+                    <div class="flex items-center justify-center w-full">
+                        <span class="truncate" style="line-height: 44px;">Buy for NGN6,200</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

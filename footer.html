@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixed Footer Component</title>
+    <style>
+      /* Font Faces */
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokFont;
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2)
+          format("woff2");
+      }
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokFont;
+        font-style: normal;
+        font-weight: 500;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2)
+          format("woff2");
+      }
+
+      /* Root Variables & Base Styles */
+      :root {
+        --BGPrimary: #fff;
+        --UIText2: rgba(0, 0, 0, 0.65);
+        --UITextPrimaryDisplay: #fe2c55;
+        --Primary: #fe2c55;
+        --ConstTextInverse: #fff;
+        --ui-text-3: rgba(0, 0, 0, 0.48);
+      }
+
+      body {
+        font-family: "TikTokFont", system-ui, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        /* Add padding to the bottom to prevent content from being hidden by the fixed footer */
+        padding-bottom: 160px;
+      }
+
+      /* Universal Box Sizing */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Element Resets */
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+      button,
+      [role="button"] {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+      }
+      img,
+      picture {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* FIXED FOOTER STYLES */
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        /* Added transform for performance on mobile devices */
+        transform: translateZ(0px);
+      }
+
+      /* Layout & Flexbox */
+      .flex {
+        display: flex;
+      }
+      .flex-row {
+        flex-direction: row;
+      }
+      .flex-shrink-0 {
+        flex-shrink: 0;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .items-start {
+        align-items: flex-start;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .justify-end {
+        justify-content: flex-end;
+      }
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+
+      /* Sizing */
+      .w-full {
+        width: 100%;
+      }
+      .w-26 {
+        width: 26px;
+      }
+      .h-16 {
+        height: 16px;
+      }
+
+      /* Spacing */
+      .px-0 {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .px-6 {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+      .px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .py-12 {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .pb-10 {
+        padding-bottom: 10px;
+      }
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+      .me-4 {
+        margin-inline-end: 4px;
+      }
+
+      /* Typography */
+      .P2-Regular {
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.0097em;
+        line-height: 1.3em;
+      }
+      .H4-Medium {
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.004em;
+        line-height: 1.3em;
+      }
+      .H4-Semibold {
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.004em;
+        line-height: 1.3em;
+      }
+      .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Colors */
+      .background-color-BGPrimary {
+        background-color: var(--BGPrimary);
+      }
+      .background-color-Primary {
+        background-color: var(--Primary);
+      }
+      .text-color-UIText2 {
+        color: var(--UIText2);
+      }
+      .text-color-UITextPrimaryDisplay {
+        color: var(--UITextPrimaryDisplay);
+      }
+      .text-color-ConstTextInverse {
+        color: var(--ConstTextInverse);
+      }
+
+      /* Borders & Radius */
+      .border-0 {
+        border-width: 0;
+      }
+      .border-solid {
+        border-style: solid;
+      }
+      .radius-control-large {
+        border-radius: 8px;
+      }
+
+      /* Miscellaneous & Component-specific */
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .outline-none {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+      .appearance-none {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .select-none {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      .cursor-pointer {
+        cursor: pointer;
+      }
+      .flip-rtl {
+        transform: scaleX(-1);
+      }
+      .top-0 {
+        top: 0;
+      }
+
+      /* Component Specific Styles */
+      .button-wcWpwN {
+        margin: -8px;
+        padding: 8px;
+      }
+      .title-tsxBce {
+        max-width: 100px;
+        flex-shrink: 0;
+        margin-inline-end: 16px;
+      }
+      .total-w9GATo {
+        min-width: 0;
+      }
+      .list-NLSRe7 {
+        --item-offset: 26px;
+        margin-inline-end: calc(var(--item-offset) * -1);
+      }
+      .item-kf9f68 {
+        padding-inline-end: var(--item-offset);
+        font-size: inherit;
+        line-height: inherit;
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+        text-align: right;
+        text-overflow: ellipsis;
+        transition: color 0.15s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Placeholder Content to Demonstrate Scrolling -->
+    <div style="padding: 20px; height: 150vh">
+      <h1>Page Content</h1>
+      <p>Scroll down to see the footer fixed at the bottom.</p>
+    </div>
+    <!-- End of Placeholder Content -->
+
+    <footer>
+      <div
+        class="px-16 py-12 background-color-BGPrimary"
+        style="
+          box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px 0px;
+          padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        "
+      >
+        <div>
+          <div class="mb-16">
+            <div
+              class="flex flex-row justify-between items-start button-wcWpwN"
+            >
+              <div
+                class="flex-shrink-0 text-color-UIText2 P2-Regular title-tsxBce"
+                style="
+                  font-size: 13px;
+                  margin-block-start: 0px;
+                  line-height: 1.3em;
+                "
+              >
+                Special offer
+              </div>
+              <div
+                class="flex flex-row justify-end relative total-w9GATo"
+                style="padding-inline-end: 16px"
+              >
+                <div class="overflow-hidden" style="font-size: 14px">
+                  <div
+                    class="list-NLSRe7 flex"
+                    style="
+                      row-gap: 4px;
+                      flex-direction: column;
+                      align-items: flex-end;
+                      line-height: 1.3em;
+                      font-size: 14px;
+                    "
+                  >
+                    <div
+                      class="item-kf9f68 text-color-UITextPrimaryDisplay H4-Medium"
+                    >
+                      <span>Unlock</span> 5% cash back
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-0"
+                  style="
+                    margin-block-start: calc(0.65em - 8px);
+                    font-size: 14px;
+                    inset-inline-end: 0px;
+                  "
+                >
+                  <svg
+                    fill="currentColor"
+                    class="flip-rtl"
+                    color="var(--ui-text-3)"
+                    style="font-size: 16px"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                  >
+                    <path
+                      d="M40.37 24 26.71 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0l16.21 16.2a1 1 0 0 1 0 1.42L29.96 40.92a1 1 0 0 1-1.41 0l-1.84-1.84a1 1 0 0 1 0-1.42L40.37 24Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-10 flex justify-center">
+          <img
+            src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/visa_acffbd.png"
+            alt="VISA"
+            class="h-16 w-26 me-4"
+            data-e2e="wallet-payment-icon-VISA"
+            style="
+              display: inline-block;
+              border: 0.5px solid rgb(225, 228, 236);
+              border-radius: 4px;
+            "
+          />
+          <img
+            src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
+            alt="MASTER"
+            class="h-16 w-26 me-4"
+            data-e2e="wallet-payment-icon-MASTER"
+            style="
+              display: inline-block;
+              border: 0.5px solid rgb(225, 228, 236);
+              border-radius: 4px;
+            "
+          />
+        </div>
+        <div data-e2e="wallet-buy-now-button">
+          <button
+            class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold"
+            type="button"
+            style="height: 44px"
+          >
+            <div class="flex items-center justify-center w-full px-6">
+              <span class="me-4" style="font-size: 20px; line-height: 0">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                >
+                  <path
+                    d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                  ></path>
+                  <path
+                    d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.28 3.05-.25 8.87-1.52 15.34-6.99.8-.67 2-.67 2.8 0 6.46 5.46 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.13-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15V12.04c-3.65-.53-9.1-2.16-15-6.8-5.91 4.64-11.35 6.27-15 6.8Z"
+                  ></path>
+                </svg>
+              </span>
+              <span
+                class="truncate"
+                data-test-tag="tux-button-content"
+                style="line-height: 44px"
+                >Buy for NGN6,200</span
+              >
+            </div>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

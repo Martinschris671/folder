@@ -1,0 +1,379 @@
+/* Root Variables & Base Styles */
+:root {
+  --tux-web-font-body: "TikTokFont", system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --UIPageFlat1: #fff;
+  --UIShapeSuccess4: rgba(11, 224, 155, 0.12);
+  --UIShapeText2OnSuccess: #008568;
+  --LineSecondary: rgba(22, 24, 35, 0.12);
+  --UIShapeNeutral4: rgba(0, 0, 0, 0.05);
+  --UIText3: rgba(0, 0, 0, 0.48);
+  --TextTertiary: rgba(0, 0, 0, 0.56);
+  --UIText2: rgba(0, 0, 0, 0.65);
+  --ui-shape-neutral-3: rgba(0, 0, 0, 0.34);
+  --BGPrimary: #fff;
+  --TextPrimary: #000;
+  --Primary: #fe2c55;
+  --BGBrand: rgba(254, 44, 85, 0.06);
+  --TextTertiaryAlt: rgba(0, 0, 0, 0.56);
+  --BGInput: rgba(22, 24, 35, 0.06);
+  --UIText1: #000;
+}
+
+blockquote,
+body,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+p,
+ol {
+  /* margin: 0; */
+}
+
+/* Layout & Flexbox */
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+.flow-root {
+  display: flow-root;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.content-center {
+  align-content: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Sizing */
+.w-full {
+  width: 100%;
+}
+.w-18 {
+  width: 18px;
+}
+.h-18 {
+  height: 18px;
+}
+.h-64 {
+  height: 64px;
+}
+
+/* Spacing (Padding, Margin, Gap) */
+.p-0 {
+  padding: 0;
+}
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.px-6 {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.py-12 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.pt-4 {
+  padding-top: 4px;
+}
+.pb-16 {
+  padding-bottom: 16px;
+}
+.p-16 {
+  padding: 16px;
+}
+.m-8 {
+  margin: 8px;
+}
+.mx-8 {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.mb-8 {
+  margin-bottom: 8px;
+}
+.mt-24 {
+  margin-top: 24px;
+}
+.ms-2 {
+  margin-inline-start: 2px;
+}
+.ms-6 {
+  margin-inline-start: 6px;
+}
+.ms-12 {
+  margin-inline-start: 12px;
+}
+.gap-2 {
+  gap: 2px;
+}
+.gap-4 {
+  gap: 4px;
+}
+.gap-8 {
+  gap: 8px;
+}
+.gap-10 {
+  gap: 10px;
+}
+.gap-12 {
+  gap: 12px;
+}
+.gap-20 {
+  gap: 20px;
+}
+
+/* Typography */
+.SmallText2-Medium {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.0229em;
+  line-height: 1.3em;
+}
+.P1-Medium {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.P3-Regular {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.0134em;
+  line-height: 1.3em;
+}
+.P3-Semibold {
+  font-weight: 500;
+}
+.H3-Bold {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.SmallText1-Bold {
+  font-size: 14px;
+  font-weight: 700;
+  word-break: break-word;
+}
+.Headline-Medium {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3em;
+}
+.font-medium {
+  font-weight: 500;
+}
+.text-center {
+  text-align: center;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Colors */
+.background-color-UIPageFlat1 {
+  background-color: var(--UIPageFlat1);
+}
+.background-color-BGPrimary {
+  background-color: var(--BGPrimary);
+}
+.background-color-BGBrand {
+  background-color: var(--BGBrand);
+}
+.background-color-BGInput {
+  background-color: var(--BGInput);
+}
+.background-color-UIShapeNeutral4 {
+  background-color: var(--UIShapeNeutral4);
+}
+.text-color-UIShapeSuccess4 {
+  color: var(--UIShapeSuccess4);
+}
+.text-color-UIShapeText2OnSuccess {
+  color: var(--UIShapeText2OnSuccess);
+}
+.text-color-TextTertiary {
+  color: var(--TextTertiary);
+}
+.text-color-UIText3 {
+  color: var(--UIText3);
+}
+.text-color-UIText2 {
+  color: var(--UIText2);
+}
+.text-color-UIText1 {
+  color: var(--UIText1);
+}
+.text-color-TextPrimary {
+  color: var(--TextPrimary);
+}
+.text-color-Primary {
+  color: var(--Primary);
+}
+.text-color-TextTertiaryAlt {
+  color: var(--TextTertiaryAlt);
+}
+.border-color-LineSecondary {
+  border-color: var(--LineSecondary);
+}
+.border-color-Primary {
+  border-color: var(--Primary);
+}
+
+/* Borders & Radius */
+.border {
+  border-width: 1px;
+}
+.border-0 {
+  border-width: 0;
+}
+.border-solid {
+  border-style: solid;
+}
+.radius-containerslevel0-small {
+  border-radius: 8px;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-4 {
+  border-radius: 4px;
+}
+.rounded-8 {
+  border-radius: 8px;
+}
+.radius-control-tiny {
+  border-radius: 4px;
+}
+
+/* Miscellaneous & Component-specific */
+.overflow-hidden {
+  overflow: hidden;
+}
+.relative {
+  position: relative;
+}
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+/* .flip-rtl {
+  transform: scaleX(-1);
+} */
+
+/* Button & TUX Component Resets/Styles */
+button,
+[role="button"] {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+.TUXText {
+  font-style: normal;
+  font-weight: inherit;
+  font-family: var(--tux-web-font-body);
+}
+.TUXTooltip-reference {
+  display: inline-block;
+}
+.tux-separator--horizontal.tux-separator--medium {
+  height: 1px;
+  transform: scaleY(0.5);
+  width: 100%;
+}
+.banner-hmY5UV {
+  font-size: 14px;
+  line-height: 18.2px;
+}
+
+/*
+  Add this CSS to your existing <style> tag.
+*/
+
+/* 
+  1. Add a pointer cursor to all coin package options to show they are clickable.
+  2. Add a smooth transition for the hover effects.
+*/
+[data-e2e="wallet-coins-packages"] li > div {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* 
+  3. Add a "lift" effect to any package when you hover over it.
+     This makes the button feel more interactive.
+*/
+[data-e2e="wallet-coins-packages"] li > div:hover {
+  transform: scale(1.05);
+}
+
+/* 
+  4. For the non-selected packages (the grey ones), make them slightly
+     darker on hover for clear feedback.
+*/
+[data-e2e="wallet-coins-packages"] li > div.background-color-BGInput:hover {
+  background-color: rgba(
+    22,
+    24,
+    35,
+    0.12
+  ); /* This is a bit darker than the original grey */
+}
