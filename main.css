@@ -108,7 +108,7 @@ ol {
   padding-top: 4px;
 }
 .pb-16 {
-  padding-bottom: 16px;
+  padding-bottom: 20px;
 }
 .p-16 {
   padding: 16px;
@@ -344,36 +344,20 @@ picture {
   line-height: 18.2px;
 }
 
-/*
-  Add this CSS to your existing <style> tag.
-*/
+/* Base style for all package buttons */
+.package-item {
+  border: 1px solid transparent; /* Reserve space for border to prevent layout shift */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
 
-/* 
-  1. Add a pointer cursor to all coin package options to show they are clickable.
-  2. Add a smooth transition for the hover effects.
-*/
-[data-e2e="wallet-coins-packages"] li > div {
+/* Hover effect for all package buttons */
+.package-item:hover {
+  border-color: var(--Primary);
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-/* 
-  3. Add a "lift" effect to any package when you hover over it.
-     This makes the button feel more interactive.
-*/
-[data-e2e="wallet-coins-packages"] li > div:hover {
-  transform: scale(1.05);
-}
-
-/* 
-  4. For the non-selected packages (the grey ones), make them slightly
-     darker on hover for clear feedback.
-*/
-[data-e2e="wallet-coins-packages"] li > div.background-color-BGInput:hover {
-  background-color: rgba(
-    22,
-    24,
-    35,
-    0.12
-  ); /* This is a bit darker than the original grey */
+/* Style for the active button */
+.package-item.active {
+  border-color: var(--Primary);
+  background-color: var(--BGBrand);
 }

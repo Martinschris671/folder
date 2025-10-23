@@ -6,6 +6,7 @@
     <title>Get Coins</title>
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="loading.css" />
     <style>
       /* Font Faces */
       @font-face {
@@ -98,6 +99,7 @@
           "Segoe UI Symbol", "Noto Color Emoji";
         --TextPrimary: #000;
         --header-height: 52px;
+        --footer-height: 128.2px;
       }
 
       body {
@@ -246,7 +248,7 @@
 
       .app-body {
         display: flex;
-        height: calc(100vh - var(--header-height));
+        height: calc(100vh - var(--header-height) - var(--footer-height));
         margin-top: var(--header-height);
       }
 
@@ -256,12 +258,80 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-
         padding: 20px;
       }
     </style>
   </head>
   <body>
+    <!-- ======================= 1. LOADER HTML ======================= -->
+    <!-- PLACE THIS RIGHT AFTER YOUR OPENING <body> TAG -->
+
+    <div
+      id="loader-container"
+      class="full-page-loading__Container-LXdiJ fhMJMp"
+    >
+      <div class="w-48 h-48 box-border flex items-center justify-center">
+        <svg
+          fill="currentColor"
+          preserveAspectRatio="none"
+          viewBox="0 0 463 276"
+          width="25"
+          height="15"
+        >
+          <!-- (The complex SVG code from before goes here) -->
+          <defs>
+            <mask id="tux-loading-red-hole-0">
+              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
+              <circle
+                r="110"
+                cx="352.5"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__red_animation"
+                fill="rgb(15, 15, 15)"
+              ></circle>
+            </mask>
+            <mask id="tux-loading-green-hole-0">
+              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
+              <circle
+                r="110"
+                cx="111"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__green_animation"
+                fill="rgb(15, 15, 15)"
+              ></circle>
+            </mask>
+          </defs>
+          <circle
+            r="110"
+            cx="352.5"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__red_animation"
+            fill="rgb(15, 15, 15)"
+          ></circle>
+          <circle
+            mask="url(#tux-loading-red-hole-0)"
+            r="110"
+            cx="111"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__green_animation"
+            fill="rgb(37, 244, 238)"
+          ></circle>
+          <circle
+            mask="url(#tux-loading-green-hole-0)"
+            r="110"
+            cx="352.5"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__red_animation"
+            fill="rgb(255, 44, 85)"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <div class="header-wrapper">
       <div data-test-tag="tux-nav-bar" class="TUXNavBar">
         <div class="box-border">
@@ -514,686 +584,655 @@
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="background-color-UIShapeNeutral4 rounded-4 h-18 w-18 ms-12"
-                    >
-                      <svg
-                        fill="currentColor"
-                        class="text-color-UIText3"
-                        style="font-size: 18px"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M34.7 20.7a1 1 0 0 1 0 1.42l-9.29 9.3a2 2 0 0 1-2.82 0l-9.3-9.3a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L24 27.17l7.88-7.88a1 1 0 0 1 1.41 0l1.42 1.42Z"
-                        ></path>
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="m-8 background-color-BGPrimary radius-containerslevel0-small"
-          >
-            <div class="flex flex-col gap-4 px-16 py-12">
-              <h2
-                data-e2e="wallet-buy-coins-title"
-                class="text-color-TextPrimary P1-Medium"
-              >
-                Recharge
-              </h2>
-              <div class="flex items-center">
-                <strong
-                  data-e2e="wallet-recharge-advantage-tip"
-                  class="text-color-Primary P3-Regular"
-                  >Save around 25% with a lower third-party service fee.
-                  <div
-                    class="TUXTooltip-reference"
-                    style="max-width: 200px; display: inline-block"
-                  >
-                    <span style="position: relative; top: 2px">
-                      <svg
-                        fill="currentColor"
-                        style="font-size: 14px"
-                        color="rgba(0, 0, 0, 0.47999998927116394)"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"
-                        ></path>
-                      </svg>
-                    </span>
-                  </div>
-                </strong>
-              </div>
-            </div>
+            <!-- START OF FIX: The 4 closing divs below were missing -->
             <div
-              role="separator"
-              class="flex flex-shrink-0 tux-separator--horizontal tux-separator--medium"
-              style="
-                background-color: rgba(22, 24, 35, 0.1);
-                transform-origin: center center;
-              "
-            ></div>
-            <div class="flow-root px-16">
-              <ol
-                data-e2e="wallet-coins-packages"
-                class="grid p-0 gap-8"
-                style="grid-template-columns: repeat(3, 1fr)"
-              >
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-selected"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGBrand border border-color-Primary border-solid"
-                  >
-                    <div class="flex gap-2 justify-center items-center">
-                      <svg
-                        style="font-size: 16px"
-                        viewBox="0 0 48 48"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                          <path
-                            d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                            fill="#FFB84D"
-                          ></path>
-                          <path
-                            d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                            fill="#FFDE55"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A300"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A80F"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#E88B00"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                            fill="#fff"
-                          ></path>
-                        </g>
-                        <defs>
-                          <clipPath id="Icon_Color-Tiktok_Coin_svg__b">
-                            <path fill="#fff" d="M0 0h48v48H0z"></path>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <b data-e2e="wallet-package-coin-num-0" class="H3-Bold"
-                        >30</b
-                      >
-                    </div>
-                    <div
-                      data-e2e="wallet-package-price-0"
-                      class="P3-Regular text-color-TextTertiaryAlt"
-                    >
-                      NGN530
-                    </div>
-                  </div>
-                </li>
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-1"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                  >
-                    <div class="flex gap-2 justify-center items-center">
-                      <svg
-                        style="font-size: 16px"
-                        viewBox="0 0 48 48"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                          <path
-                            d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                            fill="#FFB84D"
-                          ></path>
-                          <path
-                            d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                            fill="#FFDE55"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A300"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A80F"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#E88B00"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                            fill="#fff"
-                          ></path>
-                        </g>
-                        <defs>
-                          <clipPath id="Icon_Color-Tiktok_Coin_svg__c">
-                            <path fill="#fff" d="M0 0h48v48H0z"></path>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <b data-e2e="wallet-package-coin-num-1" class="H3-Bold"
-                        >350</b
-                      >
-                    </div>
-                    <div
-                      data-e2e="wallet-package-price-1"
-                      class="P3-Regular text-color-TextTertiaryAlt"
-                    >
-                      NGN6,200
-                    </div>
-                  </div>
-                </li>
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-2"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                  >
-                    <div class="flex gap-2 justify-center items-center">
-                      <svg
-                        style="font-size: 16px"
-                        viewBox="0 0 48 48"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                          <path
-                            d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                            fill="#FFB84D"
-                          ></path>
-                          <path
-                            d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                            fill="#FFDE55"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A300"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A80F"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#E88B00"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                            fill="#fff"
-                          ></path>
-                        </g>
-                        <defs>
-                          <clipPath id="Icon_Color-Tiktok_Coin_svg__d">
-                            <path fill="#fff" d="M0 0h48v48H0z"></path>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <b data-e2e="wallet-package-coin-num-2" class="H3-Bold"
-                        >700</b
-                      >
-                    </div>
-                    <div
-                      data-e2e="wallet-package-price-2"
-                      class="P3-Regular text-color-TextTertiaryAlt"
-                    >
-                      NGN12,400
-                    </div>
-                  </div>
-                </li>
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-3"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                  >
-                    <div class="flex gap-2 justify-center items-center">
-                      <svg
-                        style="font-size: 16px"
-                        viewBox="0 0 48 48"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                          <path
-                            d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                            fill="#FFB84D"
-                          ></path>
-                          <path
-                            d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                            fill="#FFDE55"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A300"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A80F"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#E88B00"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                            fill="#fff"
-                          ></path>
-                        </g>
-                        <defs>
-                          <clipPath id="Icon_Color-Tiktok_Coin_svg__e">
-                            <path fill="#fff" d="M0 0h48v48H0z"></path>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <b data-e2e="wallet-package-coin-num-3" class="H3-Bold"
-                        >1,400</b
-                      >
-                    </div>
-                    <div
-                      data-e2e="wallet-package-price-3"
-                      class="P3-Regular text-color-TextTertiaryAlt"
-                    >
-                      NGN24,700
-                    </div>
-                  </div>
-                </li>
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-4"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                  >
-                    <div class="flex gap-2 justify-center items-center">
-                      <svg
-                        style="font-size: 16px"
-                        viewBox="0 0 48 48"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                          <path
-                            d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                            fill="#FFB84D"
-                          ></path>
-                          <path
-                            d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                            fill="#FFDE55"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A300"
-                          ></path>
-                          <path
-                            d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                            fill="#F7A80F"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#E88B00"
-                          ></path>
-                          <path
-                            d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                            fill="#F09207"
-                          ></path>
-                          <path
-                            d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                            fill="#fff"
-                          ></path>
-                        </g>
-                        <defs>
-                          <clipPath id="Icon_Color-Tiktok_Coin_svg__f">
-                            <path fill="#fff" d="M0 0h48v48H0z"></path>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <b data-e2e="wallet-package-coin-num-4" class="H3-Bold"
-                        >3,500</b
-                      >
-                    </div>
-                    <div
-                      data-e2e="wallet-package-price-4"
-                      class="P3-Regular text-color-TextTertiaryAlt"
-                    >
-                      NGN61,600
-                    </div>
-                  </div>
-                </li>
-                <li
-                  style="
-                    list-style-type: none;
-                    overflow: hidden;
-                    cursor: default;
-                  "
-                >
-                  <div
-                    data-e2e="wallet-package-custom"
-                    class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center background-color-BGInput"
-                  >
-                    <div
-                      class="flex flex-col justify-center items-center w-full px-4"
-                    >
-                      <div
-                        data-e2e="wallet-package-coin-text-custom"
-                        class="SmallText1-Bold text-center w-full"
-                        style="opacity: 1; overflow: hidden"
-                      >
-                        Custom
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-          <div class="mx-8 mb-8 flex flex-col gap-10">
-            <span
-              class="flex justify-between text-color-UIText1 gap-8 p-16 overflow-hidden items-center"
-              style="background-color: var(--UIPageFlat1); border-radius: 8px"
+              class="m-8 background-color-BGPrimary radius-containerslevel0-small"
             >
-              <div class="flex items-center">
-                <div class="flex gap-12">
-                  <span class="flex items-center flex-shrink-0">
-                    <img
-                      src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_alsshd_rvarpa/ljhwZthlaukjlkulzlp/referral/icon_invite_rewards.png"
-                      alt="sage"
-                      height="43"
-                      width="56"
-                    />
-                  </span>
-                  <div class="flex flex-col justify-center gap-2">
-                    <div class="flex items-center">
-                      <span class="P1-Medium">Invite &amp; Get Rewards</span>
-                    </div>
-                    <div class="P3-Regular text-color-UIText2">
-                      <span>Check out this new feature!</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <span class="flex items-center flex-shrink-0">
-                <svg
-                  fill="currentColor"
-                  class="flip-rtl"
-                  color="var(--ui-text-3)"
-                  style="font-size: 16px"
-                  viewBox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
+              <div class="flex flex-col gap-4 px-16 py-12">
+                <h2
+                  data-e2e="wallet-buy-coins-title"
+                  class="text-color-TextPrimary P1-Medium"
                 >
-                  <path
-                    d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
-                  ></path>
-                </svg>
-              </span>
-            </span>
-          </div>
-          <div
-            class="mx-8 rounded-8 background-color-BGPrimary mb-8 px-16 py-12 flex flex-col gap-20"
-          >
-            <div class="flex items-center gap-12">
-              <img
-                src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
-                width="56"
-                height="56"
-                alt="home_screen_thumbnail"
-              />
-              <div class="flex-grow font-medium banner-hmY5UV">
-                Add this page to home screen for one-tap access
-              </div>
-              <button
-                class="flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-tiny flex-shrink-0 text-color-TextPrimary background-color-BGInput border-0 P3-Semibold"
-                type="button"
-                style="height: 24px; width: 64px"
-              >
-                <div class="flex items-center justify-center w-full px-6">
-                  <span
-                    class="truncate"
-                    data-test-tag="tux-button-content"
-                    style="line-height: 24px"
-                    >Add</span
-                  >
-                </div>
-              </button>
-            </div>
-          </div>
-          <div
-            class="mt-24 Headline-Medium flex content-center items-center justify-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="69"
-              height="16"
-              fill="none"
-              viewBox="0 0 69 16"
-            >
-              <path
-                fill="#161823"
-                fill-opacity="0.1"
-                d="M28.207 6.681a1.399 1.399 0 1 0-.001-2.798 1.399 1.399 0 0 0 0 2.798M40.594 3.883h8.879l-.797 2.483h-2.449v9.181999999999999h-2.81V6.364h-2.492l-.33.006zM26.813 7.848v-.253h2.781l.001.253.003 6.968-.007.731H26.83v-.396zM31.047 4.4v-.55h2.75v5.433000000000001l2.781-2.707h3.316l-3.482 3.381 3.9 5.583H37.25l-2.603-3.873-.825.798v3.076l-2.767-.006v-.248zM58.77 4.4v-.55h2.75v.479l.007 4.954 2.775-2.706h3.316l-3.48 3.385 3.906 5.583h-3.061l-2.606-3.873-.824.798v3.076h-2.766v-.248zM48.063 10.818a4.781 4.781 0 1 1 9.197 1.859 4.8 4.8 0 0 1-1.757 2.145 4.77 4.77 0 0 1-2.65.808 4.78 4.78 0 0 1-3.4-1.404 4.8 4.8 0 0 1-1.038-1.564 4.8 4.8 0 0 1-.352-1.844m6.95 0c0-1.292-.89-2.303-2.179-2.3-1.29 0-2.162 1.012-2.162 2.304s.866 2.313 2.162 2.311c1.297 0 2.18-1.028 2.179-2.32zM17.496 3.883h8.674l-.797 2.483H23.12v9.177h-2.8V6.365l-2.822.006zM14.686 3.843c-.981-.03-1.87-.5-2.54-1.128A3.69 3.69 0 0 1 11.006 0H8.276v10.53c0 1.721-1.031 2.734-2.296 2.734a2.3 2.3 0 0 1-1.77-.803 2.3 2.3 0 0 1-.468-.879 2.29 2.29 0 0 1 .318-1.917 2.29 2.29 0 0 1 2.662-.866v-2.78a3.4 3.4 0 0 0-.742-.079 5.025 5.025 0 0 0-4.644 3.104 5.034 5.034 0 0 0 3.661 6.86 5.023 5.023 0 0 0 6.007-4.934V5.302c1.058.733 2.323 1.078 3.674 1.103z"
-              ></path>
-            </svg>
-          </div>
-        </div>
-      </main>
-    </div>
-  </body>
-  <footer>
-    <div
-      class="px-16 py-12 background-color-BGPrimary"
-      style="
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px 0px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      "
-    >
-      <div>
-        <div class="mb-16">
-          <div class="flex flex-row justify-between items-start button-wcWpwN">
-            <div
-              class="flex-shrink-0 text-color-UIText2 P2-Regular title-tsxBce"
-              style="
-                font-size: 13px;
-                margin-block-start: 0px;
-                line-height: 1.3em;
-              "
-            >
-              Special offer
-            </div>
-            <div
-              class="flex flex-row justify-end relative total-w9GATo"
-              style="padding-inline-end: 16px"
-            >
-              <div class="overflow-hidden" style="font-size: 14px">
-                <div
-                  class="list-NLSRe7 flex"
-                  style="
-                    row-gap: 4px;
-                    flex-direction: column;
-                    align-items: flex-end;
-                    line-height: 1.3em;
-                    font-size: 14px;
-                  "
-                >
-                  <div
-                    class="item-kf9f68 text-color-UITextPrimaryDisplay H4-Medium"
-                  >
-                    <span>Unlock</span> 5% cash back
-                  </div>
+                  Recharge
+                </h2>
+                <div class="flex items-center">
+                  <strong
+                    data-e2e="wallet-recharge-advantage-tip"
+                    class="text-color-Primary P3-Regular"
+                    >Save around 25% with a lower third-party service fee.
+                    <div
+                      class="TUXTooltip-reference"
+                      style="max-width: 200px; display: inline-block"
+                    >
+                      <span style="position: relative; top: 2px">
+                        <svg
+                          fill="currentColor"
+                          style="font-size: 14px"
+                          color="rgba(0, 0, 0, 0.47999998927116394)"
+                          viewBox="0 0 48 48"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <path
+                            d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </div>
+                  </strong>
                 </div>
               </div>
               <div
-                class="absolute top-0"
+                role="separator"
+                class="flex flex-shrink-0 tux-separator--horizontal tux-separator--medium"
                 style="
-                  margin-block-start: calc(0.65em - 8px);
-                  font-size: 14px;
-                  inset-inline-end: 0px;
+                  background-color: rgba(22, 24, 35, 0.1);
+                  transform-origin: center center;
                 "
-              >
-                <svg
-                  fill="currentColor"
-                  class="flip-rtl"
-                  color="var(--ui-text-3)"
-                  style="font-size: 16px"
-                  viewBox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
+              ></div>
+              <div class="flow-root px-16 py-8">
+                <ol
+                  data-e2e="wallet-coins-packages"
+                  class="grid p-0 gap-8"
+                  style="grid-template-columns: repeat(3, 1fr)"
                 >
-                  <path
-                    d="M40.37 24 26.71 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0l16.21 16.2a1 1 0 0 1 0 1.42L29.96 40.92a1 1 0 0 1-1.41 0l-1.84-1.84a1 1 0 0 1 0-1.42L40.37 24Z"
-                  ></path>
-                </svg>
+                  <!-- Item 1 - Initially Active -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-selected"
+                      class="package-item active radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative border-solid background-color-BGInput"
+                    >
+                      <div class="flex gap-2 justify-center items-center">
+                        <svg
+                          style="font-size: 16px"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                            <path
+                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                              fill="#FFB84D"
+                            ></path>
+                            <path
+                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                              fill="#FFDE55"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A300"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A80F"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#E88B00"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                              fill="#fff"
+                            ></path>
+                          </g>
+                        </svg>
+                        <b data-e2e="wallet-package-coin-num-0" class="H3-Bold"
+                          >30</b
+                        >
+                      </div>
+                      <div
+                        data-e2e="wallet-package-price-0"
+                        class="P3-Regular text-color-TextTertiaryAlt"
+                      >
+                        NGN530
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Item 2 -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-1"
+                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
+                    >
+                      <div class="flex gap-2 justify-center items-center">
+                        <svg
+                          style="font-size: 16px"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                            <path
+                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                              fill="#FFB84D"
+                            ></path>
+                            <path
+                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                              fill="#FFDE55"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A300"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A80F"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#E88B00"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                              fill="#fff"
+                            ></path>
+                          </g>
+                        </svg>
+                        <b data-e2e="wallet-package-coin-num-1" class="H3-Bold"
+                          >350</b
+                        >
+                      </div>
+                      <div
+                        data-e2e="wallet-package-price-1"
+                        class="P3-Regular text-color-TextTertiaryAlt"
+                      >
+                        NGN6,200
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Item 3 -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-2"
+                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
+                    >
+                      <div class="flex gap-2 justify-center items-center">
+                        <svg
+                          style="font-size: 16px"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                            <path
+                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                              fill="#FFB84D"
+                            ></path>
+                            <path
+                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                              fill="#FFDE55"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A300"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A80F"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#E88B00"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                              fill="#fff"
+                            ></path>
+                          </g>
+                        </svg>
+                        <b data-e2e="wallet-package-coin-num-2" class="H3-Bold"
+                          >700</b
+                        >
+                      </div>
+                      <div
+                        data-e2e="wallet-package-price-2"
+                        class="P3-Regular text-color-TextTertiaryAlt"
+                      >
+                        NGN12,400
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Item 4 -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-3"
+                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
+                    >
+                      <div class="flex gap-2 justify-center items-center">
+                        <svg
+                          style="font-size: 16px"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                            <path
+                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                              fill="#FFB84D"
+                            ></path>
+                            <path
+                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                              fill="#FFDE55"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A300"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A80F"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#E88B00"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                              fill="#fff"
+                            ></path>
+                          </g>
+                        </svg>
+                        <b data-e2e="wallet-package-coin-num-3" class="H3-Bold"
+                          >1,400</b
+                        >
+                      </div>
+                      <div
+                        data-e2e="wallet-package-price-3"
+                        class="P3-Regular text-color-TextTertiaryAlt"
+                      >
+                        NGN24,700
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Item 5 -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-4"
+                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
+                    >
+                      <div class="flex gap-2 justify-center items-center">
+                        <svg
+                          style="font-size: 16px"
+                          viewBox="0 0 48 48"
+                          fill="currentColor"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                            <path
+                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                              fill="#FFB84D"
+                            ></path>
+                            <path
+                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                              fill="#FFDE55"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A300"
+                            ></path>
+                            <path
+                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                              fill="#F7A80F"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#E88B00"
+                            ></path>
+                            <path
+                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                              fill="#F09207"
+                            ></path>
+                            <path
+                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                              fill="#fff"
+                            ></path>
+                          </g>
+                        </svg>
+                        <b data-e2e="wallet-package-coin-num-4" class="H3-Bold"
+                          >3,500</b
+                        >
+                      </div>
+                      <div
+                        data-e2e="wallet-package-price-4"
+                        class="P3-Regular text-color-TextTertiaryAlt"
+                      >
+                        NGN61,600
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Custom Item -->
+                  <li
+                    style="
+                      list-style-type: none;
+                      overflow: hidden;
+                      cursor: default;
+                    "
+                  >
+                    <div
+                      data-e2e="wallet-package-custom"
+                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center background-color-BGInput"
+                    >
+                      <div
+                        class="flex flex-col justify-center items-center w-full px-4"
+                      >
+                        <div
+                          data-e2e="wallet-package-coin-text-custom"
+                          class="SmallText1-Bold text-center w-full"
+                          style="opacity: 1; overflow: hidden"
+                        >
+                          Custom
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ol>
               </div>
+            </div>
+            <div class="mx-8 mb-8 flex flex-col gap-10">
+              <span
+                class="flex justify-between text-color-UIText1 gap-8 p-16 overflow-hidden items-center"
+                style="background-color: var(--UIPageFlat1); border-radius: 8px"
+              >
+                <div class="flex items-center">
+                  <div class="flex gap-12">
+                    <span class="flex items-center flex-shrink-0">
+                      <img
+                        src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_alsshd_rvarpa/ljhwZthlaukjlkulzlp/referral/icon_invite_rewards.png"
+                        alt="sage"
+                        height="43"
+                        width="56"
+                      />
+                    </span>
+                    <div class="flex flex-col justify-center gap-2">
+                      <div class="flex items-center">
+                        <span class="P1-Medium">Invite &amp; Get Rewards</span>
+                      </div>
+                      <div class="P3-Regular text-color-UIText2">
+                        <span>Check out this new feature!</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="flex items-center flex-shrink-0">
+                  <svg
+                    fill="currentColor"
+                    class="flip-rtl"
+                    color="var(--ui-text-3)"
+                    style="font-size: 16px"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                  >
+                    <path
+                      d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
+                    ></path>
+                  </svg>
+                </span>
+              </span>
+            </div>
+            <div
+              class="mx-8 rounded-8 background-color-BGPrimary mb-8 px-16 py-12 flex flex-col gap-20"
+            >
+              <div class="flex items-center gap-12">
+                <img
+                  src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
+                  width="56"
+                  height="56"
+                  alt="home_screen_thumbnail"
+                />
+                <div class="flex-grow font-medium banner-hmY5UV">
+                  Add this page to home screen for one-tap access
+                </div>
+                <button
+                  class="flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-tiny flex-shrink-0 text-color-TextPrimary background-color-BGInput border-0 P3-Semibold"
+                  type="button"
+                  style="height: 24px; width: 64px"
+                >
+                  <div class="flex items-center justify-center w-full px-6">
+                    <span
+                      class="truncate"
+                      data-test-tag="tux-button-content"
+                      style="line-height: 24px"
+                      >Add</span
+                    >
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div
+              class="mt-24 Headline-Medium flex content-center items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="69"
+                height="16"
+                fill="none"
+                viewBox="0 0 69 16"
+              >
+                <path
+                  fill="#161823"
+                  fill-opacity="0.1"
+                  d="M28.207 6.681a1.399 1.399 0 1 0-.001-2.798 1.399 1.399 0 0 0 0 2.798M40.594 3.883h8.879l-.797 2.483h-2.449v9.181999999999999h-2.81V6.364h-2.492l-.33.006zM26.813 7.848v-.253h2.781l.001.253.003 6.968-.007.731H26.83v-.396zM31.047 4.4v-.55h2.75v5.433000000000001l2.781-2.707h3.316l-3.482 3.381 3.9 5.583H37.25l-2.603-3.873-.825.798v3.076l-2.767-.006v-.248zM58.77 4.4v-.55h2.75v.479l.007 4.954 2.775-2.706h3.316l-3.48 3.385 3.906 5.583h-3.061l-2.606-3.873-.824.798v3.076h-2.766v-.248zM48.063 10.818a4.781 4.781 0 1 1 9.197 1.859 4.8 4.8 0 0 1-1.757 2.145 4.77 4.77 0 0 1-2.65.808 4.78 4.78 0 0 1-3.4-1.404 4.8 4.8 0 0 1-1.038-1.564 4.8 4.8 0 0 1-.352-1.844m6.95 0c0-1.292-.89-2.303-2.179-2.3-1.29 0-2.162 1.012-2.162 2.304s.866 2.313 2.162 2.311c1.297 0 2.18-1.028 2.179-2.32zM17.496 3.883h8.674l-.797 2.483H23.12v9.177h-2.8V6.365l-2.822.006zM14.686 3.843c-.981-.03-1.87-.5-2.54-1.128A3.69 3.69 0 0 1 11.006 0H8.276v10.53c0 1.721-1.031 2.734-2.296 2.734a2.3 2.3 0 0 1-1.77-.803 2.3 2.3 0 0 1-.468-.879 2.29 2.29 0 0 1 .318-1.917 2.29 2.29 0 0 1 2.662-.866v-2.78a3.4 3.4 0 0 0-.742-.079 5.025 5.025 0 0 0-4.644 3.104 5.034 5.034 0 0 0 3.661 6.86 5.023 5.023 0 0 0 6.007-4.934V5.302c1.058.733 2.323 1.078 3.674 1.103z"
+                ></path>
+              </svg>
             </div>
           </div>
         </div>
-      </div>
-      <div class="pb-10 flex justify-center">
-        <img
-          src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/visa_acffbd.png"
-          alt="VISA"
-          class="h-16 w-26 me-4"
-          data-e2e="wallet-payment-icon-VISA"
+      </main>
+      <footer>
+        <div
+          class="px-16 py-12 background-color-BGPrimary"
           style="
-            display: inline-block;
-            border: 0.5px solid rgb(225, 228, 236);
-            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px 0px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
           "
-        />
-        <img
-          src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
-          alt="MASTER"
-          class="h-16 w-26 me-4"
-          data-e2e="wallet-payment-icon-MASTER"
-          style="
-            display: inline-block;
-            border: 0.5px solid rgb(225, 228, 236);
-            border-radius: 4px;
-          "
-        />
-      </div>
-      <div data-e2e="wallet-buy-now-button">
-        <button
-          class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold"
-          type="button"
-          style="height: 44px"
         >
-          <div class="flex items-center justify-center w-full px-6">
-            <span class="me-4" style="font-size: 20px; line-height: 0">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
+          <div>
+            <div class="mb-16">
+              <div
+                class="flex flex-row justify-between items-start button-wcWpwN"
               >
-                <path
-                  d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                ></path>
-                <path
-                  d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.28 3.05-.25 8.87-1.52 15.34-6.99.8-.67 2-.67 2.8 0 6.46 5.46 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.13-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15V12.04c-3.65-.53-9.1-2.16-15-6.8-5.91 4.64-11.35 6.27-15 6.8Z"
-                ></path>
-              </svg>
-            </span>
-            <span
-              class="truncate"
-              data-test-tag="tux-button-content"
-              style="line-height: 44px"
-              >Buy for NGN6,200</span
-            >
+                <div
+                  class="flex-shrink-0 text-color-UIText2 P2-Regular title-tsxBce"
+                  style="
+                    font-size: 13px;
+                    margin-block-start: 0px;
+                    line-height: 1.3em;
+                  "
+                >
+                  Special offer
+                </div>
+                <div
+                  class="flex flex-row justify-end relative total-w9GATo"
+                  style="padding-inline-end: 16px"
+                >
+                  <div class="overflow-hidden" style="font-size: 14px">
+                    <div
+                      class="list-NLSRe7 flex"
+                      style="
+                        row-gap: 4px;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        line-height: 1.3em;
+                        font-size: 14px;
+                      "
+                    >
+                      <div
+                        class="item-kf9f68 text-color-UITextPrimaryDisplay H4-Medium"
+                      >
+                        <span>Unlock</span> 5% cash back
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="absolute top-0"
+                    style="
+                      margin-block-start: calc(0.65em - 8px);
+                      font-size: 14px;
+                      inset-inline-end: 0px;
+                    "
+                  >
+                    <svg
+                      fill="currentColor"
+                      class="flip-rtl"
+                      color="var(--ui-text-3)"
+                      style="font-size: 16px"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path
+                        d="M40.37 24 26.71 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0l16.21 16.2a1 1 0 0 1 0 1.42L29.96 40.92a1 1 0 0 1-1.41 0l-1.84-1.84a1 1 0 0 1 0-1.42L40.37 24Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </button>
-      </div>
+          <div class="pb-10 flex justify-center">
+            <img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/visa_acffbd.png"
+              alt="VISA"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-VISA"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            />
+            <img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
+              alt="MASTER"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-MASTER"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            />
+          </div>
+          <div data-e2e="wallet-buy-now-button">
+            <button
+              class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold"
+              type="button"
+              style="height: 44px"
+            >
+              <div class="flex items-center justify-center w-full px-6">
+                <span class="me-4" style="font-size: 20px; line-height: 0">
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                  >
+                    <path
+                      d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                    ></path>
+                    <path
+                      d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.28 3.05-.25 8.87-1.52 15.34-6.99.8-.67 2-.67 2.8 0 6.46 5.46 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.13-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15V12.04c-3.65-.53-9.1-2.16-15-6.8-5.91 4.64-11.35 6.27-15 6.8Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span
+                  class="truncate"
+                  data-test-tag="tux-button-content"
+                  style="line-height: 44px"
+                  >Buy for NGN530</span
+                >
+              </div>
+            </button>
+          </div>
+        </div>
+      </footer>
     </div>
-  </footer>
+  </body>
+  <script src="hover.js"></script>
+  <script src="loading.js"></script>
 </html>

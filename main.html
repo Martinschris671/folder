@@ -1,266 +1,852 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Coins</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Component</title>
     <style>
-        /* Font Faces */
-        @font-face {
-            font-display: fallback;
-            font-family: TikTokFont;
-            font-style: normal;
-            font-weight: 400;
-            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2) format("woff2");
-        }
-        @font-face {
-            font-display: fallback;
-            font-family: TikTokFont;
-            font-style: normal;
-            font-weight: 500;
-            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2) format("woff2");
-        }
-        @font-face {
-            font-display: fallback;
-            font-family: TikTokFont;
-            font-style: normal;
-            font-weight: 700;
-            src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2) format("woff2");
-        }
+      :root {
+        --SDSecondary: rgba(0, 0, 0, 0.5);
+        --TextPrimary: #000;
+        --TextTertiary: rgba(0, 0, 0, 0.56);
+        --LineSecondary3: #ccc;
+        --Primary: #fe2c55;
+        --BGInput: #f1f1f2;
+        --ui-shape-primary: #fe2c55;
+        --ui-shape-text-1-on-primary: #fff;
+        --TextSecondary: rgba(0, 0, 0, 0.72);
+      }
 
-        /* Root Variables */
-        :root {
-            /* Fonts */
-            --tux-web-font-body: "TikTokFont", system-ui, -apple-system, sans-serif;
-
-            /* Colors */
-            --BGPrimary: #fff;
-            --Primary: #fe2c55;
-            --TextPrimary: #000;
-            --ConstTextInverse: #fff;
-            --UIPageFlat1: #fff;
-            --UIText2: rgba(0, 0, 0, .65);
-            --TextTertiaryAlt: rgba(0, 0, 0, .56);
-            --BGBrand: rgba(254, 44, 85, .06);
-            --BGInput: rgba(22, 24, 35, .06);
-
-            /* Layout Heights */
-            --header-height: 52px;
-            --footer-height: 156px; /* Approximate height of the footer for padding */
+      /* Unique Class Names */
+      ._9f4d_background-color-SDSecondary {
+        background-color: var(--SDSecondary);
+      }
+      ._9f4d_opacity-100 {
+        opacity: 1;
+      }
+      ._9f4d_z-2000 {
+        z-index: 2000;
+      }
+      ._9f4d_fixed {
+        position: fixed;
+      }
+      ._9f4d_tt-sheet__mask {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        transition: opacity 0.2s linear;
+      }
+      ._9f4d_tt-sheet__container.high.visible {
+        transition: transform 0.3s cubic-bezier(0.25, 0, 0.25, 1);
+      }
+      ._9f4d_tt-sheet__container.high {
+        transition: transform 0.35s cubic-bezier(0.33, 0.86, 0.2, 1);
+      }
+      ._9f4d_tt-sheet__container.visible {
+        transition: transform 0.25s cubic-bezier(0.25, 0, 0.25, 1);
+      }
+      ._9f4d_radius-containerslevel1-large-t {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
+      ._9f4d_pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      ._9f4d_flex-col {
+        flex-direction: column;
+      }
+      ._9f4d_flex {
+        display: flex;
+      }
+      ._9f4d_visible {
+        visibility: visible;
+      }
+      ._9f4d_tt-sheet__container {
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        right: 0;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.33, 0.86, 0.2, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      ._9f4d_flex-shrink-0 {
+        flex-shrink: 0;
+      }
+      ._9f4d_TUXNavBar {
+        display: contents;
+      }
+      ._9f4d_box-border {
+        box-sizing: border-box;
+      }
+      ._9f4d_left-0 {
+        left: 0;
+      }
+      ._9f4d_right-0 {
+        right: 0;
+      }
+      ._9f4d_top-0 {
+        top: 0;
+      }
+      ._9f4d_TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+      ._9f4d_px-8 {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      ._9f4d_overflow-hidden {
+        overflow: hidden;
+      }
+      ._9f4d_items-center {
+        align-items: center;
+      }
+      ._9f4d_relative {
+        position: relative;
+      }
+      ._9f4d_w-full {
+        width: 100%;
+      }
+      ._9f4d_h-full {
+        height: 100%;
+      }
+      ._9f4d_-z-1 {
+        z-index: -1;
+      }
+      ._9f4d_absolute {
+        position: absolute;
+      }
+      ._9f4d_justify-start {
+        justify-content: flex-start;
+      }
+      ._9f4d_flex-1 {
+        flex: 1 1;
+      }
+      ._9f4d_inline-flex {
+        display: inline-flex;
+      }
+      ._9f4d_H3-Bold {
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      ._9f4d_text-center {
+        text-align: center;
+      }
+      ._9f4d_px-4 {
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+      ._9f4d_truncate {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      ._9f4d_text-color-TextPrimary {
+        color: var(--TextPrimary);
+      }
+      ._9f4d_p-0 {
+        padding: 0;
+      }
+      ._9f4d_justify-center {
+        justify-content: center;
+      }
+      ._9f4d_w-40 {
+        width: 40px;
+      }
+      ._9f4d_h-40 {
+        height: 40px;
+      }
+      ._9f4d_tux-nav-bar-icon-action {
+        font-size: 24px;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        font-family: inherit;
+        margin: 0;
+      }
+      ._9f4d_justify-end {
+        justify-content: flex-end;
+      }
+      ._9f4d_bottom-0 {
+        bottom: 0;
+      }
+      ._9f4d_tux-separator--horizontal._9f4d_tux-separator--medium {
+        height: 1px;
+        transform: scaleY(0.5);
+        width: 100%;
+      }
+      ._9f4d_tt-sheet__body {
+        min-height: 0;
+        overflow-y: auto;
+      }
+      ._9f4d_pt-12 {
+        padding-top: 12px;
+      }
+      ._9f4d_px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      ._9f4d_mb-8 {
+        margin-bottom: 8px;
+      }
+      ._9f4d_P1-Semibold {
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      ._9f4d_kemEwk {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        width: 100%;
+        border: 1px solid var(--LineSecondary3);
+        padding: 12px;
+        border-radius: 2px;
+        margin-bottom: 4px;
+        justify-content: space-between;
+      }
+      ._9f4d_jaLHEV {
+        display: flex;
+        align-items: center;
+      }
+      ._9f4d_TpOYW {
+        font-family: TikTokFont, sans-serif;
+      }
+      ._9f4d_H2-Bold {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.02em;
+        line-height: 1.25em;
+      }
+      ._9f4d_klkZRQ {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-inline-start: 8px;
+        transition: opacity 150ms;
+        opacity: 1;
+      }
+      ._9f4d_bQpkOu {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        padding: 0px 1px;
+        letter-spacing: inherit;
+        width: 100%;
+        line-height: 24px;
+        color: var(--TextPrimary);
+        caret-color: transparent;
+        background: transparent;
+        outline: none;
+      }
+      input,
+      textarea {
+        user-select: auto;
+      }
+      ._9f4d_gZKCTv {
+        letter-spacing: inherit;
+        color: transparent;
+        position: absolute;
+        z-index: -1;
+        opacity: 0.08;
+        background-color: initial;
+      }
+      ._9f4d_heyfmZ {
+        height: 20px;
+        width: 2px;
+        background: var(--Primary);
+        animation: 1s step-end 0s infinite normal none running _9f4d_dPDCaf;
+        position: absolute;
+      }
+      @keyframes _9f4d_dPDCaf {
+        50% {
+          opacity: 0;
         }
+      }
+      ._9f4d_P2-Regular {
+        font-weight: 400;
+        font-size: 13px;
+        letter-spacing: 0.0097em;
+        line-height: 1.3em;
+      }
+      ._9f4d_text-color-TextTertiary {
+        color: var(--TextTertiary);
+      }
+      ._9f4d_h-26 {
+        height: 26px;
+      }
+      ._9f4d_SmallText1-Regular {
+        font-weight: 400;
+        font-size: 11px;
+        letter-spacing: 0.0177em;
+        line-height: 1.3em;
+      }
+      ._9f4d_iEsvFh {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 8px;
+        padding: 4px 0px 12px;
+      }
+      ._9f4d_jrYXOR {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        height: 100%;
+        width: 100%;
+        background-color: var(--BGInput);
+        border-radius: 2px;
+        color: var(--TextPrimary);
+        font-family: TikTokFont, sans-serif;
+      }
+      ._9f4d_py-12 {
+        padding-bottom: 12px;
+        padding-top: 12px;
+      }
+      ._9f4d_justify-between {
+        justify-content: space-between;
+      }
+      ._9f4d_mb-12 {
+        margin-bottom: 12px;
+      }
+      button._9f4d_TUXButton--primary {
+        background-color: var(--ui-shape-primary);
+        color: var(--ui-shape-text-1-on-primary);
+      }
+      ._9f4d_TUXButton--large {
+        border-radius: 8px;
+        font-size: 16px;
+        height: 48px;
+        line-height: 21px;
+        min-width: 124px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      ._9f4d_TUXButton {
+        align-items: center;
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: TikTokFont, sans-serif;
+        font-weight: 500;
+        justify-content: center;
+        letter-spacing: 0.15px;
+        position: relative;
+      }
+      ._9f4d_TUXButton-content {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+      }
+      ._9f4d_TUXButton--large ._9f4d_TUXButton-iconContainer {
+        font-size: 19px;
+      }
+      ._9f4d_TUXButton-iconContainer {
+        display: flex;
+        flex-shrink: 0;
+      }
+      ._9f4d_TUXButton--large ._9f4d_TUXButton-content > * + * {
+        margin-left: 5.5px;
+      }
+      ._9f4d_TUXButton-label {
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
-        /* CORE LAYOUT STRUCTURE */
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Prevents the main page scrollbar */
-            margin: 0;
-            background-color: #f0f2f5;
-            font-family: var(--tux-web-font-body);
-        }
-
-        .header-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        .page-content {
-            height: 100%;
-            overflow-y: auto; /* This makes ONLY the main content scrollable */
-            padding-top: var(--header-height);
-            padding-bottom: var(--footer-height);
-        }
-        
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transform: translateZ(0px); /* Performance boost on mobile */
-        }
-        /* END CORE LAYOUT */
-
-        /* Universal Box Sizing */
-        * {
-            box-sizing: border-box;
-        }
-
-        /* Element Resets */
-        h1, h2, p, ol { margin: 0; }
-        button { border: 0; margin: 0; padding: 0; background: none; font-family: inherit; }
-        button, [role=button] { cursor: pointer; }
-        img { display: block; max-width: 100%; }
-
-        /* Combined Utility Classes */
-        .flex { display: flex; }
-        .grid { display: grid; }
-        .flow-root { display: flow-root; }
-        .flex-1 { flex: 1 1 0%; }
-        .flex-grow { flex-grow: 1; }
-        .flex-shrink-0 { flex-shrink: 0; }
-        .flex-col { flex-direction: column; }
-        .flex-row { flex-direction: row; }
-        .items-center { align-items: center; }
-        .items-start { align-items: flex-start; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-end { justify-content: flex-end; }
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .w-full { width: 100%; }
-        .p-0 { padding: 0; }
-        .px-8 { padding-left: 8px; padding-right: 8px; }
-        .px-16 { padding-left: 16px; padding-right: 16px; }
-        .py-12 { padding-top: 12px; padding-bottom: 12px; }
-        .pt-4 { padding-top: 4px; }
-        .pb-16 { padding-bottom: 16px; }
-        .m-8 { margin: 8px; }
-        .mx-8 { margin-left: 8px; margin-right: 8px; }
-        .mb-8 { margin-bottom: 8px; }
-        .mb-16 { margin-bottom: 16px; }
-        .gap-8 { gap: 8px; }
-        .gap-12 { gap: 12px; }
-        .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .overflow-hidden { overflow: hidden; }
-        .radius-containerslevel0-small { border-radius: 8px; }
-        .rounded-8 { border-radius: 8px; }
-        .radius-control-large { border-radius: 8px; }
-        .background-color-BGPrimary { background-color: var(--BGPrimary); }
-        .border-solid { border-style: solid; }
-        .border-color-Primary { border-color: var(--Primary); }
-        .text-color-TextPrimary { color: var(--TextPrimary); }
-        .select-none { user-select: none; }
-        .appearance-none { appearance: none; }
-        .outline-none { outline: 2px solid transparent; outline-offset: 2px; }
-        
-        /* Typography */
-        .H3-Bold { font-size: 17px; font-weight: 700; }
-        .P1-Medium { font-size: 14px; font-weight: 500; }
-        .P3-Regular { font-size: 12px; font-weight: 400; }
-        .P2-Regular { font-size: 13px; font-weight: 400; line-height: 1.3em; }
-        .H4-Medium { font-size: 15px; font-weight: 500; line-height: 1.3em; }
-        .H4-Semibold { font-size: 15px; font-weight: 500; line-height: 1.3em; }
-        .Headline-Medium { font-size: 16px; font-weight: 500; }
-
-        /* Component-Specific Styles */
-        .TUXNavBar * { transition: color .1s ease, background-color .1s ease; }
-        .tux-nav-bar-icon-action { font-size: 24px; width: 40px; height: 40px; }
-        .tux-separator--horizontal { height: 1px; transform: scaleY(.5); width: 100%; background-color: rgba(22, 24, 35, 0.1); }
-        .button-wcWpwN { margin: -8px; padding: 8px; }
-        .title-tsxBce { max-width: 100px; margin-inline-end: 16px; }
-        .total-w9GATo { min-width: 0; }
-        .list-NLSRe7 { --item-offset: 26px; margin-inline-end: calc(var(--item-offset) * -1); }
-        .item-kf9f68 { padding-inline-end: var(--item-offset); text-align: right; text-overflow: ellipsis; }
-
-        /* Hover Effects for Purchase Buttons */
-        [data-e2e="wallet-coins-packages"] li > div {
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-        }
-        [data-e2e="wallet-coins-packages"] li > div:hover {
-            transform: scale(1.05);
-        }
-        [data-e2e="wallet-coins-packages"] li > div.background-color-BGInput:hover {
-            background-color: rgba(22, 24, 35, 0.12);
-        }
-
+      /* Additional styles for the second component */
+      ._9f4d_Headline-Medium {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.3em;
+      }
+      ._9f4d_px-12 {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      ._9f4d_tux-separator--large {
+        height: 8px;
+        width: 100%;
+      }
+      ._9f4d_Headline-Regular {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.3em;
+      }
+      ._9f4d_text-color-TextSecondary {
+        color: var(--TextSecondary);
+      }
+      ._9f4d_mask-hidden {
+        visibility: hidden;
+        opacity: 0 !important;
+      }
+      .main-sheet-hidden {
+        transform: translateY(100%) !important;
+      }
+      .secondary-sheet-hidden {
+        transform: translateY(100%) !important;
+        visibility: hidden;
+      }
     </style>
-</head>
-<body>
-
-    <!-- ======================= -->
-    <!--      FIXED HEADER       -->
-    <!-- ======================= -->
-    <div class="header-wrapper">
-        <div data-test-tag="tux-nav-bar" class="TUXNavBar">
-            <header class="flex items-center px-8 overflow-hidden relative" role="navigation" style="height: var(--header-height); background-color: #f5f5f5;">
-                <div class="inline-flex items-center justify-start flex-1 h-full"></div>
-                <div data-test-tag="tux-nav-bar-content" class="truncate flex-1 text-center H3-Bold" style="color: rgb(0, 0, 0); line-height: var(--header-height);">Get Coins</div>
-                <div class="flex-1 inline-flex items-center justify-end h-full">
-                    <button class="tux-nav-bar-icon-action p-0 text-color-TextPrimary flex items-center justify-center">
-                        <svg fill="currentColor" viewBox="0 0 48 48" width="1em" height="1em"><path d="M17 14a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM17 22a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM16 31a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1v-2Z"></path><path d="M6 10a7 7 0 0 1 7-7h22a7 7 0 0 1 7 7v28a7 7 0 0 1-7-7H13a7 7 0 0 1-7-7V10Zm7-3a3 3 0 0 0-3 3v28a3 3 0 0 0 3 3h22a3 3 0 0 0 3-3V10a3 3 0 0 0-3-3H13Z"></path></svg>
+  </head>
+  <body style="font-family: sans-serif">
+    <div
+      id="main-component"
+      class="_9f4d_box-border _9f4d_text-color-TextPrimary"
+    >
+      <div
+        id="main-mask"
+        class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000 _9f4d_opacity-100"
+      ></div>
+      <div
+        id="main-sheet"
+        class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col high visible"
+        style="
+          min-height: 240px;
+          max-height: 90%;
+          background-color: rgb(255, 255, 255);
+          transform: translateY(0px);
+        "
+      >
+        <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
+          <div data-theme="light" dir="ltr">
+            <div data-test-tag="tux-nav-bar" class="_9f4d_TUXNavBar">
+              <div
+                class="_9f4d_box-border _9f4d_top-0 _9f4d_left-0 _9f4d_right-0"
+              >
+                <header
+                  class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
+                  role="navigation"
+                  style="height: 52px"
+                >
+                  <div
+                    role="none"
+                    class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
+                    style="background-color: rgb(255, 255, 255)"
+                  ></div>
+                  <div
+                    class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
+                  >
+                    <button
+                      id="close-main-component"
+                      data-test-tag="tux-nav-bar-button-0"
+                      class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+                    >
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                      >
+                        <path
+                          d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
+                        ></path>
+                      </svg>
                     </button>
-                    <button class="tux-nav-bar-icon-action p-0 text-color-TextPrimary flex items-center justify-center">
-                        <svg fill="currentColor" viewBox="0 0 48 48" width="1em" height="1em"><path d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"></path><path d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"></path></svg>
+                  </div>
+                  <div
+                    data-test-tag="tux-nav-bar-content"
+                    class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
+                    style="color: rgb(0, 0, 0); line-height: 52px"
+                  >
+                    Custom
+                  </div>
+                  <div
+                    class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
+                  >
+                    <button
+                      data-test-tag="tux-nav-bar-button-0"
+                      class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+                    >
+                      <svg
+                        fill="currentColor"
+                        font-size="22px"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                      >
+                        <path
+                          d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
+                        ></path>
+                        <path
+                          d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
+                        ></path>
+                      </svg>
                     </button>
-                </div>
-            </header>
+                  </div>
+                  <div
+                    class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0"
+                  >
+                    <div
+                      role="separator"
+                      class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+                      style="
+                        background-color: rgba(22, 24, 35, 0.2);
+                        transform-origin: center bottom;
+                      "
+                    ></div>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <!-- ============================ -->
-    <!--      SCROLLABLE CONTENT      -->
-    <!-- ============================ -->
-    <div class="page-content">
-        <main class="flex-1">
-             <div class="pt-4">
-                 <div class="m-8 background-color-BGPrimary radius-containerslevel0-small">
-                    <div class="flex flex-col gap-8 px-16 py-12">
-                        <h2 class="text-color-TextPrimary P1-Medium">Recharge</h2>
-                        <!-- Content truncated for brevity -->
-                    </div>
-                    <div role="separator" class="flex flex-shrink-0 tux-separator--horizontal"></div>
-                    <div class="flow-root px-16 py-12">
-                        <ol data-e2e="wallet-coins-packages" class="grid p-0 gap-8" style="grid-template-columns: repeat(3, 1fr);">
-                            <li style="list-style-type: none;">
-                                <div class="radius-containerslevel0-small w-full flex flex-col justify-center items-center relative background-color-BGBrand border-solid border-color-Primary" style="height: 64px; border-width: 1px;">
-                                    <b class="H3-Bold">30</b>
-                                    <div class="P3-Regular" style="color: var(--TextTertiaryAlt)">NGN530</div>
-                                </div>
-                            </li>
-                            <li style="list-style-type: none;">
-                                <div data-e2e="wallet-package-1" class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative" style="background-color: var(--BGInput)">
-                                    <b data-e2e="wallet-package-coin-num-1" class="H3-Bold">350</b>
-                                    <div data-e2e="wallet-package-price-1" class="P3-Regular" style="color: var(--TextTertiaryAlt)">NGN6,200</div>
-                                </div>
-                            </li>
-                             <li style="list-style-type: none;">
-                                <div data-e2e="wallet-package-custom" class="radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center" style="background-color: var(--BGInput)">
-                                    <div class="P1-Medium">Custom</div>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                 <!-- Placeholder for more content -->
-                 <div class="mx-8 mb-8 p-16 background-color-BGPrimary rounded-8">
-                     <h1>More Content Here</h1>
-                     <p style="height: 100vh;">This long content demonstrates that only this middle section scrolls, while the header and footer remain fixed in place.</p>
-                 </div>
+        <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+          <div class="_9f4d_px-16 _9f4d_pt-12">
+            <div
+              id="number-of-coins-trigger"
+              class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
+              data-e2e="recharge-custom-keyboard-input-type-trigger"
+              style="gap: 4px; cursor: pointer"
+            >
+              <span data-test-tag="tux-text" class="_9f4d_P1-Semibold"
+                >Number of Coins</span
+              >
+              <svg
+                fill="currentColor"
+                font-size="12px"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
+                ></path>
+              </svg>
             </div>
-        </main>
-    </div>
-
-    <!-- ======================= -->
-    <!--      FIXED FOOTER       -->
-    <!-- ======================= -->
-    <footer>
-        <div class="px-16 py-12 background-color-BGPrimary" style="box-shadow: rgba(0, 0, 0, 0.12) 0px -2px 12px 0px; padding-bottom: calc(12px + env(safe-area-inset-bottom));">
-            <div class="mb-16">
-                <div class="flex flex-row justify-between items-start button-wcWpwN">
-                    <div class="flex-shrink-0 P2-Regular title-tsxBce" style="color: var(--UIText2)">Special offer</div>
-                    <div class="flex flex-row justify-end relative total-w9GATo" style="padding-inline-end: 16px;">
-                        <div class="overflow-hidden">
-                            <div class="list-NLSRe7 flex" style="align-items: flex-end;">
-                                <div class="item-kf9f68 H4-Medium" style="color: var(--UITextPrimaryDisplay)"><span>Unlock</span> 5% cash back</div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="_9f4d_kemEwk">
+              <div class="_9f4d_jaLHEV">
+                <svg
+                  font-size="16px"
+                  viewBox="0 0 48 48"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                >
+                  <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                    <path
+                      d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                      fill="#FFB84D"
+                    ></path>
+                    <path
+                      d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                      fill="#FFDE55"
+                    ></path>
+                    <path
+                      d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                      fill="#F7A300"
+                    ></path>
+                    <path
+                      d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                      fill="#F7A80F"
+                    ></path>
+                    <path
+                      d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                      fill="#E88B00"
+                    ></path>
+                    <path
+                      d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                      fill="#F09207"
+                    ></path>
+                    <path
+                      d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                      fill="#F09207"
+                    ></path>
+                    <path
+                      d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                      fill="#fff"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="Icon_Color-Tiktok_Coin_svg__a">
+                      <path fill="#fff" d="M0 0h48v48H0z"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div class="_9f4d_TpOYW _9f4d_H2-Bold">
+                  <div class="_9f4d_klkZRQ">
+                    <input
+                      id="coin-input"
+                      placeholder="30 - 2,500,000"
+                      readonly=""
+                      autocomplete="off"
+                      class="_9f4d_bQpkOu"
+                      value=""
+                    />
+                    <span class="_9f4d_gZKCTv"></span>
+                    <div
+                      class="_9f4d_heyfmZ"
+                      style="margin-inline-start: 0px"
+                    ></div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <!-- Payment Icons -->
-            <div data-e2e="wallet-buy-now-button">
-                <button class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold" type="button" style="height: 44px;">
-                    <div class="flex items-center justify-center w-full">
-                        <span class="truncate" style="line-height: 44px;">Buy for NGN6,200</span>
+            <div
+              class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
+              style="height: 26px"
+            >
+              <div
+                id="price-display"
+                class="_9f4d_SmallText1-Regular _9f4d_flex _9f4d_items-center"
+              ></div>
+            </div>
+            <div dir="ltr" class="_9f4d_iEsvFh">
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
+              <button id="backspace-key" class="_9f4d_jrYXOR _9f4d_H3-Bold">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                >
+                  <path
+                    d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
+                  ></path>
+                </svg>
+              </button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
+              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
+            </div>
+          </div>
+          <div style="height: calc(107px - env(safe-area-inset-bottom))"></div>
+          <div class="footer-ja6ghG background-color-UISheetFlat1">
+            <div
+              role="separator"
+              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+              style="
+                background-color: rgba(22, 24, 35, 0.2);
+                transform-origin: center center;
+              "
+            ></div>
+            <div class="_9f4d_px-16 _9f4d_py-12">
+              <div
+                class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
+              >
+                <div class="_9f4d_flex"><div>Total</div></div>
+                <div id="total-price"></div>
+              </div>
+              <div>
+                <button
+                  class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
+                  type="button"
+                >
+                  <div class="_9f4d_TUXButton-content">
+                    <div class="_9f4d_TUXButton-iconContainer">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                      >
+                        <path
+                          d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                        ></path>
+                        <path
+                          d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
+                        ></path>
+                      </svg>
                     </div>
+                    <div class="_9f4d_TUXButton-label">Recharge</div>
+                  </div>
                 </button>
+              </div>
             </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
 
-</body>
+    <div id="secondary-component" class="secondary-sheet-hidden">
+      <div
+        id="secondary-mask"
+        class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000 _9f4d_opacity-100"
+      ></div>
+      <div
+        id="secondary-sheet"
+        class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col medium"
+        style="
+          min-height: 0px;
+          max-height: 73%;
+          background-color: rgb(255, 255, 255);
+        "
+      >
+        <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0"></div>
+        <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+          <div>
+            <div style="opacity: 1">
+              <button
+                type="button"
+                class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+                style="min-height: 48px"
+              >
+                <div style="padding: 1px 0px"><div>Number of Coins</div></div>
+              </button>
+            </div>
+            <div
+              role="separator"
+              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+              style="
+                background-color: rgba(22, 24, 35, 0.12);
+                transform-origin: center center;
+              "
+            ></div>
+            <div style="opacity: 1">
+              <button
+                type="button"
+                class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+                style="min-height: 48px"
+              >
+                <div style="padding: 1px 0px"><div>Payment amount</div></div>
+              </button>
+            </div>
+          </div>
+          <footer>
+            <div
+              role="separator"
+              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border tux-separator--horizontal _9f4d_tux-separator--large"
+              style="
+                background-color: rgba(22, 24, 35, 0.03);
+                transform-origin: center center;
+              "
+            ></div>
+            <button
+              id="cancel-secondary"
+              type="button"
+              class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
+              style="min-height: 48px"
+            >
+              <div style="padding: 1px 0px">Cancel</div>
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const coinInput = document.getElementById("coin-input");
+        const priceDisplay = document.getElementById("price-display");
+        const totalPriceDisplay = document.getElementById("total-price");
+        const numKeys = document.querySelectorAll(".num-key");
+        const backspaceKey = document.getElementById("backspace-key");
+        const closeMainComponentButton = document.getElementById(
+          "close-main-component"
+        );
+        const mainMask = document.getElementById("main-mask");
+        const mainSheet = document.getElementById("main-sheet");
+
+        const numberOfCoinsTrigger = document.getElementById(
+          "number-of-coins-trigger"
+        );
+        const secondaryComponent = document.getElementById(
+          "secondary-component"
+        );
+        const secondarySheet = document.getElementById("secondary-sheet");
+        const cancelSecondaryButton =
+          document.getElementById("cancel-secondary");
+        const secondaryMask = document.getElementById("secondary-mask");
+
+        const COIN_PRICE = 16.7599;
+
+        const updatePrice = () => {
+          const coinValue = parseInt(coinInput.value.replace(/,/g, "")) || 0;
+          const calculatedPrice = (coinValue * COIN_PRICE).toLocaleString(
+            "en-US",
+            { style: "currency", currency: "NGN" }
+          );
+          priceDisplay.textContent = calculatedPrice;
+          totalPriceDisplay.textContent = calculatedPrice;
+        };
+
+        const formatNumber = (numStr) => {
+          if (!numStr) return "";
+          return parseInt(numStr.replace(/,/g, "")).toLocaleString("en-US");
+        };
+
+        numKeys.forEach((key) => {
+          key.addEventListener("click", () => {
+            let currentValue = coinInput.value.replace(/,/g, "");
+            currentValue += key.textContent;
+            if (currentValue.length > 9) {
+              currentValue = currentValue.substring(0, 9);
+            }
+            coinInput.value = formatNumber(currentValue);
+            updatePrice();
+          });
+        });
+
+        backspaceKey.addEventListener("click", () => {
+          let currentValue = coinInput.value.replace(/,/g, "");
+          currentValue = currentValue.slice(0, -1);
+          coinInput.value = formatNumber(currentValue);
+          updatePrice();
+        });
+
+        closeMainComponentButton.addEventListener("click", () => {
+          mainSheet.classList.add("main-sheet-hidden");
+          mainMask.classList.add("_9f4d_mask-hidden");
+        });
+
+        mainMask.addEventListener("click", () => {
+          mainSheet.classList.add("main-sheet-hidden");
+          mainMask.classList.add("_9f4d_mask-hidden");
+        });
+
+        numberOfCoinsTrigger.addEventListener("click", () => {
+          secondaryComponent.classList.remove("secondary-sheet-hidden");
+          secondarySheet.style.transform = "translateY(0px)";
+        });
+
+        cancelSecondaryButton.addEventListener("click", () => {
+          secondarySheet.style.transform = "translateY(100%)";
+          setTimeout(() => {
+            secondaryComponent.classList.add("secondary-sheet-hidden");
+          }, 300);
+        });
+
+        secondaryMask.addEventListener("click", () => {
+          secondarySheet.style.transform = "translateY(100%)";
+          setTimeout(() => {
+            secondaryComponent.classList.add("secondary-sheet-hidden");
+          }, 300);
+        });
+
+        // Initial state
+        updatePrice();
+      });
+    </script>
+  </body>
 </html>
