@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="loading.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <link rel="stylesheet" href="lookup.css" />
     <style>
       /* Font Faces */
       @font-face {
@@ -411,6 +413,7 @@
             <div id="island_2d221" style="display: contents">
               <div
                 data-e2e="recharge-info-avatar"
+                id="recharge_container_div"
                 class="px-16 mx-8 background-color-UIPageFlat1 radius-containerslevel0-small"
                 style="
                   height: 92px;
@@ -464,127 +467,73 @@
                       </svg>
                     </div>
                   </div>
+                  <!-- 
+            ===========================================================
+            === START: INTEGRATION OF THE LOOKUP FUNCTIONALITY HERE ===
+            ===========================================================
+          -->
                   <div
                     class="flex items-center justify-between"
                     style="margin-top: 11px"
                   >
-                    <div
-                      class="flex items-center gap-12 flex-1 overflow-hidden"
-                    >
-                      <div>
+                    <!-- New wrapper for our elements -->
+                    <div id="lookup_wrapper">
+                      <!-- 1. The Input Bar -->
+                      <input
+                        type="text"
+                        id="lookup_input"
+                        placeholder="Enter TikTok username..."
+                      />
+
+                      <!-- 2. The Profile Preview Area -->
+                      <div id="lookup_profilePreview" class="hidden">
+                        <!-- This holds the actual content -->
                         <div
-                          data-test-tag="tux-avatar"
-                          class="rounded-full"
-                          style="
-                            background-image: url('https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/4202ae76af0e880d24f3735f0f1db6b7~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&amp;refresh_token=f3bac18d&amp;x-expires=1761246000&amp;x-signature=v0k29E7CD%2B94vub2pfa0gKEOI%2BE%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=a5d48078&amp;shcp=81f88b70&amp;idc=my');
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                            background-position: 50% 50%;
-                            width: 48px;
-                            height: 48px;
-                          "
+                          id="lookup_contentWrapper"
+                          class="lookup_contentWrapper hidden"
                         >
-                          <div
-                            class="rounded-full border border-solid border-color-LineSecondary"
-                            style="width: 48px; height: 48px"
-                          ></div>
-                        </div>
-                      </div>
-                      <div class="flex flex-col flex-1 gap-8 overflow-hidden">
-                        <div
-                          data-e2e="tiktok-user-account-name"
-                          class="P1-Medium truncate"
-                        >
-                          christopherchibu86
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            viewBox="0 0 48 48"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="1em"
-                            height="1em"
-                          >
-                            <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                              <path
-                                d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                                fill="#FFB84D"
-                              ></path>
-                              <path
-                                d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                                fill="#FFDE55"
-                              ></path>
-                              <path
-                                d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                                fill="#F7A300"
-                              ></path>
-                              <path
-                                d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                                fill="#F7A80F"
-                              ></path>
-                              <path
-                                d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                                fill="#E88B00"
-                              ></path>
-                              <path
-                                d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                                fill="#F09207"
-                              ></path>
-                              <path
-                                d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                                fill="#F09207"
-                              ></path>
-                              <path
-                                d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                                fill="#fff"
-                              ></path>
-                            </g>
-                            <defs>
-                              <clipPath id="Icon_Color-Tiktok_Coin_svg__a">
-                                <path fill="#fff" d="M0 0h48v48H0z"></path>
-                              </clipPath>
-                            </defs>
-                          </svg>
-                          <div
-                            data-e2e="wallet-coins-balance"
-                            class="P3-Regular text-color-TextTertiary ms-2"
-                          >
-                            0
+                          <img
+                            id="lookup_avatar"
+                            src=""
+                            alt="Avatar"
+                            class="lookup_avatar"
+                          />
+                          <div class="lookup_info">
+                            <div class="lookup_nicknameLine">
+                              <div
+                                id="lookup_nickname"
+                                class="lookup_nickname"
+                              ></div>
+                              <!-- Verified badge SVG is injected here -->
+                            </div>
+                            <div id="lookup_handle" class="lookup_handle"></div>
+                            <div
+                              id="lookup_followers"
+                              class="lookup_followers"
+                            ></div>
                           </div>
-                          <div class="flex items-center ms-6 gap-4">
-                            <span
-                              class="TUXText"
-                              style="
-                                color: var(--ui-shape-neutral-3);
-                                font-size: 12px;
-                              "
-                              >|</span
-                            >
-                            <span
-                              class="TUXText"
-                              style="color: var(--ui-text-2); font-size: 12px"
-                              >KY9A7KHY</span
-                            >
-                            <svg
-                              fill="currentColor"
-                              class="text-color-UIText2"
-                              style="font-size: 14px"
-                              viewBox="0 0 48 48"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="1em"
-                              height="1em"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M32 32h2.4c3.36 0 5.04 0 6.32-.66a6 6 0 0 0 2.63-2.62c.65-1.28.65-2.96.65-6.32v-8.8c0-3.36 0-5.04-.65-6.33a6 6 0 0 0-2.63-2.62C39.44 4 37.76 4 34.4 4h-8.8c-3.36 0-5.04 0-6.32.65a6 6 0 0 0-2.63 2.62C16 8.56 16 10.24 16 13.6V16h-2.4c-3.36 0-5.04 0-6.32.65a6 6 0 0 0-2.63 2.62C4 20.56 4 22.24 4 25.6v8.8c0 3.36 0 5.04.65 6.32a6 6 0 0 0 2.63 2.62c1.28.66 2.96.66 6.32.66h8.8c3.36 0 5.04 0 6.32-.66a6 6 0 0 0 2.63-2.62c.65-1.28.65-2.96.65-6.32V32Zm2.4-24h-8.8c-1.75 0-2.82 0-3.62.07a5.12 5.12 0 0 0-.86.13l-.03.02a2 2 0 0 0-.87.87l-.01.03a5.11 5.11 0 0 0-.14.86c-.07.8-.07 1.87-.07 3.62V16h2.4c3.36 0 5.04 0 6.32.65a6 6 0 0 1 2.63 2.62c.65 1.29.65 2.97.65 6.33V28h2.4c1.75 0 2.82 0 3.62-.07a5.14 5.14 0 0 0 .86-.14h.02v-.01a2 2 0 0 0 .88-.87l.01-.02v-.02l.04-.12c.03-.14.07-.36.1-.74.07-.8.07-1.87.07-3.61v-8.8c0-1.75 0-2.82-.07-3.62a5.11 5.11 0 0 0-.15-.89 2 2 0 0 0-.87-.87l-.03-.02a5.12 5.12 0 0 0-.86-.14C37.22 8 36.15 8 34.4 8ZM13.6 20h8.8c1.75 0 2.82 0 3.62.07a5.14 5.14 0 0 1 .86.13l.03.02a2 2 0 0 1 .88.9 5.11 5.11 0 0 1 .14.86c.07.8.07 1.87.07 3.62v8.8c0 1.74 0 2.81-.07 3.61a5.11 5.11 0 0 1-.14.86v.04a2 2 0 0 1-.88.87.24.24 0 0 1-.03.01l-.13.04c-.14.03-.36.07-.73.1-.8.06-1.87.07-3.62.07h-8.8c-1.75 0-2.82 0-3.62-.07a5.14 5.14 0 0 1-.86-.14l-.03-.01a2 2 0 0 1-.87-.87l-.01-.04-.04-.12a5.12 5.12 0 0 1-.1-.74C8 37.21 8 36.14 8 34.4v-8.8c0-1.75 0-2.82.07-3.62a5.13 5.13 0 0 1 .15-.89 2 2 0 0 1 .87-.87l.03-.02.13-.03c.14-.03.36-.07.73-.1.8-.07 1.87-.07 3.62-.07Z"
-                              ></path>
-                            </svg>
+                        </div>
+
+                        <!-- This holds the skeleton loader -->
+                        <div
+                          id="lookup_skeletonContainer"
+                          class="lookup_skeletonContainer hidden"
+                        >
+                          <div class="skeleton skeleton-avatar"></div>
+                          <div class="lookup_info">
+                            <div class="skeleton skeleton-text medium"></div>
+                            <div class="skeleton skeleton-text short"></div>
+                            <div class="skeleton skeleton-text medium"></div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- 
+            =========================================================
+            === END: INTEGRATION OF THE LOOKUP FUNCTIONALITY HERE ===
+            =========================================================
+          -->
                 </div>
               </div>
             </div>
@@ -991,6 +940,7 @@
                   >
                     <div
                       data-e2e="wallet-package-custom"
+                      id="open-recharge-modal"
                       class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center background-color-BGInput"
                     >
                       <div
@@ -1101,7 +1051,7 @@
           </div>
         </div>
       </main>
-      <footer>
+      <footer class="footer">
         <div
           class="px-16 py-12 background-color-BGPrimary"
           style="
@@ -1233,6 +1183,558 @@
       </footer>
     </div>
   </body>
+  <div id="main-component" class="hidden">
+    <div
+      id="main-mask"
+      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
+    ></div>
+    <div
+      id="main-sheet"
+      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
+      style="
+        min-height: 240px;
+        max-height: 90%;
+        background-color: rgb(255, 255, 255);
+      "
+    >
+      <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
+        <header
+          class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
+          role="navigation"
+          style="height: 52px"
+        >
+          <div
+            role="none"
+            class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
+          >
+            <button
+              id="close-main-component"
+              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+            >
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            id="header-title"
+            class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
+            style="color: rgb(0, 0, 0); line-height: 52px"
+          >
+            Custom
+          </div>
+          <div
+            class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
+          >
+            <button
+              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+            >
+              <svg
+                fill="currentColor"
+                font-size="22px"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
+                ></path>
+                <path
+                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0">
+            <div
+              role="separator"
+              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+              style="background-color: rgba(22, 24, 35, 0.2)"
+            ></div>
+          </div>
+        </header>
+      </div>
+
+      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+        <div class="_9f4d_px-16 _9f4d_pt-12">
+          <div
+            id="change-view-trigger"
+            class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
+            style="gap: 4px; cursor: pointer"
+          >
+            <span id="view-trigger-label" class="_9f4d_P1-Semibold"></span>
+            <svg
+              fill="currentColor"
+              font-size="12px"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+            >
+              <path
+                d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
+              ></path>
+            </svg>
+          </div>
+          <div class="_9f4d_kemEwk">
+            <div id="input-container" class="_9f4d_jaLHEV">
+              <!-- This will be populated by JS -->
+            </div>
+          </div>
+          <div
+            id="sub-display-container"
+            class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
+          >
+            <!-- This will be populated by JS -->
+          </div>
+
+          <!-- Keypad for Coins View -->
+          <div id="keypad-coins" class="_9f4d_iEsvFh">
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
+            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
+                ></path>
+              </svg>
+            </button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
+          </div>
+
+          <!-- Keypad for Amount View -->
+          <div id="keypad-amount" class="_9f4d_iEsvFh hidden">
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
+            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
+                ></path>
+              </svg>
+            </button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">.</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
+          </div>
+        </div>
+
+        <div class="footer-wrapper" style="background-color: #fff">
+          <div
+            role="separator"
+            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+            style="background-color: rgba(22, 24, 35, 0.2)"
+          ></div>
+          <div class="_9f4d_px-16 _9f4d_py-12">
+            <div
+              class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
+            >
+              <div class="_9f4d_flex"><div>Total</div></div>
+              <div id="total-price"></div>
+            </div>
+            <div>
+              <button
+                class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
+                type="button"
+              >
+                <div class="_9f4d_TUXButton-content">
+                  <div class="_9f4d_TUXButton-iconContainer">
+                    <svg
+                      fill="currentColor"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path
+                        d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                      ></path>
+                      <path
+                        d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="_9f4d_TUXButton-label">Recharge</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secondary Sheet (for view selection) -->
+  <div id="secondary-component" class="hidden">
+    <div
+      id="secondary-mask"
+      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
+    ></div>
+    <div
+      id="secondary-sheet"
+      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
+      style="
+        min-height: 0px;
+        max-height: 73%;
+        background-color: rgb(255, 255, 255);
+      "
+    >
+      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+        <button
+          id="select-coins-view"
+          type="button"
+          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+          style="min-height: 48px"
+        >
+          Number of Coins
+        </button>
+        <div
+          role="separator"
+          class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+          style="background-color: rgba(22, 24, 35, 0.12)"
+        ></div>
+        <button
+          id="select-amount-view"
+          type="button"
+          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+          style="min-height: 48px"
+        >
+          Payment amount
+        </button>
+        <footer>
+          <div
+            role="separator"
+            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--large"
+            style="background-color: rgba(22, 24, 35, 0.03)"
+          ></div>
+          <button
+            id="cancel-secondary"
+            type="button"
+            class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
+            style="min-height: 48px"
+          >
+            Cancel
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div id="main-component" class="hidden">
+    <div
+      id="main-mask"
+      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
+    ></div>
+    <div
+      id="main-sheet"
+      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
+      style="
+        min-height: 240px;
+        max-height: 90%;
+        background-color: rgb(255, 255, 255);
+      "
+    >
+      <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
+        <header
+          class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
+          role="navigation"
+          style="height: 52px"
+        >
+          <div
+            role="none"
+            class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
+            style="background-color: rgb(255, 255, 255)"
+          ></div>
+          <div
+            class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
+          >
+            <button
+              id="close-main-component"
+              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+            >
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            id="header-title"
+            class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
+            style="color: rgb(0, 0, 0); line-height: 52px"
+          >
+            Custom
+          </div>
+          <div
+            class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
+          >
+            <button
+              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
+            >
+              <svg
+                fill="currentColor"
+                font-size="22px"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
+                ></path>
+                <path
+                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0">
+            <div
+              role="separator"
+              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+              style="background-color: rgba(22, 24, 35, 0.2)"
+            ></div>
+          </div>
+        </header>
+      </div>
+
+      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+        <div class="_9f4d_px-16 _9f4d_pt-12">
+          <div
+            id="change-view-trigger"
+            class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
+            style="gap: 4px; cursor: pointer"
+          >
+            <span id="view-trigger-label" class="_9f4d_P1-Semibold"></span>
+            <svg
+              fill="currentColor"
+              font-size="12px"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+            >
+              <path
+                d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
+              ></path>
+            </svg>
+          </div>
+          <div class="_9f4d_kemEwk">
+            <div id="input-container" class="_9f4d_jaLHEV">
+              <!-- This will be populated by JS -->
+            </div>
+          </div>
+          <div
+            id="sub-display-container"
+            class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
+          >
+            <!-- This will be populated by JS -->
+          </div>
+
+          <!-- Keypad for Coins View -->
+          <div id="keypad-coins" class="_9f4d_iEsvFh">
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
+            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
+                ></path>
+              </svg>
+            </button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
+          </div>
+
+          <!-- Keypad for Amount View -->
+          <div id="keypad-amount" class="_9f4d_iEsvFh hidden">
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
+            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+              >
+                <path
+                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
+                ></path>
+              </svg>
+            </button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">.</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
+            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
+          </div>
+        </div>
+
+        <div class="footer-wrapper" style="background-color: #fff">
+          <div
+            role="separator"
+            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+            style="background-color: rgba(22, 24, 35, 0.2)"
+          ></div>
+          <div class="_9f4d_px-16 _9f4d_py-12">
+            <div
+              class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
+            >
+              <div class="_9f4d_flex"><div>Total</div></div>
+              <div id="total-price"></div>
+            </div>
+            <div>
+              <button
+                class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
+                type="button"
+              >
+                <div class="_9f4d_TUXButton-content">
+                  <div class="_9f4d_TUXButton-iconContainer">
+                    <svg
+                      fill="currentColor"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path
+                        d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                      ></path>
+                      <path
+                        d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="_9f4d_TUXButton-label">Recharge</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secondary Sheet (for view selection) -->
+  <div id="secondary-component" class="hidden">
+    <div
+      id="secondary-mask"
+      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
+    ></div>
+    <div
+      id="secondary-sheet"
+      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
+      style="
+        min-height: 0px;
+        max-height: 73%;
+        background-color: rgb(255, 255, 255);
+      "
+    >
+      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
+        <button
+          id="select-coins-view"
+          type="button"
+          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+          style="min-height: 48px"
+        >
+          Number of Coins
+        </button>
+        <div
+          role="separator"
+          class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
+          style="background-color: rgba(22, 24, 35, 0.12)"
+        ></div>
+        <button
+          id="select-amount-view"
+          type="button"
+          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
+          style="min-height: 48px"
+        >
+          Payment amount
+        </button>
+        <footer>
+          <div
+            role="separator"
+            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--large"
+            style="background-color: rgba(22, 24, 35, 0.03)"
+          ></div>
+          <button
+            id="cancel-secondary"
+            type="button"
+            class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
+            style="min-height: 48px"
+          >
+            Cancel
+          </button>
+        </footer>
+      </div>
+    </div>
+  </div>
   <script src="hover.js"></script>
   <script src="loading.js"></script>
+  <script src="custom.js"></script>
+  <script src="fectchprofile.js"></script>
 </html>

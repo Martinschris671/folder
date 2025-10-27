@@ -33,7 +33,7 @@ picture {
 }
 
 /* FIXED FOOTER STYLES */
-footer {
+.footer {
   flex-shrink: 0;
   position: fixed;
   bottom: 0;

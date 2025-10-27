@@ -1,0 +1,394 @@
+:root {
+  --SDSecondary: rgba(0, 0, 0, 0.5);
+  --TextPrimary: #000;
+  --TextTertiary: rgba(0, 0, 0, 0.56);
+  --TextTertiaryAlt: rgba(0, 0, 0, 0.56);
+  --LineSecondary3: #ccc;
+  --Primary: #fe2c55;
+  --BGInput: #f1f1f2;
+  --ui-shape-primary: #fe2c55;
+  --ui-shape-text-1-on-primary: #fff;
+  --TextSecondary: rgba(0, 0, 0, 0.72);
+  --Negative: #ff0000; /* Red color for error messages */
+}
+
+/* Unique Class Names */
+._9f4d_background-color-SDSecondary {
+  background-color: var(--SDSecondary);
+}
+._9f4d_opacity-100 {
+  opacity: 1;
+}
+._9f4d_z-2000 {
+  z-index: 2000;
+}
+._9f4d_fixed {
+  position: fixed;
+}
+._9f4d_tt-sheet__mask {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: opacity 0.2s linear, visibility 0.2s;
+}
+._9f4d_tt-sheet__container {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.33, 0.86, 0.2, 1);
+}
+._9f4d_tt-sheet__container.visible {
+  transform: translateY(0);
+}
+._9f4d_radius-containerslevel1-large-t {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+._9f4d_pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+._9f4d_flex-col {
+  flex-direction: column;
+}
+._9f4d_flex {
+  display: flex;
+}
+* {
+  box-sizing: border-box;
+}
+._9f4d_flex-shrink-0 {
+  flex-shrink: 0;
+}
+._9f4d_box-border {
+  box-sizing: border-box;
+}
+._9f4d_left-0 {
+  left: 0;
+}
+._9f4d_right-0 {
+  right: 0;
+}
+._9f4d_top-0 {
+  top: 0;
+}
+._9f4d_px-8 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+._9f4d_overflow-hidden {
+  overflow: hidden;
+}
+._9f4d_items-center {
+  align-items: center;
+}
+._9f4d_relative {
+  position: relative;
+}
+._9f4d_w-full {
+  width: 100%;
+}
+._9f4d_h-full {
+  height: 100%;
+}
+._9f4d_-z-1 {
+  z-index: -1;
+}
+._9f4d_absolute {
+  position: absolute;
+}
+._9f4d_justify-start {
+  justify-content: flex-start;
+}
+._9f4d_flex-1 {
+  flex: 1 1;
+}
+._9f4d_inline-flex {
+  display: inline-flex;
+}
+._9f4d_H3-Bold {
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+._9f4d_text-center {
+  text-align: center;
+}
+._9f4d_px-4 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+._9f4d_truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+._9f4d_text-color-TextPrimary {
+  color: var(--TextPrimary);
+}
+._9f4d_p-0 {
+  padding: 0;
+}
+._9f4d_justify-center {
+  justify-content: center;
+}
+._9f4d_w-40 {
+  width: 40px;
+}
+._9f4d_h-40 {
+  height: 40px;
+}
+._9f4d_tux-nav-bar-icon-action {
+  font-size: 24px;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  font-family: inherit;
+  margin: 0;
+}
+._9f4d_justify-end {
+  justify-content: flex-end;
+}
+._9f4d_bottom-0 {
+  bottom: 0;
+}
+._9f4d_tux-separator--horizontal._9f4d_tux-separator--medium {
+  height: 1px;
+  transform: scaleY(0.5);
+  width: 100%;
+}
+._9f4d_tt-sheet__body {
+  min-height: 0;
+  overflow-y: auto;
+}
+._9f4d_pt-12 {
+  padding-top: 12px;
+}
+._9f4d_px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+._9f4d_mb-8 {
+  margin-bottom: 8px;
+}
+._9f4d_P1-Semibold {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+._9f4d_kemEwk {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  border: 1px solid var(--LineSecondary3);
+  padding: 12px;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  justify-content: space-between;
+}
+._9f4d_jaLHEV {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+._9f4d_TpOYW {
+  font-family: TikTokFont, sans-serif;
+}
+._9f4d_H2-Bold {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  line-height: 1.25em;
+}
+._9f4d_klkZRQ {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-inline-start: 8px;
+  transition: opacity 150ms;
+  opacity: 1;
+  flex: 1;
+}
+._9f4d_bQpkOu {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0px 1px;
+  letter-spacing: inherit;
+  width: 100%;
+  line-height: 24px;
+  color: var(--TextPrimary);
+  caret-color: transparent;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+input,
+textarea {
+  user-select: auto;
+}
+._9f4d_gZKCTv {
+  letter-spacing: inherit;
+  color: transparent;
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+  white-space: pre;
+}
+._9f4d_heyfmZ {
+  height: 20px;
+  width: 2px;
+  background: var(--Primary);
+  animation: 1s step-end 0s infinite normal none running _9f4d_dPDCaf;
+  position: absolute;
+  transition: margin-inline-start 0.1s linear;
+}
+@keyframes _9f4d_dPDCaf {
+  50% {
+    opacity: 0;
+  }
+}
+._9f4d_P2-Regular {
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.0097em;
+  line-height: 1.3em;
+}
+._9f4d_text-color-TextTertiary {
+  color: var(--TextTertiary);
+}
+._9f4d_h-26 {
+  height: 26px;
+}
+._9f4d_SmallText1-Regular {
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.0177em;
+  line-height: 1.3em;
+}
+._9f4d_iEsvFh {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  padding: 4px 0px 12px;
+}
+._9f4d_jrYXOR {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--BGInput);
+  border-radius: 2px;
+  color: var(--TextPrimary);
+  font-family: TikTokFont, sans-serif;
+}
+._9f4d_py-12 {
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+._9f4d_justify-between {
+  justify-content: space-between;
+}
+._9f4d_mb-12 {
+  margin-bottom: 12px;
+}
+button._9f4d_TUXButton--primary {
+  background-color: var(--ui-shape-primary);
+  color: var(--ui-shape-text-1-on-primary);
+}
+._9f4d_TUXButton--large {
+  border-radius: 8px;
+  font-size: 16px;
+  height: 48px;
+  line-height: 21px;
+  min-width: 124px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+._9f4d_TUXButton {
+  align-items: center;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: TikTokFont, sans-serif;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.15px;
+  position: relative;
+}
+._9f4d_TUXButton-content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+._9f4d_TUXButton--large ._9f4d_TUXButton-iconContainer {
+  font-size: 19px;
+}
+._9f4d_TUXButton-iconContainer {
+  display: flex;
+  flex-shrink: 0;
+}
+._9f4d_TUXButton--large ._9f4d_TUXButton-content > * + * {
+  margin-left: 5.5px;
+}
+._9f4d_TUXButton-label {
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+._9f4d_Headline-Medium {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+._9f4d_px-12 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+._9f4d_tux-separator--large {
+  height: 8px;
+  width: 100%;
+}
+._9f4d_Headline-Regular {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+._9f4d_text-color-TextSecondary {
+  color: var(--TextSecondary);
+}
+.hidden {
+  display: none !important;
+}
+.mask-hidden {
+  visibility: hidden;
+  opacity: 0 !important;
+}
+._9f4d_text-color-TextTertiaryAlt {
+  color: var(--TextTertiaryAlt);
+}
+._9f4d_ms-2 {
+  margin-inline-start: 2px;
+}
+._9f4d_text-color-Negative {
+  color: var(--Negative);
+}

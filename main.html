@@ -3,850 +3,559 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Component</title>
+    <title>TikTok Profile Lookup</title>
     <style>
-      :root {
-        --SDSecondary: rgba(0, 0, 0, 0.5);
-        --TextPrimary: #000;
-        --TextTertiary: rgba(0, 0, 0, 0.56);
-        --LineSecondary3: #ccc;
-        --Primary: #fe2c55;
-        --BGInput: #f1f1f2;
-        --ui-shape-primary: #fe2c55;
-        --ui-shape-text-1-on-primary: #fff;
-        --TextSecondary: rgba(0, 0, 0, 0.72);
-      }
-
-      /* Unique Class Names */
-      ._9f4d_background-color-SDSecondary {
-        background-color: var(--SDSecondary);
-      }
-      ._9f4d_opacity-100 {
-        opacity: 1;
-      }
-      ._9f4d_z-2000 {
-        z-index: 2000;
-      }
-      ._9f4d_fixed {
-        position: fixed;
-      }
-      ._9f4d_tt-sheet__mask {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        transition: opacity 0.2s linear;
-      }
-      ._9f4d_tt-sheet__container.high.visible {
-        transition: transform 0.3s cubic-bezier(0.25, 0, 0.25, 1);
-      }
-      ._9f4d_tt-sheet__container.high {
-        transition: transform 0.35s cubic-bezier(0.33, 0.86, 0.2, 1);
-      }
-      ._9f4d_tt-sheet__container.visible {
-        transition: transform 0.25s cubic-bezier(0.25, 0, 0.25, 1);
-      }
-      ._9f4d_radius-containerslevel1-large-t {
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-      }
-      ._9f4d_pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-      ._9f4d_flex-col {
-        flex-direction: column;
-      }
-      ._9f4d_flex {
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
         display: flex;
-      }
-      ._9f4d_visible {
-        visibility: visible;
-      }
-      ._9f4d_tt-sheet__container {
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        right: 0;
-        transform: translateY(100%);
-        transition: transform 0.3s cubic-bezier(0.33, 0.86, 0.2, 1);
-      }
-      * {
-        box-sizing: border-box;
-      }
-      ._9f4d_flex-shrink-0 {
-        flex-shrink: 0;
-      }
-      ._9f4d_TUXNavBar {
-        display: contents;
-      }
-      ._9f4d_box-border {
-        box-sizing: border-box;
-      }
-      ._9f4d_left-0 {
-        left: 0;
-      }
-      ._9f4d_right-0 {
-        right: 0;
-      }
-      ._9f4d_top-0 {
-        top: 0;
-      }
-      ._9f4d_TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-      ._9f4d_px-8 {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-      ._9f4d_overflow-hidden {
-        overflow: hidden;
-      }
-      ._9f4d_items-center {
-        align-items: center;
-      }
-      ._9f4d_relative {
-        position: relative;
-      }
-      ._9f4d_w-full {
-        width: 100%;
-      }
-      ._9f4d_h-full {
-        height: 100%;
-      }
-      ._9f4d_-z-1 {
-        z-index: -1;
-      }
-      ._9f4d_absolute {
-        position: absolute;
-      }
-      ._9f4d_justify-start {
-        justify-content: flex-start;
-      }
-      ._9f4d_flex-1 {
-        flex: 1 1;
-      }
-      ._9f4d_inline-flex {
-        display: inline-flex;
-      }
-      ._9f4d_H3-Bold {
-        font-weight: 700;
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      ._9f4d_text-center {
-        text-align: center;
-      }
-      ._9f4d_px-4 {
-        padding-left: 4px;
-        padding-right: 4px;
-      }
-      ._9f4d_truncate {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      ._9f4d_text-color-TextPrimary {
-        color: var(--TextPrimary);
-      }
-      ._9f4d_p-0 {
-        padding: 0;
-      }
-      ._9f4d_justify-center {
         justify-content: center;
-      }
-      ._9f4d_w-40 {
-        width: 40px;
-      }
-      ._9f4d_h-40 {
-        height: 40px;
-      }
-      ._9f4d_tux-nav-bar-icon-action {
-        font-size: 24px;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-        font-family: inherit;
+        align-items: flex-start;
+        padding-top: 50px;
+        min-height: 100vh;
         margin: 0;
       }
-      ._9f4d_justify-end {
-        justify-content: flex-end;
-      }
-      ._9f4d_bottom-0 {
-        bottom: 0;
-      }
-      ._9f4d_tux-separator--horizontal._9f4d_tux-separator--medium {
-        height: 1px;
-        transform: scaleY(0.5);
+      .container {
         width: 100%;
+        max-width: 400px;
+        background-color: white;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
-      ._9f4d_tt-sheet__body {
-        min-height: 0;
-        overflow-y: auto;
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 24px;
       }
-      ._9f4d_pt-12 {
-        padding-top: 12px;
-      }
-      ._9f4d_px-16 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      ._9f4d_mb-8 {
-        margin-bottom: 8px;
-      }
-      ._9f4d_P1-Semibold {
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      ._9f4d_kemEwk {
-        display: flex;
-        align-items: center;
-        height: 48px;
+      .username-input {
         width: 100%;
-        border: 1px solid var(--LineSecondary3);
-        padding: 12px;
-        border-radius: 2px;
-        margin-bottom: 4px;
-        justify-content: space-between;
-      }
-      ._9f4d_jaLHEV {
-        display: flex;
-        align-items: center;
-      }
-      ._9f4d_TpOYW {
-        font-family: TikTokFont, sans-serif;
-      }
-      ._9f4d_H2-Bold {
-        font-weight: 700;
-        font-size: 20px;
-        letter-spacing: 0.02em;
-        line-height: 1.25em;
-      }
-      ._9f4d_klkZRQ {
-        position: relative;
-        display: flex;
-        align-items: center;
-        margin-inline-start: 8px;
-        transition: opacity 150ms;
-        opacity: 1;
-      }
-      ._9f4d_bQpkOu {
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        padding: 0px 1px;
-        letter-spacing: inherit;
-        width: 100%;
-        line-height: 24px;
-        color: var(--TextPrimary);
-        caret-color: transparent;
-        background: transparent;
-        outline: none;
-      }
-      input,
-      textarea {
-        user-select: auto;
-      }
-      ._9f4d_gZKCTv {
-        letter-spacing: inherit;
-        color: transparent;
-        position: absolute;
-        z-index: -1;
-        opacity: 0.08;
-        background-color: initial;
-      }
-      ._9f4d_heyfmZ {
-        height: 20px;
-        width: 2px;
-        background: var(--Primary);
-        animation: 1s step-end 0s infinite normal none running _9f4d_dPDCaf;
-        position: absolute;
-      }
-      @keyframes _9f4d_dPDCaf {
-        50% {
-          opacity: 0;
-        }
-      }
-      ._9f4d_P2-Regular {
-        font-weight: 400;
-        font-size: 13px;
-        letter-spacing: 0.0097em;
-        line-height: 1.3em;
-      }
-      ._9f4d_text-color-TextTertiary {
-        color: var(--TextTertiary);
-      }
-      ._9f4d_h-26 {
-        height: 26px;
-      }
-      ._9f4d_SmallText1-Regular {
-        font-weight: 400;
-        font-size: 11px;
-        letter-spacing: 0.0177em;
-        line-height: 1.3em;
-      }
-      ._9f4d_iEsvFh {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 8px;
-        padding: 4px 0px 12px;
-      }
-      ._9f4d_jrYXOR {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        height: 100%;
-        width: 100%;
-        background-color: var(--BGInput);
-        border-radius: 2px;
-        color: var(--TextPrimary);
-        font-family: TikTokFont, sans-serif;
-      }
-      ._9f4d_py-12 {
-        padding-bottom: 12px;
-        padding-top: 12px;
-      }
-      ._9f4d_justify-between {
-        justify-content: space-between;
-      }
-      ._9f4d_mb-12 {
-        margin-bottom: 12px;
-      }
-      button._9f4d_TUXButton--primary {
-        background-color: var(--ui-shape-primary);
-        color: var(--ui-shape-text-1-on-primary);
-      }
-      ._9f4d_TUXButton--large {
-        border-radius: 8px;
+        padding: 12px 16px;
         font-size: 16px;
-        height: 48px;
-        line-height: 21px;
-        min-width: 124px;
-        padding-left: 24px;
-        padding-right: 24px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
       }
-      ._9f4d_TUXButton {
-        align-items: center;
-        appearance: none;
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: TikTokFont, sans-serif;
-        font-weight: 500;
-        justify-content: center;
-        letter-spacing: 0.15px;
-        position: relative;
+      .username-input:focus {
+        outline: none;
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
       }
-      ._9f4d_TUXButton-content {
-        align-items: center;
+      .profile-preview {
+        margin-top: 16px;
+        border: 1px solid #f3f4f6;
+        border-radius: 12px;
+        padding: 16px;
         display: flex;
-        justify-content: center;
-        overflow: hidden;
-        width: 100%;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: opacity 0.3s, transform 0.3s;
       }
-      ._9f4d_TUXButton--large ._9f4d_TUXButton-iconContainer {
-        font-size: 19px;
+      .profile-preview.hidden {
+        display: none;
       }
-      ._9f4d_TUXButton-iconContainer {
-        display: flex;
+      .profile-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
         flex-shrink: 0;
       }
-      ._9f4d_TUXButton--large ._9f4d_TUXButton-content > * + * {
-        margin-left: 5.5px;
+      .profile-info {
+        flex: 1;
       }
-      ._9f4d_TUXButton-label {
-        overflow: hidden;
-        position: relative;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .profile-handle {
+        font-weight: 600;
+        color: #111;
+        font-size: 15px;
       }
-
-      /* Additional styles for the second component */
-      ._9f4d_Headline-Medium {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.3em;
+      .profile-nickname {
+        font-size: 14px;
+        color: #666;
       }
-      ._9f4d_px-12 {
-        padding-left: 12px;
-        padding-right: 12px;
+      .profile-followers {
+        font-size: 12px;
+        color: #999;
+        margin-top: 4px;
       }
-      ._9f4d_tux-separator--large {
-        height: 8px;
-        width: 100%;
-      }
-      ._9f4d_Headline-Regular {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.3em;
-      }
-      ._9f4d_text-color-TextSecondary {
-        color: var(--TextSecondary);
-      }
-      ._9f4d_mask-hidden {
-        visibility: hidden;
-        opacity: 0 !important;
-      }
-      .main-sheet-hidden {
-        transform: translateY(100%) !important;
-      }
-      .secondary-sheet-hidden {
-        transform: translateY(100%) !important;
-        visibility: hidden;
+      /* Mode 2 elements are included but hidden by default, as the script expects to find them */
+      #mode2Container {
+        display: none;
       }
     </style>
   </head>
-  <body style="font-family: sans-serif">
-    <div
-      id="main-component"
-      class="_9f4d_box-border _9f4d_text-color-TextPrimary"
-    >
-      <div
-        id="main-mask"
-        class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000 _9f4d_opacity-100"
-      ></div>
-      <div
-        id="main-sheet"
-        class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col high visible"
-        style="
-          min-height: 240px;
-          max-height: 90%;
-          background-color: rgb(255, 255, 255);
-          transform: translateY(0px);
-        "
-      >
-        <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
-          <div data-theme="light" dir="ltr">
-            <div data-test-tag="tux-nav-bar" class="_9f4d_TUXNavBar">
-              <div
-                class="_9f4d_box-border _9f4d_top-0 _9f4d_left-0 _9f4d_right-0"
-              >
-                <header
-                  class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
-                  role="navigation"
-                  style="height: 52px"
-                >
-                  <div
-                    role="none"
-                    class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
-                    style="background-color: rgb(255, 255, 255)"
-                  ></div>
-                  <div
-                    class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
-                  >
-                    <button
-                      id="close-main-component"
-                      data-test-tag="tux-nav-bar-button-0"
-                      class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-                    >
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <div
-                    data-test-tag="tux-nav-bar-content"
-                    class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
-                    style="color: rgb(0, 0, 0); line-height: 52px"
-                  >
-                    Custom
-                  </div>
-                  <div
-                    class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
-                  >
-                    <button
-                      data-test-tag="tux-nav-bar-button-0"
-                      class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-                    >
-                      <svg
-                        fill="currentColor"
-                        font-size="22px"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
-                        ></path>
-                        <path
-                          d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <div
-                    class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0"
-                  >
-                    <div
-                      role="separator"
-                      class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-                      style="
-                        background-color: rgba(22, 24, 35, 0.2);
-                        transform-origin: center bottom;
-                      "
-                    ></div>
-                  </div>
-                </header>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-          <div class="_9f4d_px-16 _9f4d_pt-12">
-            <div
-              id="number-of-coins-trigger"
-              class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
-              data-e2e="recharge-custom-keyboard-input-type-trigger"
-              style="gap: 4px; cursor: pointer"
-            >
-              <span data-test-tag="tux-text" class="_9f4d_P1-Semibold"
-                >Number of Coins</span
-              >
-              <svg
-                fill="currentColor"
-                font-size="12px"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
-                ></path>
-              </svg>
-            </div>
-            <div class="_9f4d_kemEwk">
-              <div class="_9f4d_jaLHEV">
-                <svg
-                  font-size="16px"
-                  viewBox="0 0 48 48"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                >
-                  <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                    <path
-                      d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                      fill="#FFB84D"
-                    ></path>
-                    <path
-                      d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                      fill="#FFDE55"
-                    ></path>
-                    <path
-                      d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                      fill="#F7A300"
-                    ></path>
-                    <path
-                      d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                      fill="#F7A80F"
-                    ></path>
-                    <path
-                      d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                      fill="#E88B00"
-                    ></path>
-                    <path
-                      d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                      fill="#F09207"
-                    ></path>
-                    <path
-                      d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                      fill="#F09207"
-                    ></path>
-                    <path
-                      d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                      fill="#fff"
-                    ></path>
-                  </g>
-                  <defs>
-                    <clipPath id="Icon_Color-Tiktok_Coin_svg__a">
-                      <path fill="#fff" d="M0 0h48v48H0z"></path>
-                    </clipPath>
-                  </defs>
-                </svg>
-                <div class="_9f4d_TpOYW _9f4d_H2-Bold">
-                  <div class="_9f4d_klkZRQ">
-                    <input
-                      id="coin-input"
-                      placeholder="30 - 2,500,000"
-                      readonly=""
-                      autocomplete="off"
-                      class="_9f4d_bQpkOu"
-                      value=""
-                    />
-                    <span class="_9f4d_gZKCTv"></span>
-                    <div
-                      class="_9f4d_heyfmZ"
-                      style="margin-inline-start: 0px"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
-              style="height: 26px"
-            >
-              <div
-                id="price-display"
-                class="_9f4d_SmallText1-Regular _9f4d_flex _9f4d_items-center"
-              ></div>
-            </div>
-            <div dir="ltr" class="_9f4d_iEsvFh">
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
-              <button id="backspace-key" class="_9f4d_jrYXOR _9f4d_H3-Bold">
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                >
-                  <path
-                    d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
-                  ></path>
-                </svg>
-              </button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
-              <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
-            </div>
-          </div>
-          <div style="height: calc(107px - env(safe-area-inset-bottom))"></div>
-          <div class="footer-ja6ghG background-color-UISheetFlat1">
-            <div
-              role="separator"
-              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-              style="
-                background-color: rgba(22, 24, 35, 0.2);
-                transform-origin: center center;
-              "
-            ></div>
-            <div class="_9f4d_px-16 _9f4d_py-12">
-              <div
-                class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
-              >
-                <div class="_9f4d_flex"><div>Total</div></div>
-                <div id="total-price"></div>
-              </div>
-              <div>
-                <button
-                  class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
-                  type="button"
-                >
-                  <div class="_9f4d_TUXButton-content">
-                    <div class="_9f4d_TUXButton-iconContainer">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                        ></path>
-                        <path
-                          d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="_9f4d_TUXButton-label">Recharge</div>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
+  <body>
+    <div class="container">
+      <h1>Profile Lookup</h1>
+      <input type="text" class="username-input" placeholder="Enter username" />
+
+      <!-- Mode 1 Profile Preview -->
+      <div id="usernameProfilePreview" class="profile-preview hidden">
+        <img
+          id="usernameProfileAvatar"
+          src=""
+          alt="Avatar"
+          class="profile-avatar"
+        />
+        <div class="profile-info">
+          <div id="usernameProfileHandle" class="profile-handle"></div>
+          <div id="usernameProfileNickname" class="profile-nickname"></div>
+          <div id="usernameProfileFollowers" class="profile-followers"></div>
         </div>
       </div>
     </div>
 
-    <div id="secondary-component" class="secondary-sheet-hidden">
-      <div
-        id="secondary-mask"
-        class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000 _9f4d_opacity-100"
-      ></div>
-      <div
-        id="secondary-sheet"
-        class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col medium"
-        style="
-          min-height: 0px;
-          max-height: 73%;
-          background-color: rgb(255, 255, 255);
-        "
-      >
-        <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0"></div>
-        <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-          <div>
-            <div style="opacity: 1">
-              <button
-                type="button"
-                class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-                style="min-height: 48px"
-              >
-                <div style="padding: 1px 0px"><div>Number of Coins</div></div>
-              </button>
-            </div>
-            <div
-              role="separator"
-              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-              style="
-                background-color: rgba(22, 24, 35, 0.12);
-                transform-origin: center center;
-              "
-            ></div>
-            <div style="opacity: 1">
-              <button
-                type="button"
-                class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-                style="min-height: 48px"
-              >
-                <div style="padding: 1px 0px"><div>Payment amount</div></div>
-              </button>
-            </div>
-          </div>
-          <footer>
-            <div
-              role="separator"
-              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border tux-separator--horizontal _9f4d_tux-separator--large"
-              style="
-                background-color: rgba(22, 24, 35, 0.03);
-                transform-origin: center center;
-              "
-            ></div>
-            <button
-              id="cancel-secondary"
-              type="button"
-              class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
-              style="min-height: 48px"
-            >
-              <div style="padding: 1px 0px">Cancel</div>
-            </button>
-          </footer>
+    <!-- 
+      The script you provided also searches for "Mode 2" elements.
+      To prevent errors, we include them here but keep them hidden.
+    -->
+    <div id="mode2Container">
+      <input type="text" id="mode2UsernameInput" />
+      <div id="mode2ProfilePreview" class="profile-preview hidden">
+        <img
+          id="mode2ProfileAvatar"
+          src=""
+          alt="Avatar"
+          class="profile-avatar"
+        />
+        <div class="profile-info">
+          <div id="mode2ProfileHandle" class="profile-handle"></div>
+          <div id="mode2ProfileNickname" class="profile-nickname"></div>
+          <div id="mode2ProfileFollowers" class="profile-followers"></div>
         </div>
       </div>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const coinInput = document.getElementById("coin-input");
-        const priceDisplay = document.getElementById("price-display");
-        const totalPriceDisplay = document.getElementById("total-price");
-        const numKeys = document.querySelectorAll(".num-key");
-        const backspaceKey = document.getElementById("backspace-key");
-        const closeMainComponentButton = document.getElementById(
-          "close-main-component"
-        );
-        const mainMask = document.getElementById("main-mask");
-        const mainSheet = document.getElementById("main-sheet");
+      // --- START: MOCK SETUP (FOR DEMONSTRATION) ---
 
-        const numberOfCoinsTrigger = document.getElementById(
-          "number-of-coins-trigger"
-        );
-        const secondaryComponent = document.getElementById(
-          "secondary-component"
-        );
-        const secondarySheet = document.getElementById("secondary-sheet");
-        const cancelSecondaryButton =
-          document.getElementById("cancel-secondary");
-        const secondaryMask = document.getElementById("secondary-mask");
-
-        const COIN_PRICE = 16.7599;
-
-        const updatePrice = () => {
-          const coinValue = parseInt(coinInput.value.replace(/,/g, "")) || 0;
-          const calculatedPrice = (coinValue * COIN_PRICE).toLocaleString(
-            "en-US",
-            { style: "currency", currency: "NGN" }
-          );
-          priceDisplay.textContent = calculatedPrice;
-          totalPriceDisplay.textContent = calculatedPrice;
+      // 1. Mock the `window.ModeSwitcher` object that the script depends on.
+      // This ensures the script's check for `isProfileLookupEnabled()` passes.
+      if (!window.ModeSwitcher) {
+        window.ModeSwitcher = {
+          isProfileLookupEnabled: () => true,
         };
+      }
 
-        const formatNumber = (numStr) => {
-          if (!numStr) return "";
-          return parseInt(numStr.replace(/,/g, "")).toLocaleString("en-US");
-        };
+      // 2. Mock the backend API call.
+      // The original script tries to fetch data from `/api/tiktok/profile/:username`.
+      // Since we don't have a backend, we intercept this call and return fake data.
+      const originalFetch = window.fetch;
+      window.fetch = async (url, options) => {
+        // Check if the URL matches the TikTok profile API endpoint
+        if (typeof url === "string" && url.startsWith("/api/tiktok/profile/")) {
+          console.log("Mock API: Intercepted fetch request to", url);
 
-        numKeys.forEach((key) => {
-          key.addEventListener("click", () => {
-            let currentValue = coinInput.value.replace(/,/g, "");
-            currentValue += key.textContent;
-            if (currentValue.length > 9) {
-              currentValue = currentValue.substring(0, 9);
+          // Extract username from the URL
+          const username = decodeURIComponent(url.split("/").pop());
+
+          // Simulate a network delay
+          await new Promise((resolve) => setTimeout(resolve, 400));
+
+          // If the username is "notfound", simulate an error. Otherwise, return success.
+          if (username.toLowerCase() === "notfound") {
+            console.log("Mock API: Simulating 'Profile not found' response.");
+            return new Response(JSON.stringify({ success: false }), {
+              status: 404,
+              headers: { "Content-Type": "application/json" },
+            });
+          }
+
+          console.log("Mock API: Returning successful fake profile data.");
+          return new Response(
+            JSON.stringify({
+              success: true,
+              data: {
+                username: username,
+                nickname: `The Official ${
+                  username.charAt(0).toUpperCase() + username.slice(1)
+                }`,
+                avatar: `https://i.pravatar.cc/150?u=${username}`, // A random avatar service
+                followers: (username.length * 12345).toLocaleString(),
+              },
+            }),
+            {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
             }
-            coinInput.value = formatNumber(currentValue);
-            updatePrice();
+          );
+        }
+
+        // For any other URL, use the real fetch function
+        return originalFetch(url, options);
+      };
+
+      // --- END: MOCK SETUP ---
+
+      // --- START: YOUR EXACT JAVASCRIPT CODE ---
+
+      // TikTok Profile Lookup functionality - Real-time API
+      (function () {
+        const mode1Input = document.querySelector(
+          'input[placeholder="Enter username"]'
+        );
+
+        // Mode 1 elements
+        const mode1ProfilePreview = document.getElementById(
+          "usernameProfilePreview"
+        );
+        const mode1ProfileAvatar = document.getElementById(
+          "usernameProfileAvatar"
+        );
+        const mode1ProfileHandle = document.getElementById(
+          "usernameProfileHandle"
+        );
+        const mode1ProfileNickname = document.getElementById(
+          "usernameProfileNickname"
+        );
+        const mode1ProfileFollowers = document.getElementById(
+          "usernameProfileFollowers"
+        );
+
+        let fetchTimeout = null;
+        let currentUsername = "";
+        let mode2Elements = null;
+
+        // Get Mode 2 elements (they're created dynamically)
+        function getMode2Elements() {
+          if (
+            !mode2Elements ||
+            !document.getElementById("mode2ProfilePreview")
+          ) {
+            mode2Elements = {
+              preview: document.getElementById("mode2ProfilePreview"),
+              avatar: document.getElementById("mode2ProfileAvatar"),
+              handle: document.getElementById("mode2ProfileHandle"),
+              nickname: document.getElementById("mode2ProfileNickname"),
+              followers: document.getElementById("mode2ProfileFollowers"),
+            };
+          }
+          return mode2Elements;
+        }
+
+        // Fetch TikTok profile data from our backend API
+        async function fetchTikTokProfile(username) {
+          if (!username || username.length < 3) {
+            return null;
+          }
+
+          try {
+            // Remove @ symbol(s) from username before sending to API
+            const cleanUsername = username.replace(/^@+/, "");
+
+            // Use our backend proxy to fetch TikTok profile
+            const response = await fetch(
+              `/api/tiktok/profile/${encodeURIComponent(cleanUsername)}`
+            );
+
+            if (!response.ok) {
+              throw new Error("Profile not found");
+            }
+
+            const result = await response.json();
+
+            if (result.success && result.data) {
+              return result.data;
+            }
+            return null;
+          } catch (error) {
+            console.log("Failed to fetch TikTok profile:", error);
+            return null;
+          }
+        }
+
+        // Update profile preview display for Mode 1
+        function showMode1Profile(profileData) {
+          if (
+            !profileData ||
+            !mode1ProfilePreview ||
+            !mode1ProfileHandle ||
+            !mode1ProfileNickname ||
+            !mode1ProfileFollowers ||
+            !mode1ProfileAvatar
+          ) {
+            hideMode1Profile();
+            return;
+          }
+
+          if (profileData.avatar) {
+            mode1ProfileAvatar.src = profileData.avatar;
+            mode1ProfileAvatar.classList.remove("hidden");
+          } else {
+            mode1ProfileAvatar.classList.add("hidden");
+          }
+          // Clean username and add single @ to prevent @@
+          const cleanUsername = profileData.username.replace(/^@+/, "");
+          mode1ProfileHandle.textContent = "@" + cleanUsername;
+          mode1ProfileNickname.textContent = profileData.nickname;
+          mode1ProfileFollowers.textContent =
+            profileData.followers + " Followers";
+          mode1ProfilePreview.classList.remove("hidden");
+        }
+
+        function hideMode1Profile() {
+          if (mode1ProfilePreview) {
+            mode1ProfilePreview.classList.add("hidden");
+          }
+        }
+
+        // Update profile preview display for Mode 2
+        function showMode2Profile(profileData) {
+          const elements = getMode2Elements();
+          console.log("showMode2Profile called with:", profileData);
+          console.log("Mode 2 elements found:", elements);
+
+          if (
+            !profileData ||
+            !elements.preview ||
+            !elements.handle ||
+            !elements.nickname ||
+            !elements.followers ||
+            !elements.avatar
+          ) {
+            console.log("Missing elements or data, hiding Mode 2 profile");
+            hideMode2Profile();
+            return;
+          }
+
+          console.log("Showing Mode 2 profile preview");
+
+          // Add class to container for extra space
+          const mode2Container = document.getElementById("mode2Container");
+          if (mode2Container) {
+            mode2Container.classList.add("has-profile-preview");
+          }
+
+          if (profileData.avatar) {
+            elements.avatar.src = profileData.avatar;
+            elements.avatar.classList.remove("hidden");
+          } else if (elements.avatar) {
+            elements.avatar.classList.add("hidden");
+          }
+          // Clean username and add single @ to prevent @@
+          const cleanUsername = profileData.username.replace(/^@+/, "");
+          elements.handle.textContent = "@" + cleanUsername;
+          elements.nickname.textContent = profileData.nickname;
+          elements.followers.textContent = profileData.followers + " Followers";
+
+          // Force display with multiple methods
+          elements.preview.classList.remove("hidden");
+          elements.preview.classList.add("show");
+          elements.preview.style.display = "flex";
+        }
+
+        function hideMode2Profile() {
+          const elements = getMode2Elements();
+          console.log("hideMode2Profile called, elements:", elements);
+
+          // Remove class from container
+          const mode2Container = document.getElementById("mode2Container");
+          if (mode2Container) {
+            mode2Container.classList.remove("has-profile-preview");
+          }
+
+          if (elements.preview) {
+            elements.preview.classList.add("hidden");
+            elements.preview.classList.remove("show");
+            elements.preview.style.display = "none";
+          }
+        }
+
+        // Show profile in the appropriate mode
+        function showProfile(profileData) {
+          if (!profileData) {
+            hideProfile();
+            return;
+          }
+
+          // Show in Mode 1 if it exists
+          if (mode1ProfilePreview) {
+            showMode1Profile(profileData);
+          }
+
+          // Show in Mode 2 if it exists
+          const mode2Exists = document.getElementById("mode2ProfilePreview");
+          if (mode2Exists) {
+            showMode2Profile(profileData);
+          }
+        }
+
+        function hideProfile() {
+          hideMode1Profile();
+          hideMode2Profile();
+        }
+
+        // Update profile preview based on input
+        async function updateProfilePreview(inputElement) {
+          // Check if profile lookup is enabled
+          if (
+            !window.ModeSwitcher ||
+            !window.ModeSwitcher.isProfileLookupEnabled()
+          ) {
+            hideProfile();
+            return;
+          }
+
+          const username = inputElement.value.trim();
+
+          // Clear previous timeout
+          if (fetchTimeout) {
+            clearTimeout(fetchTimeout);
+          }
+
+          // Remove @ symbols for comparison and API call
+          const cleanUsername = username.replace(/^@+/, "");
+
+          // If username is empty or too short, hide profile
+          if (!cleanUsername || cleanUsername.length < 3) {
+            hideProfile();
+            currentUsername = "";
+            return;
+          }
+
+          // If username hasn't changed, don't fetch again
+          if (cleanUsername.toLowerCase() === currentUsername.toLowerCase()) {
+            return;
+          }
+
+          currentUsername = cleanUsername;
+
+          // Debounce API calls - wait 500ms after user stops typing
+          fetchTimeout = setTimeout(async () => {
+            console.log("Fetching TikTok profile for:", cleanUsername);
+
+            // Show loading state
+            const mode2Exists = document.getElementById("mode2ProfilePreview");
+
+            if (
+              mode1ProfilePreview &&
+              mode1ProfileHandle &&
+              mode1ProfileNickname &&
+              mode1ProfileFollowers
+            ) {
+              mode1ProfileHandle.textContent = "Loading...";
+              mode1ProfileNickname.textContent = "";
+              mode1ProfileFollowers.textContent = "";
+              mode1ProfilePreview.classList.remove("hidden");
+            }
+
+            if (mode2Exists) {
+              const elements = getMode2Elements();
+              if (
+                elements.handle &&
+                elements.nickname &&
+                elements.followers &&
+                elements.preview
+              ) {
+                elements.handle.textContent = "Loading...";
+                elements.nickname.textContent = "";
+                elements.followers.textContent = "";
+                elements.preview.classList.remove("hidden");
+              }
+            }
+
+            const profileData = await fetchTikTokProfile(cleanUsername);
+
+            if (profileData) {
+              showProfile(profileData);
+            } else {
+              console.log("No profile data found for:", cleanUsername);
+              if (
+                mode1ProfilePreview &&
+                mode1ProfileHandle &&
+                mode1ProfileNickname &&
+                mode1ProfileFollowers
+              ) {
+                mode1ProfileHandle.textContent = "@" + cleanUsername;
+                mode1ProfileNickname.textContent = "Profile not found";
+                mode1ProfileFollowers.textContent = "";
+                mode1ProfilePreview.classList.remove("hidden");
+                if (mode1ProfileAvatar) {
+                  mode1ProfileAvatar.classList.add("hidden");
+                }
+              }
+
+              const elements = getMode2Elements();
+              if (
+                elements.preview &&
+                elements.handle &&
+                elements.nickname &&
+                elements.followers
+              ) {
+                elements.handle.textContent = "@" + cleanUsername;
+                elements.nickname.textContent = "Profile not found";
+                elements.followers.textContent = "";
+                elements.preview.classList.remove("hidden");
+                if (elements.avatar) {
+                  elements.avatar.classList.add("hidden");
+                }
+              }
+            }
+          }, 500);
+        }
+
+        // Listen for Mode 1 input changes
+        if (mode1Input) {
+          mode1Input.addEventListener("input", function () {
+            updateProfilePreview(this);
           });
+        }
+
+        // Listen for Mode 2 input changes
+        function attachMode2Listener() {
+          const mode2Input = document.getElementById("mode2UsernameInput");
+          if (mode2Input && !mode2Input.dataset.profileListenerAttached) {
+            mode2Input.dataset.profileListenerAttached = "true";
+            mode2Input.addEventListener("input", function () {
+              updateProfilePreview(this);
+            });
+            console.log("Mode 2 profile listener attached");
+          }
+        }
+
+        // Attach Mode 2 listener with retry
+        setTimeout(attachMode2Listener, 100);
+        setTimeout(attachMode2Listener, 500);
+        setTimeout(attachMode2Listener, 1000);
+
+        // Observe DOM changes to catch Mode 2 layout creation
+        const mode2Observer = new MutationObserver(() => {
+          attachMode2Listener();
+        });
+        mode2Observer.observe(document.body, {
+          childList: true,
+          subtree: true,
         });
 
-        backspaceKey.addEventListener("click", () => {
-          let currentValue = coinInput.value.replace(/,/g, "");
-          currentValue = currentValue.slice(0, -1);
-          coinInput.value = formatNumber(currentValue);
-          updatePrice();
+        // Listen for profile lookup toggle changes
+        window.addEventListener("profileLookupChanged", function (e) {
+          console.log("Profile lookup changed:", e.detail.enabled);
+          const activeInput =
+            document.getElementById("mode2UsernameInput") || mode1Input;
+          if (activeInput) {
+            updateProfilePreview(activeInput);
+          }
         });
 
-        closeMainComponentButton.addEventListener("click", () => {
-          mainSheet.classList.add("main-sheet-hidden");
-          mainMask.classList.add("_9f4d_mask-hidden");
+        // Listen for mode switches
+        window.addEventListener("modeChanged", function () {
+          setTimeout(attachMode2Listener, 100);
         });
 
-        mainMask.addEventListener("click", () => {
-          mainSheet.classList.add("main-sheet-hidden");
-          mainMask.classList.add("_9f4d_mask-hidden");
-        });
+        // Initial check
+        setTimeout(function () {
+          const activeInput =
+            document.getElementById("mode2UsernameInput") || mode1Input;
+          if (activeInput) {
+            updateProfilePreview(activeInput);
+          }
+        }, 100);
+      })();
 
-        numberOfCoinsTrigger.addEventListener("click", () => {
-          secondaryComponent.classList.remove("secondary-sheet-hidden");
-          secondarySheet.style.transform = "translateY(0px)";
-        });
-
-        cancelSecondaryButton.addEventListener("click", () => {
-          secondarySheet.style.transform = "translateY(100%)";
-          setTimeout(() => {
-            secondaryComponent.classList.add("secondary-sheet-hidden");
-          }, 300);
-        });
-
-        secondaryMask.addEventListener("click", () => {
-          secondarySheet.style.transform = "translateY(100%)";
-          setTimeout(() => {
-            secondaryComponent.classList.add("secondary-sheet-hidden");
-          }, 300);
-        });
-
-        // Initial state
-        updatePrice();
-      });
+      // --- END: YOUR EXACT JAVASCRIPT CODE ---
     </script>
   </body>
 </html>
