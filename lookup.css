@@ -9,15 +9,22 @@
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
+  /* Start with a neutral border and set the custom cursor color */
   border: 1px solid #ddd;
+  caret-color: #fe2c55; /* TikTok brand pink for the text cursor */
   border-radius: 6px;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  /* Smooth transition for the focus effect */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
 #lookup_input:focus {
+  /* Remove the default browser outline (e.g., the blue ring) */
   outline: none;
-  border-color: #69c9d0;
-  box-shadow: 0 0 0 3px rgba(105, 201, 208, 0.2);
+  /* Change the border to the TikTok brand pink on focus */
+  border-color: #fe2c55;
+  /* Add a soft, modern glow using box-shadow with transparency */
+  box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.15);
 }
 
 #lookup_profilePreview {

@@ -3,17 +3,18 @@
   const containerDiv = document.getElementById("recharge_container_div");
   const inputElement = document.getElementById("lookup_input");
   const profilePreview = document.getElementById("lookup_profilePreview");
-
-  // Content Elements
   const contentWrapper = document.getElementById("lookup_contentWrapper");
   const avatar = document.getElementById("lookup_avatar");
   const nicknameLine = document.querySelector(".lookup_nicknameLine");
   const nickname = document.getElementById("lookup_nickname");
   const handle = document.getElementById("lookup_handle");
   const followers = document.getElementById("lookup_followers");
-
-  // Skeleton Elements
   const skeletonContainer = document.getElementById("lookup_skeletonContainer");
+
+  // --- NEW: A self-contained SVG placeholder for the avatar ---
+  // This Data URI is a lightweight, generic user icon that will be used when a profile isn't found.
+  const PLACEHOLDER_AVATAR_SVG =
+    "https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1594805258216454~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=2ea1e4d5&x-expires=1761764400&x-signature=FKCi20gW%2FvqVpBdwRMY7VYfB1ro%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my";
 
   // --- State Management ---
   let debounceTimeout = null;
@@ -35,12 +36,6 @@
     return num.toString();
   }
 
-  /**
-   * =========================================================================
-   * === ULTRA-FUNCTIONAL DATA FETCHING & VALIDATION (THE FIX) ===
-   * =========================================================================
-   * This function now correctly handles the specific error response from your server.
-   */
   async function fetchTikTokProfile(username, signal) {
     if (!username || username.length < 1) return null;
 
@@ -50,28 +45,23 @@
 
     try {
       const response = await fetch(apiUrl, { signal });
-
       if (!response.ok) {
         console.error(`API returned an HTTP error: ${response.status}`);
         return null;
       }
-
       const result = await response.json();
 
-      // **ULTRA-ROBUST VALIDATION (THE FIX):**
-      // We now check for the specific error message string in the response.
       if (
         !result.data ||
         !result.data.unique_id ||
         result.data.unique_id === "No unique_id found"
       ) {
         console.log(
-          "Validation failed: Server returned success status but content indicates no user was found."
+          "Validation failed: Server content indicates no user found."
         );
-        return null; // CRITICAL: Treat this as a failure
+        return null;
       }
 
-      // If we reach here, the data is valid.
       const profile = result.data;
       return {
         uniqueId: profile.unique_id,
@@ -81,14 +71,13 @@
         verified: profile.verified,
       };
     } catch (error) {
-      if (error.name !== "AbortError") {
+      if (error.name !== "AbortError")
         console.error("An unexpected fetch error occurred:", error);
-      }
       return null;
     }
   }
 
-  // --- UI Update Functions (No changes needed here) ---
+  // --- UI Update Functions ---
 
   function updateContainerHeight(isActive) {
     if (isActive) {
@@ -124,15 +113,14 @@
   }
 
   function showErrorState(username) {
-    avatar.src = "";
-    nickname.textContent = "Profile not found";
+    // **THE ONLY CHANGE IS HERE: Use the placeholder SVG instead of an empty string.**
+    avatar.src = PLACEHOLDER_AVATAR_SVG;
 
+    nickname.textContent = "Profile not found";
     const oldBadge = nicknameLine.querySelector("svg");
     if (oldBadge) oldBadge.remove();
-
     handle.textContent = `No results for "@${username}"`;
     followers.textContent = "";
-
     skeletonContainer.classList.add("hidden");
     contentWrapper.classList.remove("hidden");
   }
@@ -142,9 +130,6 @@
     profilePreview.classList.add("hidden");
   }
 
-  /**
-   * Main function to handle user input.
-   */
   function handleInput() {
     const username = inputElement.value.trim().replace(/^@+/, "");
 
@@ -162,7 +147,6 @@
 
     debounceTimeout = setTimeout(async () => {
       const profileData = await fetchTikTokProfile(username, signal);
-
       if (!signal.aborted) {
         if (profileData) {
           showProfile(profileData);

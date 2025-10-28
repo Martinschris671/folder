@@ -3,559 +3,1993 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TikTok Profile Lookup</title>
+    <title>Order Summary</title>
     <style>
+      :root {
+        --ui-sheet-backdrop-1: rgba(0, 0, 0, 0.5);
+        --ui-sheet-flat-1: #fff;
+        --ui-sheet-grouped-2: #fff;
+        --tux-web-font-display: TikTokDisplayFont, system-ui, -apple-system,
+          Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        --ui-page-flat-1: #fff;
+        --ui-shape-neutral-2: rgba(0, 0, 0, 0.17);
+        --ui-shape-primary: #fe2c55;
+        --ui-text-1: #000;
+        --ui-text-placeholder: rgba(0, 0, 0, 0.34);
+        --TextPrimary: #000;
+        --ui-shape-success-4: rgba(11, 224, 155, 0.12);
+        --ui-text-success: #008568;
+        --LineSecondary: rgba(22, 24, 35, 0.12);
+        --TextTertiaryAlt: rgba(0, 0, 0, 0.56);
+        --TextQuaternary: rgba(0, 0, 0, 0.32);
+        --BGSecondary: #fff;
+        --TextTertiary: rgba(0, 0, 0, 0.56);
+        --tux-web-font-body: TikTokFont, system-ui, -apple-system, Segoe UI,
+          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        --ui-text-2: #555;
+        --BGInput: rgba(22, 24, 35, 0.06);
+        --ui-shape-text-1-on-primary: #fff;
+      }
+
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        background-color: #f0f2f5;
+        margin: 0;
+        font-family: var(--tux-web-font-body);
+      }
+
+      .TUXModal-overlay {
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        background-color: var(--ui-sheet-backdrop-1);
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        padding-top: 50px;
-        min-height: 100vh;
+        opacity: 0;
+        padding: 16px;
+        touch-action: none;
+        transition: opacity 0.12s cubic-bezier(0.33, 0.86, 0.2, 1);
+      }
+
+      .TUXModal-overlay[data-transition-status="close"],
+      .TUXModal-overlay[data-transition-status="initial"] {
+        opacity: 0;
+      }
+
+      .TUXModal-overlay[data-transition-status="open"] {
+        opacity: 1;
+      }
+
+      .TUXModal {
+        background-color: #fff;
+        background-color: var(--ui-sheet-flat-1);
+        border-radius: 12px;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.122);
+        position: relative;
+      }
+
+      .TUXModal:focus {
+        outline: none;
+      }
+
+      .TUXModal[data-width="small"] {
+        max-width: 360px;
+        width: 100%;
+      }
+
+      .TUXModal[data-width="large"] {
+        max-width: 640px;
+        width: 100%;
+      }
+
+      .TUXModalTitle {
+        font-family: TikTokDisplayFont, system-ui, -apple-system, Segoe UI,
+          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-display);
+        font-size: 30px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      ._TUXNavBar--withBackground {
+        background: #fff;
+        background: var(--ui-page-flat-1);
+      }
+
+      ._TUXNavBar--withBorder {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+        border-bottom: 1px solid var(--ui-shape-neutral-2);
+      }
+
+      ._TUXNavBar-topRow {
+        align-items: center;
+        display: flex;
+        height: 52px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      ._TUXNavBar-titleContainer {
+        flex: 1 1;
+        overflow: hidden;
+      }
+
+      ._TUXNavBar-leading {
+        justify-content: flex-start;
+      }
+
+      ._TUXNavBar-leading,
+      ._TUXNavBar-trailing {
+        display: flex;
+        flex-shrink: 0;
+        max-width: 88px;
+      }
+
+      ._TUXNavBar-trailing {
+        justify-content: flex-end;
+      }
+
+      ._TUXNavBar-leading--fixed,
+      ._TUXNavBar-trailing--fixed {
+        width: 88px;
+      }
+
+      .TUXNavBarIconButton {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        font-size: 24px;
+        height: 44px;
+        justify-content: center;
+        width: 44px;
+      }
+
+      .TUXNavBarTextButton {
+        cursor: pointer;
+        font-size: 16px;
+        height: 44px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .TUXNavBarTextButton--primary {
+        color: #fe2c55;
+        color: var(--ui-shape-primary);
+        font-weight: 500;
+      }
+
+      .TUXNavBarTextButton--secondary {
+        color: #000;
+        color: var(--ui-text-1);
+      }
+
+      .TUXNavBarTextButton:disabled {
+        color: rgba(0, 0, 0, 0.34);
+        color: var(--ui-text-placeholder);
+      }
+
+      [data-tux-color-scheme="system"]
+        .TUXNavBarTextButton:not(:disabled):active {
+        opacity: 0.2;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        [data-tux-color-scheme="system"]
+          .TUXNavBarTextButton:not(:disabled):active {
+          opacity: 0.4;
+        }
+      }
+
+      [data-tux-color-scheme="light"]
+        .TUXNavBarTextButton:not(:disabled):active {
+        opacity: 0.2;
+      }
+
+      [data-tux-color-scheme="dark"]
+        .TUXNavBarTextButton:not(:disabled):active {
+        opacity: 0.4;
+      }
+
+      .TUXModalNavBar {
+        align-items: center;
+        display: flex;
+        height: 52px;
+        justify-content: center;
+        padding-left: 8px;
+        padding-right: 8px;
+        position: relative;
+      }
+
+      .TUXModalNavBar-title {
+        color: #000;
+        color: var(--ui-text-1);
+        flex: 1 1;
+        font-size: 17px;
+        font-weight: 500;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .TUXModalNavBar-leading {
+        justify-content: flex-start;
+      }
+
+      .TUXModalNavBar-leading,
+      .TUXModalNavBar-trailing {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+        width: 44px;
+      }
+
+      .TUXModalNavBar-trailing {
+        justify-content: flex-end;
+      }
+
+      .TUXModalCloseButton {
+        position: absolute;
+        right: 8px;
+        top: 4px;
+      }
+
+      .TUXModalCloseButton[data-text-direction="rtl"] {
+        left: 8px;
+        right: auto;
+      }
+
+      .TUXSheet-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        background-color: var(--ui-sheet-backdrop-1);
+        display: flex;
+        touch-action: none;
+        /* Start fully transparent and hidden */
+        opacity: 0;
+        visibility: hidden;
+
+        /* Define the fade transition */
+        transition: opacity 0.25s cubic-bezier(0.33, 0.86, 0.2, 1),
+          visibility 0.25s;
+
+        /* Optimization: Hint to the browser to prepare for opacity changes */
+        will-change: opacity;
+      }
+
+      .TUXSheet-overlay--portrait {
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .TUXSheet-overlay--landscape-start {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+
+      .TUXSheet-overlay--landscape-end {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+
+      .TUXSheet-overlay[data-transition-status="close"],
+      .TUXSheet-overlay[data-transition-status="initial"] {
+        opacity: 0;
+      }
+
+      .TUXSheet-overlay[data-transition-status="open"] {
+        opacity: 1;
+      }
+
+      .TUXSheet-container {
+        overflow: hidden;
+      }
+
+      .TUXSheet,
+      .TUXSheet-container--landscape {
+        height: 100%;
+      }
+
+      .TUXSheet {
+        background-color: #fff;
+        background-color: var(--ui-sheet-grouped-2);
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-bottom: env(safe-area-inset-bottom);
+        position: relative;
+        /* Start fully off-screen at the bottom */
+        transform: translateY(100%);
+
+        /* Define the slide transition */
+        transition: transform 0.25s cubic-bezier(0.33, 0.86, 0.2, 1);
+
+        /* Optimization: Hint to the browser to prepare for transform changes */
+        will-change: transform;
+      }
+
+      /* 3. ACTIVE STATE (When the overlay is visible) */
+      .TUXSheet-overlay.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .TUXSheet.is-active {
+        transform: translateY(0);
+      }
+      .TUXSheet:focus {
+        outline: none;
+      }
+
+      .TUXSheet--portrait {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+
+      .TUXSheet--portrait[data-transition-status="close"],
+      .TUXSheet--portrait[data-transition-status="initial"] {
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+      }
+
+      .TUXSheet--portrait[data-transition-status="open"] {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+
+      .TUXSheet--landscape-left,
+      .TUXSheet--landscape-right {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        width: min(100vw, 100vh);
+      }
+
+      .TUXSheet--landscape-left[data-transition-status="close"],
+      .TUXSheet--landscape-left[data-transition-status="initial"] {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+      }
+
+      .TUXSheet--landscape-right[data-transition-status="close"],
+      .TUXSheet--landscape-right[data-transition-status="initial"] {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+      }
+
+      .TUXSheet--landscape-left[data-transition-status="open"],
+      .TUXSheet--landscape-right[data-transition-status="open"] {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      .css-hzmqtq {
+        max-height: -webkit-fill-available;
+        background: rgb(255, 255, 255);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+      }
+
+      .css-1xvkyhs {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        flex: 0 1 0%;
+      }
+
+      .TUXNavBar {
+        display: contents;
+      }
+
+      .box-border {
+        box-sizing: border-box;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .right-0 {
+        right: 0;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .px-8 {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .flex {
+        display: flex;
+      }
+      .relative {
+        position: relative;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .-z-1 {
+        z-index: -1;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .justify-start {
+        justify-content: flex-start;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .flex-1 {
+        flex: 1 1;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .inline-flex {
+        display: inline-flex;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .text-color-TextPrimary {
+        color: #000;
+        color: var(--TextPrimary);
+      }
+      .p-0 {
+        padding: 0;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .w-40 {
+        width: 40px;
+      }
+      .h-40 {
+        height: 40px;
+      }
+      .flex {
+        display: flex;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+      .tux-nav-bar-icon-action {
+        font-size: 24px;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
         margin: 0;
       }
-      .container {
-        width: 100%;
-        max-width: 400px;
-        background-color: white;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      [role="button"],
+      button {
+        cursor: pointer;
       }
-      h1 {
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular,
+      .H3-Semibold {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .text-center {
         text-align: center;
-        color: #333;
-        margin-bottom: 24px;
       }
-      .username-input {
-        width: 100%;
-        padding: 12px 16px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-sizing: border-box;
-        transition: border-color 0.2s, box-shadow 0.2s;
+      .px-4 {
+        padding-left: 4px;
+        padding-right: 4px;
       }
-      .username-input:focus {
-        outline: none;
-        border-color: #ef4444;
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      .overflow-ellipsis,
+      .truncate {
+        text-overflow: ellipsis;
       }
-      .profile-preview {
-        margin-top: 16px;
-        border: 1px solid #f3f4f6;
-        border-radius: 12px;
-        padding: 16px;
-        display: flex;
+      .truncate {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular,
+      .H3-Semibold {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .justify-end {
+        justify-content: flex-end;
+      }
+      .items-center {
         align-items: center;
-        gap: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        transition: opacity 0.3s, transform 0.3s;
       }
-      .profile-preview.hidden {
-        display: none;
+      .flex-1 {
+        flex: 1 1;
       }
-      .profile-avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
+      .h-full {
+        height: 100%;
+      }
+      .inline-flex {
+        display: inline-flex;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      .text-color-TextPrimary {
+        color: #000;
+        color: var(--TextPrimary);
+      }
+      .p-0 {
+        padding: 0;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .w-40 {
+        width: 40px;
+      }
+      .h-40 {
+        height: 40px;
+      }
+      .flex {
+        display: flex;
+      }
+      .TUXNavBar * {
+        transition: color 0.1s ease, background-color 0.1s ease;
+      }
+      .tux-nav-bar-icon-action {
+        font-size: 24px;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      .css-15nbb49 {
+        height: 28px;
+        background: var(--ui-shape-success-4);
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        color: var(--ui-text-success);
+      }
+
+      .css-sh3yhi {
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 0px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+      }
+
+      .overflow-x-hidden {
+        overflow-x: hidden;
+      }
+      .overflow-auto {
+        overflow: auto;
+      }
+      .flex-auto {
+        flex: 1 1 auto;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .h-full {
+        height: 100%;
+      }
+
+      .P1-Semibold {
+        font-weight: 600;
+      }
+      .P1-Medium,
+      .P1-Semibold {
+        font-weight: 500;
+      }
+      .P1-Bold,
+      .P1-Medium,
+      .P1-Regular,
+      .P1-Semibold {
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      .text-color-TextPrimary {
+        color: #000;
+        color: var(--TextPrimary);
+      }
+      .pt-16 {
+        padding-top: 16px;
+      }
+      .px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .content-around {
+        align-content: space-around;
+      }
+      .flex {
+        display: flex;
+      }
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+
+      .P1-Regular {
+        font-weight: 400;
+      }
+      .P1-Bold,
+      .P1-Medium,
+      .P1-Regular {
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      .P1-Regular {
+        font-weight: 400;
+      }
+      .P1-Bold,
+      .P1-Medium,
+      .P1-Regular,
+      .P1-Semibold {
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      .flex-1 {
+        flex: 1 1;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .rounded-full {
+        border-radius: 9999px;
+      }
+
+      .border-color-LineSecondary {
+        border-color: rgba(22, 24, 35, 0.12);
+        border-color: var(--LineSecondary);
+      }
+      .border-solid {
+        border-style: solid;
+      }
+      .border {
+        border-width: 1px;
+      }
+      .rounded-full {
+        border-radius: 9999px;
+      }
+      .box-border {
+        box-sizing: border-box;
+      }
+
+      .ms-4 {
+        -webkit-margin-start: 4px;
+        margin-inline-start: 4px;
+      }
+
+      .px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .content-around {
+        align-content: space-around;
+      }
+      .flex {
+        display: flex;
+      }
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+
+      .P1-Regular {
+        font-weight: 400;
+      }
+      .P1-Bold,
+      .P1-Medium,
+      .P1-Regular {
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      .P1-Regular {
+        font-weight: 400;
+      }
+      .P1-Bold,
+      .P1-Medium,
+      .P1-Regular,
+      .P1-Semibold {
+        font-size: 14px;
+        letter-spacing: 0.0067em;
+        line-height: 1.3em;
+      }
+      .flex-1 {
+        flex: 1 1;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .tux-separator--horizontal.tux-separator--medium {
+        height: 1px;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        width: 100%;
+      }
+      .flex-shrink-0 {
         flex-shrink: 0;
       }
-      .profile-info {
-        flex: 1;
+      .flex {
+        display: flex;
       }
-      .profile-handle {
+      .box-border {
+        box-sizing: border-box;
+      }
+
+      .pt-16 {
+        padding-top: 16px;
+      }
+      .px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .content-around {
+        align-content: space-around;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .TUXTooltip-reference {
+        display: inline-block;
+      }
+
+      .P2-Semibold {
         font-weight: 600;
-        color: #111;
+      }
+      .P2-Medium,
+      .P2-Semibold {
+        font-weight: 500;
+      }
+      .P2-Bold,
+      .P2-Medium,
+      .P2-Regular,
+      .P2-Semibold {
+        font-size: 13px;
+        letter-spacing: 0.0097em;
+        line-height: 1.3em;
+      }
+      .text-color-TextTertiaryAlt {
+        color: rgba(0, 0, 0, 0.56);
+        color: var(--TextTertiaryAlt);
+      }
+      .font-normal {
+        font-weight: 400;
+      }
+      .flex-1 {
+        flex: 1 1;
+      }
+
+      .p-16 {
+        padding: 16px;
+      }
+
+      .mb-24 {
+        margin-bottom: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      *,
+      :after,
+      :before {
+        box-sizing: border-box;
+      }
+      *,
+      :after,
+      :before {
+        box-sizing: inherit;
+      }
+
+      .pt-24 {
+        padding-top: 24px;
+      }
+      .w-full {
+        width: 100%;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .content-around {
+        align-content: space-around;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .overflow-ellipsis,
+      .truncate {
+        text-overflow: ellipsis;
+      }
+      .truncate {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .w-full {
+        width: 100%;
+      }
+
+      .css-tneykt {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        row-gap: 2px;
+        opacity: 1;
+      }
+      .H4-Regular {
+        font-weight: 400;
+      }
+      .H4-Bold,
+      .H4-Medium,
+      .H4-Regular {
         font-size: 15px;
+        letter-spacing: 0.004em;
+        line-height: 1.3em;
       }
-      .profile-nickname {
-        font-size: 14px;
-        color: #666;
+      .H4-Regular {
+        font-weight: 400;
       }
-      .profile-followers {
+      .H4-Bold,
+      .H4-Medium,
+      .H4-Regular,
+      .H4-Semibold {
+        font-size: 15px;
+        letter-spacing: 0.004em;
+        line-height: 1.3em;
+      }
+      .font-normal {
+        font-weight: 400;
+      }
+      .items-center {
+        align-items: center;
+      }
+
+      .me-8 {
+        -webkit-margin-end: 8px;
+        margin-inline-end: 8px;
+      }
+      .w-24 {
+        width: 24px;
+      }
+      .h-16 {
+        height: 16px;
+      }
+      img,
+      picture {
+        display: block;
+        max-width: 100%;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .css-6z7b6u {
+        opacity: 1;
+        mix-blend-mode: normal;
+        overflow: hidden;
+        min-width: 30px;
+        text-transform: capitalize;
+      }
+      .text-color-TextPrimary {
+        color: #000;
+        color: var(--TextPrimary);
+      }
+      .me-12 {
+        -webkit-margin-end: 12px;
+        margin-inline-end: 12px;
+      }
+
+      .gap-4 {
+        gap: 4px;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .css-1ekbcdz {
+        white-space: normal;
+        grid-column-start: 2;
+      }
+      .P3-Regular {
+        font-weight: 400;
+      }
+      .P3-Bold,
+      .P3-Medium,
+      .P3-Regular {
         font-size: 12px;
-        color: #999;
-        margin-top: 4px;
+        letter-spacing: 0.0134em;
+        line-height: 1.3em;
       }
-      /* Mode 2 elements are included but hidden by default, as the script expects to find them */
-      #mode2Container {
-        display: none;
+      .P3-Regular {
+        font-weight: 400;
+      }
+      .P3-Bold,
+      .P3-Medium,
+      .P3-Regular,
+      .P3-Semibold {
+        font-size: 12px;
+        letter-spacing: 0.0134em;
+        line-height: 1.3em;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .text-color-TextQuaternary {
+        color: rgba(0, 0, 0, 0.32);
+        color: var(--TextQuaternary);
+      }
+      .pt-2 {
+        padding-top: 2px;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .css-1e0qvkm {
+        width: 100%;
+        z-index: 1;
+        flex: 0 1 0%;
+      }
+
+      .background-color-BGSecondary {
+        background-color: #fff;
+        background-color: var(--BGSecondary);
+      }
+      .pb-16 {
+        padding-bottom: 16px;
+      }
+      .pt-12 {
+        padding-top: 12px;
+      }
+      .px-16 {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .css-1rhpox4.expanded {
+        height: 70px;
+        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+      }
+
+      .css-1rhpox4 {
+        height: 36px;
+        overflow: hidden;
+        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+      }
+      .text-color-TextTertiary {
+        color: rgba(0, 0, 0, 0.56);
+        color: var(--TextTertiary);
+      }
+
+      .css-1rhpox4.fullTermText .terms-and-conditions {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: unset;
+      }
+      .css-1rhpox4 .terms-and-conditions {
+        position: relative;
+        word-break: break-word;
+        overflow: hidden;
+        line-height: 1em;
+        padding-right: 8px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .TUXText--tiktok-sans {
+        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-body);
+      }
+      .TUXText {
+        font-style: normal;
+        font-weight: inherit;
+      }
+
+      .css-e61k10 span,
+      .css-e61k10 a {
+        font-size: 12px;
+      }
+
+      .css-e61k10 span,
+      .css-e61k10 a {
+        font-size: 12px;
+      }
+      .TUXText--tiktok-sans {
+        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-body);
+      }
+      .TUXText--weight-bold {
+        font-weight: 700;
+      }
+      .TUXText {
+        font-style: normal;
+        font-weight: inherit;
+      }
+
+      .css-e61k10 span,
+      .css-e61k10 a {
+        font-size: 12px;
+      }
+
+      .css-e61k10 span,
+      .css-e61k10 a {
+        font-size: 12px;
+      }
+      .css-4g6ai3 {
+        cursor: pointer;
+      }
+      a {
+        background-color: transparent;
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      }
+      a {
+        background-color: transparent;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .css-1rhpox4.fullTermText .terms-and-conditions {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: unset;
+      }
+
+      .css-1rhpox4 .terms-and-conditions {
+        position: relative;
+        word-break: break-word;
+        overflow: hidden;
+        line-height: 1em;
+        padding-right: 8px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      .css-1b2x0kn {
+        margin-top: 1rem;
+      }
+
+      .TUXText--tiktok-sans {
+        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-body);
+      }
+      .TUXText {
+        font-style: normal;
+        font-weight: inherit;
+      }
+
+      .css-e61k10 span,
+      .css-e61k10 a {
+        font-size: 12px;
+      }
+      .TUXText--tiktok-sans {
+        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-body);
+      }
+      .TUXText--weight-bold {
+        font-weight: 700;
+      }
+      .TUXText {
+        font-style: normal;
+        font-weight: inherit;
+      }
+
+      .css-ytrrzi {
+        border-radius: 4px;
+        align-self: flex-end;
+        height: 16px;
+        min-width: 16px;
+        transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      .background-color-BGInput {
+        background-color: rgba(22, 24, 35, 0.06);
+        background-color: var(--BGInput);
+      }
+
+      .css-gps98o {
+        position: relative;
+      }
+
+      .py-12 {
+        padding-bottom: 12px;
+        padding-top: 12px;
+      }
+
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .H3-Bold {
+        font-weight: 700;
+      }
+      .H3-Bold,
+      .H3-Medium,
+      .H3-Regular,
+      .H3-Semibold {
+        font-size: 17px;
+        letter-spacing: -0.0046em;
+        line-height: 1.3em;
+      }
+      .text-color-TextPrimary {
+        color: #000;
+        color: var(--TextPrimary);
+      }
+      .content-around {
+        align-content: space-around;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .flex-1 {
+        flex: 1 1;
+      }
+      .flex {
+        display: flex;
+      }
+
+      .TUXButton--disabled:not(.TUXButton--loading) {
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+      button.TUXButton--primary {
+        background-color: #fe2c55;
+        background-color: var(--ui-shape-primary);
+        color: #fff;
+        color: var(--ui-shape-text-1-on-primary);
+      }
+      .TUXButton--medium {
+        border-radius: 6px;
+        font-size: 16px;
+        height: 40px;
+        line-height: 21px;
+        min-width: 108px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .TUXButton {
+        align-items: center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-family: var(--tux-web-font-body);
+        font-weight: 500;
+        justify-content: center;
+        letter-spacing: 0.15px;
+        position: relative;
+      }
+      .w-full {
+        width: 100%;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      button {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        border: 0;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      .TUXButton-content {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .TUXButton--large .TUXButton-iconContainer,
+      .TUXButton--medium .TUXButton-iconContainer {
+        font-size: 19px;
+      }
+      .TUXButton-iconContainer {
+        display: flex;
+        flex-shrink: 0;
+      }
+
+      img,
+      picture {
+        display: block;
+        max-width: 100%;
+      }
+
+      .TUXButton--large .TUXButton-content > * + *,
+      .TUXButton--medium .TUXButton-content > * + * {
+        margin-left: 5.5px;
+      }
+      .TUXButton-label {
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .H1-Semibold {
+        font-weight: 600;
+      }
+      .H2-Semibold {
+        font-weight: 600;
+      }
+      .H3-Semibold {
+        font-weight: 600;
+      }
+      .H4-Semibold {
+        font-weight: 600;
+      }
+      .P1-Semibold {
+        font-weight: 600;
+      }
+      .P2-Semibold {
+        font-weight: 600;
+      }
+      .P3-Semibold {
+        font-weight: 600;
+      }
+      .SmallText1-Semibold {
+        font-weight: 600;
+      }
+      .SmallText2-Semibold {
+        font-weight: 600;
+      }
+      .Headline-Semibold {
+        font-weight: 600;
+      }
+      .Longform-Semibold {
+        font-weight: 600;
+      }
+      .tt-text-field--input:disabled {
+        color: rgba(0, 0, 0, 0.34);
+      }
+
+      .radius-containerslevel1-large-t {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
+
+      .css-1x0rzv7.expanded {
+        transform: rotate(-180deg);
+      }
+
+      .css-kgw7mk.expanded {
+        height: 142px;
+      }
+
+      .css-kgw7mk {
+        height: 40px;
+        overflow: hidden;
+        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+      }
+
+      .css-kgw7mk.fullTermText .terms-and-conditions {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: unset;
+      }
+      .css-kgw7mk .terms-and-conditions {
+        position: relative;
+        word-break: break-word;
+        overflow: hidden;
+        line-height: 1.3em;
+        padding-right: 8px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Profile Lookup</h1>
-      <input type="text" class="username-input" placeholder="Enter username" />
-
-      <!-- Mode 1 Profile Preview -->
-      <div id="usernameProfilePreview" class="profile-preview hidden">
-        <img
-          id="usernameProfileAvatar"
-          src=""
-          alt="Avatar"
-          class="profile-avatar"
-        />
-        <div class="profile-info">
-          <div id="usernameProfileHandle" class="profile-handle"></div>
-          <div id="usernameProfileNickname" class="profile-nickname"></div>
-          <div id="usernameProfileFollowers" class="profile-followers"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 
-      The script you provided also searches for "Mode 2" elements.
-      To prevent errors, we include them here but keep them hidden.
-    -->
-    <div id="mode2Container">
-      <input type="text" id="mode2UsernameInput" />
-      <div id="mode2ProfilePreview" class="profile-preview hidden">
-        <img
-          id="mode2ProfileAvatar"
-          src=""
-          alt="Avatar"
-          class="profile-avatar"
-        />
-        <div class="profile-info">
-          <div id="mode2ProfileHandle" class="profile-handle"></div>
-          <div id="mode2ProfileNickname" class="profile-nickname"></div>
-          <div id="mode2ProfileFollowers" class="profile-followers"></div>
+    <button id="open-overlay-btn">Open Overlay</button>
+    <div
+      class="TUXSheet-overlay TUXSheet-overlay--portrait"
+      data-transition-status="open"
+      dir="ltr"
+      data-tux-color-scheme="light"
+      style="position: fixed; overflow: auto; inset: 0px; z-index: 2000"
+    >
+      <div class="TUXSheet-container">
+        <div
+          class="TUXSheet TUXSheet--portrait radius-containerslevel1-large-t"
+          data-transition-status="open"
+          tabindex="0"
+          role="dialog"
+          style="min-height: 90dvh"
+        >
+          <div id="cashier-page" class="cashier-phase2">
+            <div data-theme="light" dir="ltr">
+              <div class="css-hzmqtq">
+                <header class="css-1xvkyhs">
+                  <div data-e2e="cashier-header">
+                    <div data-theme="light" dir="ltr">
+                      <div data-test-tag="tux-nav-bar" class="TUXNavBar">
+                        <div class="box-border top-0 left-0 right-0">
+                          <header
+                            class="flex items-center px-8 overflow-hidden relative"
+                            role="navigation"
+                            style="height: 52px"
+                          >
+                            <div
+                              role="none"
+                              class="absolute w-full h-full top-0 left-0 -z-1"
+                              style="background-color: rgb(255, 255, 255)"
+                            ></div>
+                            <div
+                              class="inline-flex items-center justify-start flex-1 h-full"
+                            >
+                              <button
+                                data-test-tag="tux-nav-bar-button-0"
+                                class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
+                              >
+                                <svg
+                                  fill="currentColor"
+                                  viewBox="0 0 48 48"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="1em"
+                                  height="1em"
+                                  class="flip-rtl"
+                                >
+                                  <path
+                                    d="m4.59 22.59 15.29-15.3a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L10.83 22H43a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H10.83L22.7 37.88a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L4.58 25.4a2 2 0 0 1 0-2.82Z"
+                                  ></path>
+                                </svg>
+                              </button>
+                            </div>
+                            <div
+                              data-test-tag="tux-nav-bar-content"
+                              class="truncate flex-3 px-4 text-center H3-Bold"
+                              style="color: rgb(0, 0, 0); line-height: 52px"
+                            >
+                              <div
+                                style="display: flex; flex-direction: column"
+                              >
+                                <span data-test-tag="tux-text" class="H3-Bold"
+                                  >Order summary</span
+                                >
+                              </div>
+                            </div>
+                            <div
+                              class="flex-1 inline-flex items-center justify-end h-full"
+                            >
+                              <button
+                                data-test-tag="tux-nav-bar-button-0"
+                                class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
+                              >
+                                <svg
+                                  fill="currentColor"
+                                  viewBox="0 0 48 48"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="1em"
+                                  height="1em"
+                                  class="flip-rtl"
+                                >
+                                  <path
+                                    d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
+                                  ></path>
+                                  <path
+                                    d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
+                                  ></path>
+                                </svg>
+                              </button>
+                            </div>
+                          </header>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-e2e="secure-payment-sign" class="css-15nbb49">
+                    <svg
+                      fill="currentColor"
+                      class="text-color-var(--ui-shape-success-4)"
+                      font-size="14px"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path
+                        d="M22.6 1.24c-6.47 5.47-12.29 6.74-15.34 7C6.06 8.34 5 9.32 5 10.53V23.2c0 14.16 14.76 21.85 18.26 23.47.47.22 1 .22 1.47 0C28.23 45.05 43 37.37 43 23.2V10.52c0-1.2-1.06-2.18-2.26-2.28-3.06-.26-8.88-1.53-15.35-7a2.17 2.17 0 0 0-2.79 0Zm5.62 12.46a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.93 2.93 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                      ></path>
+                    </svg>
+                    <span direction="ltr" class="css-sh3yhi"
+                      >Secure payment</span
+                    >
+                  </div>
+                </header>
+                <div
+                  class="w-full overflow-auto overflow-x-hidden h-full flex-auto"
+                  date-e2e="cashier-layout-content"
+                >
+                  <div data-e2e="cashier-order-summary">
+                    <div
+                      class="text-color-TextPrimary P1-Semibold pt-16"
+                      data-e2e="order-detail"
+                    >
+                      <div class="flex content-around items-center mb-16 px-16">
+                        <div class="flex-1 P1-Regular">Account</div>
+                        <div class="flex items-center">
+                          <div
+                            data-test-tag="tux-avatar"
+                            class="rounded-full"
+                            style="
+                              background-image: url('https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/4202ae76af0e880d24f3735f0f1db6b7~tplv-tiktokx-cropcenter:100:100.jpeg?dr=14579&amp;refresh_token=eb865653&amp;x-expires=1761775200&amp;x-signature=fJNtFsRBX9CMN6BjQiN1A0QchCQ%3D&amp;t=4d5b0474&amp;ps=13740610&amp;shp=a5d48078&amp;shcp=81f88b70&amp;idc=my2');
+                              background-size: cover;
+                              background-repeat: no-repeat;
+                              background-position: 50% 50%;
+                              width: 18px;
+                              height: 18px;
+                            "
+                          >
+                            <div
+                              class="rounded-full border border-solid border-color-LineSecondary box-border"
+                              style="width: 18px; height: 18px"
+                            ></div>
+                          </div>
+                          <span class="ms-4">christopherchibu86</span>
+                        </div>
+                      </div>
+                      <div class="flex content-around mb-16 px-16">
+                        <div
+                          class="flex-1 P1-Regular"
+                          data-e2e="cashier-order-coin-num"
+                        >
+                          Purchase of 30 Coins
+                        </div>
+                        <div
+                          class="flex items-center"
+                          data-e2e="cashier-order-coin-price"
+                          style="direction: ltr"
+                        >
+                          NGN510
+                        </div>
+                      </div>
+                      <div
+                        role="separator"
+                        class="flex flex-shrink-0 box-border tux-separator--horizontal tux-separator--medium"
+                        style="
+                          background-color: rgba(22, 24, 35, 0.2);
+                          transform-origin: center center;
+                        "
+                      ></div>
+                    </div>
+                    <div
+                      class="flex w-full items-center content-around pt-16 px-16 justify-between"
+                    >
+                      <div class="TUXTooltip-reference">
+                        <div
+                          class="font-normal P2-Semibold text-color-TextTertiaryAlt flex-1"
+                        >
+                          Payment method
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-16">
+                      <div
+                        data-e2e="payment-method-list"
+                        class="mb-24"
+                        style="margin-top: -16px"
+                      >
+                        <div>
+                          <div
+                            class="w-full pt-24"
+                            data-e2e="payment-method-item-ccdc"
+                            style="min-height: 64px"
+                          >
+                            <div class="flex content-around">
+                              <div class="w-full truncate">
+                                <div
+                                  class="font-normal H4-Regular items-center css-tneykt"
+                                >
+                                  <img
+                                    class="w-24 h-16 me-8"
+                                    data-e2e="payment-method-icon-image"
+                                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0LjYyNSAxMS4yNUMxNC40MTc5IDExLjI1IDE0LjI1IDExLjQxNzkgMTQuMjUgMTEuNjI1VjEyLjM3NUMxNC4yNSAxMi41ODIxIDE0LjQxNzkgMTIuNzUgMTQuNjI1IDEyLjc1SDE3LjYyNUMxNy44MzIxIDEyLjc1IDE4IDEyLjU4MjEgMTggMTIuMzc1VjExLjYyNUMxOCAxMS40MTc5IDE3LjgzMjEgMTEuMjUgMTcuNjI1IDExLjI1SDE0LjYyNVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNC41IDIuNjI1QzMuNjcxNTcgMi42MjUgMyAzLjI5NjU3IDMgNC4xMjVWMTMuODc1QzMgMTQuNzAzNCAzLjY3MTU3IDE1LjM3NSA0LjUgMTUuMzc1SDE5LjVDMjAuMzI4NCAxNS4zNzUgMjEgMTQuNzAzNCAyMSAxMy44NzVWNC4xMjVDMjEgMy4yOTY1NyAyMC4zMjg0IDIuNjI1IDE5LjUgMi42MjVINC41Wk00LjUgNC4xMjVIMTkuNVY1LjgxMjVINC41VjQuMTI1Wk00LjUgNy4zMTI1SDE5LjVWMTMuODc1SDQuNVY3LjMxMjVaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K"
+                                    style="opacity: 1; min-width: 26px"
+                                  /><span class="flex flex-wrap items-center"
+                                    ><span
+                                      class="text-color-TextPrimary me-12 css-6z7b6u"
+                                      data-e2e="payment-method-name"
+                                      ><span
+                                        >Add credit or debit card</span
+                                      ></span
+                                    >
+                                    <div class="flex gap-4"></div>
+                                  </span>
+                                  <div
+                                    class="P3-Regular flex flex-col css-1ekbcdz"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div
+                                class="text-color-TextQuaternary flex items-top pt-2"
+                                data-e2e="payment-method-chevron-button"
+                              >
+                                <svg
+                                  fill="currentColor"
+                                  class="flip-rtl"
+                                  color="inherit"
+                                  font-size="inherit"
+                                  viewBox="0 0 48 48"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="1em"
+                                  height="1em"
+                                  style="flex-shrink: 0"
+                                >
+                                  <path
+                                    d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
+                                  ></path>
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="css-1e0qvkm">
+                  <div
+                    class="pt-12 pb-16 background-color-BGSecondary px-16"
+                    data-e2e="pay-now-footer"
+                    style="box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px"
+                  >
+                    <div style="display: flex">
+                      <div
+                        class="text-color-TextTertiary css-kgw7mk"
+                        id="terms-container"
+                        direction="ltr"
+                      >
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: row;
+                            column-gap: 8px;
+                          "
+                        >
+                          <div style="display: flex; flex-direction: column">
+                            <div
+                              class="terms-and-conditions"
+                              data-e2e="terms-and-conditions-coin"
+                            >
+                              <span
+                                class="TUXText TUXText--tiktok-sans css-e61k10"
+                                style="color: var(--ui-text-2); font-size: 12px"
+                              >
+                                <span>By tapping </span>
+                                <span
+                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
+                                  style="
+                                    color: var(--ui-text-1);
+                                    font-size: inherit;
+                                  "
+                                  >Pay</span
+                                >
+                                <span>, you agree to our </span>
+                                <a
+                                  href="https://www.tiktok.com/legal/virtual-items-row?lang=en"
+                                  target="_blank"
+                                  class="css-4g6ai3"
+                                >
+                                  <span
+                                    class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
+                                    style="
+                                      color: var(--ui-text-1);
+                                      font-size: inherit;
+                                    "
+                                    >Virtual Items Policy</span
+                                  >
+                                </a>
+                                <span>
+                                  and acknowledge that you have read
+                                </span>
+                                <a
+                                  href="https://www.tiktok.com/legal/privacy-policy?lang=en"
+                                  target="_blank"
+                                  class="css-4g6ai3"
+                                >
+                                  <span
+                                    class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
+                                    style="
+                                      color: var(--ui-text-1);
+                                      font-size: inherit;
+                                    "
+                                    >TikTok Privacy Policy</span
+                                  >
+                                </a>
+                                <span
+                                  >. By using any amount of Coins within 14 days
+                                  after the purchase, you acknowledge and
+                                  confirm that you will no longer be eligible
+                                  for a refund.</span
+                                >
+                              </span>
+                            </div>
+                            <div
+                              class="terms-and-conditions css-1b2x0kn"
+                              data-e2e="terms-and-conditions-region"
+                            >
+                              <span
+                                class="TUXText TUXText--tiktok-sans css-e61k10"
+                                style="color: var(--ui-text-2); font-size: 12px"
+                              >
+                                <span
+                                  >By continuing this purchase, you confirm that
+                                  you live in
+                                </span>
+                                <span
+                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
+                                  style="
+                                    color: var(--ui-text-1);
+                                    font-size: inherit;
+                                  "
+                                  >United States</span
+                                >
+                                <span>.</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        data-e2e="terms-and-conditions-expand"
+                        class="background-color-BGInput css-1x0rzv7 css-ytrrzi"
+                        id="expand-button"
+                      >
+                        <div class="css-gps98o">
+                          <svg
+                            fill="currentColor"
+                            font-size="16px"
+                            color="rgba(0, 0, 0, 0.56)"
+                            viewBox="0 0 48 48"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                          >
+                            <path
+                              d="M34.7 20.7a1 1 0 0 1 0 1.42l-9.29 9.3a2 2 0 0 1-2.82 0l-9.3-9.3a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L24 27.17l7.88-7.88a1 1 0 0 1 1.41 0l1.42 1.42Z"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="py-12">
+                      <div
+                        class="flex content-around text-color-TextPrimary H3-Bold"
+                      >
+                        <div class="flex-1 flex items-center overflow-hidden">
+                          <div>Total</div>
+                        </div>
+                        <div
+                          data-e2e="cashier-order-coin-total-price"
+                          style="direction: ltr"
+                        >
+                          NGN510
+                        </div>
+                      </div>
+                    </div>
+                    <div data-e2e="pay-now-footer-button">
+                      <button
+                        class="TUXButton TUXButton--default TUXButton--medium TUXButton--primary TUXButton--disabled w-full"
+                        aria-disabled="true"
+                        disabled=""
+                        type="button"
+                      >
+                        <div class="TUXButton-content">
+                          <div class="TUXButton-iconContainer">
+                            <img
+                              alt="shield tiktok"
+                              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIxIDIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi41ODIwMyA0LjM4NTg2VjkuNjY4MDFDMi41ODMyMyAxNS41Njc5IDguNzM0MDMgMTguNzcxMiAxMC4xOTE2IDE5LjQ0NzVDMTAuMzg4OSAxOS41MzkxIDEwLjYwODUgMTkuNTM5MSAxMC44MDU4IDE5LjQ0NzZDMTIuMjYzNSAxOC43NzEzIDE4LjQxNTQgMTUuNTY4IDE4LjQxNTQgOS42NjgwMVY0LjM4NTc5QzE4LjQxNTQgMy44ODQzMyAxNy45NzMzIDMuNDc2MjMgMTcuNDczNiAzLjQzNDIzQzE2LjE5OTkgMy4zMjcxOSAxMy43NzU0IDIuNzk1NTUgMTEuMDc5NiAwLjUxNTU5QzEwLjc0NjMgMC4yMzM3MjkgMTAuMjUxMSAwLjIzMzczNyA5LjkxNzgyIDAuNTE1NjA3QzcuMjIyMDYgMi43OTU2NyA0Ljc5NzU0IDMuMzI3MjcgMy41MjM4OCAzLjQzNDI3QzMuMDI0MTYgMy40NzYyNSAyLjU4MjAzIDMuODg0MzcgMi41ODIwMyA0LjM4NTg2Wk00LjI0ODcgOS42Njc2N1Y1LjAyNzU5QzUuNzY5MTcgNC44MDYwMSA4LjAzNjU2IDQuMTIzOTQgMTAuNDk4NyAyLjE5MTlDMTIuOTYwOSA0LjEyMzgzIDE1LjIyODMgNC44MDU5MSAxNi43NDg3IDUuMDI3NTNWOS42NjgwMUMxNi43NDg3IDExLjk5MDIgMTUuNTQ2OCAxMy44NTc4IDE0LjAxMzUgMTUuMzA0NEMxMi43MjYyIDE2LjUxODkgMTEuMzA3NyAxNy4zMzQgMTAuNDk4OCAxNy43NDM5QzkuNjg5ODkgMTcuMzM0IDguMjcxNjkgMTYuNTE4OSA2Ljk4NDQ0IDE1LjMwNDRDNS40NTEzMyAxMy44NTc5IDQuMjQ5MjkgMTEuOTg5OSA0LjI0ODcgOS42Njc2N1oiIGZpbGw9IndoaXRlIi8+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4zODA0IDYuMjQ4NzhDMTIuMzQwNSA2LjA4OTQ4IDEyLjMyMDMgNS45MjI1MiAxMi4zMjI0IDUuNzUwNDlIMTAuODQ4NEwxMC44MTM5IDguNTY0NTJMMTAuODA4MiA5LjAyODE5TDEwLjc3ODYgMTEuNDQxMUMxMC43NzA1IDEyLjA5NzMgMTAuMjE4OCAxMi42MjkyIDkuNTQ2MzMgMTIuNjI5MkM4Ljg3MzgzIDEyLjYyOTIgOC4zMzUyIDEyLjA5NzMgOC4zNDMyNSAxMS40NDExQzguMzUxMzEgMTAuNzg0OSA4LjkwMyAxMC4yNTI5IDkuNTc1NSAxMC4yNTI5QzkuNzA5ODYgMTAuMjUyOSA5LjgzODg5IDEwLjI3NDIgOS45NTkyOCAxMC4zMTM0TDkuOTc4MTIgOC43NzgwOUM5Ljg1MjY3IDguNzYwOTcgOS43MjQ0MSA4Ljc1MjEyIDkuNTkzOTIgOC43NTIxMkM4LjA3MTk1IDguNzUyMTIgNi44MjMzOCA5Ljk1NjAxIDYuODA1MTYgMTEuNDQxMUM2Ljc4NjkzIDEyLjkyNjEgOC4wMDU5NSAxNC4xMyA5LjUyNzkxIDE0LjEzQzExLjAyODUgMTQuMTMgMTIuMjY0IDEyLjk1OTggMTIuMzE1OSAxMS41MDM2TDEyLjMxNjcgMTEuNDQxMUwxMi4zMzQyIDEwLjAxNjVMMTIuMzUxNiA4LjU5MTg5QzEyLjkxMjcgOC45NjkxOSAxMy41OTQxIDkuMTg5ODYgMTQuMzMxIDkuMTg5ODZMMTQuMzQ4NyA3Ljc1MTU3QzEzLjM5MjMgNy43NTE1NyAxMi41OTY3IDcuMTEyODcgMTIuMzgwNCA2LjI0ODc4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
+                              style="height: 20px; width: 20px"
+                            />
+                          </div>
+                          <div class="TUXButton-label">Pay now</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <script>
-      // --- START: MOCK SETUP (FOR DEMONSTRATION) ---
+      // --- 1. SELECT ALL NECESSARY ELEMENTS ---
+      // This finds the button that will open the overlay.
+      const openBtn = document.getElementById("open-overlay-btn");
 
-      // 1. Mock the `window.ModeSwitcher` object that the script depends on.
-      // This ensures the script's check for `isProfileLookupEnabled()` passes.
-      if (!window.ModeSwitcher) {
-        window.ModeSwitcher = {
-          isProfileLookupEnabled: () => true,
-        };
-      }
+      // This finds the back/close button inside the overlay.
+      const closeBtn = document.getElementById("close-overlay-btn");
 
-      // 2. Mock the backend API call.
-      // The original script tries to fetch data from `/api/tiktok/profile/:username`.
-      // Since we don't have a backend, we intercept this call and return fake data.
-      const originalFetch = window.fetch;
-      window.fetch = async (url, options) => {
-        // Check if the URL matches the TikTok profile API endpoint
-        if (typeof url === "string" && url.startsWith("/api/tiktok/profile/")) {
-          console.log("Mock API: Intercepted fetch request to", url);
+      // This finds the main semi-transparent background.
+      const overlay = document.querySelector(".TUXSheet-overlay");
 
-          // Extract username from the URL
-          const username = decodeURIComponent(url.split("/").pop());
+      // This finds the white panel that slides up.
+      const sheet = document.querySelector(".TUXSheet");
 
-          // Simulate a network delay
-          await new Promise((resolve) => setTimeout(resolve, 400));
+      // --- 2. DEFINE THE FUNCTIONS TO OPEN AND CLOSE THE OVERLAY ---
 
-          // If the username is "notfound", simulate an error. Otherwise, return success.
-          if (username.toLowerCase() === "notfound") {
-            console.log("Mock API: Simulating 'Profile not found' response.");
-            return new Response(JSON.stringify({ success: false }), {
-              status: 404,
-              headers: { "Content-Type": "application/json" },
-            });
-          }
-
-          console.log("Mock API: Returning successful fake profile data.");
-          return new Response(
-            JSON.stringify({
-              success: true,
-              data: {
-                username: username,
-                nickname: `The Official ${
-                  username.charAt(0).toUpperCase() + username.slice(1)
-                }`,
-                avatar: `https://i.pravatar.cc/150?u=${username}`, // A random avatar service
-                followers: (username.length * 12345).toLocaleString(),
-              },
-            }),
-            {
-              status: 200,
-              headers: { "Content-Type": "application/json" },
-            }
-          );
-        }
-
-        // For any other URL, use the real fetch function
-        return originalFetch(url, options);
+      /**
+       * Opens the overlay by adding the 'is-active' class to the elements.
+       * The CSS handles the actual animation.
+       */
+      const openOverlay = () => {
+        // We wrap the class changes in requestAnimationFrame. This is a browser
+        // optimization that tells the browser "I'm about to do an animation".
+        // It ensures the transition is smooth and prevents the "flicker" or
+        // "fade-only" issue by making sure the browser is ready to paint the changes.
+        requestAnimationFrame(() => {
+          overlay.classList.add("is-active");
+          sheet.classList.add("is-active");
+        });
       };
 
-      // --- END: MOCK SETUP ---
+      /**
+       * Closes the overlay by removing the 'is-active' class.
+       * The CSS transition will automatically play in reverse.
+       */
+      const closeOverlay = () => {
+        overlay.classList.remove("is-active");
+        sheet.classList.remove("is-active");
+      };
 
-      // --- START: YOUR EXACT JAVASCRIPT CODE ---
+      // --- 3. ATTACH THE EVENT LISTENERS ---
 
-      // TikTok Profile Lookup functionality - Real-time API
-      (function () {
-        const mode1Input = document.querySelector(
-          'input[placeholder="Enter username"]'
-        );
+      // Listen for a click on the "Open" button and run the openOverlay function.
+      if (openBtn) {
+        openBtn.addEventListener("click", openOverlay);
+      }
 
-        // Mode 1 elements
-        const mode1ProfilePreview = document.getElementById(
-          "usernameProfilePreview"
-        );
-        const mode1ProfileAvatar = document.getElementById(
-          "usernameProfileAvatar"
-        );
-        const mode1ProfileHandle = document.getElementById(
-          "usernameProfileHandle"
-        );
-        const mode1ProfileNickname = document.getElementById(
-          "usernameProfileNickname"
-        );
-        const mode1ProfileFollowers = document.getElementById(
-          "usernameProfileFollowers"
-        );
+      // Listen for a click on the "Close" button and run the closeOverlay function.
+      if (closeBtn) {
+        closeBtn.addEventListener("click", closeOverlay);
+      }
 
-        let fetchTimeout = null;
-        let currentUsername = "";
-        let mode2Elements = null;
-
-        // Get Mode 2 elements (they're created dynamically)
-        function getMode2Elements() {
-          if (
-            !mode2Elements ||
-            !document.getElementById("mode2ProfilePreview")
-          ) {
-            mode2Elements = {
-              preview: document.getElementById("mode2ProfilePreview"),
-              avatar: document.getElementById("mode2ProfileAvatar"),
-              handle: document.getElementById("mode2ProfileHandle"),
-              nickname: document.getElementById("mode2ProfileNickname"),
-              followers: document.getElementById("mode2ProfileFollowers"),
-            };
-          }
-          return mode2Elements;
-        }
-
-        // Fetch TikTok profile data from our backend API
-        async function fetchTikTokProfile(username) {
-          if (!username || username.length < 3) {
-            return null;
-          }
-
-          try {
-            // Remove @ symbol(s) from username before sending to API
-            const cleanUsername = username.replace(/^@+/, "");
-
-            // Use our backend proxy to fetch TikTok profile
-            const response = await fetch(
-              `/api/tiktok/profile/${encodeURIComponent(cleanUsername)}`
-            );
-
-            if (!response.ok) {
-              throw new Error("Profile not found");
-            }
-
-            const result = await response.json();
-
-            if (result.success && result.data) {
-              return result.data;
-            }
-            return null;
-          } catch (error) {
-            console.log("Failed to fetch TikTok profile:", error);
-            return null;
-          }
-        }
-
-        // Update profile preview display for Mode 1
-        function showMode1Profile(profileData) {
-          if (
-            !profileData ||
-            !mode1ProfilePreview ||
-            !mode1ProfileHandle ||
-            !mode1ProfileNickname ||
-            !mode1ProfileFollowers ||
-            !mode1ProfileAvatar
-          ) {
-            hideMode1Profile();
-            return;
-          }
-
-          if (profileData.avatar) {
-            mode1ProfileAvatar.src = profileData.avatar;
-            mode1ProfileAvatar.classList.remove("hidden");
-          } else {
-            mode1ProfileAvatar.classList.add("hidden");
-          }
-          // Clean username and add single @ to prevent @@
-          const cleanUsername = profileData.username.replace(/^@+/, "");
-          mode1ProfileHandle.textContent = "@" + cleanUsername;
-          mode1ProfileNickname.textContent = profileData.nickname;
-          mode1ProfileFollowers.textContent =
-            profileData.followers + " Followers";
-          mode1ProfilePreview.classList.remove("hidden");
-        }
-
-        function hideMode1Profile() {
-          if (mode1ProfilePreview) {
-            mode1ProfilePreview.classList.add("hidden");
-          }
-        }
-
-        // Update profile preview display for Mode 2
-        function showMode2Profile(profileData) {
-          const elements = getMode2Elements();
-          console.log("showMode2Profile called with:", profileData);
-          console.log("Mode 2 elements found:", elements);
-
-          if (
-            !profileData ||
-            !elements.preview ||
-            !elements.handle ||
-            !elements.nickname ||
-            !elements.followers ||
-            !elements.avatar
-          ) {
-            console.log("Missing elements or data, hiding Mode 2 profile");
-            hideMode2Profile();
-            return;
-          }
-
-          console.log("Showing Mode 2 profile preview");
-
-          // Add class to container for extra space
-          const mode2Container = document.getElementById("mode2Container");
-          if (mode2Container) {
-            mode2Container.classList.add("has-profile-preview");
-          }
-
-          if (profileData.avatar) {
-            elements.avatar.src = profileData.avatar;
-            elements.avatar.classList.remove("hidden");
-          } else if (elements.avatar) {
-            elements.avatar.classList.add("hidden");
-          }
-          // Clean username and add single @ to prevent @@
-          const cleanUsername = profileData.username.replace(/^@+/, "");
-          elements.handle.textContent = "@" + cleanUsername;
-          elements.nickname.textContent = profileData.nickname;
-          elements.followers.textContent = profileData.followers + " Followers";
-
-          // Force display with multiple methods
-          elements.preview.classList.remove("hidden");
-          elements.preview.classList.add("show");
-          elements.preview.style.display = "flex";
-        }
-
-        function hideMode2Profile() {
-          const elements = getMode2Elements();
-          console.log("hideMode2Profile called, elements:", elements);
-
-          // Remove class from container
-          const mode2Container = document.getElementById("mode2Container");
-          if (mode2Container) {
-            mode2Container.classList.remove("has-profile-preview");
-          }
-
-          if (elements.preview) {
-            elements.preview.classList.add("hidden");
-            elements.preview.classList.remove("show");
-            elements.preview.style.display = "none";
-          }
-        }
-
-        // Show profile in the appropriate mode
-        function showProfile(profileData) {
-          if (!profileData) {
-            hideProfile();
-            return;
-          }
-
-          // Show in Mode 1 if it exists
-          if (mode1ProfilePreview) {
-            showMode1Profile(profileData);
-          }
-
-          // Show in Mode 2 if it exists
-          const mode2Exists = document.getElementById("mode2ProfilePreview");
-          if (mode2Exists) {
-            showMode2Profile(profileData);
-          }
-        }
-
-        function hideProfile() {
-          hideMode1Profile();
-          hideMode2Profile();
-        }
-
-        // Update profile preview based on input
-        async function updateProfilePreview(inputElement) {
-          // Check if profile lookup is enabled
-          if (
-            !window.ModeSwitcher ||
-            !window.ModeSwitcher.isProfileLookupEnabled()
-          ) {
-            hideProfile();
-            return;
-          }
-
-          const username = inputElement.value.trim();
-
-          // Clear previous timeout
-          if (fetchTimeout) {
-            clearTimeout(fetchTimeout);
-          }
-
-          // Remove @ symbols for comparison and API call
-          const cleanUsername = username.replace(/^@+/, "");
-
-          // If username is empty or too short, hide profile
-          if (!cleanUsername || cleanUsername.length < 3) {
-            hideProfile();
-            currentUsername = "";
-            return;
-          }
-
-          // If username hasn't changed, don't fetch again
-          if (cleanUsername.toLowerCase() === currentUsername.toLowerCase()) {
-            return;
-          }
-
-          currentUsername = cleanUsername;
-
-          // Debounce API calls - wait 500ms after user stops typing
-          fetchTimeout = setTimeout(async () => {
-            console.log("Fetching TikTok profile for:", cleanUsername);
-
-            // Show loading state
-            const mode2Exists = document.getElementById("mode2ProfilePreview");
-
-            if (
-              mode1ProfilePreview &&
-              mode1ProfileHandle &&
-              mode1ProfileNickname &&
-              mode1ProfileFollowers
-            ) {
-              mode1ProfileHandle.textContent = "Loading...";
-              mode1ProfileNickname.textContent = "";
-              mode1ProfileFollowers.textContent = "";
-              mode1ProfilePreview.classList.remove("hidden");
-            }
-
-            if (mode2Exists) {
-              const elements = getMode2Elements();
-              if (
-                elements.handle &&
-                elements.nickname &&
-                elements.followers &&
-                elements.preview
-              ) {
-                elements.handle.textContent = "Loading...";
-                elements.nickname.textContent = "";
-                elements.followers.textContent = "";
-                elements.preview.classList.remove("hidden");
-              }
-            }
-
-            const profileData = await fetchTikTokProfile(cleanUsername);
-
-            if (profileData) {
-              showProfile(profileData);
-            } else {
-              console.log("No profile data found for:", cleanUsername);
-              if (
-                mode1ProfilePreview &&
-                mode1ProfileHandle &&
-                mode1ProfileNickname &&
-                mode1ProfileFollowers
-              ) {
-                mode1ProfileHandle.textContent = "@" + cleanUsername;
-                mode1ProfileNickname.textContent = "Profile not found";
-                mode1ProfileFollowers.textContent = "";
-                mode1ProfilePreview.classList.remove("hidden");
-                if (mode1ProfileAvatar) {
-                  mode1ProfileAvatar.classList.add("hidden");
-                }
-              }
-
-              const elements = getMode2Elements();
-              if (
-                elements.preview &&
-                elements.handle &&
-                elements.nickname &&
-                elements.followers
-              ) {
-                elements.handle.textContent = "@" + cleanUsername;
-                elements.nickname.textContent = "Profile not found";
-                elements.followers.textContent = "";
-                elements.preview.classList.remove("hidden");
-                if (elements.avatar) {
-                  elements.avatar.classList.add("hidden");
-                }
-              }
-            }
-          }, 500);
-        }
-
-        // Listen for Mode 1 input changes
-        if (mode1Input) {
-          mode1Input.addEventListener("input", function () {
-            updateProfilePreview(this);
-          });
-        }
-
-        // Listen for Mode 2 input changes
-        function attachMode2Listener() {
-          const mode2Input = document.getElementById("mode2UsernameInput");
-          if (mode2Input && !mode2Input.dataset.profileListenerAttached) {
-            mode2Input.dataset.profileListenerAttached = "true";
-            mode2Input.addEventListener("input", function () {
-              updateProfilePreview(this);
-            });
-            console.log("Mode 2 profile listener attached");
-          }
-        }
-
-        // Attach Mode 2 listener with retry
-        setTimeout(attachMode2Listener, 100);
-        setTimeout(attachMode2Listener, 500);
-        setTimeout(attachMode2Listener, 1000);
-
-        // Observe DOM changes to catch Mode 2 layout creation
-        const mode2Observer = new MutationObserver(() => {
-          attachMode2Listener();
-        });
-        mode2Observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-        });
-
-        // Listen for profile lookup toggle changes
-        window.addEventListener("profileLookupChanged", function (e) {
-          console.log("Profile lookup changed:", e.detail.enabled);
-          const activeInput =
-            document.getElementById("mode2UsernameInput") || mode1Input;
-          if (activeInput) {
-            updateProfilePreview(activeInput);
+      // Listen for a click on the overlay background.
+      if (overlay) {
+        overlay.addEventListener("click", (event) => {
+          // This is a crucial check: it ensures the click was on the
+          // dark background itself (the 'event.target' is the 'overlay')
+          // and not on a child element like the white sheet panel.
+          if (event.target === overlay) {
+            closeOverlay();
           }
         });
-
-        // Listen for mode switches
-        window.addEventListener("modeChanged", function () {
-          setTimeout(attachMode2Listener, 100);
-        });
-
-        // Initial check
-        setTimeout(function () {
-          const activeInput =
-            document.getElementById("mode2UsernameInput") || mode1Input;
-          if (activeInput) {
-            updateProfilePreview(activeInput);
-          }
-        }, 100);
-      })();
-
-      // --- END: YOUR EXACT JAVASCRIPT CODE ---
+      }
     </script>
   </body>
 </html>
