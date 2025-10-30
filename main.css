@@ -361,3 +361,29 @@ picture {
   border-color: var(--Primary);
   background-color: var(--BGBrand);
 }
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+/* This is the class we will add with JavaScript. It applies the animation
+   to any element it's added to. The animation lasts for 0.5 seconds. */
+.shake-effect {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
