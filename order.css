@@ -1,0 +1,1475 @@
+.TUXNavBar {
+  display: contents;
+}
+
+.box-border {
+  box-sizing: border-box;
+}
+.left-0 {
+  left: 0;
+}
+.right-0 {
+  right: 0;
+}
+.top-0 {
+  top: 0;
+}
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.px-8 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.items-center {
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+.relative {
+  position: relative;
+}
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.-z-1 {
+  z-index: -1;
+}
+.left-0 {
+  left: 0;
+}
+.top-0 {
+  top: 0;
+}
+.absolute {
+  position: absolute;
+}
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1 1;
+}
+.h-full {
+  height: 100%;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.text-color-TextPrimary {
+  color: #000;
+  color: var(--TextPrimary);
+}
+.p-0 {
+  padding: 0;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.w-40 {
+  width: 40px;
+}
+.h-40 {
+  height: 40px;
+}
+.flex {
+  display: flex;
+}
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+.tux-nav-bar-icon-action {
+  font-size: 24px;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+
+.TUXNavBar * {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular,
+.H3-Semibold {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.text-center {
+  text-align: center;
+}
+.px-4 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.overflow-ellipsis,
+.truncate {
+  text-overflow: ellipsis;
+}
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular,
+.H3-Semibold {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1 1;
+}
+.h-full {
+  height: 100%;
+}
+.inline-flex {
+  display: inline-flex;
+}
+
+.text-color-TextPrimary {
+  color: #000;
+  color: var(--TextPrimary);
+}
+.p-0 {
+  padding: 0;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.w-40 {
+  width: 40px;
+}
+.h-40 {
+  height: 40px;
+}
+.flex {
+  display: flex;
+}
+
+.tux-nav-bar-icon-action {
+  font-size: 24px;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+
+.css-15nbb49 {
+  height: 28px;
+  background: var(--ui-shape-success-4);
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  color: var(--ui-text-success);
+}
+
+.css-sh3yhi {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 0px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.flex-auto {
+  flex: 1 1 auto;
+}
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+.P1-Semibold {
+  font-weight: 600;
+}
+.P1-Medium,
+.P1-Semibold {
+  font-weight: 500;
+}
+.P1-Bold,
+.P1-Medium,
+.P1-Regular,
+.P1-Semibold {
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.text-color-TextPrimary {
+  color: #000;
+  color: var(--TextPrimary);
+}
+.pt-16 {
+  padding-top: 16px;
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.items-center {
+  align-items: center;
+}
+.content-around {
+  align-content: space-around;
+}
+.flex {
+  display: flex;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.P1-Regular {
+  font-weight: 400;
+}
+.P1-Bold,
+.P1-Medium,
+.P1-Regular {
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.P1-Regular {
+  font-weight: 400;
+}
+.P1-Bold,
+.P1-Medium,
+.P1-Regular,
+.P1-Semibold {
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.flex-1 {
+  flex: 1 1;
+}
+
+.items-center {
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-color-LineSecondary {
+  border-color: rgba(22, 24, 35, 0.12);
+  border-color: var(--LineSecondary);
+}
+.border-solid {
+  border-style: solid;
+}
+.border {
+  border-width: 1px;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.box-border {
+  box-sizing: border-box;
+}
+
+.ms-4 {
+  -webkit-margin-start: 4px;
+  margin-inline-start: 4px;
+}
+
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.content-around {
+  align-content: space-around;
+}
+.flex {
+  display: flex;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.P1-Regular {
+  font-weight: 400;
+}
+.P1-Bold,
+.P1-Medium,
+.P1-Regular {
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.P1-Regular {
+  font-weight: 400;
+}
+.P1-Bold,
+.P1-Medium,
+.P1-Regular,
+.P1-Semibold {
+  font-size: 14px;
+  letter-spacing: 0.0067em;
+  line-height: 1.3em;
+}
+.flex-1 {
+  flex: 1 1;
+}
+
+.items-center {
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+
+.tux-separator--horizontal.tux-separator--medium {
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  width: 100%;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex {
+  display: flex;
+}
+.box-border {
+  box-sizing: border-box;
+}
+
+.pt-16 {
+  padding-top: 16px;
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-center {
+  align-items: center;
+}
+.content-around {
+  align-content: space-around;
+}
+.w-full {
+  width: 100%;
+}
+.flex {
+  display: flex;
+}
+
+.TUXTooltip-reference {
+  display: inline-block;
+}
+
+.P2-Semibold {
+  font-weight: 600;
+}
+.P2-Medium,
+.P2-Semibold {
+  font-weight: 500;
+}
+.P2-Bold,
+.P2-Medium,
+.P2-Regular,
+.P2-Semibold {
+  font-size: 13px;
+  letter-spacing: 0.0097em;
+  line-height: 1.3em;
+}
+.text-color-TextTertiaryAlt {
+  color: rgba(0, 0, 0, 0.56);
+  color: var(--TextTertiaryAlt);
+}
+.font-normal {
+  font-weight: 400;
+}
+.flex-1 {
+  flex: 1 1;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.mo-15 {
+  margin-bottom: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+.pt-24 {
+  padding-top: 24px;
+}
+.w-full {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.content-around {
+  align-content: space-around;
+}
+.flex {
+  display: flex;
+}
+
+.overflow-ellipsis,
+.truncate {
+  text-overflow: ellipsis;
+}
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.w-full {
+  width: 100%;
+}
+
+.css-tneykt {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 2px;
+  opacity: 1;
+}
+.H4-Regular {
+  font-weight: 400;
+}
+.H4-Bold,
+.H4-Medium,
+.H4-Regular {
+  font-size: 15px;
+  letter-spacing: 0.004em;
+  line-height: 1.3em;
+}
+.H4-Regular {
+  font-weight: 400;
+}
+.H4-Bold,
+.H4-Medium,
+.H4-Regular,
+.H4-Semibold {
+  font-size: 15px;
+  letter-spacing: 0.004em;
+  line-height: 1.3em;
+}
+.font-normal {
+  font-weight: 400;
+}
+.items-center {
+  align-items: center;
+}
+
+.me-8 {
+  -webkit-margin-end: 8px;
+  margin-inline-end: 8px;
+}
+.w-24 {
+  width: 24px;
+}
+.h-16 {
+  height: 16px;
+}
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+.items-center {
+  align-items: center;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex {
+  display: flex;
+}
+
+.css-6z7b6u {
+  opacity: 1;
+  mix-blend-mode: normal;
+  overflow: hidden;
+  min-width: 30px;
+  text-transform: capitalize;
+}
+.text-color-TextPrimary {
+  color: #000;
+  color: var(--TextPrimary);
+}
+.me-12 {
+  -webkit-margin-end: 12px;
+  margin-inline-end: 12px;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+.flex {
+  display: flex;
+}
+
+.css-1ekbcdz {
+  white-space: normal;
+  grid-column-start: 2;
+}
+.P3-Regular {
+  font-weight: 400;
+}
+.P3-Bold,
+.P3-Medium,
+.P3-Regular {
+  font-size: 12px;
+  letter-spacing: 0.0134em;
+  line-height: 1.3em;
+}
+.P3-Regular {
+  font-weight: 400;
+}
+.P3-Bold,
+.P3-Medium,
+.P3-Regular,
+.P3-Semibold {
+  font-size: 12px;
+  letter-spacing: 0.0134em;
+  line-height: 1.3em;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex {
+  display: flex;
+}
+
+.text-color-TextQuaternary {
+  color: rgba(0, 0, 0, 0.32);
+  color: var(--TextQuaternary);
+}
+.pt-2 {
+  padding-top: 2px;
+}
+.flex {
+  display: flex;
+}
+
+.css-1e0qvkm {
+  width: 100%;
+  z-index: 1;
+  flex: 0 1 0%;
+}
+
+.background-color-BGSecondary {
+  background-color: #fff;
+  background-color: var(--BGSecondary);
+}
+.pb-16 {
+  padding-bottom: 16px;
+}
+.pt-12 {
+  padding-top: 12px;
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.css-1rhpox4.expanded {
+  height: 70px;
+  transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+}
+
+.css-1rhpox4 {
+  height: 36px;
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+}
+.text-color-TextTertiary {
+  color: rgba(0, 0, 0, 0.56);
+  color: var(--TextTertiary);
+}
+
+.css-1rhpox4.fullTermText .terms-and-conditions {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: unset;
+}
+.css-1rhpox4 .terms-and-conditions {
+  position: relative;
+  word-break: break-word;
+  overflow: hidden;
+  line-height: 1em;
+  padding-right: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.TUXText--tiktok-sans {
+  font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-body);
+}
+.TUXText {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.css-e61k10 span,
+.css-e61k10 a {
+  font-size: 12px;
+}
+
+.TUXText--tiktok-sans {
+  font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-body);
+}
+.TUXText--weight-bold {
+  font-weight: 700;
+}
+.TUXText {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.css-e61k10 span,
+.css-e61k10 a {
+  font-size: 12px;
+}
+
+.css-e61k10 span,
+.css-e61k10 a {
+  font-size: 12px;
+}
+.css-4g6ai3 {
+  cursor: pointer;
+}
+a {
+  background-color: transparent;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+.css-1rhpox4.fullTermText .terms-and-conditions {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: unset;
+}
+
+.css-1rhpox4 .terms-and-conditions {
+  position: relative;
+  word-break: break-word;
+  overflow: hidden;
+  line-height: 1em;
+  padding-right: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.css-1b2x0kn {
+  margin-top: 1rem;
+}
+
+.TUXText--tiktok-sans {
+  font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-body);
+}
+.TUXText {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.css-e61k10 span,
+.css-e61k10 a {
+  font-size: 12px;
+}
+.TUXText--tiktok-sans {
+  font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-body);
+}
+.TUXText--weight-bold {
+  font-weight: 700;
+}
+.TUXText {
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.css-ytrrzi {
+  border-radius: 4px;
+  align-self: flex-end;
+  height: 16px;
+  min-width: 16px;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.background-color-BGInput {
+  background-color: rgba(22, 24, 35, 0.06);
+  background-color: var(--BGInput);
+}
+
+.css-gps98o {
+  position: relative;
+}
+
+.py-12 {
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.H3-Bold {
+  font-weight: 700;
+}
+.H3-Bold,
+.H3-Medium,
+.H3-Regular,
+.H3-Semibold {
+  font-size: 17px;
+  letter-spacing: -0.0046em;
+  line-height: 1.3em;
+}
+.text-color-TextPrimary {
+  color: #000;
+  color: var(--TextPrimary);
+}
+.content-around {
+  align-content: space-around;
+}
+.flex {
+  display: flex;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+.items-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1 1;
+}
+.flex {
+  display: flex;
+}
+
+.TUXButton--disabled:not(.TUXButton--loading) {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+button.TUXButton--primary {
+  background-color: #fe2c55;
+  background-color: var(--ui-shape-primary);
+  color: #fff;
+  color: var(--ui-shape-text-1-on-primary);
+}
+.TUXButton--medium {
+  border-radius: 6px;
+  font-size: 16px;
+  height: 40px;
+  line-height: 21px;
+  min-width: 108px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.TUXButton {
+  align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-body);
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.15px;
+  position: relative;
+}
+.w-full {
+  width: 100%;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+button {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  border: 0;
+  font-family: inherit;
+  margin: 0;
+}
+
+.TUXButton-content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.TUXButton--large .TUXButton-iconContainer,
+.TUXButton--medium .TUXButton-iconContainer {
+  font-size: 19px;
+}
+.TUXButton-iconContainer {
+  display: flex;
+  flex-shrink: 0;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+.TUXButton--large .TUXButton-content > * + *,
+.TUXButton--medium .TUXButton-content > * + * {
+  margin-left: 5.5px;
+}
+.TUXButton-label {
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.H1-Semibold {
+  font-weight: 600;
+}
+.H2-Semibold {
+  font-weight: 600;
+}
+.H3-Semibold {
+  font-weight: 600;
+}
+.H4-Semibold {
+  font-weight: 600;
+}
+.P1-Semibold {
+  font-weight: 600;
+}
+.P2-Semibold {
+  font-weight: 600;
+}
+.P3-Semibold {
+  font-weight: 600;
+}
+.SmallText1-Semibold {
+  font-weight: 600;
+}
+.SmallText2-Semibold {
+  font-weight: 600;
+}
+.Headline-Semibold {
+  font-weight: 600;
+}
+.Longform-Semibold {
+  font-weight: 600;
+}
+.tt-text-field--input:disabled {
+  color: rgba(0, 0, 0, 0.34);
+}
+
+.radius-containerslevel1-large-t {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.css-1x0rzv7.expanded {
+  transform: rotate(-180deg);
+}
+
+.css-kgw7mk.expanded {
+  height: 142px;
+}
+
+.css-kgw7mk {
+  height: 40px;
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
+}
+
+.css-kgw7mk.fullTermText .terms-and-conditions {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: unset;
+}
+.css-kgw7mk .terms-and-conditions {
+  position: relative;
+  word-break: break-word;
+  overflow: hidden;
+  line-height: 1.3em;
+  padding-right: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* --- Custom Checkbox (Styled as a Radio Button) Styles --- */
+.checkbox-container {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  display: none; /* Hide the default checkbox */
+}
+
+.checkbox-custom {
+  /* Size updated to 1em */
+  height: 1em;
+  width: 1em;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+.checkbox-custom::before {
+  content: "";
+  /* Adjusted size to fit within the new 1em container */
+  width: calc(1em - 8px);
+  height: calc(1em - 8px);
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+/* Change styles when checkbox is checked */
+.checkbox-input:checked + .checkbox-custom {
+  border-color: #fe2c55;
+}
+
+.checkbox-input:checked + .checkbox-custom::before {
+  background-color: #fe2c55;
+}
+
+/* --- NEW: Prevents text selection on the label --- */
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ and Edge */
+  user-select: none; /* Standard syntax */
+  cursor: pointer;
+}
+
+:root {
+  --ui-sheet-backdrop-1: rgba(0, 0, 0, 0.5);
+  --ui-sheet-flat-1: #fff;
+  --ui-sheet-grouped-2: #fff;
+  --tux-web-font-display: TikTokDisplayFont, system-ui, -apple-system, Segoe UI,
+    Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --ui-page-flat-1: #fff;
+  --ui-shape-neutral-2: rgba(0, 0, 0, 0.17);
+  --ui-shape-primary: #fe2c55;
+  --ui-text-1: #000;
+  --ui-text-placeholder: rgba(0, 0, 0, 0.34);
+  --TextPrimary: #000;
+  --ui-shape-success-4: rgba(11, 224, 155, 0.12);
+  --ui-text-success: #008568;
+  --LineSecondary: rgba(22, 24, 35, 0.12);
+  --TextTertiaryAlt: rgba(0, 0, 0, 0.56);
+  --TextQuaternary: rgba(0, 0, 0, 0.32);
+  --BGSecondary: #fff;
+  --TextTertiary: rgba(0, 0, 0, 0.56);
+  --tux-web-font-body: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  --ui-text-2: #555;
+  --BGInput: rgba(22, 24, 35, 0.06);
+  --ui-shape-text-1-on-primary: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: var(--tux-web-font-body);
+}
+
+.TUXModal-overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--ui-sheet-backdrop-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  padding: 16px;
+  touch-action: none;
+  transition: opacity 0.12s cubic-bezier(0.33, 0.86, 0.2, 1);
+}
+
+.TUXModal {
+  background-color: #fff;
+  background-color: var(--ui-sheet-flat-1);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.122);
+  position: relative;
+}
+
+.TUXModal:focus {
+  outline: none;
+}
+
+.TUXModal[data-width="small"] {
+  max-width: 360px;
+  width: 100%;
+}
+
+.TUXModal[data-width="large"] {
+  max-width: 640px;
+  width: 100%;
+}
+
+.TUXModalTitle {
+  font-family: TikTokDisplayFont, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-family: var(--tux-web-font-display);
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+._TUXNavBar--withBackground {
+  background: #fff;
+  background: var(--ui-page-flat-1);
+}
+
+._TUXNavBar--withBorder {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  border-bottom: 1px solid var(--ui-shape-neutral-2);
+}
+
+._TUXNavBar-topRow {
+  align-items: center;
+  display: flex;
+  height: 52px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+._TUXNavBar-titleContainer {
+  flex: 1 1;
+  overflow: hidden;
+}
+
+._TUXNavBar-leading {
+  justify-content: flex-start;
+}
+
+._TUXNavBar-leading,
+._TUXNavBar-trailing {
+  display: flex;
+  flex-shrink: 0;
+  max-width: 88px;
+}
+
+._TUXNavBar-trailing {
+  justify-content: flex-end;
+}
+
+._TUXNavBar-leading--fixed,
+._TUXNavBar-trailing--fixed {
+  width: 88px;
+}
+
+.TUXNavBarIconButton {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.TUXNavBarTextButton {
+  cursor: pointer;
+  font-size: 16px;
+  height: 44px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.TUXNavBarTextButton--primary {
+  color: #fe2c55;
+  color: var(--ui-shape-primary);
+  font-weight: 500;
+}
+
+.TUXNavBarTextButton--secondary {
+  color: #000;
+  color: var(--ui-text-1);
+}
+
+.TUXNavBarTextButton:disabled {
+  color: rgba(0, 0, 0, 0.34);
+  color: var(--ui-text-placeholder);
+}
+
+[data-tux-color-scheme="system"] .TUXNavBarTextButton:not(:disabled):active {
+  opacity: 0.2;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-tux-color-scheme="system"] .TUXNavBarTextButton:not(:disabled):active {
+    opacity: 0.4;
+  }
+}
+
+[data-tux-color-scheme="light"] .TUXNavBarTextButton:not(:disabled):active {
+  opacity: 0.2;
+}
+
+[data-tux-color-scheme="dark"] .TUXNavBarTextButton:not(:disabled):active {
+  opacity: 0.4;
+}
+
+.TUXModalNavBar {
+  align-items: center;
+  display: flex;
+  height: 52px;
+  justify-content: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  position: relative;
+}
+
+.TUXModalNavBar-title {
+  color: #000;
+  color: var(--ui-text-1);
+  flex: 1 1;
+  font-size: 17px;
+  font-weight: 500;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.TUXModalNavBar-leading {
+  justify-content: flex-start;
+}
+
+.TUXModalNavBar-leading,
+.TUXModalNavBar-trailing {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  width: 44px;
+}
+
+.TUXModalNavBar-trailing {
+  justify-content: flex-end;
+}
+
+.TUXModalCloseButton {
+  position: absolute;
+  right: 8px;
+  top: 4px;
+}
+
+.TUXModalCloseButton[data-text-direction="rtl"] {
+  left: 8px;
+  right: auto;
+}
+
+.TUXSheet-overlay {
+  background-color: var(--ui-sheet-backdrop-1);
+  display: flex;
+  touch-action: none;
+  opacity: 0;
+  visibility: hidden;
+  /* --- MODIFIED: Transition matches your exact request --- */
+  transition: opacity 0.2s linear, visibility 0.2s;
+  will-change: opacity, visibility;
+}
+
+.TUXSheet-overlay--portrait {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.TUXSheet-overlay--landscape-start {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.TUXSheet-overlay--landscape-end {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.TUXSheet-container {
+  overflow: hidden;
+  transform: translateY(100%) translateZ(0);
+  /* --- MODIFIED: Transition matches your exact request --- */
+  transition: transform 0.3s cubic-bezier(0.33, 0.86, 0.2, 1);
+  /* --- ADDED: For sharper rendering during animation --- */
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.TUXSheet,
+.TUXSheet-container--landscape {
+  height: 100%;
+}
+
+.TUXSheet {
+  background-color: #fff;
+  background-color: var(--ui-sheet-grouped-2);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+  position: relative;
+}
+.TUXSheet-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.TUXSheet-container.is-active {
+  transform: translateY(0) translateZ(0);
+}
+.TUXSheet:focus {
+  outline: none;
+}
+
+.TUXSheet--portrait {
+  -webkit-transform: translateY(0);
+}
+
+.TUXSheet--landscape-left,
+.TUXSheet--landscape-right {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  width: min(100vw, 100vh);
+}
+
+.css-hzmqtq {
+  max-height: -webkit-fill-available;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.css-1xvkyhs {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  flex: 0 1 0%;
+}
+
+/* the rest of the styles are in the oder summary css */

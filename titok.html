@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="loading.css" />
     <link rel="stylesheet" href="custom.css" />
     <link rel="stylesheet" href="lookup.css" />
+    <link rel="stylesheet" href="order.css" />
     <style>
       /* Font Faces */
       @font-face {
@@ -576,6 +577,9 @@
                   </strong>
                 </div>
               </div>
+              <!-- ================================================================================= -->
+              <!-- START: COIN SELECTION SECTION                                                     -->
+              <!-- ================================================================================= -->
               <div
                 role="separator"
                 class="flex flex-shrink-0 tux-separator--horizontal tux-separator--medium"
@@ -590,12 +594,12 @@
                   class="grid p-0 gap-8"
                   style="grid-template-columns: repeat(3, 1fr)"
                 >
-                  <!-- Item 1 - Initially Active -->
+                  <!-- Item 1 - 30 Coins -->
                   <li
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -654,16 +658,16 @@
                         data-e2e="wallet-package-price-0"
                         class="P3-Regular text-color-TextTertiaryAlt"
                       >
-                        NGN530
+                        $0.48
                       </div>
                     </div>
                   </li>
-                  <!-- Item 2 -->
+                  <!-- Item 2 - 350 Coins -->
                   <li
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -722,16 +726,16 @@
                         data-e2e="wallet-package-price-1"
                         class="P3-Regular text-color-TextTertiaryAlt"
                       >
-                        NGN6,200
+                        $5.60
                       </div>
                     </div>
                   </li>
-                  <!-- Item 3 -->
+                  <!-- Item 3 - 700 Coins -->
                   <li
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -790,16 +794,16 @@
                         data-e2e="wallet-package-price-2"
                         class="P3-Regular text-color-TextTertiaryAlt"
                       >
-                        NGN12,400
+                        $11.20
                       </div>
                     </div>
                   </li>
-                  <!-- Item 4 -->
+                  <!-- Item 4 - 1,400 Coins -->
                   <li
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -858,16 +862,16 @@
                         data-e2e="wallet-package-price-3"
                         class="P3-Regular text-color-TextTertiaryAlt"
                       >
-                        NGN24,700
+                        $22.40
                       </div>
                     </div>
                   </li>
-                  <!-- Item 5 -->
+                  <!-- Item 5 - 3,500 Coins -->
                   <li
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -926,7 +930,7 @@
                         data-e2e="wallet-package-price-4"
                         class="P3-Regular text-color-TextTertiaryAlt"
                       >
-                        NGN61,600
+                        $56.00
                       </div>
                     </div>
                   </li>
@@ -935,7 +939,7 @@
                     style="
                       list-style-type: none;
                       overflow: hidden;
-                      cursor: default;
+                      cursor: pointer;
                     "
                   >
                     <div
@@ -959,6 +963,10 @@
                 </ol>
               </div>
             </div>
+
+            <!-- ================================================================================= -->
+            <!-- END: COIN SELECTION SECTION                                                       -->
+            <!-- ================================================================================= -->
             <div class="mx-8 mb-8 flex flex-col gap-10">
               <span
                 class="flex justify-between text-color-UIText1 gap-8 p-16 overflow-hidden items-center"
@@ -1138,7 +1146,7 @@
             <img
               src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
               alt="MASTER"
-              class="h-16 w-26 me-4"
+              class="h-16 w-24 me-4"
               data-e2e="wallet-payment-icon-MASTER"
               style="
                 display: inline-block;
@@ -1149,12 +1157,14 @@
           </div>
           <div data-e2e="wallet-buy-now-button">
             <button
+              id="open-overlay-btn-2"
               class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold"
               type="button"
               style="height: 44px"
             >
               <div class="flex items-center justify-center w-full px-6">
                 <span class="me-4" style="font-size: 20px; line-height: 0">
+                  <!-- SVG Icon -->
                   <svg
                     fill="currentColor"
                     viewBox="0 0 48 48"
@@ -1170,11 +1180,12 @@
                     ></path>
                   </svg>
                 </span>
+                <!-- The text here will be dynamically updated by your coin calculation logic -->
                 <span
                   class="truncate"
                   data-test-tag="tux-button-content"
                   style="line-height: 44px"
-                  >Buy for NGN530</span
+                  >Buy for $0.48</span
                 >
               </div>
             </button>
@@ -1373,6 +1384,7 @@
             </div>
             <div>
               <button
+                id="open-overlay-btn"
                 class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
                 type="button"
               >
@@ -1458,278 +1470,489 @@
       </div>
     </div>
   </div>
-  <div id="main-component" class="hidden">
-    <div
-      id="main-mask"
-      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
-    ></div>
-    <div
-      id="main-sheet"
-      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
-      style="
-        min-height: 240px;
-        max-height: 90%;
-        background-color: rgb(255, 255, 255);
-      "
-    >
-      <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
-        <header
-          class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
-          role="navigation"
-          style="height: 52px"
-        >
-          <div
-            role="none"
-            class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
-            style="background-color: rgb(255, 255, 255)"
-          ></div>
-          <div
-            class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
-          >
-            <button
-              id="close-main-component"
-              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-            >
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div
-            id="header-title"
-            class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
-            style="color: rgb(0, 0, 0); line-height: 52px"
-          >
-            Custom
-          </div>
-          <div
-            class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
-          >
-            <button
-              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-            >
-              <svg
-                fill="currentColor"
-                font-size="22px"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
-                ></path>
-                <path
-                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0">
-            <div
-              role="separator"
-              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-              style="background-color: rgba(22, 24, 35, 0.2)"
-            ></div>
-          </div>
-        </header>
-      </div>
-
-      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-        <div class="_9f4d_px-16 _9f4d_pt-12">
-          <div
-            id="change-view-trigger"
-            class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
-            style="gap: 4px; cursor: pointer"
-          >
-            <span id="view-trigger-label" class="_9f4d_P1-Semibold"></span>
-            <svg
-              fill="currentColor"
-              font-size="12px"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-            >
-              <path
-                d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
-              ></path>
-            </svg>
-          </div>
-          <div class="_9f4d_kemEwk">
-            <div id="input-container" class="_9f4d_jaLHEV">
-              <!-- This will be populated by JS -->
-            </div>
-          </div>
-          <div
-            id="sub-display-container"
-            class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
-          >
-            <!-- This will be populated by JS -->
-          </div>
-
-          <!-- Keypad for Coins View -->
-          <div id="keypad-coins" class="_9f4d_iEsvFh">
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
-            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
-                ></path>
-              </svg>
-            </button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
-          </div>
-
-          <!-- Keypad for Amount View -->
-          <div id="keypad-amount" class="_9f4d_iEsvFh hidden">
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
-            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
-                ></path>
-              </svg>
-            </button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">.</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
-          </div>
-        </div>
-
-        <div class="footer-wrapper" style="background-color: #fff">
-          <div
-            role="separator"
-            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-            style="background-color: rgba(22, 24, 35, 0.2)"
-          ></div>
-          <div class="_9f4d_px-16 _9f4d_py-12">
-            <div
-              class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
-            >
-              <div class="_9f4d_flex"><div>Total</div></div>
-              <div id="total-price"></div>
-            </div>
-            <div>
-              <button
-                class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
-                type="button"
-              >
-                <div class="_9f4d_TUXButton-content">
-                  <div class="_9f4d_TUXButton-iconContainer">
-                    <svg
-                      fill="currentColor"
-                      viewBox="0 0 48 48"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1em"
-                      height="1em"
-                    >
-                      <path
-                        d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                      ></path>
-                      <path
-                        d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
-                      ></path>
-                    </svg>
+  <div
+    class="TUXSheet-overlay TUXSheet-overlay--portrait"
+    dir="ltr"
+    data-tux-color-scheme="light"
+    style="position: fixed; inset: 0px; z-index: 2000"
+  >
+    <div class="TUXSheet-container">
+      <div
+        class="TUXSheet TUXSheet--portrait radius-containerslevel1-large-t"
+        tabindex="0"
+        role="dialog"
+        style="min-height: 90dvh"
+      >
+        <!-- ... rest of your HTML ... -->
+        <div id="cashier-page" class="cashier-phase2">
+          <div data-theme="light" dir="ltr">
+            <div class="css-hzmqtq">
+              <header class="css-1xvkyhs">
+                <div data-e2e="cashier-header">
+                  <div data-theme="light" dir="ltr">
+                    <div data-test-tag="tux-nav-bar" class="TUXNavBar">
+                      <div class="box-border top-0 left-0 right-0">
+                        <header
+                          class="flex items-center px-8 overflow-hidden relative"
+                          role="navigation"
+                          style="height: 52px"
+                        >
+                          <div
+                            role="none"
+                            class="absolute w-full h-full top-0 left-0 -z-1"
+                            style="background-color: rgb(255, 255, 255)"
+                          ></div>
+                          <div
+                            class="inline-flex items-center justify-start flex-1 h-full"
+                          >
+                            <button
+                              id="close-overlay-btn"
+                              data-test-tag="tux-nav-bar-button-0"
+                              class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
+                            >
+                              <svg
+                                fill="currentColor"
+                                viewBox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                class="flip-rtl"
+                              >
+                                <path
+                                  d="m4.59 22.59 15.29-15.3a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L10.83 22H43a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H10.83L22.7 37.88a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L4.58 25.4a2 2 0 0 1 0-2.82Z"
+                                ></path>
+                              </svg>
+                            </button>
+                          </div>
+                          <div
+                            data-test-tag="tux-nav-bar-content"
+                            class="truncate flex-3 px-4 text-center H3-Bold"
+                            style="color: rgb(0, 0, 0); line-height: 52px"
+                          >
+                            <div style="display: flex; flex-direction: column">
+                              <span data-test-tag="tux-text" class="H3-Bold"
+                                >Order summary</span
+                              >
+                            </div>
+                          </div>
+                          <div
+                            class="flex-1 inline-flex items-center justify-end h-full"
+                          >
+                            <button
+                              data-test-tag="tux-nav-bar-button-0"
+                              class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
+                            >
+                              <svg
+                                fill="currentColor"
+                                viewBox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                class="flip-rtl"
+                              >
+                                <path
+                                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
+                                ></path>
+                                <path
+                                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
+                                ></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </header>
+                      </div>
+                    </div>
                   </div>
-                  <div class="_9f4d_TUXButton-label">Recharge</div>
                 </div>
-              </button>
+                <div data-e2e="secure-payment-sign" class="css-15nbb49">
+                  <svg
+                    fill="currentColor"
+                    class="text-color-var(--ui-shape-success-4)"
+                    font-size="14px"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                  >
+                    <path
+                      d="M22.6 1.24c-6.47 5.47-12.29 6.74-15.34 7C6.06 8.34 5 9.32 5 10.53V23.2c0 14.16 14.76 21.85 18.26 23.47.47.22 1 .22 1.47 0C28.23 45.05 43 37.37 43 23.2V10.52c0-1.2-1.06-2.18-2.26-2.28-3.06-.26-8.88-1.53-15.35-7a2.17 2.17 0 0 0-2.79 0Zm5.62 12.46a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.93 2.93 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
+                    ></path>
+                  </svg>
+                  <span direction="ltr" class="css-sh3yhi">Secure payment</span>
+                  <svg
+                    fill="currentColor"
+                    font-size="10px"
+                    viewBox="0 0 48 48"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    class="flip-rtl"
+                  >
+                    <path
+                      d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
+                    ></path>
+                  </svg>
+                </div>
+              </header>
+              <div
+                class="w-full overflow-auto overflow-x-hidden h-full flex-auto"
+                date-e2e="cashier-layout-content"
+              >
+                <div data-e2e="cashier-order-summary">
+                  <div
+                    class="text-color-TextPrimary P1-Semibold pt-16"
+                    data-e2e="order-detail"
+                  >
+                    <!-- ================================================================================= -->
+                    <!-- START: DYNAMIC ACCOUNT PREVIEW SECTION                                            -->
+                    <!-- ================================================================================= -->
+                    <!-- =================================================================== -->
+                    <!-- USER PREVIEW: This also goes inside your overlay/modal            -->
+                    <!-- =================================================================== -->
+                    <div class="flex content-around items-center mb-16 px-16">
+                      <div class="flex-1 P1-Regular">Account</div>
+                      <div class="flex items-center">
+                        <div
+                          id="preview-avatar-container"
+                          data-test-tag="tux-avatar"
+                          class="rounded-full"
+                          style="
+                            background-image: url('');
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: 50% 50%;
+                            width: 18px;
+                            height: 18px;
+                          "
+                        >
+                          <div
+                            class="rounded-full border border-solid border-color-LineSecondary box-border"
+                            style="width: 18px; height: 18px"
+                          ></div>
+                        </div>
+                        <span id="preview-nickname" class="ms-4"></span>
+                      </div>
+                    </div>
+
+                    <!-- ================================================================================= -->
+                    <!-- END: DYNAMIC ACCOUNT PREVIEW SECTION                                              -->
+                    <!-- ================================================================================= -->
+                    <!-- ================================================================================= -->
+                    <!-- START: PURCHASE PREVIEW SECTION                                                   -->
+                    <!-- ================================================================================= -->
+
+                    <div id="purchase-summary">
+                      <div class="flex content-around mb-16 px-16">
+                        <div
+                          id="purchase-coin-num"
+                          class="flex-1 P1-Regular"
+                          data-e2e="cashier-order-coin-num"
+                        >
+                          <!-- JS will inject coin amount here -->
+                        </div>
+                        <div
+                          id="purchase-coin-price"
+                          class="flex items-center"
+                          data-e2e="cashier-order-coin-price"
+                          style="direction: ltr"
+                        >
+                          <!-- JS will inject price here -->
+                        </div>
+                      </div>
+                      <div
+                        role="separator"
+                        class="flex flex-shrink-0 box-border tux-separator--horizontal tux-separator--medium"
+                        style="
+                          background-color: rgba(22, 24, 35, 0.2);
+                          transform-origin: center center;
+                        "
+                      ></div>
+                    </div>
+                    <!-- ================================================================================= -->
+                    <!-- END: PURCHASE PREVIEW SECTION                                                     -->
+                    <!-- ================================================================================= -->
+                  </div>
+                  <div
+                    class="flex w-full items-center content-around pt-16 px-16 justify-between"
+                  >
+                    <div class="TUXTooltip-reference">
+                      <div
+                        class="font-normal P2-Semibold text-color-TextTertiaryAlt flex-1"
+                      >
+                        Payment method
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-16">
+                    <div
+                      data-e2e="payment-method-list"
+                      class="mo-15"
+                      style="margin-top: -16px"
+                    >
+                      <div>
+                        <div
+                          class="w-full pt-24"
+                          data-e2e="payment-method-item-ccdc"
+                          style="min-height: 64px"
+                        >
+                          <div class="flex content-around">
+                            <div class="w-full truncate">
+                              <div
+                                class="font-normal H4-Regular items-center css-tneykt"
+                              >
+                                <img
+                                  class="w-24 h-16 me-8"
+                                  data-e2e="payment-method-icon-image"
+                                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0LjYyNSAxMS4yNUMxNC40MTc5IDExLjI1IDE0LjI1IDExLjQxNzkgMTQuMjUgMTEuNjI1VjEyLjM3NUMxNC4yNSAxMi41ODIxIDE0LjQxNzkgMTIuNzUgMTQuNjI1IDEyLjc1SDE3LjYyNUMxNy44MzIxIDEyLjc1IDE4IDEyLjU4MjEgMTggMTIuMzc1VjExLjYyNUMxOCAxMS40MTc5IDE3LjgzMjEgMTEuMjUgMTcuNjI1IDExLjI1SDE0LjYyNVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNC41IDIuNjI1QzMuNjcxNTcgMi42MjUgMyAzLjI5NjU3IDMgNC4xMjVWMTMuODc1QzMgMTQuNzAzNCAzLjY3MTU3IDE1LjM3NSA0LjUgMTUuMzc1SDE5LjVDMjAuMzI4NCAxNS4zNzUgMjEgMTQuNzAzNCAyMSAxMy44NzVWNC4xMjVDMjEgMy4yOTY1NyAyMC4zMjg0IDIuNjI1IDE5LjUgMi42MjVINC41Wk00LjUgNC4xMjVIMTkuNVY1LjgxMjVINC41VjQuMTI1Wk00LjUgNy4zMTI1SDE5LjVWMTMuODc1SDQuNVY3LjMxMjVaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K"
+                                  style="opacity: 1; min-width: 26px"
+                                /><span class="flex flex-wrap items-center"
+                                  ><span
+                                    class="text-color-TextPrimary me-12 css-6z7b6u"
+                                    data-e2e="payment-method-name"
+                                    ><span>Add credit or debit card</span></span
+                                  >
+                                  <div class="flex gap-4"></div>
+                                </span>
+                                <div
+                                  class="P3-Regular flex flex-col css-1ekbcdz"
+                                ></div>
+                              </div>
+                            </div>
+                            <div
+                              class="text-color-TextQuaternary flex items-top pt-2"
+                              data-e2e="payment-method-chevron-button"
+                            >
+                              <svg
+                                fill="currentColor"
+                                class="flip-rtl"
+                                color="inherit"
+                                font-size="inherit"
+                                viewBox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                style="flex-shrink: 0"
+                              >
+                                <path
+                                  d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Replicated Component with Checkbox -->
+                    <label
+                      for="mastercard-checkbox"
+                      class="w-full no-select"
+                      style="cursor: pointer"
+                    >
+                      <div class="flex justify-between items-center w-full">
+                        <!-- Left side: Icon and Text -->
+                        <div class="flex items-center">
+                          <div class="me-8">
+                            <img
+                              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
+                              alt="MASTER"
+                              class="h-16 w-26 me-4"
+                              data-e2e="wallet-payment-icon-MASTER"
+                              style="
+                                display: inline-block;
+                                border: 0.5px solid rgb(225, 228, 236);
+                                border-radius: 4px;
+                              "
+                            />
+                          </div>
+                          <span
+                            class="H4-Regular font-normal text-color-TextPrimary"
+                            >Mastercard •••• 6112</span
+                          >
+                        </div>
+                        <!-- Right side: Custom Checkbox styled as a smaller Radio -->
+                        <div class="checkbox-container">
+                          <!-- Changed to a checkbox for check/uncheck functionality -->
+                          <input
+                            type="checkbox"
+                            id="mastercard-checkbox"
+                            name="payment-method"
+                            class="checkbox-input"
+                          />
+                          <div class="checkbox-custom"></div>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="css-1e0qvkm">
+                <div
+                  class="pt-12 pb-16 background-color-BGSecondary px-16"
+                  data-e2e="pay-now-footer"
+                  style="box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px"
+                >
+                  <div style="display: flex">
+                    <div
+                      class="text-color-TextTertiary css-kgw7mk"
+                      id="terms-container"
+                      direction="ltr"
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: row;
+                          column-gap: 8px;
+                        "
+                      >
+                        <div style="display: flex; flex-direction: column">
+                          <div
+                            class="terms-and-conditions"
+                            data-e2e="terms-and-conditions-coin"
+                          >
+                            <span
+                              class="TUXText TUXText--tiktok-sans css-e61k10"
+                              style="color: var(--ui-text-2); font-size: 12px"
+                              font-weight:
+                              700;
+                            >
+                              <span>By tapping </span>
+                              <span
+                                class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
+                                style="
+                                  color: var(--ui-text-1);
+                                  font-size: inherit;
+                                  font-weight: 700;
+                                "
+                                >Pay</span
+                              >
+                              <span>, you agree to our </span>
+                              <a
+                                href="https://www.tiktok.com/legal/virtual-items-row?lang=en"
+                                target="_blank"
+                                class="css-4g6ai3"
+                              >
+                                <span
+                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
+                                  style="
+                                    color: var(--ui-text-1);
+                                    font-size: inherit;
+                                    font-weight: 700;
+                                  "
+                                  >Virtual Items Policy</span
+                                >
+                              </a>
+                              <span> and acknowledge that you have read </span>
+                              <a
+                                href="https://www.tiktok.com/legal/privacy-policy?lang=en"
+                                target="_blank"
+                                class="css-4g6ai3"
+                              >
+                                <span
+                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
+                                  style="
+                                    color: var(--ui-text-1);
+                                    font-size: inherit;
+                                    font-weight: 700;
+                                  "
+                                  >TikTok Privacy Policy</span
+                                >
+                              </a>
+                              <span
+                                >. By using any amount of Coins within 14 days
+                                after the purchase, you acknowledge and confirm
+                                that you will no longer be eligible for a
+                                refund.</span
+                              >
+                            </span>
+                          </div>
+                          <div
+                            class="terms-and-conditions css-1b2x0kn"
+                            data-e2e="terms-and-conditions-region"
+                          >
+                            <span
+                              class="TUXText TUXText--tiktok-sans css-e61k10"
+                              style="color: var(--ui-text-2); font-size: 12px"
+                            >
+                              <span
+                                >By continuing this purchase, you confirm that
+                                you live in
+                              </span>
+                              <span
+                                class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
+                                style="
+                                  color: var(--ui-text-1);
+                                  font-size: inherit;
+                                "
+                                >United States</span
+                              >
+                              <span>.</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      data-e2e="terms-and-conditions-expand"
+                      class="background-color-BGInput css-1x0rzv7 css-ytrrzi"
+                      id="expand-button"
+                    >
+                      <div class="css-gps98o">
+                        <svg
+                          fill="currentColor"
+                          font-size="16px"
+                          color="rgba(0, 0, 0, 0.56)"
+                          viewBox="0 0 48 48"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                        >
+                          <path
+                            d="M34.7 20.7a1 1 0 0 1 0 1.42l-9.29 9.3a2 2 0 0 1-2.82 0l-9.3-9.3a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L24 27.17l7.88-7.88a1 1 0 0 1 1.41 0l1.42 1.42Z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="py-12">
+                    <div
+                      class="flex content-around text-color-TextPrimary H3-Bold"
+                    >
+                      <div class="flex-1 flex items-center overflow-hidden">
+                        <div>Total</div>
+                      </div>
+                      <div
+                        id="purchase-total-price"
+                        data-e2e="cashier-order-coin-total-price"
+                        style="direction: ltr"
+                      >
+                        $0.48
+                      </div>
+                    </div>
+                  </div>
+                  <div data-e2e="pay-now-footer-button">
+                    <button
+                      class="TUXButton TUXButton--default TUXButton--medium TUXButton--primary TUXButton--disabled w-full"
+                      aria-disabled="true"
+                      disabled=""
+                      type="button"
+                    >
+                      <div class="TUXButton-content">
+                        <div class="TUXButton-iconContainer">
+                          <img
+                            alt="shield tiktok"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIxIDIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi41ODIwMyA0LjM4NTg2VjkuNjY4MDFDMi41ODMyMyAxNS41Njc5IDguNzM0MDMgMTguNzcxMiAxMC4xOTE2IDE5LjQ0NzVDMTAuMzg4OSAxOS41MzkxIDEwLjYwODUgMTkuNTM5MSAxMC44MDU4IDE5LjQ0NzZDMTIuMjYzNSAxOC43NzEzIDE4LjQxNTQgMTUuNTY4IDE4LjQxNTQgOS42NjgwMVY0LjM4NTc5QzE4LjQxNTQgMy44ODQzMyAxNy45NzMzIDMuNDc2MjMgMTcuNDczNiAzLjQzNDIzQzE2LjE5OTkgMy4zMjcxOSAxMy43NzU0IDIuNzk1NTUgMTEuMDc5NiAwLjUxNTU5QzEwLjc0NjMgMC4yMzM3MjkgMTAuMjUxMSAwLjIzMzczNyA5LjkxNzgyIDAuNTE1NjA3QzcuMjIyMDYgMi43OTU2NyA0Ljc5NzU0IDMuMzI3MjcgMy41MjM4OCAzLjQzNDI3QzMuMDI0MTYgMy44ODQzNyAyLjU4MjAzIDMuODg0MzcgMi41ODIwMyA0LjM4NTg2Wk00LjI0ODcgOS42Njc2N1Y1LjAyNzU5QzUuNzY5MTcgNC44MDYwMSA4LjAzNjU2IDQuMTIzOTQgMTAuNDk4NyAyLjE5MTlDMTIuOTYwOSA0LjEyMzgzIDE1LjIyODMgNC44MDU5MSAxNi43NDg3IDUuMDI3NTNWOS42NjgwMUMxNi43NDg3IDExLjk5MDIgMTUuNTQ2OCAxMy44NTc4IDE0LjAxMzUgMTUuMzA0NEMxMi43MjYyIDE2LjU1MTkgMTEuMzA3NyAxNy4zMzQgMTAuNDk4OCAxNy43NDM5QzkuNjg5ODkgMTcuMzM0IDguMjcxNjkgMTYuNTE4OSA2Ljk4NDQ0IDE1LjMwNDRDNS40NTEzMyAxMy44NTc5IDQuMjQ5MjkgMTEuOTg5OSA0LjI0ODcgOS42Njc2N1oiIGZpbGw9IndoaXRlIi8+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4zODA0IDYuMjQ4NzhDMTIuMzQwNSA2LjA4OTQ4IDEyLjMyMDMgNS45MjI1MiAxMi4zMjI0IDUuNzUwNDlIMTAuODQ4NEwxMC44MTM5IDguNTY0NTJMMTAuODA4MiA5LjAyODE5TDEwLjc3ODYgMTEuNDQxMUMxMC43NzA1IDEyLjA5NzMgMTAuMjE4OCAxMi42MjkyIDkuNTQ2MzMgMTIuNjI5MkM4Ljg3MzgzIDEyLjYyOTIgOC4zMzUyIDEyLjA5NzMgOC4zNDMyNSAxMS40NDExQzguMzUxMzEgMTAuNzg0OSA4LjkwMyAxMC4yNTI5IDkuNTc1NSAxMC4yNTI5QzkuNzA5ODYgMTAuMjUyOSA5LjgzODg5IDEwLjI3NDIgOS45NTkyOCAxMC4zMTM0TDkuOTc4MTIgOC43NzgwOUM5Ljg1MjY3IDguNzYwOTcgOS43MjQ0MSA4Ljc1MjEyIDkuNTkzOTIgOC43NTIxMkM4LjA3MTk1IDguNzUyMTIgNi44MjMzOCA5Ljk1NjAxIDYuODA1MTYgMTEuNDQxMUM2Ljc4NjkzIDEyLjk5NjEgOC4wMDU5NSAxNC4xMyA5LjUyNzkxIDE0LjEzQzExLjAyODUgMTQuMTMgMTIuMjY0IDEyLjk1OTggMTIuMzE1OSAxMS41MDM2TDEyLjMxNjcgMTEuNDQxMUwxMi4zMzQyIDEwLjAxNjVMMTIuMzUxNiA4LjU5MTg5QzEyLjkxMjcgOC45NjkxOSAxMy41OTQxIDkuMTg5ODYgMTQuMzMxIDkuMTg5ODZMMTQuMzQ4NyA3Ljc1MTU3QzEzLjM5MjMgNy43NTE1NyAxMi41OTY3IDcuMTEyODcgMTIuMzgwNCA2LjI0ODc4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
+                            style="height: 20px; width: 20px"
+                          />
+                        </div>
+                        <div class="TUXButton-label">Pay now</div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secondary Sheet (for view selection) -->
-  <div id="secondary-component" class="hidden">
-    <div
-      id="secondary-mask"
-      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
-    ></div>
-    <div
-      id="secondary-sheet"
-      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
-      style="
-        min-height: 0px;
-        max-height: 73%;
-        background-color: rgb(255, 255, 255);
-      "
-    >
-      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-        <button
-          id="select-coins-view"
-          type="button"
-          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-          style="min-height: 48px"
-        >
-          Number of Coins
-        </button>
-        <div
-          role="separator"
-          class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-          style="background-color: rgba(22, 24, 35, 0.12)"
-        ></div>
-        <button
-          id="select-amount-view"
-          type="button"
-          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-          style="min-height: 48px"
-        >
-          Payment amount
-        </button>
-        <footer>
-          <div
-            role="separator"
-            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--large"
-            style="background-color: rgba(22, 24, 35, 0.03)"
-          ></div>
-          <button
-            id="cancel-secondary"
-            type="button"
-            class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
-            style="min-height: 48px"
-          >
-            Cancel
-          </button>
-        </footer>
       </div>
     </div>
   </div>
@@ -1737,4 +1960,6 @@
   <script src="loading.js"></script>
   <script src="custom.js"></script>
   <script src="fectchprofile.js"></script>
+  <script src="overlay.js"></script>
+  <script src="preview.js"></script>
 </html>

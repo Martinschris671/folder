@@ -6,7 +6,63 @@
   align-items: center;
   justify-content: center;
 }
+/*
+  ================================================================
+  [REQUIRED] CSS for the Loader Animation
+  ================================================================
+  This is the CSS that was missing. It makes the SVG circles move.
+*/
 
+/* 
+  1. Define the animation for the red circle.
+  This keyframe will make the element "pulse" by scaling it down and up.
+*/
+@keyframes pulseRed {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+/* 
+  2. Define the animation for the green circle.
+  We'll make it pulse with a slight delay to create a nice effect.
+*/
+@keyframes pulseGreen {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+/* 
+  3. Apply the animations to the classes from your SVG.
+  We tell them to run the animation infinitely.
+*/
+.tux-loading__red_animation {
+  /* Run the 'pulseRed' animation over 1.5 seconds, and loop it forever. */
+  animation: pulseRed 1.5s infinite ease-in-out;
+  /* Set the origin point for scaling to the center of the circle */
+  transform-origin: 352.5px 138px;
+}
+
+.tux-loading__green_animation {
+  /* Run the 'pulseGreen' animation with a small delay. */
+  animation: pulseGreen 1.5s infinite ease-in-out;
+  animation-delay: 0.2s; /* This delay makes the animation look better */
+  /* Set the origin point for scaling to the center of the circle */
+  transform-origin: 111px 138px;
+}
 /* --- Utility Classes --- */
 .w-48 {
   width: 48px;

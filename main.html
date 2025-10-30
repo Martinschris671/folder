@@ -4,1510 +4,85 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Summary</title>
+    <link rel="stylesheet" href="order.css" />
     <style>
-      :root {
-        --ui-sheet-backdrop-1: rgba(0, 0, 0, 0.5);
-        --ui-sheet-flat-1: #fff;
-        --ui-sheet-grouped-2: #fff;
-        --tux-web-font-display: TikTokDisplayFont, system-ui, -apple-system,
-          Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,
-          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        --ui-page-flat-1: #fff;
-        --ui-shape-neutral-2: rgba(0, 0, 0, 0.17);
-        --ui-shape-primary: #fe2c55;
-        --ui-text-1: #000;
-        --ui-text-placeholder: rgba(0, 0, 0, 0.34);
-        --TextPrimary: #000;
-        --ui-shape-success-4: rgba(11, 224, 155, 0.12);
-        --ui-text-success: #008568;
-        --LineSecondary: rgba(22, 24, 35, 0.12);
-        --TextTertiaryAlt: rgba(0, 0, 0, 0.56);
-        --TextQuaternary: rgba(0, 0, 0, 0.32);
-        --BGSecondary: #fff;
-        --TextTertiary: rgba(0, 0, 0, 0.56);
-        --tux-web-font-body: TikTokFont, system-ui, -apple-system, Segoe UI,
-          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        --ui-text-2: #555;
-        --BGInput: rgba(22, 24, 35, 0.06);
-        --ui-shape-text-1-on-primary: #fff;
-      }
-
-      body {
-        margin: 0;
-        font-family: var(--tux-web-font-body);
-      }
-
-      .TUXModal-overlay {
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        background-color: var(--ui-sheet-backdrop-1);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        opacity: 0;
-        padding: 16px;
-        touch-action: none;
-        transition: opacity 0.12s cubic-bezier(0.33, 0.86, 0.2, 1);
-      }
-
-      .TUXModal-overlay[data-transition-status="close"],
-      .TUXModal-overlay[data-transition-status="initial"] {
-        opacity: 0;
-      }
-
-      .TUXModal-overlay[data-transition-status="open"] {
-        opacity: 1;
-      }
-
-      .TUXModal {
-        background-color: #fff;
-        background-color: var(--ui-sheet-flat-1);
-        border-radius: 12px;
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.122);
-        position: relative;
-      }
-
-      .TUXModal:focus {
-        outline: none;
-      }
-
-      .TUXModal[data-width="small"] {
-        max-width: 360px;
-        width: 100%;
-      }
-
-      .TUXModal[data-width="large"] {
-        max-width: 640px;
-        width: 100%;
-      }
-
-      .TUXModalTitle {
-        font-family: TikTokDisplayFont, system-ui, -apple-system, Segoe UI,
-          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-display);
-        font-size: 30px;
-        font-weight: 700;
-        text-align: center;
-      }
-
-      ._TUXNavBar--withBackground {
-        background: #fff;
-        background: var(--ui-page-flat-1);
-      }
-
-      ._TUXNavBar--withBorder {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.17);
-        border-bottom: 1px solid var(--ui-shape-neutral-2);
-      }
-
-      ._TUXNavBar-topRow {
-        align-items: center;
-        display: flex;
-        height: 52px;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      ._TUXNavBar-titleContainer {
-        flex: 1 1;
-        overflow: hidden;
-      }
-
-      ._TUXNavBar-leading {
-        justify-content: flex-start;
-      }
-
-      ._TUXNavBar-leading,
-      ._TUXNavBar-trailing {
-        display: flex;
-        flex-shrink: 0;
-        max-width: 88px;
-      }
-
-      ._TUXNavBar-trailing {
-        justify-content: flex-end;
-      }
-
-      ._TUXNavBar-leading--fixed,
-      ._TUXNavBar-trailing--fixed {
-        width: 88px;
-      }
-
-      .TUXNavBarIconButton {
-        align-items: center;
-        cursor: pointer;
-        display: flex;
-        font-size: 24px;
-        height: 44px;
-        justify-content: center;
-        width: 44px;
-      }
-
-      .TUXNavBarTextButton {
-        cursor: pointer;
-        font-size: 16px;
-        height: 44px;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-
-      .TUXNavBarTextButton--primary {
-        color: #fe2c55;
-        color: var(--ui-shape-primary);
-        font-weight: 500;
-      }
-
-      .TUXNavBarTextButton--secondary {
-        color: #000;
-        color: var(--ui-text-1);
-      }
-
-      .TUXNavBarTextButton:disabled {
-        color: rgba(0, 0, 0, 0.34);
-        color: var(--ui-text-placeholder);
-      }
-
-      [data-tux-color-scheme="system"]
-        .TUXNavBarTextButton:not(:disabled):active {
-        opacity: 0.2;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        [data-tux-color-scheme="system"]
-          .TUXNavBarTextButton:not(:disabled):active {
-          opacity: 0.4;
-        }
-      }
-
-      [data-tux-color-scheme="light"]
-        .TUXNavBarTextButton:not(:disabled):active {
-        opacity: 0.2;
-      }
-
-      [data-tux-color-scheme="dark"]
-        .TUXNavBarTextButton:not(:disabled):active {
-        opacity: 0.4;
-      }
-
-      .TUXModalNavBar {
-        align-items: center;
-        display: flex;
-        height: 52px;
-        justify-content: center;
-        padding-left: 8px;
-        padding-right: 8px;
-        position: relative;
-      }
-
-      .TUXModalNavBar-title {
-        color: #000;
-        color: var(--ui-text-1);
-        flex: 1 1;
-        font-size: 17px;
-        font-weight: 500;
-        overflow: hidden;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .TUXModalNavBar-leading {
-        justify-content: flex-start;
-      }
-
-      .TUXModalNavBar-leading,
-      .TUXModalNavBar-trailing {
-        align-items: center;
-        display: flex;
-        flex-shrink: 0;
-        width: 44px;
-      }
-
-      .TUXModalNavBar-trailing {
-        justify-content: flex-end;
-      }
-
-      .TUXModalCloseButton {
-        position: absolute;
-        right: 8px;
-        top: 4px;
-      }
-
-      .TUXModalCloseButton[data-text-direction="rtl"] {
-        left: 8px;
-        right: auto;
-      }
-
-      .TUXSheet-overlay {
-        background-color: rgba(0, 0, 0, 0.5);
-        background-color: var(--ui-sheet-backdrop-1);
-        display: flex;
-        touch-action: none;
-        /* Start fully transparent and hidden */
-        opacity: 0;
-        visibility: hidden;
-
-        /* Define the fade transition */
-        transition: opacity 0.25s cubic-bezier(0.33, 0.86, 0.2, 1),
-          visibility 0.25s;
-
-        /* Optimization: Hint to the browser to prepare for opacity changes */
-        will-change: opacity;
-      }
-
-      .TUXSheet-overlay--portrait {
-        flex-direction: column;
-        justify-content: flex-end;
-      }
-
-      .TUXSheet-overlay--landscape-start {
-        flex-direction: row;
-        justify-content: flex-start;
-      }
-
-      .TUXSheet-overlay--landscape-end {
-        flex-direction: row;
-        justify-content: flex-end;
-      }
-
-      .TUXSheet-overlay[data-transition-status="close"],
-      .TUXSheet-overlay[data-transition-status="initial"] {
-        opacity: 0;
-      }
-
-      .TUXSheet-overlay[data-transition-status="open"] {
-        opacity: 1;
-      }
-
-      .TUXSheet-container {
-        overflow: hidden;
-      }
-
-      .TUXSheet,
-      .TUXSheet-container--landscape {
-        height: 100%;
-      }
-
-      .TUXSheet {
-        background-color: #fff;
-        background-color: var(--ui-sheet-grouped-2);
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.12);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        padding-bottom: env(safe-area-inset-bottom);
-        position: relative;
-        /* Start fully off-screen at the bottom */
-        transform: translateY(100%);
-
-        /* Define the slide transition */
-        transition: transform 0.25s cubic-bezier(0.33, 0.86, 0.2, 1);
-
-        /* Optimization: Hint to the browser to prepare for transform changes */
-        will-change: transform;
-      }
-
-      /* 3. ACTIVE STATE (When the overlay is visible) */
-      .TUXSheet-overlay.is-active {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .TUXSheet.is-active {
-        transform: translateY(0);
-      }
-      .TUXSheet:focus {
-        outline: none;
-      }
-
-      .TUXSheet--portrait {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-      }
-
-      .TUXSheet--portrait[data-transition-status="close"],
-      .TUXSheet--portrait[data-transition-status="initial"] {
-        -webkit-transform: translateY(100%);
-        transform: translateY(100%);
-      }
-
-      .TUXSheet--portrait[data-transition-status="open"] {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-      }
-
-      .TUXSheet--landscape-left,
-      .TUXSheet--landscape-right {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-        width: min(100vw, 100vh);
-      }
-
-      .TUXSheet--landscape-left[data-transition-status="close"],
-      .TUXSheet--landscape-left[data-transition-status="initial"] {
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-      }
-
-      .TUXSheet--landscape-right[data-transition-status="close"],
-      .TUXSheet--landscape-right[data-transition-status="initial"] {
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
-      }
-
-      .TUXSheet--landscape-left[data-transition-status="open"],
-      .TUXSheet--landscape-right[data-transition-status="open"] {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-      }
-
-      .css-hzmqtq {
-        max-height: -webkit-fill-available;
-        background: rgb(255, 255, 255);
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-      }
-
-      .css-1xvkyhs {
-        width: 100%;
-        position: relative;
-        z-index: 1;
-        flex: 0 1 0%;
-      }
-
-      .TUXNavBar {
-        display: contents;
-      }
-
-      .box-border {
-        box-sizing: border-box;
-      }
-      .left-0 {
-        left: 0;
-      }
-      .right-0 {
-        right: 0;
-      }
-      .top-0 {
-        top: 0;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .px-8 {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-      .overflow-hidden {
-        overflow: hidden;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .flex {
-        display: flex;
-      }
-      .relative {
-        position: relative;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .-z-1 {
-        z-index: -1;
-      }
-      .left-0 {
-        left: 0;
-      }
-      .top-0 {
-        top: 0;
-      }
-      .absolute {
-        position: absolute;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .justify-start {
-        justify-content: flex-start;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-      .h-full {
-        height: 100%;
-      }
-      .inline-flex {
-        display: inline-flex;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .text-color-TextPrimary {
-        color: #000;
-        color: var(--TextPrimary);
-      }
-      .p-0 {
-        padding: 0;
-      }
-      .justify-center {
-        justify-content: center;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .w-40 {
-        width: 40px;
-      }
-      .h-40 {
-        height: 40px;
-      }
-      .flex {
-        display: flex;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-      .tux-nav-bar-icon-action {
-        font-size: 24px;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
-      }
-
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular,
-      .H3-Semibold {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .text-center {
-        text-align: center;
-      }
-      .px-4 {
-        padding-left: 4px;
-        padding-right: 4px;
-      }
-      .overflow-ellipsis,
-      .truncate {
-        text-overflow: ellipsis;
-      }
-      .truncate {
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular,
-      .H3-Semibold {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .justify-end {
-        justify-content: flex-end;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-      .h-full {
-        height: 100%;
-      }
-      .inline-flex {
-        display: inline-flex;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      .text-color-TextPrimary {
-        color: #000;
-        color: var(--TextPrimary);
-      }
-      .p-0 {
-        padding: 0;
-      }
-      .justify-center {
-        justify-content: center;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .w-40 {
-        width: 40px;
-      }
-      .h-40 {
-        height: 40px;
-      }
-      .flex {
-        display: flex;
-      }
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-      .tux-nav-bar-icon-action {
-        font-size: 24px;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
-      }
-
-      .css-15nbb49 {
-        height: 28px;
-        background: var(--ui-shape-success-4);
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        color: var(--ui-text-success);
-      }
-
-      .css-sh3yhi {
-        display: inline-block;
-        margin-left: 4px;
-        margin-right: 0px;
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 14px;
-      }
-
-      .overflow-x-hidden {
-        overflow-x: hidden;
-      }
-      .overflow-auto {
-        overflow: auto;
-      }
-      .flex-auto {
-        flex: 1 1 auto;
-      }
-      .w-full {
-        width: 100%;
-      }
-      .h-full {
-        height: 100%;
-      }
-
-      .P1-Semibold {
-        font-weight: 600;
-      }
-      .P1-Medium,
-      .P1-Semibold {
-        font-weight: 500;
-      }
-      .P1-Bold,
-      .P1-Medium,
-      .P1-Regular,
-      .P1-Semibold {
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      .text-color-TextPrimary {
-        color: #000;
-        color: var(--TextPrimary);
-      }
-      .pt-16 {
-        padding-top: 16px;
-      }
-      .px-16 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .content-around {
-        align-content: space-around;
-      }
-      .flex {
-        display: flex;
-      }
-      .mb-16 {
-        margin-bottom: 16px;
-      }
-
-      .P1-Regular {
-        font-weight: 400;
-      }
-      .P1-Bold,
-      .P1-Medium,
-      .P1-Regular {
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      .P1-Regular {
-        font-weight: 400;
-      }
-      .P1-Bold,
-      .P1-Medium,
-      .P1-Regular,
-      .P1-Semibold {
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-
-      .items-center {
-        align-items: center;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .rounded-full {
-        border-radius: 9999px;
-      }
-
-      .border-color-LineSecondary {
-        border-color: rgba(22, 24, 35, 0.12);
-        border-color: var(--LineSecondary);
-      }
-      .border-solid {
-        border-style: solid;
-      }
-      .border {
-        border-width: 1px;
-      }
-      .rounded-full {
-        border-radius: 9999px;
-      }
-      .box-border {
-        box-sizing: border-box;
-      }
-
-      .ms-4 {
-        -webkit-margin-start: 4px;
-        margin-inline-start: 4px;
-      }
-
-      .px-16 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      .content-around {
-        align-content: space-around;
-      }
-      .flex {
-        display: flex;
-      }
-      .mb-16 {
-        margin-bottom: 16px;
-      }
-
-      .P1-Regular {
-        font-weight: 400;
-      }
-      .P1-Bold,
-      .P1-Medium,
-      .P1-Regular {
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      .P1-Regular {
-        font-weight: 400;
-      }
-      .P1-Bold,
-      .P1-Medium,
-      .P1-Regular,
-      .P1-Semibold {
-        font-size: 14px;
-        letter-spacing: 0.0067em;
-        line-height: 1.3em;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-
-      .items-center {
-        align-items: center;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .tux-separator--horizontal.tux-separator--medium {
-        height: 1px;
-        -webkit-transform: scaleY(0.5);
-        transform: scaleY(0.5);
-        width: 100%;
-      }
-      .flex-shrink-0 {
-        flex-shrink: 0;
-      }
-      .flex {
-        display: flex;
-      }
-      .box-border {
-        box-sizing: border-box;
-      }
-
-      .pt-16 {
-        padding-top: 16px;
-      }
-      .px-16 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      .justify-between {
-        justify-content: space-between;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .content-around {
-        align-content: space-around;
-      }
-      .w-full {
-        width: 100%;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .TUXTooltip-reference {
-        display: inline-block;
-      }
-
-      .P2-Semibold {
-        font-weight: 600;
-      }
-      .P2-Medium,
-      .P2-Semibold {
-        font-weight: 500;
-      }
-      .P2-Bold,
-      .P2-Medium,
-      .P2-Regular,
-      .P2-Semibold {
-        font-size: 13px;
-        letter-spacing: 0.0097em;
-        line-height: 1.3em;
-      }
-      .text-color-TextTertiaryAlt {
-        color: rgba(0, 0, 0, 0.56);
-        color: var(--TextTertiaryAlt);
-      }
-      .font-normal {
-        font-weight: 400;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-
-      .p-16 {
-        padding: 16px;
-      }
-
-      .mb-24 {
-        margin-bottom: 24px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-      *,
-      :after,
-      :before {
-        box-sizing: border-box;
-      }
-      *,
-      :after,
-      :before {
-        box-sizing: inherit;
-      }
-
-      .pt-24 {
-        padding-top: 24px;
-      }
-      .w-full {
-        width: 100%;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      .content-around {
-        align-content: space-around;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .overflow-ellipsis,
-      .truncate {
-        text-overflow: ellipsis;
-      }
-      .truncate {
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .w-full {
-        width: 100%;
-      }
-
-      .css-tneykt {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        row-gap: 2px;
-        opacity: 1;
-      }
-      .H4-Regular {
-        font-weight: 400;
-      }
-      .H4-Bold,
-      .H4-Medium,
-      .H4-Regular {
-        font-size: 15px;
-        letter-spacing: 0.004em;
-        line-height: 1.3em;
-      }
-      .H4-Regular {
-        font-weight: 400;
-      }
-      .H4-Bold,
-      .H4-Medium,
-      .H4-Regular,
-      .H4-Semibold {
-        font-size: 15px;
-        letter-spacing: 0.004em;
-        line-height: 1.3em;
-      }
-      .font-normal {
-        font-weight: 400;
-      }
-      .items-center {
-        align-items: center;
-      }
-
-      .me-8 {
-        -webkit-margin-end: 8px;
-        margin-inline-end: 8px;
-      }
-      .w-24 {
-        width: 24px;
-      }
-      .h-16 {
-        height: 16px;
-      }
-      img,
-      picture {
-        display: block;
-        max-width: 100%;
-      }
-
-      .items-center {
-        align-items: center;
-      }
-      .flex-wrap {
-        flex-wrap: wrap;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .css-6z7b6u {
-        opacity: 1;
-        mix-blend-mode: normal;
-        overflow: hidden;
-        min-width: 30px;
-        text-transform: capitalize;
-      }
-      .text-color-TextPrimary {
-        color: #000;
-        color: var(--TextPrimary);
-      }
-      .me-12 {
-        -webkit-margin-end: 12px;
-        margin-inline-end: 12px;
-      }
-
-      .gap-4 {
-        gap: 4px;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .css-1ekbcdz {
-        white-space: normal;
-        grid-column-start: 2;
-      }
-      .P3-Regular {
-        font-weight: 400;
-      }
-      .P3-Bold,
-      .P3-Medium,
-      .P3-Regular {
-        font-size: 12px;
-        letter-spacing: 0.0134em;
-        line-height: 1.3em;
-      }
-      .P3-Regular {
-        font-weight: 400;
-      }
-      .P3-Bold,
-      .P3-Medium,
-      .P3-Regular,
-      .P3-Semibold {
-        font-size: 12px;
-        letter-spacing: 0.0134em;
-        line-height: 1.3em;
-      }
-      .flex-col {
-        flex-direction: column;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .text-color-TextQuaternary {
-        color: rgba(0, 0, 0, 0.32);
-        color: var(--TextQuaternary);
-      }
-      .pt-2 {
-        padding-top: 2px;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .css-1e0qvkm {
-        width: 100%;
-        z-index: 1;
-        flex: 0 1 0%;
-      }
-
-      .background-color-BGSecondary {
-        background-color: #fff;
-        background-color: var(--BGSecondary);
-      }
-      .pb-16 {
-        padding-bottom: 16px;
-      }
-      .pt-12 {
-        padding-top: 12px;
-      }
-      .px-16 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .css-1rhpox4.expanded {
-        height: 70px;
-        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
-      }
-
-      .css-1rhpox4 {
-        height: 36px;
-        overflow: hidden;
-        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
-      }
-      .text-color-TextTertiary {
-        color: rgba(0, 0, 0, 0.56);
-        color: var(--TextTertiary);
-      }
-
-      .css-1rhpox4.fullTermText .terms-and-conditions {
-        display: block;
-        -webkit-line-clamp: unset;
-        overflow: unset;
-      }
-      .css-1rhpox4 .terms-and-conditions {
-        position: relative;
-        word-break: break-word;
-        overflow: hidden;
-        line-height: 1em;
-        padding-right: 8px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-      }
-
-      .TUXText--tiktok-sans {
-        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-body);
-      }
-      .TUXText {
+      /* Font Faces */
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokFont;
         font-style: normal;
-        font-weight: inherit;
+        font-weight: 400;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.otf?_default_font=1&v=2)
+            format("opentype");
       }
 
-      .css-e61k10 span,
-      .css-e61k10 a {
-        font-size: 12px;
-      }
-
-      .css-e61k10 span,
-      .css-e61k10 a {
-        font-size: 12px;
-      }
-      .TUXText--tiktok-sans {
-        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-body);
-      }
-      .TUXText--weight-bold {
-        font-weight: 700;
-      }
-      .TUXText {
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokFont;
         font-style: normal;
-        font-weight: inherit;
-      }
-
-      .css-e61k10 span,
-      .css-e61k10 a {
-        font-size: 12px;
-      }
-
-      .css-e61k10 span,
-      .css-e61k10 a {
-        font-size: 12px;
-      }
-      .css-4g6ai3 {
-        cursor: pointer;
-      }
-      a {
-        background-color: transparent;
-        color: inherit;
-        -webkit-text-decoration: none;
-        text-decoration: none;
-      }
-      a {
-        background-color: transparent;
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .css-1rhpox4.fullTermText .terms-and-conditions {
-        display: block;
-        -webkit-line-clamp: unset;
-        overflow: unset;
-      }
-
-      .css-1rhpox4 .terms-and-conditions {
-        position: relative;
-        word-break: break-word;
-        overflow: hidden;
-        line-height: 1em;
-        padding-right: 8px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-      }
-      .css-1b2x0kn {
-        margin-top: 1rem;
-      }
-
-      .TUXText--tiktok-sans {
-        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-body);
-      }
-      .TUXText {
-        font-style: normal;
-        font-weight: inherit;
-      }
-
-      .css-e61k10 span,
-      .css-e61k10 a {
-        font-size: 12px;
-      }
-      .TUXText--tiktok-sans {
-        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-body);
-      }
-      .TUXText--weight-bold {
-        font-weight: 700;
-      }
-      .TUXText {
-        font-style: normal;
-        font-weight: inherit;
-      }
-
-      .css-ytrrzi {
-        border-radius: 4px;
-        align-self: flex-end;
-        height: 16px;
-        min-width: 16px;
-        transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-      }
-      .background-color-BGInput {
-        background-color: rgba(22, 24, 35, 0.06);
-        background-color: var(--BGInput);
-      }
-
-      .css-gps98o {
-        position: relative;
-      }
-
-      .py-12 {
-        padding-bottom: 12px;
-        padding-top: 12px;
-      }
-
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .H3-Bold {
-        font-weight: 700;
-      }
-      .H3-Bold,
-      .H3-Medium,
-      .H3-Regular,
-      .H3-Semibold {
-        font-size: 17px;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .text-color-TextPrimary {
-        color: #000;
-        color: var(--TextPrimary);
-      }
-      .content-around {
-        align-content: space-around;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .overflow-hidden {
-        overflow: hidden;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .flex-1 {
-        flex: 1 1;
-      }
-      .flex {
-        display: flex;
-      }
-
-      .TUXButton--disabled:not(.TUXButton--loading) {
-        cursor: not-allowed;
-        opacity: 0.4;
-      }
-      button.TUXButton--primary {
-        background-color: #fe2c55;
-        background-color: var(--ui-shape-primary);
-        color: #fff;
-        color: var(--ui-shape-text-1-on-primary);
-      }
-      .TUXButton--medium {
-        border-radius: 6px;
-        font-size: 16px;
-        height: 40px;
-        line-height: 21px;
-        min-width: 108px;
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      .TUXButton {
-        align-items: center;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: TikTokFont, system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji,
-          Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-        font-family: var(--tux-web-font-body);
         font-weight: 500;
-        justify-content: center;
-        letter-spacing: 0.15px;
-        position: relative;
-      }
-      .w-full {
-        width: 100%;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        border: 0;
-        font-family: inherit;
-        margin: 0;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.otf?_default_font=1&v=2)
+            format("opentype");
       }
 
-      .TUXButton-content {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        width: 100%;
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokFont;
+        font-style: normal;
+        font-weight: 700;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.otf?_default_font=1&v=2)
+            format("opentype");
       }
 
-      .TUXButton--large .TUXButton-iconContainer,
-      .TUXButton--medium .TUXButton-iconContainer {
-        font-size: 19px;
-      }
-      .TUXButton-iconContainer {
-        display: flex;
-        flex-shrink: 0;
-      }
-
-      img,
-      picture {
-        display: block;
-        max-width: 100%;
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokDisplayFont;
+        font-style: normal;
+        font-weight: 400;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.otf?_default_font=1&v=2)
+            format("opentype");
       }
 
-      .TUXButton--large .TUXButton-content > * + *,
-      .TUXButton--medium .TUXButton-content > * + * {
-        margin-left: 5.5px;
-      }
-      .TUXButton-label {
-        overflow: hidden;
-        position: relative;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .H1-Semibold {
-        font-weight: 600;
-      }
-      .H2-Semibold {
-        font-weight: 600;
-      }
-      .H3-Semibold {
-        font-weight: 600;
-      }
-      .H4-Semibold {
-        font-weight: 600;
-      }
-      .P1-Semibold {
-        font-weight: 600;
-      }
-      .P2-Semibold {
-        font-weight: 600;
-      }
-      .P3-Semibold {
-        font-weight: 600;
-      }
-      .SmallText1-Semibold {
-        font-weight: 600;
-      }
-      .SmallText2-Semibold {
-        font-weight: 600;
-      }
-      .Headline-Semibold {
-        font-weight: 600;
-      }
-      .Longform-Semibold {
-        font-weight: 600;
-      }
-      .tt-text-field--input:disabled {
-        color: rgba(0, 0, 0, 0.34);
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokDisplayFont;
+        font-style: normal;
+        font-weight: 500;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.otf?_default_font=1&v=2)
+            format("opentype");
       }
 
-      .radius-containerslevel1-large-t {
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-      }
-
-      .css-1x0rzv7.expanded {
-        transform: rotate(-180deg);
-      }
-
-      .css-kgw7mk.expanded {
-        height: 142px;
-      }
-
-      .css-kgw7mk {
-        height: 40px;
-        overflow: hidden;
-        transition: height 0.5s cubic-bezier(0.74, 0, 0.36, 1);
-      }
-
-      .css-kgw7mk.fullTermText .terms-and-conditions {
-        display: block;
-        -webkit-line-clamp: unset;
-        overflow: unset;
-      }
-      .css-kgw7mk .terms-and-conditions {
-        position: relative;
-        word-break: break-word;
-        overflow: hidden;
-        line-height: 1.3em;
-        padding-right: 8px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+      @font-face {
+        font-display: fallback;
+        font-family: TikTokDisplayFont;
+        font-style: normal;
+        font-weight: 700;
+        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff2?_default_font=1&v=2)
+            format("woff2"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff?_default_font=1&v=2)
+            format("woff"),
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.otf?_default_font=1&v=2)
+            format("opentype");
       }
     </style>
   </head>
@@ -1515,19 +90,18 @@
     <button id="open-overlay-btn">Open Overlay</button>
     <div
       class="TUXSheet-overlay TUXSheet-overlay--portrait"
-      data-transition-status="open"
       dir="ltr"
       data-tux-color-scheme="light"
-      style="position: fixed; overflow: auto; inset: 0px; z-index: 2000"
+      style="position: fixed; inset: 0px; z-index: 2000"
     >
       <div class="TUXSheet-container">
         <div
           class="TUXSheet TUXSheet--portrait radius-containerslevel1-large-t"
-          data-transition-status="open"
           tabindex="0"
           role="dialog"
           style="min-height: 90dvh"
         >
+          <!-- ... rest of your HTML ... -->
           <div id="cashier-page" class="cashier-phase2">
             <div data-theme="light" dir="ltr">
               <div class="css-hzmqtq">
@@ -1550,6 +124,7 @@
                               class="inline-flex items-center justify-start flex-1 h-full"
                             >
                               <button
+                                id="close-overlay-btn"
                                 data-test-tag="tux-nav-bar-button-0"
                                 class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
                               >
@@ -1626,6 +201,19 @@
                     <span direction="ltr" class="css-sh3yhi"
                       >Secure payment</span
                     >
+                    <svg
+                      fill="currentColor"
+                      font-size="10px"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      class="flip-rtl"
+                    >
+                      <path
+                        d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
+                      ></path>
+                    </svg>
                   </div>
                 </header>
                 <div
@@ -1637,10 +225,15 @@
                       class="text-color-TextPrimary P1-Semibold pt-16"
                       data-e2e="order-detail"
                     >
+                      <!-- ================================================================================= -->
+                      <!-- START: DYNAMIC ACCOUNT PREVIEW SECTION                                            -->
+                      <!-- ================================================================================= -->
+
                       <div class="flex content-around items-center mb-16 px-16">
                         <div class="flex-1 P1-Regular">Account</div>
                         <div class="flex items-center">
                           <div
+                            id="account-preview-avatar"
                             data-test-tag="tux-avatar"
                             class="rounded-full"
                             style="
@@ -1657,22 +250,33 @@
                               style="width: 18px; height: 18px"
                             ></div>
                           </div>
-                          <span class="ms-4">christopherchibu86</span>
+                          <span id="account-preview-nickname" class="ms-4"
+                            >christopherchibu86</span
+                          >
                         </div>
                       </div>
+                      <!-- ================================================================================= -->
+                      <!-- END: DYNAMIC ACCOUNT PREVIEW SECTION                                              -->
+                      <!-- ================================================================================= -->
+                      <!-- ================================================================================= -->
+                      <!-- START: PURCHASE PREVIEW SECTION                                                   -->
+                      <!-- ================================================================================= -->
+
                       <div class="flex content-around mb-16 px-16">
                         <div
+                          id="purchase-coin-num"
                           class="flex-1 P1-Regular"
                           data-e2e="cashier-order-coin-num"
                         >
                           Purchase of 30 Coins
                         </div>
                         <div
+                          id="purchase-coin-price"
                           class="flex items-center"
                           data-e2e="cashier-order-coin-price"
                           style="direction: ltr"
                         >
-                          NGN510
+                          $0.48
                         </div>
                       </div>
                       <div
@@ -1683,6 +287,10 @@
                           transform-origin: center center;
                         "
                       ></div>
+
+                      <!-- ================================================================================= -->
+                      <!-- END: PURCHASE PREVIEW SECTION                                                     -->
+                      <!-- ================================================================================= -->
                     </div>
                     <div
                       class="flex w-full items-center content-around pt-16 px-16 justify-between"
@@ -1698,7 +306,7 @@
                     <div class="p-16">
                       <div
                         data-e2e="payment-method-list"
-                        class="mb-24"
+                        class="mo-15"
                         style="margin-top: -16px"
                       >
                         <div>
@@ -1756,6 +364,46 @@
                           </div>
                         </div>
                       </div>
+                      <!-- Replicated Component with Checkbox -->
+                      <label
+                        for="mastercard-checkbox"
+                        class="w-full no-select"
+                        style="cursor: pointer"
+                      >
+                        <div class="flex justify-between items-center w-full">
+                          <!-- Left side: Icon and Text -->
+                          <div class="flex items-center">
+                            <div class="me-8">
+                              <img
+                                src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
+                                alt="MASTER"
+                                class="h-16 w-26 me-4"
+                                data-e2e="wallet-payment-icon-MASTER"
+                                style="
+                                  display: inline-block;
+                                  border: 0.5px solid rgb(225, 228, 236);
+                                  border-radius: 4px;
+                                "
+                              />
+                            </div>
+                            <span
+                              class="H4-Regular font-normal text-color-TextPrimary"
+                              >Mastercard •••• 6112</span
+                            >
+                          </div>
+                          <!-- Right side: Custom Checkbox styled as a smaller Radio -->
+                          <div class="checkbox-container">
+                            <!-- Changed to a checkbox for check/uncheck functionality -->
+                            <input
+                              type="checkbox"
+                              id="mastercard-checkbox"
+                              name="payment-method"
+                              class="checkbox-input"
+                            />
+                            <div class="checkbox-custom"></div>
+                          </div>
+                        </div>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -1891,11 +539,13 @@
                         <div class="flex-1 flex items-center overflow-hidden">
                           <div>Total</div>
                         </div>
+                        <!-- total -->
                         <div
+                          id="purchase-total-price"
                           data-e2e="cashier-order-coin-total-price"
                           style="direction: ltr"
                         >
-                          NGN510
+                          $0.48
                         </div>
                       </div>
                     </div>
@@ -1910,7 +560,7 @@
                           <div class="TUXButton-iconContainer">
                             <img
                               alt="shield tiktok"
-                              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIxIDIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi41ODIwMyA0LjM4NTg2VjkuNjY4MDFDMi41ODMyMyAxNS41Njc5IDguNzM0MDMgMTguNzcxMiAxMC4xOTE2IDE5LjQ0NzVDMTAuMzg4OSAxOS41MzkxIDEwLjYwODUgMTkuNTM5MSAxMC44MDU4IDE5LjQ0NzZDMTIuMjYzNSAxOC43NzEzIDE4LjQxNTQgMTUuNTY4IDE4LjQxNTQgOS42NjgwMVY0LjM4NTc5QzE4LjQxNTQgMy44ODQzMyAxNy45NzMzIDMuNDc2MjMgMTcuNDczNiAzLjQzNDIzQzE2LjE5OTkgMy4zMjcxOSAxMy43NzU0IDIuNzk1NTUgMTEuMDc5NiAwLjUxNTU5QzEwLjc0NjMgMC4yMzM3MjkgMTAuMjUxMSAwLjIzMzczNyA5LjkxNzgyIDAuNTE1NjA3QzcuMjIyMDYgMi43OTU2NyA0Ljc5NzU0IDMuMzI3MjcgMy41MjM4OCAzLjQzNDI3QzMuMDI0MTYgMy40NzYyNSAyLjU4MjAzIDMuODg0MzcgMi41ODIwMyA0LjM4NTg2Wk00LjI0ODcgOS42Njc2N1Y1LjAyNzU5QzUuNzY5MTcgNC44MDYwMSA4LjAzNjU2IDQuMTIzOTQgMTAuNDk4NyAyLjE5MTlDMTIuOTYwOSA0LjEyMzgzIDE1LjIyODMgNC44MDU5MSAxNi43NDg3IDUuMDI3NTNWOS42NjgwMUMxNi43NDg3IDExLjk5MDIgMTUuNTQ2OCAxMy44NTc4IDE0LjAxMzUgMTUuMzA0NEMxMi43MjYyIDE2LjUxODkgMTEuMzA3NyAxNy4zMzQgMTAuNDk4OCAxNy43NDM5QzkuNjg5ODkgMTcuMzM0IDguMjcxNjkgMTYuNTE4OSA2Ljk4NDQ0IDE1LjMwNDRDNS40NTEzMyAxMy44NTc5IDQuMjQ5MjkgMTEuOTg5OSA0LjI0ODcgOS42Njc2N1oiIGZpbGw9IndoaXRlIi8+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4zODA0IDYuMjQ4NzhDMTIuMzQwNSA2LjA4OTQ4IDEyLjMyMDMgNS45MjI1MiAxMi4zMjI0IDUuNzUwNDlIMTAuODQ4NEwxMC44MTM5IDguNTY0NTJMMTAuODA4MiA5LjAyODE5TDEwLjc3ODYgMTEuNDQxMUMxMC43NzA1IDEyLjA5NzMgMTAuMjE4OCAxMi42MjkyIDkuNTQ2MzMgMTIuNjI5MkM4Ljg3MzgzIDEyLjYyOTIgOC4zMzUyIDEyLjA5NzMgOC4zNDMyNSAxMS40NDExQzguMzUxMzEgMTAuNzg0OSA4LjkwMyAxMC4yNTI5IDkuNTc1NSAxMC4yNTI5QzkuNzA5ODYgMTAuMjUyOSA5LjgzODg5IDEwLjI3NDIgOS45NTkyOCAxMC4zMTM0TDkuOTc4MTIgOC43NzgwOUM5Ljg1MjY3IDguNzYwOTcgOS43MjQ0MSA4Ljc1MjEyIDkuNTkzOTIgOC43NTIxMkM4LjA3MTk1IDguNzUyMTIgNi44MjMzOCA5Ljk1NjAxIDYuODA1MTYgMTEuNDQxMUM2Ljc4NjkzIDEyLjkyNjEgOC4wMDU5NSAxNC4xMyA5LjUyNzkxIDE0LjEzQzExLjAyODUgMTQuMTMgMTIuMjY0IDEyLjk1OTggMTIuMzE1OSAxMS41MDM2TDEyLjMxNjcgMTEuNDQxMUwxMi4zMzQyIDEwLjAxNjVMMTIuMzUxNiA4LjU5MTg5QzEyLjkxMjcgOC45NjkxOSAxMy41OTQxIDkuMTg5ODYgMTQuMzMxIDkuMTg5ODZMMTQuMzQ4NyA3Ljc1MTU3QzEzLjM5MjMgNy43NTE1NyAxMi41OTY3IDcuMTEyODcgMTIuMzgwNCA2LjI0ODc4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
+                              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIxIDIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi41ODIwMyA0LjM4NTg2VjkuNjY4MDFDMi41ODMyMyAxNS41Njc5IDguNzM0MDMgMTguNzcxMiAxMC4xOTE2IDE5LjQ0NzVDMTAuMzg4OSAxOS41MzkxIDEwLjYwODUgMTkuNTM5MSAxMC44MDU4IDE5LjQ0NzZDMTIuMjYzNSAxOC43NzEzIDE4LjQxNTQgMTUuNTY4IDE4LjQxNTQgOS42NjgwMVY0LjM4NTc5QzE4LjQxNTQgMy44ODQzMyAxNy45NzMzIDMuNDc2MjMgMTcuNDczNiAzLjQzNDIzQzE2LjE5OTkgMy4zMjcxOSAxMy43NzU0IDIuNzk1NTUgMTEuMDc5NiAwLjUxNTU5QzEwLjc0NjMgMC4yMzM3MjkgMTAuMjUxMSAwLjIzMzczNyA5LjkxNzgyIDAuNTE1NjA3QzcuMjIyMDYgMi43OTU2NyA0Ljc5NzU0IDMuMzI3MjcgMy41MjM4OCAzLjQzNDI3QzMuMDI0MTYgMy44ODQzNyAyLjU4MjAzIDMuODg0MzcgMi41ODIwMyA0LjM4NTg2Wk00LjI0ODcgOS42Njc2N1Y1LjAyNzU5QzUuNzY5MTcgNC44MDYwMSA4LjAzNjU2IDQuMTIzOTQgMTAuNDk4NyAyLjE5MTlDMTIuOTYwOSA0LjEyMzgzIDE1LjIyODMgNC44MDU5MSAxNi43NDg3IDUuMDI3NTNWOS42NjgwMUMxNi43NDg3IDExLjk5MDIgMTUuNTQ2OCAxMy44NTc4IDE0LjAxMzUgMTUuMzA0NEMxMi43MjYyIDE2LjU1MTkgMTEuMzA3NyAxNy4zMzQgMTAuNDk4OCAxNy43NDM5QzkuNjg5ODkgMTcuMzM0IDguMjcxNjkgMTYuNTE4OSA2Ljk4NDQ0IDE1LjMwNDRDNS40NTEzMyAxMy44NTc5IDQuMjQ5MjkgMTEuOTg5OSA0LjI0ODcgOS42Njc2N1oiIGZpbGw9IndoaXRlIi8+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4zODA0IDYuMjQ4NzhDMTIuMzQwNSA2LjA4OTQ4IDEyLjMyMDMgNS45MjI1MiAxMi4zMjI0IDUuNzUwNDlIMTAuODQ4NEwxMC44MTM5IDguNTY0NTJMMTAuODA4MiA5LjAyODE5TDEwLjc3ODYgMTEuNDQxMUMxMC43NzA1IDEyLjA5NzMgMTAuMjE4OCAxMi42MjkyIDkuNTQ2MzMgMTIuNjI5MkM4Ljg3MzgzIDEyLjYyOTIgOC4zMzUyIDEyLjA5NzMgOC4zNDMyNSAxMS40NDExQzguMzUxMzEgMTAuNzg0OSA4LjkwMyAxMC4yNTI5IDkuNTc1NSAxMC4yNTI5QzkuNzA5ODYgMTAuMjUyOSA5LjgzODg5IDEwLjI3NDIgOS45NTkyOCAxMC4zMTM0TDkuOTc4MTIgOC43NzgwOUM5Ljg1MjY3IDguNzYwOTcgOS43MjQ0MSA4Ljc1MjEyIDkuNTkzOTIgOC43NTIxMkM4LjA3MTk1IDguNzUyMTIgNi44MjMzOCA5Ljk1NjAxIDYuODA1MTYgMTEuNDQxMUM2Ljc4NjkzIDEyLjk5NjEgOC4wMDU5NSAxNC4xMyA5LjUyNzkxIDE0LjEzQzExLjAyODUgMTQuMTMgMTIuMjY0IDEyLjk1OTggMTIuMzE1OSAxMS41MDM2TDEyLjMxNjcgMTEuNDQxMUwxMi4zMzQyIDEwLjAxNjVMMTIuMzUxNiA4LjU5MTg5QzEyLjkxMjcgOC45NjkxOSAxMy41OTQxIDkuMTg5ODYgMTQuMzMxIDkuMTg5ODZMMTQuMzQ4NyA3Ljc1MTU3QzEzLjM5MjMgNy43NTE1NyAxMi41OTY3IDcuMTEyODcgMTIuMzgwNCA2LjI0ODc4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
                               style="height: 20px; width: 20px"
                             />
                           </div>
@@ -1939,7 +589,7 @@
       const overlay = document.querySelector(".TUXSheet-overlay");
 
       // This finds the white panel that slides up.
-      const sheet = document.querySelector(".TUXSheet");
+      const sheetContainer = document.querySelector(".TUXSheet-container");
 
       // --- 2. DEFINE THE FUNCTIONS TO OPEN AND CLOSE THE OVERLAY ---
 
@@ -1954,7 +604,7 @@
         // "fade-only" issue by making sure the browser is ready to paint the changes.
         requestAnimationFrame(() => {
           overlay.classList.add("is-active");
-          sheet.classList.add("is-active");
+          sheetContainer.classList.add("is-active");
         });
       };
 
@@ -1964,7 +614,7 @@
        */
       const closeOverlay = () => {
         overlay.classList.remove("is-active");
-        sheet.classList.remove("is-active");
+        sheetContainer.classList.remove("is-active");
       };
 
       // --- 3. ATTACH THE EVENT LISTENERS ---
