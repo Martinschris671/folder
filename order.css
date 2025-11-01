@@ -1517,66 +1517,173 @@ picture {
   cursor: pointer;
 }
 
-/* Base styles for the success overlay */
-.success-overlay {
+/* =================================================================== */
+/*  STYLES FOR FINAL, ADVANCED SUCCESS OVERLAY (V2 - Perfected Intro) */
+/* =================================================================== */
+
+/* The main wrapper now acts as a mask and a container for the animation. */
+.success-overlay-wrapper {
   position: fixed;
   inset: 0;
   z-index: 6000;
   display: flex;
+  /* We align items to the bottom to make the slide-up effect originate from there. */
+  justify-content: center;
+  align-items: flex-end; /* ALIGN TO BOTTOM */
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  /* The background mask will still fade in smoothly. */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.success-overlay-wrapper.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The white content box with the new animation logic. */
+.success-overlay-container {
+  position: relative;
+  width: 100%;
+  /* Use viewport height for a full-screen feel on mobile, but capped by max-height. */
+  height: 100vh;
+
+  display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
+
+  /* PERFECTED TRANSITION LOGIC */
+
+  /* 1. Initial State (Hidden): The panel starts completely below the screen. */
+  transform: translateY(100%);
+
+  /* 2. The Animation Properties: We define a longer, smoother transition
+     using a professional cubic-bezier curve for a natural deceleration effect. */
+  transition: transform 450ms cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.success-overlay-mask {
+/* 3. Active State: When 'is-active' is added, the panel slides up to its
+   final position (translateY(0)). The custom cubic-bezier makes this feel fluid. */
+.success-overlay-wrapper.is-active .success-overlay-container {
+  transform: translateY(0);
+}
+
+/* --- All other styles for the content remain the same --- */
+
+.success-overlay-close-wrapper {
   position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: opacity 300ms ease-in-out;
+  top: 15px;
+  left: 15px;
+  color: #5f5f5f;
+  cursor: pointer;
 }
 
-.success-overlay.is-active .success-overlay-mask {
-  opacity: 1;
-}
-
-.success-overlay-sheet {
-  background-color: #2f2f2f; /* Dark theme background */
-  color: #fff;
-  border-radius: 12px;
-  padding: 32px 24px;
-  width: 90%;
-  max-width: 350px;
+.success-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transform: scale(0.95);
+}
+
+.success-overlay-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.success-overlay-title {
+  font-family: "TikTokFont", sans-serif;
+  font-size: 22px;
+  color: #161823;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.success-overlay-message {
+  font-family: "TikTokFont", sans-serif;
+  font-size: 14px;
+  color: #8a8a8a;
+  margin: 0;
+}
+
+#success-total-coins-final {
+  color: #161823;
+  font-weight: 600;
+}
+.payment-flow-hidden {
+  display: none !important;
+}
+
+/* Utility classes from the request */
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+.box-border {
+  box-sizing: border-box;
+}
+.z-5000 {
+  z-index: 5000;
+}
+.fixed {
+  position: fixed;
+}
+.radius-containerslevel2-small {
+  border-radius: 12px;
+}
+.background-color-ToastDefault {
+  background-color: var(--ToastDefault, rgba(84, 84, 84, 0.92));
+}
+.p-16 {
+  padding: 16px;
+}
+.flex-col {
+  flex-direction: column;
+}
+.w-48 {
+  width: 48px;
+}
+.h-48 {
+  height: 48px;
+}
+.text-center {
+  text-align: center;
+}
+.px-8 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.mt-4 {
+  margin-top: 4px;
+}
+
+.H4-Semibold {
+  font-weight: 600;
+}
+.text-color-ConstTextInverse {
+  color: var(--ConstTextInverse, #fff);
+}
+.payment-flow-overlay {
+  inset: 0;
+  z-index: 7000; /* Ensure it's on top */
+
+  /* Start hidden and ready for animation */
   opacity: 0;
-  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
-  z-index: 1;
+  visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
 }
 
-.success-overlay.is-active .success-overlay-sheet {
+.payment-flow-overlay.is-active {
+  /* Make it visible with a smooth fade-in */
   opacity: 1;
-  transform: scale(1);
-}
-
-.success-icon svg {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 16px;
-}
-
-.success-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.success-message {
-  font-size: 16px;
-  color: #c7c7c7;
-  margin-bottom: 24px;
-}
-
-#success-total-coins {
-  color: #25f4ee; /* Highlight color */
-  font-weight: bold;
+  visibility: visible;
 }
