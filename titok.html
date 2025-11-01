@@ -1142,12 +1142,51 @@
                 border: 0.5px solid rgb(225, 228, 236);
                 border-radius: 4px;
               "
-            />
-            <img
+            /><img
               src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
               alt="MASTER"
-              class="h-16 w-24 me-4"
+              class="h-16 w-26 me-4"
               data-e2e="wallet-payment-icon-MASTER"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            /><img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/card_american_express_51cd3f.png"
+              alt="AMEX"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-AMEX"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            /><img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/diners_0faca9.png"
+              alt="DINERS"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-DINERS"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            /><img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/card_jcb_0481eb.png"
+              alt="JCB"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-JCB"
+              style="
+                display: inline-block;
+                border: 0.5px solid rgb(225, 228, 236);
+                border-radius: 4px;
+              "
+            /><img
+              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/paypal-light_839c52.png"
+              alt="PAYPAL"
+              class="h-16 w-26 me-4"
+              data-e2e="wallet-payment-icon-PAYPAL"
               style="
                 display: inline-block;
                 border: 0.5px solid rgb(225, 228, 236);
@@ -1769,16 +1808,54 @@
                             >Mastercard •••• 6112</span
                           >
                         </div>
-                        <!-- Right side: Custom Checkbox styled as a smaller Radio -->
                         <div class="checkbox-container">
-                          <!-- Changed to a checkbox for check/uncheck functionality -->
-                          <input
-                            type="checkbox"
-                            id="mastercard-checkbox"
-                            name="payment-method"
-                            class="checkbox-input"
-                          />
-                          <div class="checkbox-custom"></div>
+                          <div class="checkbox-custom">
+                            <input
+                              type="checkbox"
+                              id="mastercard-checkbox"
+                              name="payment-method"
+                              class="checkbox-input"
+                            />
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-outside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="7.25"
+                                stroke="currentColor"
+                                fill="transparent"
+                                stroke-width="1.5"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-inside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="4.75"
+                                stroke="currentColor"
+                                fill="var(--ui-image-overlay-white)"
+                                stroke-width="3.6"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-disabled"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="6.5"
+                                stroke="currentColor"
+                                fill="var(--ui-shape-neutral-4)"
+                                stroke-width="0"
+                              ></circle>
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </label>
@@ -1931,9 +2008,10 @@
                   </div>
                   <div data-e2e="pay-now-footer-button">
                     <button
+                      id="pay-now-btn"
                       class="TUXButton TUXButton--default TUXButton--medium TUXButton--primary TUXButton--disabled w-full"
                       aria-disabled="true"
-                      disabled=""
+                      disabled
                       type="button"
                     >
                       <div class="TUXButton-content">
@@ -1956,10 +2034,135 @@
       </div>
     </div>
   </div>
+  <!-- =================================================================== -->
+  <!-- LOADING ANIMATION: Initially hidden. Shown when "Pay now" is clicked. -->
+  <!-- ID CHANGED HERE: "payout-loading-animation" is now the unique ID.   -->
+  <!-- =================================================================== -->
+  <div
+    id="loading-overlay"
+    class="box-border fixed flex items-center justify-center is-hidden"
+    style="inset: 0px"
+  >
+    <div
+      class="background-color-ToastDefault p-16 flex flex-col items-center justify-center radius-containerslevel2-small"
+      style="max-width: 70%"
+    >
+      <div class="w-48 h-48 box-border flex items-center justify-center">
+        <!-- ... Animated SVG ... -->
+        <svg
+          fill="currentColor"
+          viewBox="0 0 463 276"
+          width="46"
+          height="28"
+          class="tux-loading-svg"
+        >
+          <!-- SVG content as provided -->
+          <defs>
+            <mask id="tux-loading-red-hole-4">
+              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
+              <circle
+                r="110"
+                cx="352.5"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__red_animation"
+                fill="rgb(15, 15, 15)"
+              ></circle>
+            </mask>
+            <mask id="tux-loading-green-hole-4">
+              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
+              <circle
+                r="110"
+                cx="111"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__green_animation"
+                fill="rgb(15, 15, 15)"
+              ></circle>
+            </mask>
+          </defs>
+          <circle
+            r="110"
+            cx="352.5"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__red_animation"
+            fill="rgb(15, 15, 15)"
+          ></circle>
+          <circle
+            mask="url(#tux-loading-red-hole-4)"
+            r="110"
+            cx="111"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__green_animation"
+            fill="rgb(37, 244, 238)"
+          ></circle>
+          <circle
+            mask="url(#tux-loading-green-hole-4)"
+            r="110"
+            cx="352.5"
+            cy="138"
+            stroke-width="0"
+            class="tux-loading__red_animation"
+            fill="rgb(255, 44, 85)"
+          ></circle>
+        </svg>
+      </div>
+      <div
+        class="H4-Semibold text-color-ConstTextInverse mt-4 text-center px-8"
+      >
+        Payment processing. Please don’t close this page.
+      </div>
+    </div>
+  </div>
+  <!-- 2. The Demo Success Overlay -->
+  <div id="success-overlay" class="success-overlay" style="display: none">
+    <div class="success-overlay-mask"></div>
+    <div class="success-overlay-sheet">
+      <div class="success-content">
+        <div class="success-icon">
+          <!-- Checkmark SVG -->
+          <svg
+            viewBox="0 0 52 52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="26"
+              cy="26"
+              r="25"
+              stroke="#25F4EE"
+              stroke-width="2"
+            ></circle>
+            <path
+              d="M14 27L22 35L38 19"
+              stroke="#25F4EE"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </div>
+        <h2 class="success-title">Payment Successful</h2>
+        <p class="success-message">
+          You have successfully purchased
+          <strong id="success-total-coins">0</strong> Coins.
+        </p>
+        <button
+          id="close-success-btn"
+          class="TUXButton TUXButton--default TUXButton--medium TUXButton--primary w-full"
+        >
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
   <script src="hover.js"></script>
   <script src="loading.js"></script>
   <script src="custom.js"></script>
   <script src="fectchprofile.js"></script>
   <script src="overlay.js"></script>
   <script src="preview.js"></script>
+  <script src="payout.js"></script>
 </html>

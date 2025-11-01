@@ -1,393 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Functional Overlay Test</title>
-
-    <!-- =================================================================== -->
-    <!-- STYLES FOR THE DEMO OVERLAY                                       -->
-    <!-- This makes the overlay work. You can replace this with your own   -->
-    <!-- styling, but it's here to provide a functional example.           -->
-    <!-- =================================================================== -->
+    <title>Processing Payment</title>
+    <link rel="stylesheet" href="loading.css" />
     <style>
-      /* Basic styles to make the example look clean */
-      body {
-        font-family: sans-serif;
-        padding: 20px;
-        background-color: #f0f2f5;
-      }
-      button {
-        font-family: inherit;
-      }
-      .container {
-        max-width: 400px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-      .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+      /* General styles from the request */
+      * {
+        box-sizing: border-box;
       }
 
-      /* The Overlay (Modal) */
-      .overlay-container {
-        position: fixed; /* Sit on top of the page content */
-        display: none; /* Hidden by default */
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.5
-        ); /* Black background with opacity */
-        z-index: 1000; /* Specify a stack order in case you're using a different order for other elements */
+      /* Utility classes from the request */
+      .justify-center {
         justify-content: center;
+      }
+      .items-center {
         align-items: center;
       }
-
-      /* Make it visible when the 'visible' class is added by JavaScript */
-      .overlay-container.visible {
+      .flex {
         display: flex;
       }
-
-      .overlay-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 500px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        display: flex;
+      .box-border {
+        box-sizing: border-box;
+      }
+      .z-5000 {
+        z-index: 5000;
+      }
+      .fixed {
+        position: fixed;
+      }
+      .radius-containerslevel2-small {
+        border-radius: 12px;
+      }
+      .background-color-ToastDefault {
+        background-color: var(--ToastDefault, rgba(84, 84, 84, 0.92));
+      }
+      .p-16 {
+        padding: 16px;
+      }
+      .flex-col {
         flex-direction: column;
-        gap: 16px;
+      }
+      .w-48 {
+        width: 48px;
+      }
+      .h-48 {
+        height: 48px;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .px-8 {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      .mt-4 {
+        margin-top: 4px;
       }
 
-      .overlay-header {
-        font-size: 1.25rem;
-        font-weight: bold;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 10px;
+      /* Typography */
+      .H4-Bold,
+      .H4-Medium,
+      .H4-Regular,
+      .H4-Semibold {
+        font-size: 15px;
+        letter-spacing: 0.004em;
+        line-height: 1.3em;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, sans-serif;
       }
-
-      /* Replicating your preview styles */
-      .preview-line {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .H4-Semibold {
+        font-weight: 600;
       }
-      .preview-avatar {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background-size: cover;
-        background-position: center;
-        border: 1px solid #ccc;
-        margin-right: 8px;
-      }
-      .user-info {
-        display: flex;
-        align-items: center;
-      }
-
-      /* Generic classes from your code for styling */
-      .P1-Regular {
-        font-size: 16px;
-        color: #333;
-      }
-      .ms-4 {
-        margin-left: 4px;
+      .text-color-ConstTextInverse {
+        color: var(--ConstTextInverse, #fff);
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h2>Your Buttons</h2>
-      <div class="button-group">
-        <!-- =================================================================== -->
-        <!-- BUTTON 1: The Main "Buy for..." Button (IN USD)                   -->
-        <!-- =================================================================== -->
-        <button
-          id="open-overlay-btn-1"
-          type="button"
-          style="
-            padding: 12px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-          "
+    <div dir="ltr">
+      <div
+        class="z-5000 box-border fixed flex items-center justify-center"
+        style="inset: 0px; visibility: visible"
+      >
+        <div
+          class="background-color-ToastDefault p-16 flex flex-col items-center justify-center radius-containerslevel2-small"
+          style="max-width: 70%"
         >
-          <span data-test-tag="tux-button-content">Buy for $1.12</span>
-        </button>
-
-        <!-- =================================================================== -->
-        <!-- BUTTON 2: The Custom Amount "Recharge" Button                     -->
-        <!-- This will get its value from the hidden div below                 -->
-        <!-- =================================================================== -->
-        <button
-          id="open-overlay-btn-2"
-          type="button"
-          style="
-            padding: 12px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-          "
-        >
-          Recharge
-        </button>
-      </div>
-
-      <!-- This is the hidden div your calculator script would normally update. -->
-      <!-- I've pre-filled it so you can test Button 2 immediately. -->
-      <div id="total-price" style="display: none">$5.00</div>
-      <!-- This is the hidden input your calculator would update. -->
-      <input id="main-input" value="313" style="display: none" />
-    </div>
-
-    <!-- ======================================================================= -->
-    <!-- THE OVERLAY STRUCTURE                                                   -->
-    <!-- This is hidden by default and made visible by the JavaScript.           -->
-    <!-- ======================================================================= -->
-    <div id="purchase-overlay" class="overlay-container">
-      <div class="overlay-content">
-        <div class="overlay-header">Purchase Summary</div>
-
-        <!-- Part 4: User Preview Area -->
-        <div class="preview-line">
-          <div class="P1-Regular">Account</div>
-          <div class="user-info">
-            <div id="preview-avatar-container" class="preview-avatar"></div>
-            <span id="preview-nickname" class="ms-4"></span>
+          <div class="w-48 h-48 box-border flex items-center justify-center">
+            <svg
+              fill="currentColor"
+              preserveAspectRatio="none"
+              viewBox="0 0 463 276"
+              width="25"
+              height="15"
+            >
+              <defs>
+                <mask id="tux-loading-red-hole-4">
+                  <rect
+                    width="100%"
+                    height="100%"
+                    fill="rgb(255, 255, 255)"
+                  ></rect>
+                  <circle
+                    r="110"
+                    cx="352.5"
+                    cy="138"
+                    stroke-width="0"
+                    class="tux-loading__red_animation"
+                    fill="rgb(15, 15, 15)"
+                  ></circle>
+                </mask>
+                <mask id="tux-loading-green-hole-4">
+                  <rect
+                    width="100%"
+                    height="100%"
+                    fill="rgb(255, 255, 255)"
+                  ></rect>
+                  <circle
+                    r="110"
+                    cx="111"
+                    cy="138"
+                    stroke-width="0"
+                    class="tux-loading__green_animation"
+                    fill="rgb(15, 15, 15)"
+                  ></circle>
+                </mask>
+              </defs>
+              <circle
+                r="110"
+                cx="352.5"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__red_animation"
+                fill="rgb(15, 15, 15)"
+              ></circle>
+              <circle
+                mask="url(#tux-loading-red-hole-4)"
+                r="110"
+                cx="111"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__green_animation"
+                fill="rgb(37, 244, 238)"
+              ></circle>
+              <circle
+                mask="url(#tux-loading-green-hole-4)"
+                r="110"
+                cx="352.5"
+                cy="138"
+                stroke-width="0"
+                class="tux-loading__red_animation"
+                fill="rgb(255, 44, 85)"
+              ></circle>
+            </svg>
+          </div>
+          <div
+            data-test-tag="tux-loadingHUD-text"
+            class="H4-Semibold text-color-ConstTextInverse mt-4 text-center px-8"
+          >
+            Payment processing. Please don’t close this page.
           </div>
         </div>
-
-        <!-- A simple separator -->
-        <hr style="border: none; border-top: 1px solid #eee" />
-
-        <!-- Part 3: Purchase Details Preview Area -->
-        <div class="preview-line">
-          <div id="purchase-coin-amount" class="P1-Regular"></div>
-          <div
-            id="purchase-coin-price"
-            class="P1-Regular"
-            style="font-weight: bold"
-          ></div>
-        </div>
-
-        <button
-          id="close-overlay-btn"
-          style="
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-          "
-        >
-          Close
-        </button>
       </div>
     </div>
-
-    <!-- ======================================================================= -->
-    <!-- THE JAVASCRIPT LOGIC                                                    -->
-    <!-- Place this at the very end of the <body> for best performance.        -->
-    <!-- ======================================================================= -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        console.log("Script loaded. Initializing...");
-
-        // --- DOM ELEMENT REFERENCES ---
-        // Buttons that open the overlay
-        const openOverlayBtn1 = document.getElementById("open-overlay-btn-1");
-        const openOverlayBtn2 = document.getElementById("open-overlay-btn-2");
-
-        // The overlay itself and its close button
-        const purchaseOverlay = document.getElementById("purchase-overlay");
-        const closeOverlayBtn = document.getElementById("close-overlay-btn");
-
-        // Elements inside the overlay to be updated
-        const purchaseCoinAmount = document.getElementById(
-          "purchase-coin-amount"
-        );
-        const purchaseCoinPrice = document.getElementById(
-          "purchase-coin-price"
-        );
-        const previewAvatarContainer = document.getElementById(
-          "preview-avatar-container"
-        );
-        const previewNickname = document.getElementById("preview-nickname");
-
-        // --- CHECK IF ALL ELEMENTS WERE FOUND ---
-        // This is a critical debugging step. If any of these are false, it means
-        // there is a typo in an 'id' attribute in the HTML.
-        if (
-          !openOverlayBtn1 ||
-          !openOverlayBtn2 ||
-          !purchaseOverlay ||
-          !closeOverlayBtn ||
-          !purchaseCoinAmount ||
-          !purchaseCoinPrice ||
-          !previewAvatarContainer ||
-          !previewNickname
-        ) {
-          console.error(
-            "CRITICAL ERROR: One or more required HTML elements could not be found. Please check all 'id' attributes."
-          );
-          return; // Stop the script if elements are missing
-        }
-
-        console.log("All elements found successfully.");
-
-        // --- CORE FUNCTIONS ---
-
-        // Function to OPEN the overlay
-        function openOverlay() {
-          if (purchaseOverlay) {
-            purchaseOverlay.classList.add("visible");
-            console.log("Overlay opened.");
-          }
-        }
-
-        // Function to CLOSE the overlay
-        function closeOverlay() {
-          if (purchaseOverlay) {
-            purchaseOverlay.classList.remove("visible");
-            console.log("Overlay closed.");
-          }
-        }
-
-        // Function to update the purchase details (coins and price) in the overlay
-        function updatePurchaseSummary(coins, amount, currencySymbol = "$") {
-          if (coins === null || amount === null) {
-            console.error(
-              "Purchase summary update failed: Invalid coins or amount provided."
-            );
-            return;
-          }
-          purchaseCoinAmount.textContent = `Purchase of ${parseInt(
-            coins
-          ).toLocaleString()} Coins`;
-          purchaseCoinPrice.textContent = `${currencySymbol}${parseFloat(
-            amount
-          ).toFixed(2)}`;
-          console.log(
-            `Purchase summary updated: ${coins} coins for ${currencySymbol}${amount}`
-          );
-        }
-
-        // Function to update the user details (avatar and name) in the overlay
-        // I've pre-filled this with sample data so you can see it working.
-        // Your TikTok fetcher script will provide the real data.
-        function updateUserPreview(avatarUrl, nickname) {
-          if (!avatarUrl || !nickname) {
-            console.error(
-              "User preview update failed: Invalid avatar URL or nickname."
-            );
-            return;
-          }
-          previewAvatarContainer.style.backgroundImage = `url('${avatarUrl}')`;
-          previewNickname.textContent = nickname;
-          console.log(`User preview updated for: ${nickname}`);
-        }
-
-        // --- EVENT LISTENERS ---
-
-        // Listener for the first "Buy for..." button
-        openOverlayBtn1.addEventListener("click", () => {
-          console.log("Button 1 clicked.");
-          const buttonText = openOverlayBtn1.querySelector(
-            '[data-test-tag="tux-button-content"]'
-          ).textContent;
-          const match = buttonText.match(/\$(\d+\.?\d*)/);
-
-          if (match && match[1]) {
-            const amount = parseFloat(match[1]);
-            const coins = 70; // This is a fixed value for this button
-            updatePurchaseSummary(coins, amount, "$");
-          } else {
-            console.error("Could not parse USD amount from Button 1's text.");
-          }
-
-          // This is where your TikTok fetcher would have already run.
-          // For the demo, we will manually update the user preview with sample data.
-          updateUserPreview(
-            "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/4202ae76af0e880d24f3735f0f1db6b7~tplv-tiktokx-cropcenter:100:100.jpeg",
-            "christopherchibu86"
-          );
-
-          openOverlay();
-        });
-
-        // Listener for the second "Recharge" (custom) button
-        openOverlayBtn2.addEventListener("click", () => {
-          console.log("Button 2 clicked.");
-          const customCoinsInput = document.getElementById("main-input");
-          const totalPriceDiv = document.getElementById("total-price");
-
-          const coins = customCoinsInput.value.replace(/,/g, "");
-          const priceText = totalPriceDiv.textContent;
-
-          const currencySymbol = priceText ? priceText.charAt(0) : "$";
-          const amount = priceText
-            ? priceText.substring(1).replace(/,/g, "")
-            : "0";
-
-          updatePurchaseSummary(coins, amount, currencySymbol);
-
-          // Update user preview with the same sample data for this demo
-          updateUserPreview(
-            "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/4202ae76af0e880d24f3735f0f1db6b7~tplv-tiktokx-cropcenter:100:100.jpeg",
-            "christopherchibu86"
-          );
-
-          openOverlay();
-        });
-
-        // Listener for the "Close" button inside the overlay
-        closeOverlayBtn.addEventListener("click", closeOverlay);
-
-        // Optional: Also close the overlay if the user clicks on the dark background
-        purchaseOverlay.addEventListener("click", function (event) {
-          if (event.target === purchaseOverlay) {
-            closeOverlay();
-          }
-        });
-
-        // --- INTEGRATION NOTE ---
-        // To make this work with your TikTok fetcher, find the `showProfile(data)`
-        // function in your other script and inside it, call our global function:
-        //
-        // Example from your other file:
-        // function showProfile(data) {
-        //   ... your existing code ...
-        //   // Now, call the function to update the preview in the overlay
-        //   updateUserPreview(data.avatar, data.nickname);
-        // }
-        //
-        // For this to work, you would need to remove the `updateUserPreview` function
-        // from this script and define it outside the DOMContentLoaded event so it's globally accessible.
-        // But for now, this self-contained example works perfectly.
-      });
-    </script>
   </body>
 </html>

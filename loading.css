@@ -1110,3 +1110,11 @@ body.loader-active > *:not(#loader-container) {
   /* This hides your content without breaking the layout */
   visibility: hidden;
 }
+
+/* .background-color-ToastDefault {
+  background-color: var(--ToastDefault, rgba(84, 84, 84, 0.92));
+}
+
+.text-color-ConstTextInverse {
+  color: var(--ConstTextInverse, #fff);
+} */

@@ -531,7 +531,7 @@ textarea {
 }
 
 .mo-15 {
-  margin-bottom: 15px;
+  margin-bottom: 24px;
 }
 
 * {
@@ -1115,40 +1115,78 @@ picture {
   cursor: pointer;
 }
 
-.checkbox-input {
-  display: none; /* Hide the default checkbox */
+/* General container styles */
+.checkbox-container {
+  padding-top: 2px;
+  color: var(--TextQuaternary);
 }
 
+/* 
+    This is the main component that holds the input and the custom visuals.
+    It's equivalent to the original .TUXRadioStandalone
+    */
 .checkbox-custom {
-  /* Size updated to 1em */
-  height: 1em;
-  width: 1em;
-  border: 2px solid #ccc;
+  border-radius: 999px;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+/* 
+    The invisible checkbox input that controls the state.
+    Equivalent to .TUXRadioStandalone-input
+    */
+.checkbox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: border-color 0.2s;
-  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  cursor: pointer;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  border: 0;
+  font-family: inherit;
 }
 
-.checkbox-custom::before {
-  content: "";
-  /* Adjusted size to fit within the new 1em container */
-  width: calc(1em - 8px);
-  height: calc(1em - 8px);
-  border-radius: 50%;
-  background-color: transparent;
-  transition: background-color 0.2s;
+/* The outer circle of the radio button */
+.checkbox-custom-circle-outside {
+  color: var(--ui-shape-neutral-2);
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
 }
 
-/* Change styles when checkbox is checked */
-.checkbox-input:checked + .checkbox-custom {
-  border-color: #fe2c55;
+/* When the input is checked, change the outer circle's color */
+.checkbox-input:checked ~ .checkbox-custom-circle-outside {
+  color: var(--ui-shape-primary);
 }
 
-.checkbox-input:checked + .checkbox-custom::before {
-  background-color: #fe2c55;
+/* 
+    The inner circle and disabled state overlay.
+    They are hidden by default.
+    */
+.checkbox-custom-circle-inside,
+.checkbox-custom-circle-disabled {
+  color: var(--ui-shape-primary);
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+}
+
+/* When the input is checked, make the inner circle visible */
+.checkbox-input:checked ~ .checkbox-custom-circle-inside {
+  visibility: visible;
+}
+
+/* When the input is disabled, make the disabled overlay visible */
+.checkbox-input:disabled ~ .checkbox-custom-circle-disabled {
+  visibility: visible;
 }
 
 /* --- NEW: Prevents text selection on the label --- */
@@ -1160,6 +1198,11 @@ picture {
 }
 
 :root {
+  --TextQuaternary: rgba(0, 0, 0, 0.32);
+  --ui-image-overlay-white: #fff;
+  --ui-shape-neutral-4: #ccc;
+  --ui-shape-primary: #fe2c55;
+  --ui-shape-neutral-2: rgba(0, 0, 0, 0.17);
   --ui-sheet-backdrop-1: rgba(0, 0, 0, 0.5);
   --ui-sheet-flat-1: #fff;
   --ui-sheet-grouped-2: #fff;
@@ -1185,11 +1228,6 @@ picture {
   --ui-text-2: #555;
   --BGInput: rgba(22, 24, 35, 0.06);
   --ui-shape-text-1-on-primary: #fff;
-}
-
-body {
-  margin: 0;
-  font-family: var(--tux-web-font-body);
 }
 
 .TUXModal-overlay {
@@ -1473,3 +1511,72 @@ body {
 }
 
 /* the rest of the styles are in the oder summary css */
+
+.TUXButton--enabled {
+  background-color: #fe2c55; /* Example primary color */
+  cursor: pointer;
+}
+
+/* Base styles for the success overlay */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-overlay-mask {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.success-overlay.is-active .success-overlay-mask {
+  opacity: 1;
+}
+
+.success-overlay-sheet {
+  background-color: #2f2f2f; /* Dark theme background */
+  color: #fff;
+  border-radius: 12px;
+  padding: 32px 24px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+  z-index: 1;
+}
+
+.success-overlay.is-active .success-overlay-sheet {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.success-icon svg {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.success-message {
+  font-size: 16px;
+  color: #c7c7c7;
+  margin-bottom: 24px;
+}
+
+#success-total-coins {
+  color: #25f4ee; /* Highlight color */
+  font-weight: bold;
+}

@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const purchaseCoinPriceDisplay = document.getElementById(
     "purchase-coin-price"
   );
+
+  //   this cruiial cause this what fetches the total price that is suppose to show on the succes overlay
   const purchaseTotalPriceDisplay = document.getElementById(
     "purchase-total-price"
   );
