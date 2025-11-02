@@ -1452,7 +1452,6 @@ picture {
   transition: transform 0.3s cubic-bezier(0.33, 0.86, 0.2, 1);
   /* --- ADDED: For sharper rendering during animation --- */
   backface-visibility: hidden;
-  will-change: transform;
 }
 
 .TUXSheet,
@@ -1480,17 +1479,6 @@ picture {
 }
 .TUXSheet:focus {
   outline: none;
-}
-
-.TUXSheet--portrait {
-  -webkit-transform: translateY(0);
-}
-
-.TUXSheet--landscape-left,
-.TUXSheet--landscape-right {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  width: min(100vw, 100vh);
 }
 
 .css-hzmqtq {
@@ -1608,6 +1596,9 @@ picture {
   font-size: 14px;
   color: #8a8a8a;
   margin: 0;
+}
+#success-total-coins-final {
+  font-weight: normal;
 }
 .payment-flow-hidden {
   display: none !important;
