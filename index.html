@@ -139,6 +139,7 @@
         font-family: var(--tux-web-font-body);
         line-height: 1.3;
         margin: 0;
+        overflow: hidden; /* Prevent the body itself from scrolling */
       }
 
       /* Universal Box Sizing & User Select */
@@ -280,7 +281,7 @@
 
       .app-body {
         display: flex;
-        height: calc(100vh - var(--header-height) - var(--footer-height));
+        height: calc(100dvh - var(--header-height) - var(--footer-height));
         margin-top: var(--header-height);
       }
 
@@ -289,6 +290,7 @@
         display: flex;
         flex-direction: column;
         padding: 20px;
+        overflow-y: auto;
       }
     </style>
   </head>
