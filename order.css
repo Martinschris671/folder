@@ -1561,12 +1561,18 @@ picture {
 
 /* --- All other styles for the content remain the same --- */
 
-.success-overlay-close-wrapper {
+/* Your provided styles are below */
+.tux-base-dialog__close-button--base {
+  /* Using a fallback color in case the CSS variable is not defined */
+  color: var(--ui-text-1, #000);
   position: absolute;
+  cursor: pointer; /* Added for better user experience */
+}
+
+.tux-base-dialog__close-button {
+  font-size: 24px;
   top: 15px;
   left: 15px;
-  color: #000;
-  cursor: pointer;
 }
 
 .success-overlay-content {

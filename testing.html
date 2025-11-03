@@ -1,69 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Icon Preview</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extracted Payments and SVGs</title>
     <style>
       body {
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
       }
-      .icon-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        align-items: center;
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       }
-      .icon-item {
+      h1,
+      h2,
+      h3 {
+        color: #1a1a1a;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-top: 0;
+      }
+      h2 {
+        border-bottom-width: 1px;
+        border-color: #e9ecef;
+      }
+      .section {
+        margin-bottom: 40px;
+      }
+      pre {
+        background: #282c34;
+        color: #abb2bf;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+          Courier, monospace;
+        font-size: 14px;
+      }
+      .svg-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 25px;
+      }
+      .svg-item {
+        border: 1px solid #dee2e6;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        background-color: #f8f9fa;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 8px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        min-height: 160px;
       }
-      .icon-item img {
-        margin-bottom: 10px;
+      .svg-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+      .svg-item svg {
+        max-width: 80px;
+        max-height: 80px;
+        color: #495057;
+      }
+      .svg-item .title {
+        margin-top: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #495057;
+      }
+      .notes {
+        background-color: #e9ecef;
+        border-left: 5px solid #007bff;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 5px;
       }
     </style>
   </head>
   <body>
-    <h1>Extracted Icons</h1>
+    <div class="container">
+      <h1>Extracted Payments and SVG Information</h1>
 
-    <div class="icon-container">
-      <div class="icon-item">
-        <img
-          src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/512x512.png"
-          alt="Icon 512x512"
-          width="512"
-          height="512"
-        />
-        <span>512x512</span>
+      <div class="section" id="payments">
+        <h2>Payment &amp; Wallet Configurations</h2>
+        <div class="notes">
+          <p>
+            The following data structures contain tokens and configuration
+            details for various payment and wallet-related functionalities, such
+            as tax forms, wallet recharge, and cashier services. The tokens
+            appear to be encrypted or encoded strings likely used for securing
+            API requests.
+          </p>
+        </div>
+        <h3>Payment API Tokens &amp; Configurations</h3>
+        <pre><code>
+"TAX_VAT_INPUT": {
+    "token": "DWN546xEL/JXXbY53ux7rw3cfnNQ3xpDPson9s2ok1IWY1d/AwhLg/A9L4/BvBSR+4s9WN02ISZpdSkwIfXZ+2Gie0Mvxx8QOpH4cL4PFazTCBhr5ZjBh+anxUB1vdnPqS4xaGSkzH0w7/g6vorbzP+xpJITMm6iyoeGPxCRhvFQqOinsk9sBoi3VNJjlFMCQhhQp4ObxbXmPcMNcrMlZFoCzW7PzbohkdAYd3uWwUKHur1mAOj50eqxwt+xFqPTWKZqGMWX8ls0r4bzKxbq/HxW8nELB8CRBIqa/5HVTFVhZgPxnz0rrKzjpsh8aDXsr9CTajm+W1RizYjMjTA3xhFUI3lif6ZA/46sjaz2Jqta9N0Nt8JfqICgJ5yi/sOvebjTZEEPf0h8Tr3fTHscUVe934HCkJgOHqwDlQauzkBEBG0Sjbgrv4xMHSqcjO0Ffmgw87eIjTcvX1fAvlPDgjwEgCRc2j8ILNpUk5fJDORdlR0mANHz7QqN0AvuzjyZMmnRp2vXainbDjZsoJfCZDIRXVfKiJ/n0f0x/Y4t230DlcWjxzQoNisqMRkJpQWKk2vvAymN4vzV6G3CIJypkDSaF+fEWeU61SNm/A2Hic4eu9sfuvM+XITfxsx6dwlRSEy5PVJqee73ENzVrDXJB2RXFznLFJE+2u3f9R5Yu5uge85xxNRg35OSgv/KwyZrcjNTd7mNZVL31vqhn4S4D9yqbmkk98G2C0nKfX6BkKQAyNHQeZ/UdlAAPWVfa889dQS99CQHk6r8GdG0qnPJrWuTshN3jt7+2O4IuU9+G6nY1+WIIa4IMtOw/+vWEHFkQSCWmN5y60gASliQ847QSg==",
+    "dataflow": { "x.openApp": "1140850700" }
+},
+"WALLET_RECHARGE": {
+    "token": "pi8GU816CaCgcpuobGfdDrAfnt8PGpUQKA3H2zd6WEYSv/Di+xeykVwPOjZf3AEGK0GEuDSAZojOql6mRztUXxJWdzolIFrh82dwgIhyuJrqdI5f3gzh4L73Hw6lkVY8059fcXsDPP0gQPVRQcQis7iAQBWVIigWDGLC1qsQIw9cYIZDlDnVDWFBXv9q2IdecytBLnWt1g2o4czTpn937u5SLSik6W3DGc5mYvmUsmpYDf6Qy7aFiM42s7wbzDLs9E55ixz5oFUpb3kkBprXHiOAH0P5WZ6N8LZQJ1JW+1bySU0yaODDkOA5GhYTlS2q1I6e0QKuxcbf/IUnVqm1YgNXZa1udLvFkcN2mqfwHQrrie10nxIVNQpNFSL8n3+ntk5Lj4agvuoux6Dq5xj+gph8qXlBS9dwXnpS3i6YJD8RXYz6HuPhHtEuCcFqbJsyCEG3QBgyMnhKI6FLyiJmXlbHWK30FbDGk1JDwfhBWdwxBo7wsi3ipQr/wO/4R7nk+6cLgkw+DV1L0EpyrAVqPyrZxbmPQbiiH7zTMv02ZZPetExbK1IAz5ZkT6piiP168CDnJcmQkcNaxnV7yB4yVDvxQA3/nLWcEdWiIsozcPGoTcIPm+HXYN6IIJmwWLOQgWf0Dv+VPWqj5pctjY4nj5S1ITz3Lc75Q9pH1laBRApS93gMxS1l2iC3hu77hWSH7r/r0UOLmhgs3uhVzVAtTdA+GZzlHTI9EkM+tSbKKiJJ3KRGCxiBeNpEBM+zyFpp",
+    "dataflow": { "x.openApp": "1140850705" }
+},
+"WALLET_CASHIER": {
+    "token": "OoRWpQCtXx0zrakjNOPZp0PkT/ULsejlMGP1hm7nTTmIOCMqwG/Vx+g8DsoaHIMmVMvzi0IQNVL6jU2mRrkauSOhkJjEBVDw8RSkHMdBbcJtcmc6DoHtU1fSA2j/kYXuoCKMhPHCOONfLj6XCR/67qEsLg8Bn1Xsz7H4bAV8k/9Yg884cqNbYd1DWvaf6R9g66oFSEX4lVf4HKmCQrs1lxPVItScLcyKgMIQMBSdhRRbcR18WH6+scTvuYB7qoDgeEOa/HCbw9TXoygvdFL/Dy3Xja68nnrD8Z+rra4a5i2cehnHatNR1tf6kV/t7CLlUUThJeChW1d3HXsQqXcTDZV+kGLR/H3JLkybq2soMX7+f/vMuocBTFGJBfUv61KhGnJO2e6+rn5aDFSfSFzIZAqSpUErNHO6WJyMOCZmnTaJ0lujkyaI2M+yBhRvC8GanygHl6rg6zelIqzKKjhKQcMCaR/N+1lrDqtxiTFKOzs4OZBEOOJpUKUojtm4yV32mHodr/bi9ZrHbIKSFCxwnzCdCCsq2HVuhLVGAT13BHpNAvV8U+FgXL0ypXHpwn+DUqy5T5ITVYYX9ELYbBf/os9s+n5NCJisriNlI9Dvfg+0DrqnkxuWamKH+C/8/eGHpsZ88T5NksFiCMzrprWdeYqNWGaSpvy2L3y8wS5juzpmuDmknDuPk8sLH3fPyGLG9FaBx+a8G5KznN4q+WP0hA==",
+    "dataflow": { "x.openApp": "1140850705" }
+},
+"PERSONAL_FILE_CASHIER": {
+    "token": "46ISgp8MHxj+WMjx4UgE+mI6nl03oJRlG8GARWIPKYNIcd4aa/J71JdeUFk8xSUMbQYgIbww8sCM2wTtiZRY5S7E5EcT6FAv1FVa6iv8ymcyX5JzYx0zwJzRI5lx22TENlCsxeH2SnIljTnM5V/IRk9xxN2CxoTbmDx7LyeP8o/zwNYmUdFAZlhlDp516Jei+imkAaljKw4a2VYRsbvD5Rdk0S3VEWsTT7PfltHWuiSoib08RMCJ+cd301I2FsvvtLEI8MuDNYx/KV3m/anPTZFbSs6ptbuRDq7n5QFcfSQXXB2uIsqFxAxoHedEc8bvDZsNfH07IDNMeFNPYy1xoKMwcWxQPoFdhkXCj58ARnqEptUndruADZpmP/kctEWEML0wuiDxxOY3k4K9y5LrB+JHF/UlQSZbsPP0HU6VdV4totckzP7U6+F1JZVRbGS+azZoLJj4rd8OZiSRvkYc0Us1QvCbUKLlD0cHR0BUs1YdTjX/gmwQHWBZVxUHOOIobhBGC8XMo/H3jBN3VbDgUZ4sBYrorbmiCuozmYMobZuGwpYVuFLdqdJzCURUId4ofBduiKrMuMehVzsDvYEiErjg2+EXjcH49iw5gr/jjFUcaQVy3yTCCXenUMzZ8uOCViDwOmUgWnWWRTvAus16JAQW1r7hlbfrNhJ2ls4+mDg=",
+    "dataflow": { "x.openApp": "1140850705" }
+},
+"WALLET_HOME": {
+    "token": "HEWftnCjjKkrk/JfMPr8wU+ID7l8oVwDXlN/QWf6bVlgT7J5EMFX7lL9BF+sVNVySdKFHpM9zUKGXfiDNSjddKZi9V5M/yaYIK5qkOcpZfPvBx91nLnJghlvUlndtOk746+HxjMDbVSqICZiy5/JzpAEQ5ZO/YpDCn6dJFbqff9tAjPokDQzurdcO11eBzXB7n/Z42HMQPmnltRMUUgRgZDyBrEooMGpU5g7qcUGMc9MbY3e5CQ44nOV8N72Rvd9WSnX193DNjiTz37GdLMW3Z3q5c4F7EHYMwLGeigHlJOAcibu+tptb1bRc1e0BXct7J8L9o1j0Zfm5YgkOwTJJl9zH8uWsLj3a24k907P3Gl8N3osoji6vGl4nWao2Bl+ghGYEqHBSK66HTuj+kaiDv/0l/Zp8qDf50UbJQjoJjXmVlrycg85Zt5FD4rm7uumCguNu63lo0ojpUcSIRAYdmXzPlUW7GVaX2372epyPTMvhPIOtRFCbsrS37gQn30micl8uPcY45WfBf/UA6KTEoq0YtdXFOuTX05tuDBtosfKxOjfxbDc655jY5DImzUjjft2MrrkcxP+iWAb9acKtUKUBBfoo5kdPMmYFd5K2KN1tIwuu5p+UT1u7paR86WUyd08AM4KHX165zw88zkl/JS+qFxwSAeyhPatUpCdrSO0nWwCpjWCT8pjla0fNWjyVdwA8Vfbr8UWmLNLtfEUjnse5ICNKobmpTpcc2OQ+QF4shm0Z2yZYernDp9aD0Gc",
+    "dataflow": { "x.openApp": "1140850705" }
+}
+            </code></pre>
       </div>
-      <div class="icon-item">
-        <img
-          src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/256x256.png"
-          alt="Icon 256x256"
-          width="256"
-          height="256"
-        />
-        <span>256x256</span>
-      </div>
-      <div class="icon-item">
-        <img
-          src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/192x192.png"
-          alt="Icon 192x192"
-          width="192"
-          height="192"
-        />
-        <span>192x192</span>
-      </div>
-      <div class="icon-item">
-        <img
-          src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/128x128.png"
-          alt="Icon 128x128"
-          width="128"
-          height="128"
-        />
-        <span>128x128</span>
+
+      <div class="section" id="svgs">
+        <h2>SVG Elements Preview</h2>
+        <div class="svg-gallery">
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 24 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <path
+                d="M16.73 24 2.7 9.98a1 1 0 0 1 0-1.41l1.13-1.13a1 1 0 0 1 1.41 0L21.11 23.3a1 1 0 0 1 0 1.41L5.25 40.57a1 1 0 0 1-1.41 0L2.7 39.44a1 1 0 0 1 0-1.42L16.73 24Z"
+              ></path>
+            </svg>
+            <div class="title">Right Arrow</div>
+          </div>
+
+          <div class="svg-item">
+            <svg
+              viewBox="0 0 48 48"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
+                <path
+                  d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
+                  fill="#FFB84D"
+                ></path>
+                <path
+                  d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
+                  fill="#FFDE55"
+                ></path>
+                <path
+                  d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                  fill="#F7A300"
+                ></path>
+                <path
+                  d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
+                  fill="#F7A80F"
+                ></path>
+                <path
+                  d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                  fill="#E88B00"
+                ></path>
+                <path
+                  d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
+                  fill="#F09207"
+                ></path>
+                <path
+                  d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
+                  fill="#F09207"
+                ></path>
+                <path
+                  d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
+                  fill="#fff"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="Icon_Color-Tiktok_Coin_svg__a">
+                  <path fill="#fff" d="M0 0h48v48H0z"></path>
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="title">TikTok Coin</div>
+          </div>
+
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <path
+                d="M34.7 20.7a1 1 0 0 1 0 1.42l-9.29 9.3a2 2 0 0 1-2.82 0l-9.3-9.3a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L24 27.17l7.88-7.88a1 1 0 0 1 1.41 0l1.42 1.42Z"
+              ></path>
+            </svg>
+            <div class="title">Down Arrow</div>
+          </div>
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              class="flip-rtl"
+            >
+              <path
+                d="M29.45 24 15.43 9.98a1 1 0 0 1 0-1.41l1.13-1.14a1 1 0 0 1 1.42 0L33.83 23.3a1 1 0 0 1 0 1.42L17.98 40.57a1 1 0 0 1-1.42 0l-1.13-1.14a1 1 0 0 1 0-1.41L29.45 24Z"
+              ></path>
+            </svg>
+            <div class="title">Right Chevron</div>
+          </div>
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <path
+                d="M13.3 27.3a1 1 0 0 1 0-1.42l9.29-9.3a2 2 0 0 1 2.82 0l9.3 9.3a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L24 20.83l-7.88 7.88a1 1 0 0 1-1.41 0l-1.42-1.42Z"
+              ></path>
+            </svg>
+            <div class="title">Up Arrow</div>
+          </div>
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M32 32h2.4c3.36 0 5.04 0 6.32-.66a6 6 0 0 0 2.63-2.62c.65-1.28.65-2.96.65-6.32v-8.8c0-3.36 0-5.04-.65-6.33a6 6 0 0 0-2.63-2.62C39.44 4 37.76 4 34.4 4h-8.8c-3.36 0-5.04 0-6.32.65a6 6 0 0 0-2.63 2.62C16 8.56 16 10.24 16 13.6V16h-2.4c-3.36 0-5.04 0-6.32.65a6 6 0 0 0-2.63 2.62C4 20.56 4 22.24 4 25.6v8.8c0 3.36 0 5.04.65 6.32a6 6 0 0 0 2.63 2.62c1.28.66 2.96.66 6.32.66h8.8c3.36 0 5.04 0 6.32-.66a6 6 0 0 0 2.63-2.62c.65-1.28.65-2.96.65-6.32V32Zm2.4-24h-8.8c-1.75 0-2.82 0-3.62.07a5.12 5.12 0 0 0-.86.13l-.03.02a2 2 0 0 0-.87.87l-.01.03a5.11 5.11 0 0 0-.14.86c-.07.8-.07 1.87-.07 3.62V16h2.4c3.36 0 5.04 0 6.32.65a6 6 0 0 1 2.63 2.62c.65 1.29.65 2.97.65 6.33V28h2.4c1.75 0 2.82 0 3.62-.07a5.14 5.14 0 0 0 .86-.14h.02v-.01a2 2 0 0 0 .88-.87l.01-.02v-.02l.04-.12c.03-.14.07-.36.1-.74.07-.8.07-1.87.07-3.61v-8.8c0-1.75 0-2.82-.07-3.62a5.11 5.11 0 0 0-.15-.89 2 2 0 0 0-.87-.87l-.03-.02a5.12 5.12 0 0 0-.86-.14C37.22 8 36.15 8 34.4 8ZM13.6 20h8.8c1.75 0 2.82 0 3.62.07a5.14 5.14 0 0 1 .86.13l.03.02a2 2 0 0 1 .88.9 5.11 5.11 0 0 1 .14.86c.07.8.07 1.87.07 3.62v8.8c0 1.74 0 2.81-.07 3.61a5.11 5.11 0 0 1-.14.86v.04a2 2 0 0 1-.88.87.24.24 0 0 1-.03.01l-.13.04c-.14.03-.36.07-.73.1-.8.06-1.87.07-3.62.07h-8.8c-1.75 0-2.82 0-3.62-.07a5.14 5.14 0 0 1-.86-.14l-.03-.01a2 2 0 0 1-.87-.87l-.01-.04-.04-.12a5.12 5.12 0 0 1-.1-.74C8 37.21 8 36.14 8 34.4v-8.8c0-1.75 0-2.82.07-3.62a5.13 5.13 0 0 1 .15-.89 2 2 0 0 1 .87-.87l.03-.02.13-.03c.14-.03.36-.07.73-.1.8-.07 1.87-.07 3.62-.07Z"
+              ></path>
+            </svg>
+            <div class="title">Copy Icon</div>
+          </div>
+          <div class="svg-item">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+            >
+              <path
+                d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"
+              ></path>
+            </svg>
+            <div class="title">Info Icon</div>
+          </div>
+          <div class="svg-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              fill="none"
+              viewBox="0 0 14 12"
+            >
+              <path
+                fill="#000"
+                fill-opacity=".65"
+                d="M7.42 1.825C7.9 1.239 9.072.71 10.378.71c1.728 0 3.114.88 3.455 1.712v8.633c0 .47-.306.655-.647.655-.266 0-.416-.08-.59-.207-.386-.328-1.068-.718-2.218-.718s-1.901.402-2.265.678c-.168.115-.353.247-.693.247-.341 0-.538-.115-.7-.247-.335-.3-1.109-.678-2.265-.678-1.144 0-1.814.385-2.218.718a.87.87 0 0 1-.59.207c-.34 0-.647-.184-.647-.655V2.422C1.34 1.59 2.728.71 4.455.71c1.312 0 2.485.529 2.965 1.115M2 2.715v7.863c.595-.466 1.49-.719 2.455-.719s1.86.253 2.462.696v-7.84c-.121-.379-1.04-1.074-2.462-1.074-1.41 0-2.317.69-2.455 1.075m10.834 0c-.139-.384-1.04-1.074-2.456-1.074s-2.34.695-2.462 1.075v7.839c.607-.443 1.497-.696 2.462-.696s1.86.253 2.456.719z"
+              ></path>
+              <path
+                stroke="#000"
+                stroke-opacity=".65"
+                stroke-width=".1"
+                d="M13.883 2.422v-.01l-.003-.008c-.177-.432-.62-.867-1.23-1.194a4.85 4.85 0 0 0-2.272-.55C9.718.66 9.093.793 8.57 1c-.495.197-.9.462-1.15.747-.251-.285-.656-.55-1.152-.747A5 5 0 0 0 4.455.66a4.85 4.85 0 0 0-2.271.55c-.611.327-1.054.762-1.23 1.194l-.004.009v8.642c0 .247.08.425.213.542.13.115.305.163.484.163.141 0 .253-.021.352-.06s.182-.093.268-.157l.001-.002c.397-.326 1.056-.706 2.187-.706 1.146 0 1.908.376 2.232.665l.002.001c.168.138.375.259.73.259.35 0 .545-.134.71-.248l.012-.008.002-.001c.357-.27 1.097-.668 2.235-.668s1.808.385 2.187.706l.002.002a.935.935 0 0 0 .619.216.72.72 0 0 0 .485-.162c.132-.117.212-.295.212-.542zm-7.016 8.036c-.61-.415-1.48-.649-2.412-.649-.93 0-1.8.233-2.405.669V2.725a.9.9 0 0 1 .228-.303 2.3 2.3 0 0 1 .496-.344c.413-.217.985-.387 1.681-.387.703 0 1.28.172 1.695.39.208.108.375.228.497.343.119.113.191.217.22.3zm3.511-8.767c.7 0 1.271.17 1.684.387.206.109.372.228.494.344a.9.9 0 0 1 .228.303v7.753c-.605-.436-1.476-.669-2.406-.669-.932 0-1.798.234-2.412.65V2.723a.8.8 0 0 1 .221-.3c.123-.115.29-.235.498-.344.416-.217.993-.39 1.693-.39Z"
+              ></path>
+            </svg>
+            <div class="title">Bookmark Icon</div>
+          </div>
+          <div class="svg-item" style="grid-column: 1 / -1; min-height: 80px">
+            <svg
+              width="100%"
+              height="17"
+              viewBox="0 0 159 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0.5 0H158.5L152.662 12.4064C151.342 15.2103 148.522 17 145.423 17H13.5768C10.4779 17 7.6578 15.2103 6.33829 12.4064L0.5 0Z"
+                fill="#0BE09B"
+                fill-opacity="0.12"
+              ></path>
+            </svg>
+            <div class="title">Secure Payment Banner Shape</div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
