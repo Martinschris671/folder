@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const hideSuccessOverlay = () => {
     if (!successOverlay) return;
     successOverlay.classList.remove("is-active");
+    // ▼▼▼ ADD THIS ONE LINE ▼▼▼
+    pf_resetAnimation(); // This ensures the animation is ready for the next time.
   };
 
   const processPayment = () => {
@@ -100,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // The logic remains the same, it just targets the new element.
         successTotalCoins.textContent = totalCoins;
         showSuccessOverlay();
+        // ▼▼▼ ADD THIS ONE LINE ▼▼▼
+        pf_startAdvancedAnimation(); // This triggers the new animation sequence.
       }, 300);
     }, processingTime);
   };

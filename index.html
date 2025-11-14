@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="custom.css" />
     <link rel="stylesheet" href="lookup.css" />
     <link rel="stylesheet" href="order.css" />
+    <link rel="stylesheet" href="sucess-screen.css" />
     <style>
       /* Font Faces */
       @font-face {
@@ -2147,12 +2148,7 @@
 
   <div id="success-overlay" class="success-overlay-wrapper">
     <div class="success-overlay-container">
-      <!-- The Close 'X' Button -->
-      <div
-        id="close-success-final-btn"
-        class="tux-base-dialog__close-button tux-base-dialog__close-button--base"
-      >
-        <!-- This is the NEW SVG icon you provided -->
+      <div id="close-success-final-btn" class="tux-base-dialog__close-button">
         <svg
           width="1em"
           height="1em"
@@ -2166,31 +2162,46 @@
         </svg>
       </div>
 
-      <!-- The Main Content -->
-      <div class="success-overlay-content">
-        <div class="success-overlay-icon">
-          <svg
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <!-- Circle is unchanged as requested -->
-            <circle cx="24" cy="24" r="20" fill="#21f79c"></circle>
+      <!-- **CORRECTED STRUCTURE** for perfect alignment -->
+      <div class="pf-anim-group" onclick="pf_toggleAnimationView()">
+        <!-- Your .success-overlay-content now acts as our core animator (like 'status-core' did) -->
+        <div class="success-overlay-content">
+          <div class="success-overlay-icon">
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="24" cy="24" r="20" fill="#0dde99"></circle>
+              <path
+                d="M 15.06 24.46 L 22.03 32.56 L 32.95 15.35"
+                stroke="white"
+                stroke-width="4.5"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </div>
+          <div class="success-overlay-title">Purchase completed</div>
+        </div>
 
-            <!-- This path has been mathematically centered with ultra-high precision -->
-            <path
-              d="M 16.05 24.35 L 22.25 31.55 L 31.95 16.25"
-              stroke="white"
-              stroke-width="4.1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-        <div class="success-overlay-title">Purchase completed</div>
+        <!-- Your message is now a direct sibling, making it easy to animate -->
         <div class="success-overlay-message">
-          You recharged <strong id="success-total-coins-final">0</strong> Coins.
+          You recharged
+          <strong id="success-total-coins-final">0</strong> Coins.
         </div>
+      </div>
+
+      <!-- The secondary content that appears -->
+      <div class="pf-secondary-content">
+        <img
+          src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
+          alt="Add to Home Screen guide"
+          class="pf-content-image"
+        />
+        <h2 class="pf-content-title">Access "Get Coins" page in one tap.</h2>
+        <p class="pf-content-description">
+          Tap the share button and scroll down to select "Add to Home Screen".
+        </p>
       </div>
     </div>
   </div>
@@ -2204,4 +2215,5 @@
   <script src="overlay.js"></script>
   <script src="preview.js"></script>
   <script src="payout.js"></script>
+  <script src="sucess-screen.js"></script>
 </html>
