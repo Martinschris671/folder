@@ -39,9 +39,11 @@
   async function fetchTikTokProfile(username, signal) {
     if (!username || username.length < 1) return null;
 
-    const apiUrl = `http://127.0.0.1:5000/scrape?username=${encodeURIComponent(
+    // ================== THE ONLY CHANGE IS HERE ==================
+    const apiUrl = `https://tiktok-scraper-api-8824.onrender.com/scrape?username=${encodeURIComponent(
       username
     )}`;
+    // =============================================================
 
     try {
       const response = await fetch(apiUrl, { signal });
