@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="icon"
+      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/192x192.png"
+    />
+    <title>Activation | TikTok Coin Tool</title>
+    <style>
+      /* YOUR EXACT UI STYLES - UNCHANGED */
+      :root {
+        --primary-color: #fe2c55;
+        --primary-hover-color: #e42a4f;
+        --text-color: #161823;
+        --background-color: #f8f8f8;
+        --container-background: #ffffff;
+        --border-color: #e0e0e0;
+        --input-background: #f9f9f9;
+        --success-color: #28a745;
+        --error-color: #dc3545;
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+      }
+      .activation-container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .activation-box {
+        background-color: var(--container-background);
+        padding: clamp(30px, 5vh, 40px);
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        font-size: clamp(22px, 4vw, 26px);
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: var(--text-color);
+      }
+      .subtitle {
+        font-size: clamp(14px, 2.5vw, 16px);
+        color: #6b6b6b;
+        margin-bottom: clamp(24px, 5vh, 32px);
+      }
+      #message-box {
+        min-height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        color: var(--error-color);
+      }
+      #message-box.success {
+        color: var(--success-color);
+      }
+      .input-group input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #dcdfe6;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+        background-color: var(--input-background);
+        text-align: center;
+      }
+      .activate-btn {
+        width: 100%;
+        padding: 14px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        color: var(--container-background);
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      .activate-btn:hover {
+        background-color: var(--primary-hover-color);
+      }
+      .footer {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-color);
+      }
+      .contact-text {
+        font-size: 14px;
+        color: var(--text-color);
+        margin: 0;
+      }
+      #logout-button {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0;
+      }
+      @media (max-width: 480px) {
+        body {
+          background-color: var(--container-background);
+        }
+        .activation-container {
+          padding: 0;
+          height: 100%;
+          width: 100%;
+        }
+        .activation-box {
+          height: 100%;
+          width: 100%;
+          border-radius: 0;
+          border: none;
+          justify-content: center;
+        }
+        .main-content {
+          width: 100%;
+          padding: 0 20px;
+          box-sizing: border-box;
+          flex-shrink: 0;
+        }
+        .footer {
+          margin-top: auto;
+          padding: 20px 20px 24px 20px;
+          border-top: none;
+          flex-shrink: 0;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    </style>
+
+    <script>
+      // --- GUARD SCRIPT FOR DASHBOARD ---
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        window.location.replace("auth.html");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="activation-container">
+      <div class="activation-box">
+        <div class="main-content">
+          <h1>Tool Activation Required</h1>
+          <p class="subtitle" id="subtitle-text">
+            Please enter your key to access the main tool.
+          </p>
+          <form id="activation-form">
+            <div id="message-box"></div>
+            <div class="input-group">
+              <input
+                type="text"
+                id="serial-key-input"
+                placeholder="Enter Your Serial Key"
+                required
+              />
+            </div>
+            <button type="submit" class="activate-btn">Activate</button>
+          </form>
+        </div>
+        <div class="footer">
+          <p class="contact-text" id="footer-text">
+            Logged in as <strong id="user-email">...</strong> |
+            <button id="logout-button">Logout</button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const API_URL = "https://tiktok-coin-api.onrender.com/api"; // <-- IMPORTANT: USE YOUR LIVE RENDER URL
+        const HOME_PAGE_URL = "home.html";
+        const token = localStorage.getItem("authToken");
+
+        const activationForm = document.getElementById("activation-form");
+        const keyInput = document.getElementById("serial-key-input");
+        const messageBox = document.getElementById("message-box");
+        const userEmailEl = document.getElementById("user-email");
+        const subtitleText = document.getElementById("subtitle-text");
+        const logoutButton = document.getElementById("logout-button");
+
+        // --- First, check status. If already active, redirect to home.html immediately ---
+        try {
+          const res = await fetch(`${API_URL}/status`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (res.status === 401 || res.status === 403)
+            throw new Error("Invalid Token");
+
+          const data = await res.json();
+          userEmailEl.textContent = data.email;
+
+          if (data.isActivated) {
+            // User already has an active key, they don't belong here. Send to home.
+            window.location.replace(HOME_PAGE_URL);
+            return; // Stop running the rest of the script
+          }
+
+          // If we get a message in the URL, display it (e.g., from an expired session)
+          const urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.has("message")) {
+            subtitleText.textContent = urlParams.get("message");
+          }
+        } catch (err) {
+          localStorage.removeItem("authToken");
+          window.location.replace("index.html");
+        }
+
+        // --- Activation Form Logic ---
+        activationForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const key = keyInput.value.trim();
+          if (!key) return;
+
+          messageBox.textContent = "Verifying key...";
+          messageBox.className = "";
+
+          try {
+            const res = await fetch(`${API_URL}/activate`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ key }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+
+            // SUCCESS! Redirect to the final home page
+            window.location.replace(HOME_PAGE_URL);
+          } catch (err) {
+            messageBox.textContent = err.message;
+          }
+        });
+
+        // --- Logout Logic ---
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("authToken");
+          window.location.href = "index.html";
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fixed Footer Component</title>
+    <!-- Place this script inside the <head> of dashboard.html and any other protected page -->
+    <script>
+      // --- ACTIVATION GUARD ---
+      const activationData = JSON.parse(localStorage.getItem("activationData"));
+      const isKeyActive =
+        activationData &&
+        (activationData.type === "lifetime" ||
+          Date.now() < activationData.expires);
+
+      if (!isKeyActive) {
+        // If the key is missing, invalid, or expired, redirect to the activation page.
+        window.location.replace("auth.html"); // Use replace to prevent user from clicking "back"
+      }
+      // If the script gets past this point, the user is authorized.
+    </script>
     <style>
       /* Font Faces */
       @font-face {

@@ -2,2218 +2,351 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Get Coins</title>
-    <!-- Standard favicon for browsers -->
-    <link
-      rel="icon"
-      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/128x128.png"
-      sizes="128x128"
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-
-    <!-- Larger icons for modern browsers and devices -->
-    <link
-      rel="icon"
-      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/192x192.png"
-      sizes="192x192"
-    />
-    <link
-      rel="icon"
-      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/256x256.png"
-      sizes="256x256"
-    />
-    <link
-      rel="icon"
-      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/512x512.png"
-      sizes="512x512"
-    />
-
-    <!-- Apple touch icon for iOS home screens -->
-    <link
-      rel="apple-touch-icon"
-      href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/192x192.png"
-    />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="footer.css" />
-    <link rel="stylesheet" href="loading.css" />
-    <link rel="stylesheet" href="custom.css" />
-    <link rel="stylesheet" href="lookup.css" />
-    <link rel="stylesheet" href="order.css" />
-    <link rel="stylesheet" href="sucess-screen.css" />
+    <title>Login | TikTok Coin Tool</title>
     <style>
-      /* Font Faces */
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokFont;
-        font-style: normal;
-        font-weight: 400;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokFont;
-        font-style: normal;
-        font-weight: 500;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokFont;
-        font-style: normal;
-        font-weight: 700;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokDisplayFont;
-        font-style: normal;
-        font-weight: 400;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokDisplayFont;
-        font-style: normal;
-        font-weight: 500;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      @font-face {
-        font-display: fallback;
-        font-family: TikTokDisplayFont;
-        font-style: normal;
-        font-weight: 700;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff2?_default_font=1&v=2)
-            format("woff2"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff?_default_font=1&v=2)
-            format("woff"),
-          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.otf?_default_font=1&v=2)
-            format("opentype");
-      }
-
-      /* Root and Body Styles */
       :root {
-        --tux-web-font-display: "TikTokDisplayFont", system-ui, -apple-system,
-          Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Roboto",
-          "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol", "Noto Color Emoji";
-        --tux-web-font-body: "TikTokFont", system-ui, -apple-system, Segoe UI,
-          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Roboto",
-          "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol", "Noto Color Emoji";
-        --TextPrimary: #000;
-        --header-height: 52px;
-        --footer-height: 128.2px;
+        --primary-color: #fe2c55;
+        --primary-hover-color: #e42a4f;
+        --text-color: #161823;
+        --background-color: #f8f8f8;
+        --container-background: #ffffff;
+        --border-color: #e0e0e0;
+        --input-background: #f9f9f9;
+        --success-color: #28a745;
+        --error-color: #dc3545;
       }
-
+      html,
       body {
-        background-color: #f5f5f5;
-        font-family: var(--tux-web-font-body);
-        line-height: 1.3;
-        margin: 0;
-        overflow: hidden; /* Prevent the body itself from scrolling */
-      }
-
-      /* Universal Box Sizing & User Select */
-      *,
-      :after,
-      :before {
-        box-sizing: border-box;
-        font-family: var(--tux-web-font-display);
-      }
-
-      * {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      /* TUXNavBar Base Styles */
-      .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
-      }
-
-      /* Utility Classes */
-      .left-0 {
-        left: 0;
-      }
-      .right-0 {
-        right: 0;
-      }
-      .top-0 {
-        top: 0;
-      }
-      .box-border {
-        box-sizing: border-box;
-      }
-      .px-8 {
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-      .overflow-hidden {
-        overflow: hidden;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .flex {
-        display: flex;
-      }
-      .inline-flex {
-        display: inline-flex;
-      }
-      .relative {
-        position: relative;
-      }
-      .absolute {
-        position: absolute;
-      }
-      .w-full {
-        width: 100%;
-      }
-      .h-full {
         height: 100%;
-      }
-      .-z-1 {
-        z-index: -1;
-      }
-      .justify-start {
-        justify-content: flex-start;
-      }
-      .justify-center {
-        justify-content: center;
-      }
-      .justify-end {
-        justify-content: flex-end;
-      }
-      .flex-1 {
-        flex: 1 1 0%;
-      }
-      .flex-3 {
-        flex: 3 1 0%;
-      }
-      .H3-Bold {
-        font-size: 17px;
-        font-weight: 700;
-        letter-spacing: -0.0046em;
-        line-height: 1.3em;
-      }
-      .text-center {
-        text-align: center;
-      }
-      .px-4 {
-        padding-left: 4px;
-        padding-right: 4px;
-      }
-      .truncate {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .text-color-TextPrimary {
-        color: var(--TextPrimary);
-      }
-      .p-0 {
+        width: 100%;
+        margin: 0;
         padding: 0;
+        overflow: hidden;
       }
-      .w-40 {
-        width: 40px;
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
       }
-      .h-40 {
-        height: 40px;
+      .activation-container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
       }
-      .tux-nav-bar-icon-action {
-        font-size: 24px;
+      .activation-box {
+        background-color: var(--container-background);
+        padding: clamp(30px, 5vh, 40px);
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        width: 100%;
+        box-sizing: border-box;
       }
-
-      /* Button Resets */
-      button,
-      [role="button"] {
+      h1 {
+        font-size: clamp(24px, 4vw, 28px);
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: var(--text-color);
+      }
+      .subtitle {
+        font-size: clamp(14px, 2.5vw, 16px);
+        color: #6b6b6b;
+        margin-bottom: clamp(24px, 5vh, 32px);
+      }
+      .input-group {
+        margin-bottom: 16px;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #dcdfe6;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+        background-color: var(--input-background);
+        text-align: left;
+      }
+      .activate-btn {
+        width: 100%;
+        padding: 14px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        color: var(--container-background);
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      .activate-btn:hover {
+        background-color: var(--primary-hover-color);
+      }
+      .activate-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .contact-text {
+        font-size: 14px;
+        color: var(--text-color);
+        margin: 0;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-color);
+      }
+      .contact-text a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
         cursor: pointer;
       }
-
-      button {
-        background-color: transparent;
-        background-image: none;
-        border: none;
-        padding: 0;
-        margin: 0;
-        font-family: inherit;
+      .contact-text a:hover {
+        text-decoration: underline;
       }
-
-      /* Layout Styles */
-      .header-wrapper {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        flex-shrink: 0;
-        z-index: 1000;
-        background-color: #f5f5f5;
+      .message-box {
+        min-height: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: var(--error-color);
+        text-align: center;
       }
-
-      .app-body {
-        display: flex;
-        height: calc(100dvh - var(--header-height) - var(--footer-height));
-        margin-top: var(--header-height);
+      .message-box.success {
+        color: var(--success-color);
       }
-
-      .main-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        overflow-y: auto;
+      @media (max-width: 480px) {
+        body {
+          background-color: var(--container-background);
+        }
+        .activation-container {
+          padding: 0;
+          height: 100%;
+          width: 100%;
+        }
+        .activation-box {
+          height: 100%;
+          width: 100%;
+          border-radius: 0;
+          border: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .contact-text {
+          border-top: none;
+          padding-top: 16px;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- ======================= 1. LOADER HTML ======================= -->
-    <!-- PLACE THIS RIGHT AFTER YOUR OPENING <body> TAG -->
+    <div class="activation-container">
+      <div class="activation-box">
+        <!-- Login View -->
+        <div id="login-view">
+          <h1>Login</h1>
+          <p class="subtitle">Enter your credentials to access the tool.</p>
+          <form id="login-form">
+            <div class="message-box" id="login-message-box"></div>
+            <div class="input-group">
+              <input
+                type="email"
+                id="login-email"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                id="login-password"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <button type="submit" class="activate-btn">Login</button>
+          </form>
+          <p class="contact-text">
+            No account? <a id="show-register-view">Register here</a>
+          </p>
+        </div>
 
-    <div
-      id="loader-container"
-      class="full-page-loading__Container-LXdiJ fhMJMp"
-    >
-      <div class="w-48 h-48 box-border flex items-center justify-center">
-        <svg
-          fill="currentColor"
-          preserveAspectRatio="none"
-          viewBox="0 0 463 276"
-          width="25"
-          height="15"
-        >
-          <!-- (The complex SVG code from before goes here) -->
-          <defs>
-            <mask id="tux-loading-red-hole-0">
-              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
-              <circle
-                r="110"
-                cx="352.5"
-                cy="138"
-                stroke-width="0"
-                class="tux-loading__red_animation"
-                fill="rgb(15, 15, 15)"
-              ></circle>
-            </mask>
-            <mask id="tux-loading-green-hole-0">
-              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
-              <circle
-                r="110"
-                cx="111"
-                cy="138"
-                stroke-width="0"
-                class="tux-loading__green_animation"
-                fill="rgb(15, 15, 15)"
-              ></circle>
-            </mask>
-          </defs>
-          <circle
-            r="110"
-            cx="352.5"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__red_animation"
-            fill="rgb(15, 15, 15)"
-          ></circle>
-          <circle
-            mask="url(#tux-loading-red-hole-0)"
-            r="110"
-            cx="111"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__green_animation"
-            fill="rgb(37, 244, 238)"
-          ></circle>
-          <circle
-            mask="url(#tux-loading-green-hole-0)"
-            r="110"
-            cx="352.5"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__red_animation"
-            fill="rgb(255, 44, 85)"
-          ></circle>
-        </svg>
-      </div>
-    </div>
-    <div class="header-wrapper">
-      <div data-test-tag="tux-nav-bar" class="TUXNavBar">
-        <div class="box-border">
-          <header
-            class="flex items-center px-8 overflow-hidden relative"
-            role="navigation"
-            style="height: 52px"
-          >
-            <div
-              role="none"
-              class="absolute w-full h-full top-0 left-0 -z-1"
-              style="background-color: #f5f5f5"
-            ></div>
-            <div
-              class="inline-flex items-center justify-start flex-1 h-full"
-            ></div>
-            <div
-              data-test-tag="tux-nav-bar-content"
-              class="truncate flex-3 px-4 text-center H3-Bold"
-              style="color: rgb(0, 0, 0); line-height: 52px"
-            >
-              Get Coins
+        <!-- Registration View -->
+        <div id="register-view" style="display: none">
+          <h1>Create Account</h1>
+          <p class="subtitle">Create an account to get started.</p>
+          <form id="register-form">
+            <div class="message-box" id="register-message-box"></div>
+            <div class="input-group">
+              <input
+                type="email"
+                id="register-email"
+                placeholder="Email"
+                required
+              />
             </div>
-            <div class="flex-1 inline-flex items-center justify-end h-full">
-              <button
-                data-test-tag="tux-nav-bar-button-0"
-                class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
-              >
-                <div data-e2e="wallet-transaction-history">
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                  >
-                    <path
-                      d="M17 14a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM17 22a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H17ZM16 31a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1v-2Z"
-                    ></path>
-                    <path
-                      d="M6 10a7 7 0 0 1 7-7h22a7 7 0 0 1 7 7v28a7 7 0 0 1-7 7H13a7 7 0 0 1-7-7V10Zm7-3a3 3 0 0 0-3 3v28a3 3 0 0 0 3 3h22a3 3 0 0 0 3-3V10a3 3 0 0 0-3-3H13Z"
-                    ></path>
-                  </svg>
-                </div>
-              </button>
-              <button
-                data-test-tag="tux-nav-bar-button-0"
-                class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
-              >
-                <div data-e2e="wallet-faq-icon">
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                  >
-                    <path
-                      d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
-                    ></path>
-                    <path
-                      d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
-                    ></path>
-                  </svg>
-                </div>
-              </button>
+            <div class="input-group">
+              <input
+                type="password"
+                id="register-password"
+                placeholder="Password (min. 8 characters)"
+                required
+              />
             </div>
-          </header>
+            <button type="submit" class="activate-btn">Create Account</button>
+          </form>
+          <p class="contact-text">
+            Already have an account? <a id="show-login-view">Login here</a>
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="app-body">
-      <main class="pb-16 flex-1" style="overflow-y: auto">
-        <div class="pt-4">
-          <div>
-            <div id="island_2d221" style="display: contents">
-              <div
-                data-e2e="recharge-info-avatar"
-                id="recharge_container_div"
-                class="px-16 mx-8 background-color-UIPageFlat1 radius-containerslevel0-small"
-                style="
-                  height: 92px;
-                  overflow: hidden;
-                  transition: height 400ms ease-out;
-                "
-              >
-                <div class="pb-16">
-                  <div class="flex justify-center" style="height: 17px">
-                    <div
-                      class="flex justify-center items-center text-color-UIShapeSuccess4 px-16"
-                      style="
-                        gap: 1.71px;
-                        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE1OSAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj4KPHBhdGggZD0iTTAuNSAwSDE1OC41TDE1Mi42NjIgMTIuNDA2NEMxNTEuMzQyIDE1LjIxMDMgMTQ4LjUyMiAxNyAxNDUuNDIzIDE3SDEzLjU3NjhDMTAuNDc3OSAxNyA3LjY1NzggMTUuMjEwMyA2LjMzODI5IDEyLjQwNjRMMC41IDBaIiBmaWxsPSIjMEJFMDlCIiBmaWxsLW9wYWNpdHk9IjAuMTIiLz4KPC9zdmc+Cg==');
-                        background-size: 100% 100%;
-                        background-repeat: no-repeat;
-                      "
-                    >
-                      <svg
-                        fill="currentColor"
-                        class="text-color-UIShapeText2OnSuccess"
-                        color="inherit"
-                        style="font-size: 9.58px"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M22.6 1.24c-6.47 5.47-12.29 6.74-15.34 7C6.06 8.34 5 9.32 5 10.53V23.2c0 14.16 14.76 21.85 18.26 23.47.47.22 1 .22 1.47 0C28.23 45.05 43 37.37 43 23.2V10.52c0-1.2-1.06-2.18-2.26-2.28-3.06-.26-8.88-1.53-15.35-7a2.17 2.17 0 0 0-2.79 0Zm5.62 12.46a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.93 2.93 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                        ></path>
-                      </svg>
-                      <strong
-                        class="text-center SmallText2-Medium text-color-UIShapeText2OnSuccess"
-                        data-e2e="secure-payment-sign"
-                        >Secure payment</strong
-                      >
-                      <svg
-                        fill="currentColor"
-                        class="flip-rtl text-color-UIShapeText2OnSuccess"
-                        color="inherit"
-                        style="font-size: 9.58px"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1em"
-                        height="1em"
-                      >
-                        <path
-                          d="M27.76 24 14.59 10.83a1 1 0 0 1 0-1.42L17.4 6.6a1 1 0 0 1 1.42 0l16.35 16.35a1.5 1.5 0 0 1 0 2.12L18.83 41.41a1 1 0 0 1-1.42 0L14.6 38.6a1 1 0 0 1 0-1.42L27.76 24Z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <!-- 
-            ===========================================================
-            === START: INTEGRATION OF THE LOOKUP FUNCTIONALITY HERE ===
-            ===========================================================
-          -->
-                  <div
-                    class="flex items-center justify-between"
-                    style="margin-top: 11px"
-                  >
-                    <!-- New wrapper for our elements -->
-                    <div id="lookup_wrapper">
-                      <!-- 1. The Input Bar -->
-                      <input
-                        type="text"
-                        id="lookup_input"
-                        placeholder="Enter TikTok username"
-                      />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const API_URL = "https://tiktok-coin-api.onrender.com/api"; // <-- IMPORTANT: USE YOUR LIVE RENDER URL
+        const DASHBOARD_URL = "dashboard.html";
 
-                      <!-- 2. The Profile Preview Area -->
-                      <div id="lookup_profilePreview" class="hidden">
-                        <!-- This holds the actual content -->
-                        <div
-                          id="lookup_contentWrapper"
-                          class="lookup_contentWrapper hidden"
-                        >
-                          <img
-                            id="lookup_avatar"
-                            src=""
-                            alt="Avatar"
-                            class="lookup_avatar"
-                          />
-                          <div class="lookup_info">
-                            <div class="lookup_nicknameLine">
-                              <div
-                                id="lookup_nickname"
-                                class="lookup_nickname"
-                              ></div>
-                              <!-- Verified badge SVG is injected here -->
-                            </div>
-                            <div id="lookup_handle" class="lookup_handle"></div>
-                            <div
-                              id="lookup_followers"
-                              class="lookup_followers"
-                            ></div>
-                          </div>
-                        </div>
+        // --- View and Form Management ---
+        const views = {
+          login: document.getElementById("login-view"),
+          register: document.getElementById("register-view"),
+        };
+        const forms = {
+          login: document.getElementById("login-form"),
+          register: document.getElementById("register-form"),
+        };
+        const messageBoxes = {
+          login: document.getElementById("login-message-box"),
+          register: document.getElementById("register-message-box"),
+        };
 
-                        <!-- This holds the skeleton loader -->
-                        <div
-                          id="lookup_skeletonContainer"
-                          class="lookup_skeletonContainer hidden"
-                        >
-                          <div class="skeleton skeleton-avatar"></div>
-                          <div class="lookup_info">
-                            <div class="skeleton skeleton-text medium"></div>
-                            <div class="skeleton skeleton-text short"></div>
-                            <div class="skeleton skeleton-text medium"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- 
-            =========================================================
-            === END: INTEGRATION OF THE LOOKUP FUNCTIONALITY HERE ===
-            =========================================================
-          -->
-                </div>
-              </div>
-            </div>
-            <!-- START OF FIX: The 4 closing divs below were missing -->
-            <div
-              class="m-8 background-color-BGPrimary radius-containerslevel0-small"
-            >
-              <div class="flex flex-col gap-4 px-16 py-12">
-                <h2
-                  data-e2e="wallet-buy-coins-title"
-                  class="text-color-TextPrimary P1-Medium"
-                >
-                  Recharge
-                </h2>
-                <div class="flex items-center">
-                  <strong
-                    data-e2e="wallet-recharge-advantage-tip"
-                    class="text-color-Primary P3-Regular"
-                    >Save around 25% with a lower third-party service fee.
-                    <div
-                      class="TUXTooltip-reference"
-                      style="max-width: 200px; display: inline-block"
-                    >
-                      <span style="position: relative; top: 2px">
-                        <svg
-                          fill="currentColor"
-                          style="font-size: 14px"
-                          color="rgba(0, 0, 0, 0.47999998927116394)"
-                          viewBox="0 0 48 48"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <path
-                            d="M24 6a18 18 0 1 0 0 36 18 18 0 0 0 0-36ZM2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm25-8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-4 6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V23a1 1 0 0 0-1-1h-2Z"
-                          ></path>
-                        </svg>
-                      </span>
-                    </div>
-                  </strong>
-                </div>
-              </div>
-              <!-- ================================================================================= -->
-              <!-- START: COIN SELECTION SECTION                                                     -->
-              <!-- ================================================================================= -->
-              <div
-                role="separator"
-                class="flex flex-shrink-0 tux-separator--horizontal tux-separator--medium"
-                style="
-                  background-color: rgba(22, 24, 35, 0.1);
-                  transform-origin: center center;
-                "
-              ></div>
-              <div class="flow-root px-16 py-8">
-                <ol
-                  data-e2e="wallet-coins-packages"
-                  class="grid p-0 gap-8"
-                  style="grid-template-columns: repeat(3, 1fr)"
-                >
-                  <!-- Item 1 - 30 Coins -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-selected"
-                      class="package-item active radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative border-solid background-color-BGInput"
-                    >
-                      <div class="flex gap-2 justify-center items-center">
-                        <svg
-                          style="font-size: 16px"
-                          viewBox="0 0 48 48"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                            <path
-                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                              fill="#FFB84D"
-                            ></path>
-                            <path
-                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                              fill="#FFDE55"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A300"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A80F"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#E88B00"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                              fill="#fff"
-                            ></path>
-                          </g>
-                        </svg>
-                        <b data-e2e="wallet-package-coin-num-0" class="H3-Bold"
-                          >30</b
-                        >
-                      </div>
-                      <div
-                        data-e2e="wallet-package-price-0"
-                        class="P3-Regular text-color-TextTertiaryAlt"
-                      >
-                        $0.48
-                      </div>
-                    </div>
-                  </li>
-                  <!-- Item 2 - 350 Coins -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-1"
-                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                    >
-                      <div class="flex gap-2 justify-center items-center">
-                        <svg
-                          style="font-size: 16px"
-                          viewBox="0 0 48 48"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                            <path
-                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                              fill="#FFB84D"
-                            ></path>
-                            <path
-                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                              fill="#FFDE55"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A300"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A80F"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#E88B00"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                              fill="#fff"
-                            ></path>
-                          </g>
-                        </svg>
-                        <b data-e2e="wallet-package-coin-num-1" class="H3-Bold"
-                          >350</b
-                        >
-                      </div>
-                      <div
-                        data-e2e="wallet-package-price-1"
-                        class="P3-Regular text-color-TextTertiaryAlt"
-                      >
-                        $5.60
-                      </div>
-                    </div>
-                  </li>
-                  <!-- Item 3 - 700 Coins -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-2"
-                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                    >
-                      <div class="flex gap-2 justify-center items-center">
-                        <svg
-                          style="font-size: 16px"
-                          viewBox="0 0 48 48"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                            <path
-                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                              fill="#FFB84D"
-                            ></path>
-                            <path
-                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                              fill="#FFDE55"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A300"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A80F"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#E88B00"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                              fill="#fff"
-                            ></path>
-                          </g>
-                        </svg>
-                        <b data-e2e="wallet-package-coin-num-2" class="H3-Bold"
-                          >700</b
-                        >
-                      </div>
-                      <div
-                        data-e2e="wallet-package-price-2"
-                        class="P3-Regular text-color-TextTertiaryAlt"
-                      >
-                        $11.20
-                      </div>
-                    </div>
-                  </li>
-                  <!-- Item 4 - 1,400 Coins -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-3"
-                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                    >
-                      <div class="flex gap-2 justify-center items-center">
-                        <svg
-                          style="font-size: 16px"
-                          viewBox="0 0 48 48"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                            <path
-                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                              fill="#FFB84D"
-                            ></path>
-                            <path
-                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                              fill="#FFDE55"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A300"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A80F"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#E88B00"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                              fill="#fff"
-                            ></path>
-                          </g>
-                        </svg>
-                        <b data-e2e="wallet-package-coin-num-3" class="H3-Bold"
-                          >1,400</b
-                        >
-                      </div>
-                      <div
-                        data-e2e="wallet-package-price-3"
-                        class="P3-Regular text-color-TextTertiaryAlt"
-                      >
-                        $22.40
-                      </div>
-                    </div>
-                  </li>
-                  <!-- Item 5 - 3,500 Coins -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-4"
-                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center relative background-color-BGInput"
-                    >
-                      <div class="flex gap-2 justify-center items-center">
-                        <svg
-                          style="font-size: 16px"
-                          viewBox="0 0 48 48"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <g clip-path="url(#Icon_Color-Tiktok_Coin_svg__a)">
-                            <path
-                              d="M48 24a24 24 0 1 1-48 0 24 24 0 0 1 48 0Z"
-                              fill="#FFB84D"
-                            ></path>
-                            <path
-                              d="M47 24a23 23 0 1 1-46 0 23 23 0 0 1 46 0Z"
-                              fill="#FFDE55"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A300"
-                            ></path>
-                            <path
-                              d="M42 24a18 18 0 1 1-36 0 18 18 0 0 1 36 0Z"
-                              fill="#F7A80F"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#E88B00"
-                            ></path>
-                            <path
-                              d="M41.94 25.5a18 18 0 1 0-35.88 0 18 18 0 0 1 35.88 0Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.74 17.77v5.86c-2.06 0-4.05-.44-5.81-1.55v7.2a7.79 7.79 0 0 1-7.84 7.75 7.79 7.79 0 0 1-7.8-8.35 7.79 7.79 0 0 1 9.19-8.24v6c-.47-.13-.9-.26-1.39-.26a3.14 3.14 0 0 0-3.09 2.5 3.14 3.14 0 0 0 3.1 2.5c1.74 0 3.14-1.4 3.14-3.11V12.03h4.69a5.6 5.6 0 0 0 5.81 5.74Z"
-                              fill="#F09207"
-                            ></path>
-                            <path
-                              d="M34.34 18.18a5.78 5.78 0 0 1-5.82-5.74h-3.87v15.63c0 1.94-1.6 3.5-3.56 3.5a3.53 3.53 0 0 1-3.55-3.5 3.53 3.53 0 0 1 4.52-3.38v-3.9a7.38 7.38 0 0 0-8.4 7.28 7.38 7.38 0 0 0 7.43 7.34c4.1 0 7.43-3.29 7.43-7.34v-7.98a9.73 9.73 0 0 0 5.82 1.92v-3.83Z"
-                              fill="#fff"
-                            ></path>
-                          </g>
-                        </svg>
-                        <b data-e2e="wallet-package-coin-num-4" class="H3-Bold"
-                          >3,500</b
-                        >
-                      </div>
-                      <div
-                        data-e2e="wallet-package-price-4"
-                        class="P3-Regular text-color-TextTertiaryAlt"
-                      >
-                        $56.00
-                      </div>
-                    </div>
-                  </li>
-                  <!-- Custom Item -->
-                  <li
-                    style="
-                      list-style-type: none;
-                      overflow: hidden;
-                      cursor: pointer;
-                    "
-                  >
-                    <div
-                      data-e2e="wallet-package-custom"
-                      id="open-recharge-modal"
-                      class="package-item radius-containerslevel0-small w-full h-64 flex flex-col justify-center items-center background-color-BGInput"
-                    >
-                      <div
-                        class="flex flex-col justify-center items-center w-full px-4"
-                      >
-                        <div
-                          data-e2e="wallet-package-coin-text-custom"
-                          class="SmallText1-Bold text-center w-full"
-                          style="opacity: 1; overflow: hidden"
-                        >
-                          Custom
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ol>
-              </div>
-            </div>
+        document
+          .getElementById("show-register-view")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            switchView("register");
+          });
+        document
+          .getElementById("show-login-view")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            switchView("login");
+          });
 
-            <!-- ================================================================================= -->
-            <!-- END: COIN SELECTION SECTION                                                       -->
-            <!-- ================================================================================= -->
-            <div class="mx-8 mb-8 flex flex-col gap-10">
-              <span
-                class="flex justify-between text-color-UIText1 gap-8 p-16 overflow-hidden items-center"
-                style="background-color: var(--UIPageFlat1); border-radius: 8px"
-              >
-                <div class="flex items-center">
-                  <div class="flex gap-12">
-                    <span class="flex items-center flex-shrink-0">
-                      <img
-                        src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_alsshd_rvarpa/ljhwZthlaukjlkulzlp/referral/icon_invite_rewards.png"
-                        alt="sage"
-                        height="43"
-                        width="56"
-                      />
-                    </span>
-                    <div class="flex flex-col justify-center gap-2">
-                      <div class="flex items-center">
-                        <span class="P1-Medium">Invite &amp; Get Rewards</span>
-                      </div>
-                      <div class="P3-Regular text-color-UIText2">
-                        <span>Check out this new feature!</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <span class="flex items-center flex-shrink-0">
-                  <svg
-                    fill="currentColor"
-                    class="flip-rtl"
-                    color="var(--ui-text-3)"
-                    style="font-size: 16px"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                  >
-                    <path
-                      d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
-                    ></path>
-                  </svg>
-                </span>
-              </span>
-            </div>
-            <div
-              class="mx-8 rounded-8 background-color-BGPrimary mb-8 px-16 py-12 flex flex-col gap-20"
-            >
-              <div class="flex items-center gap-12">
-                <img
-                  src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
-                  width="56"
-                  height="56"
-                  alt="home_screen_thumbnail"
-                />
-                <div class="flex-grow font-medium banner-hmY5UV">
-                  Add this page to home screen for one-tap access
-                </div>
-                <button
-                  class="flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-tiny flex-shrink-0 text-color-TextPrimary background-color-BGInput border-0 P3-Semibold"
-                  type="button"
-                  style="height: 24px; width: 64px"
-                >
-                  <div class="flex items-center justify-center w-full px-6">
-                    <span
-                      class="truncate"
-                      data-test-tag="tux-button-content"
-                      style="line-height: 24px"
-                      >Add</span
-                    >
-                  </div>
-                </button>
-              </div>
-            </div>
-            <div
-              class="mt-24 Headline-Medium flex content-center items-center justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="69"
-                height="16"
-                fill="none"
-                viewBox="0 0 69 16"
-              >
-                <path
-                  fill="#161823"
-                  fill-opacity="0.1"
-                  d="M28.207 6.681a1.399 1.399 0 1 0-.001-2.798 1.399 1.399 0 0 0 0 2.798M40.594 3.883h8.879l-.797 2.483h-2.449v9.181999999999999h-2.81V6.364h-2.492l-.33.006zM26.813 7.848v-.253h2.781l.001.253.003 6.968-.007.731H26.83v-.396zM31.047 4.4v-.55h2.75v5.433000000000001l2.781-2.707h3.316l-3.482 3.381 3.9 5.583H37.25l-2.603-3.873-.825.798v3.076l-2.767-.006v-.248zM58.77 4.4v-.55h2.75v.479l.007 4.954 2.775-2.706h3.316l-3.48 3.385 3.906 5.583h-3.061l-2.606-3.873-.824.798v3.076h-2.766v-.248zM48.063 10.818a4.781 4.781 0 1 1 9.197 1.859 4.8 4.8 0 0 1-1.757 2.145 4.77 4.77 0 0 1-2.65.808 4.78 4.78 0 0 1-3.4-1.404 4.8 4.8 0 0 1-1.038-1.564 4.8 4.8 0 0 1-.352-1.844m6.95 0c0-1.292-.89-2.303-2.179-2.3-1.29 0-2.162 1.012-2.162 2.304s.866 2.313 2.162 2.311c1.297 0 2.18-1.028 2.179-2.32zM17.496 3.883h8.674l-.797 2.483H23.12v9.177h-2.8V6.365l-2.822.006zM14.686 3.843c-.981-.03-1.87-.5-2.54-1.128A3.69 3.69 0 0 1 11.006 0H8.276v10.53c0 1.721-1.031 2.734-2.296 2.734a2.3 2.3 0 0 1-1.77-.803 2.3 2.3 0 0 1-.468-.879 2.29 2.29 0 0 1 .318-1.917 2.29 2.29 0 0 1 2.662-.866v-2.78a3.4 3.4 0 0 0-.742-.079 5.025 5.025 0 0 0-4.644 3.104 5.034 5.034 0 0 0 3.661 6.86 5.023 5.023 0 0 0 6.007-4.934V5.302c1.058.733 2.323 1.078 3.674 1.103z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </main>
-      <footer class="footer">
-        <div
-          class="px-16 py-12 background-color-BGPrimary"
-          style="
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px 0px;
-            padding-bottom: calc(12px + env(safe-area-inset-bottom));
-          "
-        >
-          <div>
-            <div class="mb-16">
-              <div
-                class="flex flex-row justify-between items-start button-wcWpwN"
-              >
-                <div
-                  class="flex-shrink-0 text-color-UIText2 P2-Regular title-tsxBce"
-                  style="
-                    font-size: 13px;
-                    margin-block-start: 0px;
-                    line-height: 1.3em;
-                  "
-                >
-                  Special offer
-                </div>
-                <div
-                  class="flex flex-row justify-end relative total-w9GATo"
-                  style="padding-inline-end: 16px"
-                >
-                  <div class="overflow-hidden" style="font-size: 14px">
-                    <div
-                      class="list-NLSRe7 flex"
-                      style="
-                        row-gap: 4px;
-                        flex-direction: column;
-                        align-items: flex-end;
-                        line-height: 1.3em;
-                        font-size: 14px;
-                      "
-                    >
-                      <div
-                        class="item-kf9f68 text-color-UITextPrimaryDisplay H4-Medium"
-                      >
-                        <span>Unlock</span> 5% cash back
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="absolute top-0"
-                    style="
-                      margin-block-start: calc(0.65em - 8px);
-                      font-size: 14px;
-                      inset-inline-end: 0px;
-                    "
-                  >
-                    <svg
-                      fill="currentColor"
-                      class="flip-rtl"
-                      color="var(--ui-text-3)"
-                      style="font-size: 16px"
-                      viewBox="0 0 48 48"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1em"
-                      height="1em"
-                    >
-                      <path
-                        d="M40.37 24 26.71 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0l16.21 16.2a1 1 0 0 1 0 1.42L29.96 40.92a1 1 0 0 1-1.41 0l-1.84-1.84a1 1 0 0 1 0-1.42L40.37 24Z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pb-10 flex justify-center">
-            <img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/visa_acffbd.png"
-              alt="VISA"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-VISA"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            /><img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
-              alt="MASTER"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-MASTER"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            /><img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/card_american_express_51cd3f.png"
-              alt="AMEX"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-AMEX"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            /><img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/diners_0faca9.png"
-              alt="DINERS"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-DINERS"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            /><img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/card_jcb_0481eb.png"
-              alt="JCB"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-JCB"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            /><img
-              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/paypal-light_839c52.png"
-              alt="PAYPAL"
-              class="h-16 w-26 me-4"
-              data-e2e="wallet-payment-icon-PAYPAL"
-              style="
-                display: inline-block;
-                border: 0.5px solid rgb(225, 228, 236);
-                border-radius: 4px;
-              "
-            />
-          </div>
-          <div data-e2e="wallet-buy-now-button">
-            <button
-              id="open-overlay-btn-2"
-              class="box-border flex select-none appearance-none outline-none cursor-pointer border-solid items-center justify-center px-0 relative w-full radius-control-large text-color-ConstTextInverse background-color-Primary border-0 H4-Semibold"
-              type="button"
-              style="height: 44px"
-            >
-              <div class="flex items-center justify-center w-full px-6">
-                <span class="me-4" style="font-size: 20px; line-height: 0">
-                  <!-- SVG Icon -->
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                  >
-                    <path
-                      d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                    ></path>
-                    <path
-                      d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.28 3.05-.25 8.87-1.52 15.34-6.99.8-.67 2-.67 2.8 0 6.46 5.46 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.13-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15V12.04c-3.65-.53-9.1-2.16-15-6.8-5.91 4.64-11.35 6.27-15 6.8Z"
-                    ></path>
-                  </svg>
-                </span>
-                <!-- The text here will be dynamically updated by your coin calculation logic -->
-                <span
-                  class="truncate"
-                  data-test-tag="tux-button-content"
-                  style="line-height: 44px"
-                  >Buy for $0.48</span
-                >
-              </div>
-            </button>
-          </div>
-        </div>
-      </footer>
-    </div>
+        // --- HELPER FUNCTIONS ---
+        function switchView(viewName) {
+          Object.values(views).forEach((v) => (v.style.display = "none"));
+          views[viewName].style.display = "block";
+        }
+
+        function displayMessage(view, message, type = "error") {
+          const box = messageBoxes[view];
+          box.textContent = message;
+          box.className = `message-box ${type}`;
+        }
+
+        function setLoadingState(form, isLoading) {
+          const button = form.querySelector("button");
+          button.disabled = isLoading;
+          button.textContent = isLoading
+            ? "Verifying..."
+            : form.id === "login-form"
+            ? "Login"
+            : "Create Account";
+        }
+
+        function isValidEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // --- REGISTRATION LOGIC ---
+        forms.register.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("register-email").value;
+          const password = document.getElementById("register-password").value;
+
+          if (!isValidEmail(email))
+            return displayMessage(
+              "register",
+              "Please enter a valid email address."
+            );
+          if (password.length < 8)
+            return displayMessage(
+              "register",
+              "Password must be at least 8 characters long."
+            );
+
+          setLoadingState(forms.register, true);
+          try {
+            const res = await fetch(`${API_URL}/register`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+
+            displayMessage(
+              "register",
+              "Success! You can now log in.",
+              "success"
+            );
+            forms.register.reset();
+          } catch (err) {
+            displayMessage(
+              "register",
+              err.message || "An unknown error occurred."
+            );
+          } finally {
+            setLoadingState(forms.register, false);
+          }
+        });
+
+        // --- LOGIN LOGIC ---
+        forms.login.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("login-email").value;
+          const password = document.getElementById("login-password").value;
+
+          if (!email || !password)
+            return displayMessage(
+              "login",
+              "Please enter both email and password."
+            );
+
+          setLoadingState(forms.login, true);
+          try {
+            const res = await fetch(`${API_URL}/login`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
+
+            localStorage.setItem("authToken", data.token);
+            window.location.href = DASHBOARD_URL;
+          } catch (err) {
+            displayMessage(
+              "login",
+              err.message || "An unknown error occurred."
+            );
+          } finally {
+            setLoadingState(forms.login, false);
+          }
+        });
+      });
+    </script>
   </body>
-  <div id="main-component" class="hidden">
-    <div
-      id="main-mask"
-      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
-    ></div>
-    <div
-      id="main-sheet"
-      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
-      style="
-        min-height: 240px;
-        max-height: 90%;
-        background-color: rgb(255, 255, 255);
-      "
-    >
-      <div class="_9f4d_tt-sheet__header _9f4d_flex-shrink-0">
-        <header
-          class="_9f4d_flex _9f4d_items-center _9f4d_px-8 _9f4d_overflow-hidden _9f4d_relative"
-          role="navigation"
-          style="height: 52px"
-        >
-          <div
-            role="none"
-            class="_9f4d_absolute _9f4d_w-full _9f4d_h-full _9f4d_top-0 _9f4d_left-0 _9f4d_-z-1"
-            style="background-color: rgb(255, 255, 255)"
-          ></div>
-          <div
-            class="_9f4d_inline-flex _9f4d_items-center _9f4d_justify-start _9f4d_flex-1 _9f4d_h-full"
-          >
-            <button
-              id="close-main-component"
-              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-            >
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m7.63 24 13.66-13.67a1 1 0 0 0 0-1.41l-1.84-1.84a1 1 0 0 0-1.41 0L1.83 23.28a1 1 0 0 0 0 1.42l16.21 16.22a1 1 0 0 0 1.41 0l1.84-1.84a1 1 0 0 0 0-1.42L7.63 24Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div
-            id="header-title"
-            class="_9f4d_truncate flex-3 _9f4d_px-4 _9f4d_text-center _9f4d_H3-Bold"
-            style="color: rgb(0, 0, 0); line-height: 52px"
-          >
-            Custom
-          </div>
-          <div
-            class="_9f4d_flex-1 _9f4d_inline-flex _9f4d_items-center _9f4d_justify-end _9f4d_h-full"
-          >
-            <button
-              class="_9f4d_tux-nav-bar-icon-action _9f4d_h-40 _9f4d_w-40 _9f4d_p-0 _9f4d_text-color-TextPrimary _9f4d_flex _9f4d_items-center _9f4d_justify-center"
-            >
-              <svg
-                fill="currentColor"
-                font-size="22px"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
-                ></path>
-                <path
-                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div class="_9f4d_absolute _9f4d_bottom-0 _9f4d_left-0 _9f4d_right-0">
-            <div
-              role="separator"
-              class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-              style="background-color: rgba(22, 24, 35, 0.2)"
-            ></div>
-          </div>
-        </header>
-      </div>
-
-      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-        <div class="_9f4d_px-16 _9f4d_pt-12">
-          <div
-            id="change-view-trigger"
-            class="_9f4d_mb-8 _9f4d_inline-flex _9f4d_items-center"
-            style="gap: 4px; cursor: pointer"
-          >
-            <span id="view-trigger-label" class="_9f4d_P1-Semibold"></span>
-            <svg
-              fill="currentColor"
-              font-size="12px"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-            >
-              <path
-                d="m24 28.75 13.67-13.67a1 1 0 0 1 1.41 0l1.84 1.84a1 1 0 0 1 0 1.41L24.71 34.54a1 1 0 0 1-1.42 0L7.1 18.34a1 1 0 0 1 0-1.42l1.83-1.84a1 1 0 0 1 1.41 0L24 28.75Z"
-              ></path>
-            </svg>
-          </div>
-          <div class="_9f4d_kemEwk">
-            <div id="input-container" class="_9f4d_jaLHEV">
-              <!-- This will be populated by JS -->
-            </div>
-          </div>
-          <div
-            id="sub-display-container"
-            class="_9f4d_P2-Regular _9f4d_text-color-TextTertiary _9f4d_h-26 _9f4d_flex _9f4d_items-center"
-          >
-            <!-- This will be populated by JS -->
-          </div>
-
-          <!-- Keypad for Coins View -->
-          <div id="keypad-coins" class="_9f4d_iEsvFh">
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
-            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
-                ></path>
-              </svg>
-            </button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">000</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
-          </div>
-
-          <!-- Keypad for Amount View -->
-          <div id="keypad-amount" class="_9f4d_iEsvFh hidden">
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">1</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">2</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">3</button>
-            <button class="backspace-key _9f4d_jrYXOR _9f4d_H3-Bold">
-              <svg
-                fill="currentColor"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-              >
-                <path
-                  d="m16.54 8.5-12.46 11a6 6 0 0 0 0 9l12.46 11a6 6 0 0 0 3.97 1.5H40a6 6 0 0 0 6-6V13a6 6 0 0 0-6-6H20.51a6 6 0 0 0-3.97 1.5ZM26.17 24l-4.38-4.38a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L29 21.17l4.38-4.38a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L31.83 24l4.38 4.38a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L29 26.83l-4.38 4.38a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41L26.17 24Z"
-                ></path>
-              </svg>
-            </button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">4</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">5</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">6</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">.</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">7</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">8</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">9</button>
-            <button class="_9f4d_jrYXOR _9f4d_H3-Bold num-key">0</button>
-          </div>
-        </div>
-
-        <div class="footer-wrapper" style="background-color: #fff">
-          <div
-            role="separator"
-            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-            style="background-color: rgba(22, 24, 35, 0.2)"
-          ></div>
-          <div class="_9f4d_px-16 _9f4d_py-12">
-            <div
-              class="_9f4d_flex _9f4d_justify-between _9f4d_mb-12 _9f4d_H3-Bold"
-            >
-              <div class="_9f4d_flex"><div>Total</div></div>
-              <div id="total-price"></div>
-            </div>
-            <div>
-              <button
-                id="open-overlay-btn"
-                class="_9f4d_TUXButton _9f4d_TUXButton--large _9f4d_TUXButton--primary _9f4d_w-full"
-                type="button"
-              >
-                <div class="_9f4d_TUXButton-content">
-                  <div class="_9f4d_TUXButton-iconContainer">
-                    <svg
-                      fill="currentColor"
-                      viewBox="0 0 48 48"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1em"
-                      height="1em"
-                    >
-                      <path
-                        d="M28.22 13.7a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.52-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.97 2.97 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                      ></path>
-                      <path
-                        d="M5 23.15V10.5c0-1.2 1.06-2.17 2.26-2.27 3.05-.26 8.87-1.53 15.34-7 .8-.67 2-.67 2.8 0 6.46 5.47 12.28 6.74 15.34 7 1.2.1 2.26 1.07 2.26 2.27v12.65c0 14.14-14.77 21.8-18.27 23.43-.47.22-1 .22-1.47 0C19.76 44.96 5 37.28 5 23.15Zm4-11.1v11.1c0 5.57 2.88 10.04 6.56 13.5 3.1 2.91 6.5 4.86 8.44 5.85a37.07 37.07 0 0 0 8.43-5.85C36.11 33.2 39 28.72 39 23.15v-11.1c-3.65-.54-9.1-2.17-15-6.8-5.91 4.63-11.35 6.26-15 6.8Z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="_9f4d_TUXButton-label">Recharge</div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secondary Sheet (for view selection) -->
-  <div id="secondary-component" class="hidden">
-    <div
-      id="secondary-mask"
-      class="_9f4d_tt-sheet__mask _9f4d_fixed _9f4d_background-color-SDSecondary _9f4d_z-2000"
-    ></div>
-    <div
-      id="secondary-sheet"
-      class="_9f4d_tt-sheet__container _9f4d_radius-containerslevel1-large-t _9f4d_pb-safe _9f4d_fixed _9f4d_z-2000 _9f4d_flex _9f4d_flex-col"
-      style="
-        min-height: 0px;
-        max-height: 73%;
-        background-color: rgb(255, 255, 255);
-      "
-    >
-      <div class="_9f4d_tt-sheet__body _9f4d_flex-1">
-        <button
-          id="select-coins-view"
-          type="button"
-          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-          style="min-height: 48px"
-        >
-          Number of Coins
-        </button>
-        <div
-          role="separator"
-          class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--horizontal _9f4d_tux-separator--medium"
-          style="background-color: rgba(22, 24, 35, 0.12)"
-        ></div>
-        <button
-          id="select-amount-view"
-          type="button"
-          class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_Headline-Medium _9f4d_text-center _9f4d_justify-center _9f4d_text-color-TextPrimary"
-          style="min-height: 48px"
-        >
-          Payment amount
-        </button>
-        <footer>
-          <div
-            role="separator"
-            class="_9f4d_flex _9f4d_flex-shrink-0 _9f4d_box-border _9f4d_tux-separator--large"
-            style="background-color: rgba(22, 24, 35, 0.03)"
-          ></div>
-          <button
-            id="cancel-secondary"
-            type="button"
-            class="_9f4d_flex _9f4d_w-full _9f4d_items-center _9f4d_px-12 _9f4d_py-12 _9f4d_text-color-TextSecondary _9f4d_Headline-Regular _9f4d_text-center _9f4d_justify-center"
-            style="min-height: 48px"
-          >
-            Cancel
-          </button>
-        </footer>
-      </div>
-    </div>
-  </div>
-  <div
-    class="TUXSheet-overlay TUXSheet-overlay--portrait"
-    dir="ltr"
-    data-tux-color-scheme="light"
-    style="position: fixed; inset: 0px; z-index: 2000"
-  >
-    <div class="TUXSheet-container">
-      <div
-        class="TUXSheet TUXSheet--portrait radius-containerslevel1-large-t"
-        tabindex="0"
-        role="dialog"
-        style="min-height: 90dvh"
-      >
-        <!-- ... rest of your HTML ... -->
-        <div id="cashier-page" class="cashier-phase2">
-          <div data-theme="light" dir="ltr">
-            <div class="css-hzmqtq">
-              <header class="css-1xvkyhs">
-                <div data-e2e="cashier-header">
-                  <div data-theme="light" dir="ltr">
-                    <div data-test-tag="tux-nav-bar" class="TUXNavBar">
-                      <div class="box-border top-0 left-0 right-0">
-                        <header
-                          class="flex items-center px-8 overflow-hidden relative"
-                          role="navigation"
-                          style="height: 52px"
-                        >
-                          <div
-                            role="none"
-                            class="absolute w-full h-full top-0 left-0 -z-1"
-                            style="background-color: rgb(255, 255, 255)"
-                          ></div>
-                          <div
-                            class="inline-flex items-center justify-start flex-1 h-full"
-                          >
-                            <button
-                              id="close-overlay-btn"
-                              data-test-tag="tux-nav-bar-button-0"
-                              class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
-                            >
-                              <svg
-                                fill="currentColor"
-                                viewBox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                class="flip-rtl"
-                              >
-                                <path
-                                  d="m4.59 22.59 15.29-15.3a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1 0 1.41L10.83 22H43a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H10.83L22.7 37.88a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0L4.58 25.4a2 2 0 0 1 0-2.82Z"
-                                ></path>
-                              </svg>
-                            </button>
-                          </div>
-                          <div
-                            data-test-tag="tux-nav-bar-content"
-                            class="truncate flex-3 px-4 text-center H3-Bold"
-                            style="color: rgb(0, 0, 0); line-height: 52px"
-                          >
-                            <div style="display: flex; flex-direction: column">
-                              <span data-test-tag="tux-text" class="H3-Bold"
-                                >Order summary</span
-                              >
-                            </div>
-                          </div>
-                          <div
-                            class="flex-1 inline-flex items-center justify-end h-full"
-                          >
-                            <button
-                              data-test-tag="tux-nav-bar-button-0"
-                              class="tux-nav-bar-icon-action h-40 w-40 p-0 text-color-TextPrimary flex items-center justify-center"
-                            >
-                              <svg
-                                fill="currentColor"
-                                viewBox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                class="flip-rtl"
-                              >
-                                <path
-                                  d="M21.36 28.05V22.8l1.79-.1c2.33-.1 3.87-1.36 3.87-3.31s-1.31-3-3.33-3c-1.95 0-3.53.95-3.88 3.1l-4.31-.7c.54-3.98 3.78-6.28 8.54-6.28 4.5 0 7.66 2.66 7.66 6.75 0 3.3-2.18 5.66-5.58 6.3v2.5h-4.76ZM20.62 32.72a2.99 2.99 0 0 1 3.07-3.04 2.96 2.96 0 0 1 3.04 3.04c0 1.7-1.28 3.01-3.04 3.01a2.98 2.98 0 0 1-3.07-3Z"
-                                ></path>
-                                <path
-                                  d="M2 24a22 22 0 1 1 44 0 22 22 0 0 1-44 0Zm22 18a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"
-                                ></path>
-                              </svg>
-                            </button>
-                          </div>
-                        </header>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div data-e2e="secure-payment-sign" class="css-15nbb49">
-                  <svg
-                    fill="currentColor"
-                    class="text-color-var(--ui-shape-success-4)"
-                    font-size="14px"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                  >
-                    <path
-                      d="M22.6 1.24c-6.47 5.47-12.29 6.74-15.34 7C6.06 8.34 5 9.32 5 10.53V23.2c0 14.16 14.76 21.85 18.26 23.47.47.22 1 .22 1.47 0C28.23 45.05 43 37.37 43 23.2V10.52c0-1.2-1.06-2.18-2.26-2.28-3.06-.26-8.88-1.53-15.35-7a2.17 2.17 0 0 0-2.79 0Zm5.62 12.46a4.83 4.83 0 0 0 4.86 4.8l-.04 3.45c-1.77 0-3.4-.53-4.75-1.43l-.09 6.99a6.64 6.64 0 0 1-6.69 6.3 6.44 6.44 0 0 1-6.53-6.45 6.63 6.63 0 0 1 7.61-6.4l-.04 3.7a2.93 2.93 0 0 0-3.88 2.7 2.85 2.85 0 0 0 2.89 2.85 2.93 2.93 0 0 0 2.96-2.85l.16-13.66h3.54Z"
-                    ></path>
-                  </svg>
-                  <span direction="ltr" class="css-sh3yhi">Secure payment</span>
-                  <svg
-                    fill="currentColor"
-                    font-size="10px"
-                    viewBox="0 0 48 48"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                    class="flip-rtl"
-                  >
-                    <path
-                      d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
-                    ></path>
-                  </svg>
-                </div>
-              </header>
-              <div
-                class="w-full overflow-auto overflow-x-hidden h-full flex-auto"
-                date-e2e="cashier-layout-content"
-              >
-                <div data-e2e="cashier-order-summary">
-                  <div
-                    class="text-color-TextPrimary P1-Semibold pt-16"
-                    data-e2e="order-detail"
-                  >
-                    <!-- ================================================================================= -->
-                    <!-- START: DYNAMIC ACCOUNT PREVIEW SECTION                                            -->
-                    <!-- ================================================================================= -->
-                    <!-- =================================================================== -->
-                    <!-- USER PREVIEW: This also goes inside your overlay/modal            -->
-                    <!-- =================================================================== -->
-                    <div class="flex content-around items-center mb-16 px-16">
-                      <div class="flex-1 P1-Regular">Account</div>
-                      <div class="flex items-center">
-                        <div
-                          id="preview-avatar-container"
-                          data-test-tag="tux-avatar"
-                          class="rounded-full"
-                          style="
-                            background-image: url('');
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                            background-position: 50% 50%;
-                            width: 18px;
-                            height: 18px;
-                          "
-                        >
-                          <div
-                            class="rounded-full border border-solid border-color-LineSecondary box-border"
-                            style="width: 18px; height: 18px"
-                          ></div>
-                        </div>
-                        <span id="preview-nickname" class="ms-4"></span>
-                      </div>
-                    </div>
-
-                    <!-- ================================================================================= -->
-                    <!-- END: DYNAMIC ACCOUNT PREVIEW SECTION                                              -->
-                    <!-- ================================================================================= -->
-                    <!-- ================================================================================= -->
-                    <!-- START: PURCHASE PREVIEW SECTION                                                   -->
-                    <!-- ================================================================================= -->
-
-                    <div id="purchase-summary">
-                      <div class="flex content-around mb-16 px-16">
-                        <div
-                          id="purchase-coin-num"
-                          class="flex-1 P1-Regular"
-                          data-e2e="cashier-order-coin-num"
-                        >
-                          <!-- JS will inject coin amount here -->
-                        </div>
-                        <div
-                          id="purchase-coin-price"
-                          class="flex items-center"
-                          data-e2e="cashier-order-coin-price"
-                          style="direction: ltr"
-                        >
-                          <!-- JS will inject price here -->
-                        </div>
-                      </div>
-                      <div
-                        role="separator"
-                        class="flex flex-shrink-0 box-border tux-separator--horizontal tux-separator--medium"
-                        style="
-                          background-color: rgba(22, 24, 35, 0.2);
-                          transform-origin: center center;
-                        "
-                      ></div>
-                    </div>
-                    <!-- ================================================================================= -->
-                    <!-- END: PURCHASE PREVIEW SECTION                                                     -->
-                    <!-- ================================================================================= -->
-                  </div>
-                  <div
-                    class="flex w-full items-center content-around pt-16 px-16 justify-between"
-                  >
-                    <div class="TUXTooltip-reference">
-                      <div
-                        class="font-normal P2-Semibold text-color-TextTertiaryAlt flex-1"
-                      >
-                        Payment method
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-16">
-                    <div
-                      data-e2e="payment-method-list"
-                      class="mo-15"
-                      style="margin-top: -16px"
-                    >
-                      <div>
-                        <div
-                          class="w-full pt-24"
-                          data-e2e="payment-method-item-ccdc"
-                          style="min-height: 64px"
-                        >
-                          <div class="flex content-around">
-                            <div class="w-full truncate">
-                              <div
-                                class="font-normal H4-Regular items-center css-tneykt"
-                              >
-                                <img
-                                  class="w-24 h-16 me-8"
-                                  data-e2e="payment-method-icon-image"
-                                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0LjYyNSAxMS4yNUMxNC40MTc5IDExLjI1IDE0LjI1IDExLjQxNzkgMTQuMjUgMTEuNjI1VjEyLjM3NUMxNC4yNSAxMi41ODIxIDE0LjQxNzkgMTIuNzUgMTQuNjI1IDEyLjc1SDE3LjYyNUMxNy44MzIxIDEyLjc1IDE4IDEyLjU4MjEgMTggMTIuMzc1VjExLjYyNUMxOCAxMS40MTc5IDE3LjgzMjEgMTEuMjUgMTcuNjI1IDExLjI1SDE0LjYyNVoiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNC41IDIuNjI1QzMuNjcxNTcgMi42MjUgMyAzLjI5NjU3IDMgNC4xMjVWMTMuODc1QzMgMTQuNzAzNCAzLjY3MTU3IDE1LjM3NSA0LjUgMTUuMzc1SDE5LjVDMjAuMzI4NCAxNS4zNzUgMjEgMTQuNzAzNCAyMSAxMy44NzVWNC4xMjVDMjEgMy4yOTY1NyAyMC4zMjg0IDIuNjI1IDE5LjUgMi42MjVINC41Wk00LjUgNC4xMjVIMTkuNVY1LjgxMjVINC41VjQuMTI1Wk00LjUgNy4zMTI1SDE5LjVWMTMuODc1SDQuNVY3LjMxMjVaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K"
-                                  style="opacity: 1; min-width: 26px"
-                                /><span class="flex flex-wrap items-center"
-                                  ><span
-                                    class="text-color-TextPrimary me-12 css-6z7b6u"
-                                    data-e2e="payment-method-name"
-                                    ><span>Add credit or debit card</span></span
-                                  >
-                                  <div class="flex gap-4"></div>
-                                </span>
-                                <div
-                                  class="P3-Regular flex flex-col css-1ekbcdz"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              class="text-color-TextQuaternary flex items-top pt-2"
-                              data-e2e="payment-method-chevron-button"
-                            >
-                              <svg
-                                fill="currentColor"
-                                class="flip-rtl"
-                                color="inherit"
-                                font-size="inherit"
-                                viewBox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                style="flex-shrink: 0"
-                              >
-                                <path
-                                  d="M28.74 24 15.08 10.33a1 1 0 0 1 0-1.41l1.84-1.84a1 1 0 0 1 1.41 0L34.54 23.3a1 1 0 0 1 0 1.42l-16.2 16.21a1 1 0 0 1-1.42 0l-1.84-1.84a1 1 0 0 1 0-1.41L28.74 24Z"
-                                ></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Replicated Component with Checkbox -->
-                    <label
-                      for="mastercard-checkbox"
-                      class="w-full no-select"
-                      style="cursor: pointer"
-                    >
-                      <div class="flex justify-between items-center w-full">
-                        <!-- Left side: Icon and Text -->
-                        <div class="flex items-center">
-                          <div class="me-8">
-                            <img
-                              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/mastercard_light_5865fd.png"
-                              alt="MASTER"
-                              class="h-16 w-26 me-4"
-                              data-e2e="wallet-payment-icon-MASTER"
-                              style="opacity: 1; min-width: 26px"
-                            />
-                          </div>
-                          <span
-                            class="H4-Regular font-normal text-color-TextPrimary"
-                            >Mastercard •••• 6112</span
-                          >
-                        </div>
-                        <div class="checkbox-container">
-                          <div class="checkbox-custom">
-                            <input
-                              type="checkbox"
-                              id="mastercard-checkbox"
-                              name="payment-method"
-                              class="checkbox-input"
-                            />
-                            <svg
-                              viewBox="0 0 16 16"
-                              class="checkbox-custom-circle-outside"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="7.25"
-                                stroke="currentColor"
-                                fill="transparent"
-                                stroke-width="1.5"
-                              ></circle>
-                            </svg>
-                            <svg
-                              viewBox="0 0 16 16"
-                              class="checkbox-custom-circle-inside"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="4.75"
-                                stroke="currentColor"
-                                fill="var(--ui-image-overlay-white)"
-                                stroke-width="3.6"
-                              ></circle>
-                            </svg>
-                            <svg
-                              viewBox="0 0 16 16"
-                              class="checkbox-custom-circle-disabled"
-                            >
-                              <circle
-                                cx="8"
-                                cy="8"
-                                r="6.5"
-                                stroke="currentColor"
-                                fill="var(--ui-shape-neutral-4)"
-                                stroke-width="0"
-                              ></circle>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="css-1e0qvkm">
-                <div
-                  class="pt-12 pb-16 background-color-BGSecondary px-16"
-                  data-e2e="pay-now-footer"
-                  style="box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px"
-                >
-                  <div style="display: flex">
-                    <div
-                      class="text-color-TextTertiary css-kgw7mk"
-                      id="terms-container"
-                      direction="ltr"
-                    >
-                      <div
-                        style="
-                          display: flex;
-                          flex-direction: row;
-                          column-gap: 8px;
-                        "
-                      >
-                        <div style="display: flex; flex-direction: column">
-                          <div
-                            class="terms-and-conditions"
-                            data-e2e="terms-and-conditions-coin"
-                          >
-                            <span
-                              class="TUXText TUXText--tiktok-sans css-e61k10"
-                              style="color: var(--ui-text-2); font-size: 12px"
-                              font-weight:
-                              700;
-                            >
-                              <span>By tapping </span>
-                              <span
-                                class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
-                                style="
-                                  color: var(--ui-text-1);
-                                  font-size: inherit;
-                                  font-weight: 700;
-                                "
-                                >Pay</span
-                              >
-                              <span>, you agree to our </span>
-                              <a
-                                href="https://www.tiktok.com/legal/virtual-items-row?lang=en"
-                                target="_blank"
-                                class="css-4g6ai3"
-                              >
-                                <span
-                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
-                                  style="
-                                    color: var(--ui-text-1);
-                                    font-size: inherit;
-                                    font-weight: 700;
-                                  "
-                                  >Virtual Items Policy</span
-                                >
-                              </a>
-                              <span> and acknowledge that you have read </span>
-                              <a
-                                href="https://www.tiktok.com/legal/privacy-policy?lang=en"
-                                target="_blank"
-                                class="css-4g6ai3"
-                              >
-                                <span
-                                  class="TUXText TUXText--tiktok-sans TUXText--weight-bold"
-                                  style="
-                                    color: var(--ui-text-1);
-                                    font-size: inherit;
-                                    font-weight: 700;
-                                  "
-                                  >TikTok Privacy Policy</span
-                                >
-                              </a>
-                              <span
-                                >. By using any amount of Coins within 14 days
-                                after the purchase, you acknowledge and confirm
-                                that you will no longer be eligible for a
-                                refund.</span
-                              >
-                            </span>
-                          </div>
-                          <div
-                            class="terms-and-conditions css-1b2x0kn"
-                            data-e2e="terms-and-conditions-region"
-                          >
-                            <span
-                              class="TUXText TUXText--tiktok-sans css-e61k10"
-                              style="color: var(--ui-text-2); font-size: 12px"
-                            >
-                              <span
-                                >By continuing this purchase, you confirm that
-                                you live in
-                              </span>
-                              <span
-                                class="TUXText TUXText--tiktok-sans TUXText--weight-bold css-e61k10"
-                                style="
-                                  color: var(--ui-text-1);
-                                  font-size: inherit;
-                                "
-                                >United States</span
-                              >
-                              <span>.</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      data-e2e="terms-and-conditions-expand"
-                      class="background-color-BGInput css-1x0rzv7 css-ytrrzi"
-                      id="expand-button"
-                    >
-                      <div class="css-gps98o">
-                        <svg
-                          fill="currentColor"
-                          font-size="16px"
-                          color="rgba(0, 0, 0, 0.56)"
-                          viewBox="0 0 48 48"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                        >
-                          <path
-                            d="M34.7 20.7a1 1 0 0 1 0 1.42l-9.29 9.3a2 2 0 0 1-2.82 0l-9.3-9.3a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 0L24 27.17l7.88-7.88a1 1 0 0 1 1.41 0l1.42 1.42Z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="py-12">
-                    <div
-                      class="flex content-around text-color-TextPrimary H3-Bold"
-                    >
-                      <div class="flex-1 flex items-center overflow-hidden">
-                        <div>Total</div>
-                      </div>
-                      <div
-                        id="purchase-total-price"
-                        data-e2e="cashier-order-coin-total-price"
-                        style="direction: ltr"
-                      >
-                        $0.48
-                      </div>
-                    </div>
-                  </div>
-                  <div data-e2e="pay-now-footer-button">
-                    <button
-                      id="pay-now-btn"
-                      class="TUXButton TUXButton--default TUXButton--medium TUXButton--primary TUXButton--disabled w-full"
-                      aria-disabled="true"
-                      disabled
-                      type="button"
-                    >
-                      <div class="TUXButton-content">
-                        <div class="TUXButton-iconContainer">
-                          <img
-                            alt="shield tiktok"
-                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMSIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIxIDIwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMi41ODIwMyA0LjM4NTg2VjkuNjY4MDFDMi41ODMyMyAxNS41Njc5IDguNzM0MDMgMTguNzcxMiAxMC4xOTE2IDE5LjQ0NzVDMTAuMzg4OSAxOS41MzkxIDEwLjYwODUgMTkuNTM5MSAxMC44MDU4IDE5LjQ0NzZDMTIuMjYzNSAxOC43NzEzIDE4LjQxNTQgMTUuNTY4IDE4LjQxNTQgOS42NjgwMVY0LjM4NTc5QzE4LjQxNTQgMy44ODQzMyAxNy45NzMzIDMuNDc2MjMgMTcuNDczNiAzLjQzNDIzQzE2LjE5OTkgMy4zMjcxOSAxMy43NzU0IDIuNzk1NTUgMTEuMDc5NiAwLjUxNTU5QzEwLjc0NjMgMC4yMzM3MjkgMTAuMjUxMSAwLjIzMzczNyA5LjkxNzgyIDAuNTE1NjA3QzcuMjIyMDYgMi43OTU2NyA0Ljc5NzU0IDMuMzI3MjcgMy41MjM4OCAzLjQzNDI3QzMuMDI0MTYgMy44ODQzNyAyLjU4MjAzIDMuODg0MzcgMi41ODIwMyA0LjM4NTg2Wk00LjI0ODcgOS42Njc2N1Y1LjAyNzU5QzUuNzY5MTcgNC44MDYwMSA4LjAzNjU2IDQuMTIzOTQgMTAuNDk4NyAyLjE5MTlDMTIuOTYwOSA0LjEyMzgzIDE1LjIyODMgNC44MDU5MSAxNi43NDg3IDUuMDI3NTNWOS42NjgwMUMxNi43NDg3IDExLjk5MDIgMTUuNTQ2OCAxMy44NTc4IDE0LjAxMzUgMTUuMzA0NEMxMi43MjYyIDE2LjU1MTkgMTEuMzA3NyAxNy4zMzQgMTAuNDk4OCAxNy43NDM5QzkuNjg5ODkgMTcuMzM0IDguMjcxNjkgMTYuNTE4OSA2Ljk4NDQ0IDE1LjMwNDRDNS40NTEzMyAxMy44NTc5IDQuMjQ5MjkgMTEuOTg5OSA0LjI0ODcgOS42Njc2N1oiIGZpbGw9IndoaXRlIi8+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4zODA0IDYuMjQ4NzhDMTIuMzQwNSA2LjA4OTQ4IDEyLjMyMDMgNS45MjI1MiAxMi4zMjI0IDUuNzUwNDlIMTAuODQ4NEwxMC44MTM5IDguNTY0NTJMMTAuODA4MiA5LjAyODE5TDEwLjc3ODYgMTEuNDQxMUMxMC43NzA1IDEyLjA5NzMgMTAuMjE4OCAxMi42MjkyIDkuNTQ2MzMgMTIuNjI5MkM4Ljg3MzgzIDEyLjYyOTIgOC4zMzUyIDEyLjA5NzMgOC4zNDMyNSAxMS40NDExQzguMzUxMzEgMTAuNzg0OSA4LjkwMyAxMC4yNTI5IDkuNTc1NSAxMC4yNTI5QzkuNzA5ODYgMTAuMjUyOSA5LjgzODg5IDEwLjI3NDIgOS45NTkyOCAxMC4zMTM0TDkuOTc4MTIgOC43NzgwOUM5Ljg1MjY3IDguNzYwOTcgOS43MjQ0MSA4Ljc1MjEyIDkuNTkzOTIgOC43NTIxMkM4LjA3MTk1IDguNzUyMTIgNi44MjMzOCA5Ljk1NjAxIDYuODA1MTYgMTEuNDQxMUM2Ljc4NjkzIDEyLjk5NjEgOC4wMDU5NSAxNC4xMyA5LjUyNzkxIDE0LjEzQzExLjAyODUgMTQuMTMgMTIuMjY0IDEyLjk1OTggMTIuMzE1OSAxMS41MDM2TDEyLjMxNjcgMTEuNDQxMUwxMi4zMzQyIDEwLjAxNjVMMTIuMzUxNiA4LjU5MTg5QzEyLjkxMjcgOC45NjkxOSAxMy41OTQxIDkuMTg5ODYgMTQuMzMxIDkuMTg5ODZMMTQuMzQ4NyA3Ljc1MTU3QzEzLjM5MjMgNy43NTE1NyAxMi41OTY3IDcuMTEyODcgMTIuMzgwNCA2LjI0ODc4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+"
-                            style="height: 20px; width: 20px"
-                          />
-                        </div>
-                        <div class="TUXButton-label">Pay now</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- =================================================================== -->
-  <!-- LOADING ANIMATION: Initially hidden. Shown when "Pay now" is clicked. -->
-  <!-- ID CHANGED HERE: "payout-loading-animation" is now the unique ID.   -->
-  <!-- =================================================================== -->
-  <div
-    id="loading-overlay"
-    class="payment-flow-overlay box-border fixed flex items-center justify-center"
-    style="inset: 0px"
-  >
-    <div
-      class="background-color-ToastDefault p-16 flex flex-col items-center justify-center radius-containerslevel2-small"
-      style="max-width: 70%"
-    >
-      <div class="w-48 h-48 box-border flex items-center justify-center">
-        <!-- ... Animated SVG ... -->
-        <svg
-          fill="currentColor"
-          viewBox="0 0 463 276"
-          width="25"
-          height="15"
-          class="tux-loading-svg"
-        >
-          <!-- SVG content as provided -->
-          <defs>
-            <mask id="tux-loading-red-hole-4">
-              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
-              <circle
-                r="110"
-                cx="352.5"
-                cy="138"
-                stroke-width="0"
-                class="tux-loading__red_animation"
-                fill="rgb(15, 15, 15)"
-              ></circle>
-            </mask>
-            <mask id="tux-loading-green-hole-4">
-              <rect width="100%" height="100%" fill="rgb(255, 255, 255)"></rect>
-              <circle
-                r="110"
-                cx="111"
-                cy="138"
-                stroke-width="0"
-                class="tux-loading__green_animation"
-                fill="rgb(15, 15, 15)"
-              ></circle>
-            </mask>
-          </defs>
-          <circle
-            r="110"
-            cx="352.5"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__red_animation"
-            fill="rgb(15, 15, 15)"
-          ></circle>
-          <circle
-            mask="url(#tux-loading-red-hole-4)"
-            r="110"
-            cx="111"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__green_animation"
-            fill="rgb(37, 244, 238)"
-          ></circle>
-          <circle
-            mask="url(#tux-loading-green-hole-4)"
-            r="110"
-            cx="352.5"
-            cy="138"
-            stroke-width="0"
-            class="tux-loading__red_animation"
-            fill="rgb(255, 44, 85)"
-          ></circle>
-        </svg>
-      </div>
-      <div
-        class="H4-Semibold text-color-ConstTextInverse mt-4 text-center px-8"
-      >
-        Payment processing. Please don’t close this page.
-      </div>
-    </div>
-  </div>
-  <!-- ================================================================================= -->
-  <!-- START: NEW, ADVANCED SUCCESS OVERLAY (Replace the old one with this)            -->
-  <!-- ================================================================================= -->
-
-  <div id="success-overlay" class="success-overlay-wrapper">
-    <div class="success-overlay-container">
-      <div id="close-success-final-btn" class="tux-base-dialog__close-button">
-        <svg
-          width="1em"
-          height="1em"
-          fill="currentColor"
-          viewBox="0 0 48 48"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M33.2 36.02a1 1 0 0 0 1.4 0l1.42-1.42a1 1 0 0 0 0-1.4l-9.2-9.2 9.2-9.2a1 1 0 0 0 0-1.4l-1.41-1.42a1 1 0 0 0-1.42 0L24 21.17l-9.2-9.2a1 1 0 0 0-1.4 0l-1.42 1.42a1 1 0 0 0 0 1.42l9.2 9.19-9.2 9.2a1 1 0 0 0 0 1.4l1.41 1.42a1 1 0 0 0 1.42 0l9.19-9.2 9.2 9.2Z"
-          ></path>
-        </svg>
-      </div>
-
-      <!-- **CORRECTED STRUCTURE** for perfect alignment -->
-      <div class="pf-anim-group" onclick="pf_toggleAnimationView()">
-        <!-- Your .success-overlay-content now acts as our core animator (like 'status-core' did) -->
-        <div class="success-overlay-content">
-          <div class="success-overlay-icon">
-            <svg
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="24" cy="24" r="20" fill="#0dde99"></circle>
-              <path
-                d="M 15.06 24.46 L 22.03 32.56 L 32.95 15.35"
-                stroke="white"
-                stroke-width="4.5"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </div>
-          <div class="success-overlay-title">Purchase completed</div>
-        </div>
-
-        <!-- Your message is now a direct sibling, making it easy to animate -->
-        <div class="success-overlay-message">
-          You recharged
-          <strong id="success-total-coins-final">0</strong> Coins.
-        </div>
-      </div>
-
-      <!-- The secondary content that appears -->
-      <div class="pf-secondary-content">
-        <img
-          src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
-          alt="Add to Home Screen guide"
-          class="pf-content-image"
-        />
-        <h2 class="pf-content-title">Access "Get Coins" page in one tap.</h2>
-        <p class="pf-content-description">
-          Tap the share button and scroll down to select "Add to Home Screen".
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- ================================================================================= -->
-  <!-- END: NEW, ADVANCED SUCCESS OVERLAY                                                -->
-  <!-- ================================================================================= -->
-  <script src="hover.js"></script>
-  <script src="loading.js"></script>
-  <script src="custom.js"></script>
-  <script src="fectchprofile.js"></script>
-  <script src="overlay.js"></script>
-  <script src="preview.js"></script>
-  <script src="payout.js"></script>
-  <script src="sucess-screen.js"></script>
 </html>
