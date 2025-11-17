@@ -4,61 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Get Coins</title>
-    <!-- Standard favicon for browsers -->
-    <!-- Place this script inside the <head> of dashboard.html and any other protected page -->
-    <!-- =============================================================== -->
-    <!-- THE SUPER GUARD SCRIPT - PLACE THIS IN THE <HEAD> OF HOME.HTML  -->
-    <!-- =============================================================== -->
+    <!-- ... your other head tags ... -->
+
+    <!-- We need to load the Supabase library here too -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-      const API_URL = "https://tiktok-coin-api.onrender.com/api"; // <-- IMPORTANT: USE YOUR LIVE RENDER URL
-      const DASHBOARD_URL = "dashboard.html";
+      const SUPABASE_URL = "https://zbihvccqizuewrnkhaho.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaWh2Y2NxaXp1ZXdybmtoYWhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODE0ODcsImV4cCI6MjA3ODk1NzQ4N30.o5q-SZuq-3IZzL5eprub6GyFSJXTI7R6xkJ3-BpDceY";
       const AUTH_URL = "index.html";
 
-      // This self-invoking async function runs immediately
+      const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      // This self-invoking async function checks for a valid session
       (async function guard() {
-        const token = localStorage.getItem("authToken");
-
-        // 1. Check for login token first
-        if (!token) {
-          window.location.replace(AUTH_URL);
-          return;
-        }
-
-        // 2. Check key status with the server
-        try {
-          const res = await fetch(`${API_URL}/status`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
-          if (res.status === 401 || res.status === 403) {
-            // Invalid login token
-            localStorage.removeItem("authToken");
-            window.location.replace(AUTH_URL);
-            return;
-          }
-
-          const data = await res.json();
-
-          // 3. Check if key is activated
-          if (!data.isActivated) {
-            // Logged in, but no active key. Send to dashboard.
-            window.location.replace(DASHBOARD_URL);
-            return;
-          }
-
-          // --- If we get here, the user is authorized ---
-          // Store the expiry time globally for other scripts on this page to use
-          window.keyExpiryTimestamp = data.expires;
-        } catch (error) {
-          // Network error, can't verify. Best to kick them out.
-          console.error("Guard Error:", error);
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        if (!session) {
+          // No logged-in user, redirect to login page
           window.location.replace(AUTH_URL);
         }
+        // If a session exists, the script continues and the page loads.
       })();
     </script>
-    <!-- =============================================================== -->
-    <!--                        END OF GUARD SCRIPT                      -->
-    <!-- =============================================================== -->
     <link
       rel="icon"
       href="https://sf16-sg.tiktokcdn.com/obj/eden-sg/ulfbnueh7nuvyauhbs/pwa-icons/128x128.png"

@@ -180,7 +180,6 @@
             No account? <a id="show-register-view">Register here</a>
           </p>
         </div>
-
         <!-- Registration View -->
         <div id="register-view" style="display: none">
           <h1>Create Account</h1>
@@ -212,140 +211,110 @@
       </div>
     </div>
 
+    <!-- Load the Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const API_URL = "https://tiktok-coin-api.onrender.com/api"; // <-- IMPORTANT: USE YOUR LIVE RENDER URL
-        const DASHBOARD_URL = "dashboard.html";
+      // --- ALL SCRIPT LOGIC IS SELF-CONTAINED HERE ---
 
-        // --- View and Form Management ---
-        const views = {
-          login: document.getElementById("login-view"),
-          register: document.getElementById("register-view"),
-        };
-        const forms = {
-          login: document.getElementById("login-form"),
-          register: document.getElementById("register-form"),
-        };
-        const messageBoxes = {
-          login: document.getElementById("login-message-box"),
-          register: document.getElementById("register-message-box"),
-        };
+      const DASHBOARD_URL = "dashboard.html";
+      const SUPABASE_URL = "https://zbihvccqizuewrnkhaho.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaWh2Y2NxaXp1ZXdybmtoYWhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODE0ODcsImV4cCI6MjA3ODk1NzQ4N30.o5q-SZuq-3IZzL5eprub6GyFSJXTI7R6xkJ3-BpDceY";
 
-        document
-          .getElementById("show-register-view")
-          .addEventListener("click", (e) => {
-            e.preventDefault();
-            switchView("register");
-          });
-        document
-          .getElementById("show-login-view")
-          .addEventListener("click", (e) => {
-            e.preventDefault();
-            switchView("login");
-          });
+      // --- Initialize Supabase Client ---
+      const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
 
-        // --- HELPER FUNCTIONS ---
-        function switchView(viewName) {
-          Object.values(views).forEach((v) => (v.style.display = "none"));
-          views[viewName].style.display = "block";
+      // --- DOM Elements ---
+      const loginView = document.getElementById("login-view");
+      const registerView = document.getElementById("register-view");
+      const loginForm = document.getElementById("login-form");
+      const registerForm = document.getElementById("register-form");
+      const showRegisterLink = document.getElementById("show-register-view");
+      const showLoginLink = document.getElementById("show-login-view");
+
+      // --- HELPER FUNCTIONS ---
+      function switchView(viewName) {
+        if (viewName === "register") {
+          loginView.style.display = "none";
+          registerView.style.display = "block";
+        } else {
+          registerView.style.display = "none";
+          loginView.style.display = "block";
         }
+      }
 
-        function displayMessage(view, message, type = "error") {
-          const box = messageBoxes[view];
-          box.textContent = message;
-          box.className = `message-box ${type}`;
-        }
+      function displayMessage(view, message, type = "error") {
+        const box = document.getElementById(`${view}-message-box`);
+        box.textContent = message;
+        box.className = `message-box ${type}`;
+      }
 
-        function setLoadingState(form, isLoading) {
-          const button = form.querySelector("button");
-          button.disabled = isLoading;
-          button.textContent = isLoading
-            ? "Verifying..."
-            : form.id === "login-form"
-            ? "Login"
-            : "Create Account";
-        }
+      function setLoadingState(form, isLoading) {
+        const button = form.querySelector("button");
+        button.disabled = isLoading;
+        button.textContent = isLoading
+          ? "Verifying..."
+          : form.id === "login-form"
+          ? "Login"
+          : "Create Account";
+      }
 
-        function isValidEmail(email) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
+      // --- EVENT LISTENERS ---
 
-        // --- REGISTRATION LOGIC ---
-        forms.register.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const email = document.getElementById("register-email").value;
-          const password = document.getElementById("register-password").value;
+      // Listener to switch to the registration form
+      showRegisterLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        switchView("register");
+      });
 
-          if (!isValidEmail(email))
-            return displayMessage(
-              "register",
-              "Please enter a valid email address."
-            );
-          if (password.length < 8)
-            return displayMessage(
-              "register",
-              "Password must be at least 8 characters long."
-            );
+      // Listener to switch back to the login form
+      showLoginLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        switchView("login");
+      });
 
-          setLoadingState(forms.register, true);
-          try {
-            const res = await fetch(`${API_URL}/register`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
+      // Listener for the registration form submission
+      registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("register-email").value;
+        const password = document.getElementById("register-password").value;
 
-            displayMessage(
-              "register",
-              "Success! You can now log in.",
-              "success"
-            );
-            forms.register.reset();
-          } catch (err) {
-            displayMessage(
-              "register",
-              err.message || "An unknown error occurred."
-            );
-          } finally {
-            setLoadingState(forms.register, false);
-          }
+        setLoadingState(registerForm, true);
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: email,
+          password: password,
         });
 
-        // --- LOGIN LOGIC ---
-        forms.login.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const email = document.getElementById("login-email").value;
-          const password = document.getElementById("login-password").value;
+        if (error) {
+          displayMessage("register", error.message);
+        } else {
+          displayMessage("register", "Success! You can now log in.", "success");
+          registerForm.reset();
+        }
+        setLoadingState(registerForm, false);
+      });
 
-          if (!email || !password)
-            return displayMessage(
-              "login",
-              "Please enter both email and password."
-            );
+      // Listener for the login form submission
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
 
-          setLoadingState(forms.login, true);
-          try {
-            const res = await fetch(`${API_URL}/login`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
-
-            localStorage.setItem("authToken", data.token);
-            window.location.href = DASHBOARD_URL;
-          } catch (err) {
-            displayMessage(
-              "login",
-              err.message || "An unknown error occurred."
-            );
-          } finally {
-            setLoadingState(forms.login, false);
-          }
+        setLoadingState(loginForm, true);
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password,
         });
+
+        if (error) {
+          displayMessage("login", error.message);
+        } else {
+          window.location.href = DASHBOARD_URL;
+        }
+        setLoadingState(loginForm, false);
       });
     </script>
   </body>

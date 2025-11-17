@@ -12,7 +12,6 @@
     />
     <title>Activation | TikTok Coin Tool</title>
     <style>
-      /* YOUR EXACT UI STYLES - UNCHANGED */
       :root {
         --primary-color: #fe2c55;
         --primary-hover-color: #e42a4f;
@@ -159,12 +158,56 @@
       }
     </style>
 
+    <!-- Load the Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- =============================================================== -->
+    <!-- THIS IS THE CRITICAL FIX -->
+    <!-- The Supabase client is now defined ONCE in a central place -->
+    <!-- so that all other scripts on the page can use it. -->
+    <!-- =============================================================== -->
     <script>
-      // --- GUARD SCRIPT FOR DASHBOARD ---
-      const token = localStorage.getItem("authToken");
-      if (!token) {
-        window.location.replace("auth.html");
-      }
+      const AUTH_URL = "index.html";
+      const HOME_PAGE_URL = "home.html";
+      const SUPABASE_URL = "https://zbihvccqizuewrnkhaho.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaWh2Y2NxaXp1ZXdybmtoYWhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODE0ODcsImV4cCI6MjA3ODk1NzQ4N30.o5q-SZuq-3IZzL5eprub6GyFSJXTI7R6xkJ3-BpDceY";
+
+      const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+      // --- GUARD SCRIPT - This runs before the page content loads ---
+      (async function guard() {
+        const {
+          data: { session },
+        } = await supabaseClient.auth.getSession();
+        if (!session) {
+          window.location.replace(AUTH_URL);
+          return;
+        }
+
+        const {
+          data: { user },
+        } = await supabaseClient.auth.getUser();
+        if (!user) {
+          // Double check for safety
+          window.location.replace(AUTH_URL);
+          return;
+        }
+
+        // Check if key is already active. If yes, redirect to the final app page.
+        const { data: activeKey } = await supabaseClient
+          .from("keys")
+          .select("id", { count: "exact" }) // More efficient to just count
+          .eq("activated_by_user_id", user.id)
+          .gt("expiration_timestamp", new Date().toISOString());
+
+        if (activeKey && activeKey.length > 0) {
+          window.location.replace(HOME_PAGE_URL);
+        }
+      })();
     </script>
   </head>
   <body>
@@ -198,76 +241,67 @@
     </div>
 
     <script>
+      // This script runs AFTER the guard has run and uses the SAME supabaseClient.
       document.addEventListener("DOMContentLoaded", async () => {
-        const API_URL = "https://tiktok-coin-api.onrender.com/api"; // <-- IMPORTANT: USE YOUR LIVE RENDER URL
-        const HOME_PAGE_URL = "home.html";
-        const token = localStorage.getItem("authToken");
-
         const activationForm = document.getElementById("activation-form");
         const keyInput = document.getElementById("serial-key-input");
         const messageBox = document.getElementById("message-box");
         const userEmailEl = document.getElementById("user-email");
-        const subtitleText = document.getElementById("subtitle-text");
         const logoutButton = document.getElementById("logout-button");
 
-        // --- First, check status. If already active, redirect to home.html immediately ---
-        try {
-          const res = await fetch(`${API_URL}/status`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          if (res.status === 401 || res.status === 403)
-            throw new Error("Invalid Token");
-
-          const data = await res.json();
-          userEmailEl.textContent = data.email;
-
-          if (data.isActivated) {
-            // User already has an active key, they don't belong here. Send to home.
-            window.location.replace(HOME_PAGE_URL);
-            return; // Stop running the rest of the script
-          }
-
-          // If we get a message in the URL, display it (e.g., from an expired session)
-          const urlParams = new URLSearchParams(window.location.search);
-          if (urlParams.has("message")) {
-            subtitleText.textContent = urlParams.get("message");
-          }
-        } catch (err) {
-          localStorage.removeItem("authToken");
-          window.location.replace("index.html");
+        const {
+          data: { user },
+        } = await supabaseClient.auth.getUser();
+        if (user) {
+          userEmailEl.textContent = user.email;
         }
 
-        // --- Activation Form Logic ---
         activationForm.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const key = keyInput.value.trim();
+          const key = keyInput.value.trim().toUpperCase();
           if (!key) return;
 
           messageBox.textContent = "Verifying key...";
           messageBox.className = "";
 
           try {
-            const res = await fetch(`${API_URL}/activate`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({ key }),
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
+            const { data: keyData, error: keyError } = await supabaseClient
+              .from("keys")
+              .select("*")
+              .eq("key_string", key)
+              .single();
 
-            // SUCCESS! Redirect to the final home page
-            window.location.replace(HOME_PAGE_URL);
+            if (!keyData || keyError) {
+              throw new Error("Invalid serial key.");
+            }
+            if (keyData.is_used) {
+              throw new Error("This key has already been used.");
+            }
+
+            const expiration = new Date(Date.now() + keyData.duration_ms);
+            const { error: updateError } = await supabaseClient
+              .from("keys")
+              .update({
+                is_used: true,
+                activated_by_user_id: user.id,
+                expiration_timestamp: expiration.toISOString(),
+              })
+              .eq("key_string", key);
+
+            if (updateError) {
+              console.error("Supabase Update Error:", updateError); // Log the real error for debugging
+              throw new Error("Could not activate key. Please try again.");
+            }
+
+            window.location.replace("home.html");
           } catch (err) {
             messageBox.textContent = err.message;
+            messageBox.className = "error";
           }
         });
 
-        // --- Logout Logic ---
-        logoutButton.addEventListener("click", () => {
-          localStorage.removeItem("authToken");
+        logoutButton.addEventListener("click", async () => {
+          await supabaseClient.auth.signOut();
           window.location.href = "index.html";
         });
       });

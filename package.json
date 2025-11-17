@@ -18,5 +18,8 @@
     "url": "https://github.com/Martinschris671/folder/issues"
   },
   "homepage": "https://github.com/Martinschris671/folder#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.81.1"
+  }
 }
