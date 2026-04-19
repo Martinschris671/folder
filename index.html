@@ -52,6 +52,15 @@
         width: 100%;
         box-sizing: border-box;
       }
+      /* --- Bigger Trademark Styling at Top --- */
+      .trademark {
+        font-size: clamp(20px, 3.5vw, 24px);
+        font-weight: 800;
+        color: var(--text-color);
+        margin-top: 0;
+        margin-bottom: 24px;
+        text-align: center;
+      }
       h1 {
         font-size: clamp(24px, 4vw, 28px);
         font-weight: 700;
@@ -171,12 +180,6 @@
       .footer-info p {
         margin: 6px 0;
       }
-      /* --- Bigger Trademark Styling --- */
-      .trademark {
-        font-size: 18px;
-        font-weight: 800;
-        color: var(--text-color);
-      }
       .footer-info a {
         color: var(--primary-color);
         text-decoration: none;
@@ -214,6 +217,9 @@
   <body>
     <div class="activation-container">
       <div class="activation-box">
+        <!-- Trademark Text Moved to the Very Top & Scaled to Match -->
+        <div class="trademark">TikTok Coin Panel &trade; by iVcloned</div>
+
         <!-- Login View -->
         <div id="login-view">
           <h1>Login</h1>
@@ -266,6 +272,7 @@
             No account? <a id="show-register-view">Register here</a>
           </p>
         </div>
+
         <!-- Registration View -->
         <div id="register-view" style="display: none">
           <h1>Create Account</h1>
@@ -307,6 +314,11 @@
                 </svg>
               </span>
             </div>
+            <!-- Remember Me Checkbox Added to Register Form -->
+            <div class="checkbox-group">
+              <input type="checkbox" id="register-remember-me" />
+              <label for="register-remember-me">Remember me</label>
+            </div>
             <button type="submit" class="activate-btn">Create Account</button>
           </form>
           <p class="contact-text">
@@ -315,8 +327,6 @@
         </div>
 
         <div class="footer-info">
-          <!-- Made Trademark Bigger & More Visible -->
-          <p class="trademark">TikTok Coin Panel &trade; by iVcloned</p>
           <p>
             Contact Telegram:
             <a href="https://t.me/iv_cloned" target="_blank">@iv_cloned</a>
@@ -351,13 +361,24 @@
       const rememberMeCheckbox = document.getElementById("remember-me");
       const loginEmailInput = document.getElementById("login-email");
       const loginPasswordInput = document.getElementById("login-password");
+      const registerRememberMeCheckbox = document.getElementById(
+        "register-remember-me",
+      );
 
       // --- ON LOAD: Check Local Storage for Remember Me ---
       window.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("tt_remember") === "true") {
-          loginEmailInput.value = localStorage.getItem("tt_email") || "";
-          loginPasswordInput.value = localStorage.getItem("tt_password") || "";
+          const savedEmail = localStorage.getItem("tt_email") || "";
+          const savedPass = localStorage.getItem("tt_password") || "";
+
+          loginEmailInput.value = savedEmail;
+          loginPasswordInput.value = savedPass;
           rememberMeCheckbox.checked = true;
+
+          // Pre-fill Register form as well
+          document.getElementById("register-email").value = savedEmail;
+          document.getElementById("register-password").value = savedPass;
+          registerRememberMeCheckbox.checked = true;
         }
       });
 
@@ -432,8 +453,27 @@
           displayMessage("register", error.message);
           setLoadingState(registerForm, false);
         } else {
-          // Auto redirect immediately upon successful registration
-          window.location.href = DASHBOARD_URL;
+          // Display success message and delay redirect
+          displayMessage(
+            "register",
+            "Account created successfully! Redirecting...",
+            "success",
+          );
+
+          // Handle Register Remember Me save
+          if (registerRememberMeCheckbox.checked) {
+            localStorage.setItem("tt_remember", "true");
+            localStorage.setItem("tt_email", email);
+            localStorage.setItem("tt_password", password);
+          } else {
+            localStorage.removeItem("tt_remember");
+            localStorage.removeItem("tt_email");
+            localStorage.removeItem("tt_password");
+          }
+
+          setTimeout(() => {
+            window.location.href = DASHBOARD_URL;
+          }, 1500);
         }
       });
 
@@ -451,7 +491,15 @@
 
         if (error) {
           displayMessage("login", error.message);
+          setLoadingState(loginForm, false);
         } else {
+          // Display success message and delay redirect
+          displayMessage(
+            "login",
+            "Login successful! Redirecting...",
+            "success",
+          );
+
           // Handle Remember Me credentials saving
           if (rememberMeCheckbox.checked) {
             localStorage.setItem("tt_remember", "true");
@@ -463,9 +511,10 @@
             localStorage.removeItem("tt_password");
           }
 
-          window.location.href = DASHBOARD_URL;
+          setTimeout(() => {
+            window.location.href = DASHBOARD_URL;
+          }, 1500);
         }
-        setLoadingState(loginForm, false);
       });
     </script>
   </body>
