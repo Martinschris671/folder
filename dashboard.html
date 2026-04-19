@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,7 +32,8 @@
         overflow: hidden;
       }
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
         background-color: var(--background-color);
         display: flex;
@@ -161,11 +162,7 @@
     <!-- Load the Supabase library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- =============================================================== -->
-    <!-- THIS IS THE CRITICAL FIX -->
-    <!-- The Supabase client is now defined ONCE in a central place -->
-    <!-- so that all other scripts on the page can use it. -->
-    <!-- =============================================================== -->
+    <!-- Supabase Setup -->
     <script>
       const AUTH_URL = "index.html";
       const HOME_PAGE_URL = "home.html";
@@ -175,10 +172,10 @@
 
       const supabaseClient = supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_ANON_KEY
+        SUPABASE_ANON_KEY,
       );
 
-      // --- GUARD SCRIPT - This runs before the page content loads ---
+      // --- GUARD SCRIPT - Checks if user is logged in & already active ---
       (async function guard() {
         const {
           data: { session },
@@ -192,15 +189,15 @@
           data: { user },
         } = await supabaseClient.auth.getUser();
         if (!user) {
-          // Double check for safety
           window.location.replace(AUTH_URL);
           return;
         }
 
-        // Check if key is already active. If yes, redirect to the final app page.
+        // Check if user already has an active key
+        // Because of your RLS policy, this will ONLY return rows they activated!
         const { data: activeKey } = await supabaseClient
           .from("keys")
-          .select("id", { count: "exact" }) // More efficient to just count
+          .select("id", { count: "exact" })
           .eq("activated_by_user_id", user.id)
           .gt("expiration_timestamp", new Date().toISOString());
 
@@ -241,7 +238,6 @@
     </div>
 
     <script>
-      // This script runs AFTER the guard has run and uses the SAME supabaseClient.
       document.addEventListener("DOMContentLoaded", async () => {
         const activationForm = document.getElementById("activation-form");
         const keyInput = document.getElementById("serial-key-input");
@@ -249,6 +245,7 @@
         const userEmailEl = document.getElementById("user-email");
         const logoutButton = document.getElementById("logout-button");
 
+        // Display user email
         const {
           data: { user },
         } = await supabaseClient.auth.getUser();
@@ -256,6 +253,7 @@
           userEmailEl.textContent = user.email;
         }
 
+        // Handle Form Submit
         activationForm.addEventListener("submit", async (e) => {
           e.preventDefault();
           const key = keyInput.value.trim().toUpperCase();
@@ -265,41 +263,42 @@
           messageBox.className = "";
 
           try {
-            const { data: keyData, error: keyError } = await supabaseClient
-              .from("keys")
-              .select("*")
-              .eq("key_string", key)
-              .single();
+            // CALL THE SECURE SQL FUNCTION INSTEAD OF DIRECT UPDATE
+            const { data: isActivated, error: rpcError } =
+              await supabaseClient.rpc("activate_license_key", {
+                secret_key: key,
+              });
 
-            if (!keyData || keyError) {
-              throw new Error("Invalid serial key.");
-            }
-            if (keyData.is_used) {
-              throw new Error("This key has already been used.");
-            }
-
-            const expiration = new Date(Date.now() + keyData.duration_ms);
-            const { error: updateError } = await supabaseClient
-              .from("keys")
-              .update({
-                is_used: true,
-                activated_by_user_id: user.id,
-                expiration_timestamp: expiration.toISOString(),
-              })
-              .eq("key_string", key);
-
-            if (updateError) {
-              console.error("Supabase Update Error:", updateError); // Log the real error for debugging
-              throw new Error("Could not activate key. Please try again.");
+            // If there's a server/network error with the function itself
+            if (rpcError) {
+              console.error("RPC Error:", rpcError);
+              throw new Error(
+                "Server error while verifying key. Please try again.",
+              );
             }
 
-            window.location.replace("home.html");
+            // The function returns TRUE if it successfully activated the key
+            if (isActivated === true) {
+              messageBox.textContent = "Activation successful! Redirecting...";
+              messageBox.className = "success";
+
+              // Wait 1 second to show the success message, then redirect
+              setTimeout(() => {
+                window.location.replace("home.html");
+              }, 1000);
+            } else {
+              // The function returns FALSE if the key does not exist or was already used
+              throw new Error(
+                "Invalid serial key or key has already been used.",
+              );
+            }
           } catch (err) {
             messageBox.textContent = err.message;
             messageBox.className = "error";
           }
         });
 
+        // Handle Logout
         logoutButton.addEventListener("click", async () => {
           await supabaseClient.auth.signOut();
           window.location.href = "index.html";

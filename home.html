@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,24 +8,73 @@
 
     <!-- We need to load the Supabase library here too -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- SECURITY SCRIPT -->
     <script>
+      const AUTH_URL = "index.html";
+      const DASHBOARD_URL = "dashboard.html";
       const SUPABASE_URL = "https://zbihvccqizuewrnkhaho.supabase.co";
       const SUPABASE_ANON_KEY =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaWh2Y2NxaXp1ZXdybmtoYWhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzODE0ODcsImV4cCI6MjA3ODk1NzQ4N30.o5q-SZuq-3IZzL5eprub6GyFSJXTI7R6xkJ3-BpDceY";
-      const AUTH_URL = "index.html";
 
-      const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
 
-      // This self-invoking async function checks for a valid session
       (async function guard() {
+        // 1. CHECK LOGIN SESSION
         const {
           data: { session },
-        } = await supabase.auth.getSession();
+        } = await supabaseClient.auth.getSession();
         if (!session) {
-          // No logged-in user, redirect to login page
           window.location.replace(AUTH_URL);
+          return;
         }
-        // If a session exists, the script continues and the page loads.
+
+        const {
+          data: { user },
+        } = await supabaseClient.auth.getUser();
+
+        // 2. CHECK FOR VALID, UNEXPIRED KEY
+        // We select the expiration_timestamp to calculate remaining time
+        const { data: activeKeys, error } = await supabaseClient
+          .from("keys")
+          .select("expiration_timestamp")
+          .eq("activated_by_user_id", user.id)
+          .gt("expiration_timestamp", new Date().toISOString()) // Must be in the future
+          .order("expiration_timestamp", { ascending: false }) // Get the latest one
+          .limit(1);
+
+        // 3. IF NO VALID KEY, REDIRECT TO DASHBOARD
+        if (!activeKeys || activeKeys.length === 0) {
+          // Key is missing or expired
+          window.location.replace(DASHBOARD_URL);
+          return;
+        }
+
+        // 4. SET REAL-TIME EXPIRATION TIMER
+        // This ensures if the key expires WHILE they are using the tool, they get kicked out.
+        const expireDate = new Date(activeKeys[0].expiration_timestamp);
+        const now = new Date();
+        const timeUntilExpiry = expireDate.getTime() - now.getTime();
+
+        console.log(
+          `Key is valid. Time remaining: ${Math.floor(
+            timeUntilExpiry / 1000,
+          )} seconds.`,
+        );
+
+        // Determine if we should set a timeout (Max timeout in JS is ~24 days)
+        if (timeUntilExpiry > 0 && timeUntilExpiry < 2147483647) {
+          setTimeout(() => {
+            alert("Your license key has expired.");
+            window.location.replace(DASHBOARD_URL);
+          }, timeUntilExpiry);
+        }
+
+        // If code reaches here, user is allowed.
+        // You can remove the 'loading' overlay here if you have one.
       })();
     </script>
     <link
@@ -70,7 +119,8 @@
         font-family: TikTokFont;
         font-style: normal;
         font-weight: 400;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Regular.woff?_default_font=1&v=2)
             format("woff"),
@@ -83,7 +133,8 @@
         font-family: TikTokFont;
         font-style: normal;
         font-weight: 500;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Semibold.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
             format("woff"),
@@ -96,7 +147,8 @@
         font-family: TikTokFont;
         font-style: normal;
         font-weight: 700;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokFont-Bold.woff?_default_font=1&v=2)
             format("woff"),
@@ -109,7 +161,8 @@
         font-family: TikTokDisplayFont;
         font-style: normal;
         font-weight: 400;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Regular.woff?_default_font=1&v=2)
             format("woff"),
@@ -122,7 +175,8 @@
         font-family: TikTokDisplayFont;
         font-style: normal;
         font-weight: 500;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Semibold.woff?_default_font=1&v=2)
             format("woff"),
@@ -135,7 +189,8 @@
         font-family: TikTokDisplayFont;
         font-style: normal;
         font-weight: 700;
-        src: url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff2?_default_font=1&v=2)
+        src:
+          url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff2?_default_font=1&v=2)
             format("woff2"),
           url(https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/tiktok_fonts/TikTokDisplayFont-Bold.woff?_default_font=1&v=2)
             format("woff"),
@@ -145,14 +200,16 @@
 
       /* Root and Body Styles */
       :root {
-        --tux-web-font-display: "TikTokDisplayFont", system-ui, -apple-system,
-          Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Roboto",
-          "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol", "Noto Color Emoji";
-        --tux-web-font-body: "TikTokFont", system-ui, -apple-system, Segoe UI,
-          Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Roboto",
-          "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol", "Noto Color Emoji";
+        --tux-web-font-display:
+          "TikTokDisplayFont", system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif, "Roboto", "Noto Sans",
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+        --tux-web-font-body:
+          "TikTokFont", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, sans-serif, "Roboto", "Noto Sans", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
         --TextPrimary: #000;
         --header-height: 52px;
         --footer-height: 128.2px;
@@ -182,7 +239,9 @@
 
       /* TUXNavBar Base Styles */
       .TUXNavBar * {
-        transition: color 0.1s ease, background-color 0.1s ease;
+        transition:
+          color 0.1s ease,
+          background-color 0.1s ease;
       }
 
       /* Utility Classes */
@@ -481,7 +540,7 @@
                       class="flex justify-center items-center text-color-UIShapeSuccess4 px-16"
                       style="
                         gap: 1.71px;
-                        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE1OSAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj4KPHBhdGggZD0iTTAuNSAwSDE1OC41TDE1Mi42NjIgMTIuNDA2NEMxNTEuMzQyIDE1LjIxMDMgMTQ4LjUyMiAxNyAxNDUuNDIzIDE3SDEzLjU3NjhDMTAuNDc3OSAxNyA3LjY1NzggMTUuMjEwMyA2LjMzODI5IDEyLjQwNjRMMC41IDBaIiBmaWxsPSIjMEJFMDlCIiBmaWxsLW9wYWNpdHk9IjAuMTIiLz4KPC9zdmc+Cg==');
+                        background-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE1OSAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj4KPHBhdGggZD0iTTAuNSAwSDE1OC41TDE1Mi42NjIgMTIuNDA2NEMxNTEuMzQyIDE1LjIxMDMgMTQ4LjUyMiAxNyAxNDUuNDIzIDE3SDEzLjU3NjhDMTAuNDc3OSAxNyA3LjY1NzggMTUuMjEwMyA2LjMzODI5IDEyLjQwNjRMMC41IDBaIiBmaWxsPSIjMEJFMDlCIiBmaWxsLW9wYWNpdHk9IjAuMTIiLz4KPC9zdmc+Cg==&quot;);
                         background-size: 100% 100%;
                         background-repeat: no-repeat;
                       "
@@ -1709,7 +1768,7 @@
                           data-test-tag="tux-avatar"
                           class="rounded-full"
                           style="
-                            background-image: url('');
+                            background-image: url(&quot;&quot;);
                             background-size: cover;
                             background-repeat: no-repeat;
                             background-position: 50% 50%;
