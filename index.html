@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,7 +28,8 @@
         overflow: hidden;
       }
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, sans-serif;
         background-color: var(--background-color);
         display: flex;
@@ -65,16 +66,53 @@
       }
       .input-group {
         margin-bottom: 16px;
+        position: relative;
       }
-      .input-group input {
+      .input-group input[type="email"],
+      .input-group input[type="password"],
+      .input-group input[type="text"] {
         width: 100%;
         padding: 14px;
+        padding-right: 45px;
         border: 1px solid #dcdfe6;
         border-radius: 4px;
         font-size: 16px;
         box-sizing: border-box;
         background-color: var(--input-background);
         text-align: left;
+      }
+      .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6b6b6b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .toggle-password:hover {
+        color: var(--text-color);
+      }
+      /* --- Added Remember Me Styling --- */
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      .checkbox-group input {
+        margin-right: 8px;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
+      .checkbox-group label {
+        font-size: 14px;
+        color: var(--text-color);
+        cursor: pointer;
+        user-select: none;
       }
       .activate-btn {
         width: 100%;
@@ -124,6 +162,30 @@
       .message-box.success {
         color: var(--success-color);
       }
+      .footer-info {
+        margin-top: 24px;
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+      }
+      .footer-info p {
+        margin: 6px 0;
+      }
+      /* --- Bigger Trademark Styling --- */
+      .trademark {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--text-color);
+      }
+      .footer-info a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer-info a:hover {
+        text-decoration: underline;
+      }
+
       @media (max-width: 480px) {
         body {
           background-color: var(--container-background);
@@ -173,6 +235,30 @@
                 placeholder="Password"
                 required
               />
+              <span
+                class="toggle-password"
+                onclick="togglePassword('login-password', this)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </span>
+            </div>
+            <!-- Remember Me Checkbox -->
+            <div class="checkbox-group">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
             </div>
             <button type="submit" class="activate-btn">Login</button>
           </form>
@@ -201,11 +287,39 @@
                 placeholder="Password (min. 8 characters)"
                 required
               />
+              <span
+                class="toggle-password"
+                onclick="togglePassword('register-password', this)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </span>
             </div>
             <button type="submit" class="activate-btn">Create Account</button>
           </form>
           <p class="contact-text">
             Already have an account? <a id="show-login-view">Login here</a>
+          </p>
+        </div>
+
+        <div class="footer-info">
+          <!-- Made Trademark Bigger & More Visible -->
+          <p class="trademark">TikTok Coin Panel &trade; by iVcloned</p>
+          <p>
+            Contact Telegram:
+            <a href="https://t.me/iv_cloned" target="_blank">@iv_cloned</a>
           </p>
         </div>
       </div>
@@ -224,7 +338,7 @@
       // --- Initialize Supabase Client ---
       const supabaseClient = supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_ANON_KEY
+        SUPABASE_ANON_KEY,
       );
 
       // --- DOM Elements ---
@@ -234,8 +348,34 @@
       const registerForm = document.getElementById("register-form");
       const showRegisterLink = document.getElementById("show-register-view");
       const showLoginLink = document.getElementById("show-login-view");
+      const rememberMeCheckbox = document.getElementById("remember-me");
+      const loginEmailInput = document.getElementById("login-email");
+      const loginPasswordInput = document.getElementById("login-password");
+
+      // --- ON LOAD: Check Local Storage for Remember Me ---
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("tt_remember") === "true") {
+          loginEmailInput.value = localStorage.getItem("tt_email") || "";
+          loginPasswordInput.value = localStorage.getItem("tt_password") || "";
+          rememberMeCheckbox.checked = true;
+        }
+      });
 
       // --- HELPER FUNCTIONS ---
+      function togglePassword(inputId, iconElement) {
+        const input = document.getElementById(inputId);
+        const eyeOpen = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+        const eyeClosed = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+
+        if (input.type === "password") {
+          input.type = "text";
+          iconElement.innerHTML = eyeClosed;
+        } else {
+          input.type = "password";
+          iconElement.innerHTML = eyeOpen;
+        }
+      }
+
       function switchView(viewName) {
         if (viewName === "register") {
           loginView.style.display = "none";
@@ -258,8 +398,8 @@
         button.textContent = isLoading
           ? "Verifying..."
           : form.id === "login-form"
-          ? "Login"
-          : "Create Account";
+            ? "Login"
+            : "Create Account";
       }
 
       // --- EVENT LISTENERS ---
@@ -290,18 +430,18 @@
 
         if (error) {
           displayMessage("register", error.message);
+          setLoadingState(registerForm, false);
         } else {
-          displayMessage("register", "Success! You can now log in.", "success");
-          registerForm.reset();
+          // Auto redirect immediately upon successful registration
+          window.location.href = DASHBOARD_URL;
         }
-        setLoadingState(registerForm, false);
       });
 
       // Listener for the login form submission
       loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const email = document.getElementById("login-email").value;
-        const password = document.getElementById("login-password").value;
+        const email = loginEmailInput.value;
+        const password = loginPasswordInput.value;
 
         setLoadingState(loginForm, true);
         const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -312,6 +452,17 @@
         if (error) {
           displayMessage("login", error.message);
         } else {
+          // Handle Remember Me credentials saving
+          if (rememberMeCheckbox.checked) {
+            localStorage.setItem("tt_remember", "true");
+            localStorage.setItem("tt_email", email);
+            localStorage.setItem("tt_password", password);
+          } else {
+            localStorage.removeItem("tt_remember");
+            localStorage.removeItem("tt_email");
+            localStorage.removeItem("tt_password");
+          }
+
           window.location.href = DASHBOARD_URL;
         }
         setLoadingState(loginForm, false);
