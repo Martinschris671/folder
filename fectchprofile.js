@@ -40,8 +40,8 @@
     if (!username || username.length < 1) return null;
 
     // ================== THE ONLY CHANGE IS HERE ==================
-    const apiUrl = `https://tiktok-scraper-api-8824.onrender.com/scrape?username=${encodeURIComponent(
-      username
+    const apiUrl = `https://tiktok-scraper-backend-68ns.onrender.com/scrape?username=${encodeURIComponent(
+      username,
     )}`;
     // =============================================================
 
@@ -59,7 +59,7 @@
         result.data.unique_id === "No unique_id found"
       ) {
         console.log(
-          "Validation failed: Server content indicates no user found."
+          "Validation failed: Server content indicates no user found.",
         );
         return null;
       }
