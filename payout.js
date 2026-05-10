@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- 1. SELECT ALL NECESSARY ELEMENTS ---
-  const paymentCheckbox = document.getElementById("mastercard-checkbox");
+  // Select all payment inputs instead of just Mastercard
+  const paymentInputs = document.querySelectorAll(
+    'input[name="payment-method"]',
+  );
+
   const payNowBtn = document.getElementById("pay-now-btn");
   const loadingOverlay = document.getElementById("loading-overlay");
   const successOverlay = document.getElementById("success-overlay");
@@ -13,14 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     "success-total-coins-final",
   );
 
-  // NEW: Elements for nickname synchronization
+  // Elements for nickname synchronization
   const previewNickname = document.getElementById("preview-nickname");
   const successTargetNickname = document.getElementById(
     "success-target-nickname",
   );
 
   if (
-    !paymentCheckbox ||
+    paymentInputs.length === 0 || // Safety check for new inputs
     !payNowBtn ||
     !loadingOverlay ||
     !successOverlay ||
@@ -34,7 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 2. DEFINE CORE FUNCTIONS ---
 
   const updateButtonState = () => {
-    if (paymentCheckbox.checked) {
+    // Check if ANY of the payment methods are selected
+    const isAnyChecked = Array.from(paymentInputs).some(
+      (input) => input.checked,
+    );
+
+    if (isAnyChecked) {
       payNowBtn.disabled = false;
       payNowBtn.setAttribute("aria-disabled", "false");
       payNowBtn.classList.remove("TUXButton--disabled");
@@ -126,7 +135,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // --- 3. ATTACH EVENT LISTENERS ---
-  paymentCheckbox.addEventListener("change", updateButtonState);
+
+  // Ensure exclusivity (acts like radio buttons while keeping your checkbox type strict)
+  paymentInputs.forEach((input) => {
+    input.addEventListener("change", (e) => {
+      if (e.target.checked) {
+        paymentInputs.forEach((otherInput) => {
+          if (otherInput !== e.target) otherInput.checked = false;
+        });
+      }
+      updateButtonState();
+    });
+  });
+
   payNowBtn.addEventListener("click", processPayment);
 
   // Close triggers: 'X' and 'Go back' buttons
@@ -135,5 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
     goBackBtn.addEventListener("click", hideSuccessOverlay);
   }
 
+  // Initialize the correct button state on load
   updateButtonState();
 });

@@ -1893,11 +1893,11 @@
                         </div>
                       </div>
                     </div>
-                    <!-- Replicated Component with Checkbox -->
+                    <!-- Mastercard Component (Selected by default) -->
                     <label
                       for="mastercard-checkbox"
                       class="w-full no-select"
-                      style="cursor: pointer"
+                      style="cursor: pointer; display: block"
                     >
                       <div class="flex justify-between items-center w-full">
                         <!-- Left side: Icon and Text -->
@@ -1918,9 +1918,164 @@
                         </div>
                         <div class="checkbox-container">
                           <div class="checkbox-custom">
+                            <!-- Added "checked" attribute here -->
                             <input
                               type="checkbox"
                               id="mastercard-checkbox"
+                              name="payment-method"
+                              class="checkbox-input"
+                              checked
+                            />
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-outside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="7.25"
+                                stroke="currentColor"
+                                fill="transparent"
+                                stroke-width="1.5"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-inside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="4.75"
+                                stroke="currentColor"
+                                fill="var(--ui-image-overlay-white)"
+                                stroke-width="3.6"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-disabled"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="6.5"
+                                stroke="currentColor"
+                                fill="var(--ui-shape-neutral-4)"
+                                stroke-width="0"
+                              ></circle>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Apple Pay Component -->
+                    <label
+                      for="applepay-checkbox"
+                      class="w-full no-select"
+                      style="cursor: pointer; display: block; margin-top: 16px"
+                    >
+                      <div class="flex justify-between items-center w-full">
+                        <div class="flex items-center">
+                          <div class="me-8">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
+                              alt="APPLEPAY"
+                              class="h-16 w-26 me-4"
+                              data-e2e="wallet-payment-icon-APPLEPAY"
+                              style="
+                                opacity: 1;
+                                min-width: 26px;
+                                height: 26px;
+                                object-fit: contain;
+                              "
+                            />
+                          </div>
+                          <span
+                            class="H4-Regular font-normal text-color-TextPrimary"
+                            >Apple Pay</span
+                          >
+                        </div>
+                        <div class="checkbox-container">
+                          <div class="checkbox-custom">
+                            <input
+                              type="checkbox"
+                              id="applepay-checkbox"
+                              name="payment-method"
+                              class="checkbox-input"
+                            />
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-outside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="7.25"
+                                stroke="currentColor"
+                                fill="transparent"
+                                stroke-width="1.5"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-inside"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="4.75"
+                                stroke="currentColor"
+                                fill="var(--ui-image-overlay-white)"
+                                stroke-width="3.6"
+                              ></circle>
+                            </svg>
+                            <svg
+                              viewBox="0 0 16 16"
+                              class="checkbox-custom-circle-disabled"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="6.5"
+                                stroke="currentColor"
+                                fill="var(--ui-shape-neutral-4)"
+                                stroke-width="0"
+                              ></circle>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- PayPal Component -->
+                    <label
+                      for="paypal-checkbox"
+                      class="w-full no-select"
+                      style="cursor: pointer; display: block; margin-top: 16px"
+                    >
+                      <div class="flex justify-between items-center w-full">
+                        <div class="flex items-center">
+                          <div class="me-8">
+                            <img
+                              src="https://lf16-co.g-p-static.com/obj/pipo-sgcompliance/sky/paypal-light_839c52.png"
+                              alt="PAYPAL"
+                              class="h-16 w-26 me-4"
+                              data-e2e="wallet-payment-icon-PAYPAL"
+                              style="opacity: 1; min-width: 26px"
+                            />
+                          </div>
+                          <span
+                            class="H4-Regular font-normal text-color-TextPrimary"
+                            >PayPal</span
+                          >
+                        </div>
+                        <div class="checkbox-container">
+                          <div class="checkbox-custom">
+                            <input
+                              type="checkbox"
+                              id="paypal-checkbox"
                               name="payment-method"
                               class="checkbox-input"
                             />
