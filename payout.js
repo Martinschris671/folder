@@ -1,32 +1,17 @@
-/**
- * =================================================================================
- * Advanced Payment Flow Controller (V3 - With Final UI)
- *
- * This script orchestrates the final payment process.
- * It is engineered to:
- * 1.  Enable/disable the 'Pay now' button based on payment method selection.
- * 2.  Trigger a professional, animated loading overlay immediately on click.
- * 3.  After the processing delay, smoothly transition to the final, high-fidelity
- *     success screen, populated with the correct purchase data.
- * =================================================================================
- */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. SELECT ALL NECESSARY ELEMENTS (Updated Selectors) ---
-
+  // --- 1. SELECT ALL NECESSARY ELEMENTS ---
   const paymentCheckbox = document.getElementById("mastercard-checkbox");
   const payNowBtn = document.getElementById("pay-now-btn");
   const loadingOverlay = document.getElementById("loading-overlay");
   const successOverlay = document.getElementById("success-overlay");
 
-  // UPDATED: This now targets the new 'X' button in the final UI.
   const closeSuccessBtn = document.getElementById("close-success-final-btn");
+  // Select the "Go back" button
+  const goBackBtn = document.querySelector(".success-go-back-btn");
 
   const purchaseCoinNumDisplay = document.getElementById("purchase-coin-num");
-
-  // UPDATED: This now targets the new 'strong' tag in the final UI.
   const successTotalCoins = document.getElementById(
-    "success-total-coins-final"
+    "success-total-coins-final",
   );
 
   if (
@@ -37,13 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     !closeSuccessBtn ||
     !purchaseCoinNumDisplay
   ) {
-    console.error(
-      "Payment Flow Controller: One or more critical elements are missing. Aborting script."
-    );
+    console.error("Payment Flow Controller: Missing elements.");
     return;
   }
 
-  // --- 2. DEFINE CORE FUNCTIONS (No changes here) ---
+  // --- 2. DEFINE CORE FUNCTIONS ---
 
   const updateButtonState = () => {
     if (paymentCheckbox.checked) {
@@ -69,17 +52,41 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingOverlay.classList.remove("is-active");
   };
 
+  /**
+   * GSAP ANIMATION: SLIDE UP
+   */
   const showSuccessOverlay = () => {
-    // The new success overlay uses a different animation class on its main wrapper.
     if (!successOverlay) return;
-    successOverlay.classList.add("is-active");
+
+    // Ensure it starts from the bottom before animating
+    gsap.set(successOverlay, { y: "100%", opacity: 1, visibility: "visible" });
+
+    gsap.to(successOverlay, {
+      y: "0%",
+      duration: 0.5,
+      ease: "power3.out",
+      onStart: () => {
+        if (typeof pf_startAdvancedAnimation === "function")
+          pf_startAdvancedAnimation();
+      },
+    });
   };
 
+  /**
+   * GSAP ANIMATION: SLIDE DOWN
+   */
   const hideSuccessOverlay = () => {
     if (!successOverlay) return;
-    successOverlay.classList.remove("is-active");
-    // ▼▼▼ ADD THIS ONE LINE ▼▼▼
-    pf_resetAnimation(); // This ensures the animation is ready for the next time.
+
+    gsap.to(successOverlay, {
+      y: "100%",
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        gsap.set(successOverlay, { visibility: "hidden", opacity: 0 });
+        if (typeof pf_resetAnimation === "function") pf_resetAnimation();
+      },
+    });
   };
 
   const processPayment = () => {
@@ -87,9 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (purchaseCoinNumDisplay) {
       const rawText = purchaseCoinNumDisplay.textContent || "";
       const match = rawText.match(/[\d,]+/);
-      if (match) {
-        totalCoins = match[0];
-      }
+      if (match) totalCoins = match[0];
     }
 
     showLoadingOverlay();
@@ -97,23 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const processingTime = 3500;
     setTimeout(() => {
       hideLoadingOverlay();
-
       setTimeout(() => {
-        // The logic remains the same, it just targets the new element.
         successTotalCoins.textContent = totalCoins;
         showSuccessOverlay();
-        // ▼▼▼ ADD THIS ONE LINE ▼▼▼
-        pf_startAdvancedAnimation(); // This triggers the new animation sequence.
       }, 300);
     }, processingTime);
   };
 
-  // --- 3. ATTACH EVENT LISTENERS (No changes here) ---
-
+  // --- 3. ATTACH EVENT LISTENERS ---
   paymentCheckbox.addEventListener("change", updateButtonState);
   payNowBtn.addEventListener("click", processPayment);
-  closeSuccessBtn.addEventListener("click", hideSuccessOverlay);
 
-  // --- 4. INITIALIZATION (No changes here) ---
+  // Close triggers
+  closeSuccessBtn.addEventListener("click", hideSuccessOverlay);
+  if (goBackBtn) {
+    goBackBtn.addEventListener("click", hideSuccessOverlay);
+  }
+
   updateButtonState();
 });

@@ -13,8 +13,7 @@
 
   // --- NEW: A self-contained SVG placeholder for the avatar ---
   // This Data URI is a lightweight, generic user icon that will be used when a profile isn't found.
-  const PLACEHOLDER_AVATAR_SVG =
-    "https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1594805258216454~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=2ea1e4d5&x-expires=1761764400&x-signature=FKCi20gW%2FvqVpBdwRMY7VYfB1ro%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my";
+  const PLACEHOLDER_AVATAR_SVG = "nouser.jpg";
 
   // --- State Management ---
   let debounceTimeout = null;

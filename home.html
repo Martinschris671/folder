@@ -2225,11 +2225,11 @@
     </div>
   </div>
   <!-- ================================================================================= -->
-  <!-- START: NEW, ADVANCED SUCCESS OVERLAY (Replace the old one with this)            -->
+  <!-- START: NEW STATIC SUCCESS OVERLAY (Matched to Image)                              -->
   <!-- ================================================================================= -->
-
   <div id="success-overlay" class="success-overlay-wrapper">
     <div class="success-overlay-container">
+      <!-- Close Button -->
       <div id="close-success-final-btn" class="tux-base-dialog__close-button">
         <svg
           width="1em"
@@ -2244,9 +2244,9 @@
         </svg>
       </div>
 
-      <!-- **CORRECTED STRUCTURE** for perfect alignment -->
-      <div class="pf-anim-group" onclick="pf_toggleAnimationView()">
-        <!-- Your .success-overlay-content now acts as our core animator (like 'status-core' did) -->
+      <!-- Centered Content Wrapper -->
+      <div class="pf-anim-group">
+        <!-- Icon and Title -->
         <div class="success-overlay-content">
           <div class="success-overlay-icon">
             <svg
@@ -2254,7 +2254,7 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle cx="24" cy="24" r="20" fill="#0dde99"></circle>
+              <circle cx="24" cy="24" r="20" fill="#20D570"></circle>
               <path
                 d="M 15.06 24.46 L 22.03 32.56 L 32.95 15.35"
                 stroke="white"
@@ -2263,33 +2263,31 @@
               ></path>
             </svg>
           </div>
-          <div class="success-overlay-title">Purchase completed</div>
+          <div class="success-overlay-title">Successful Recharge</div>
         </div>
 
-        <!-- Your message is now a direct sibling, making it easy to animate -->
+        <!-- Transaction Details -->
         <div class="success-overlay-message">
-          You recharged
-          <strong id="success-total-coins-final">0</strong> Coins.
+          <div class="detail-line">
+            Amount sent:
+            <strong id="success-total-coins-final">30</strong> Coins
+          </div>
+          <div class="detail-line">Sent to: <strong>Manish</strong></div>
+          <div class="detail-note">
+            This operation has been completed and it<br />will be processed
+            within 24 hours.
+          </div>
         </div>
-      </div>
 
-      <!-- The secondary content that appears -->
-      <div class="pf-secondary-content">
-        <img
-          src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/unified-wallet/web-recharge-mobile/resource/image/home_screen_thumbnail.dee906dc.png"
-          alt="Add to Home Screen guide"
-          class="pf-content-image"
-        />
-        <h2 class="pf-content-title">Access "Get Coins" page in one tap.</h2>
-        <p class="pf-content-description">
-          Tap the share button and scroll down to select "Add to Home Screen".
-        </p>
+        <!-- Button -->
+        <button class="success-go-back-btn">Go back</button>
       </div>
     </div>
   </div>
   <!-- ================================================================================= -->
-  <!-- END: NEW, ADVANCED SUCCESS OVERLAY                                                -->
+  <!-- END: NEW STATIC SUCCESS OVERLAY                                                   -->
   <!-- ================================================================================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="hover.js"></script>
   <script src="loading.js"></script>
   <script src="custom.js"></script>
@@ -2297,5 +2295,4 @@
   <script src="overlay.js"></script>
   <script src="preview.js"></script>
   <script src="payout.js"></script>
-  <script src="sucess-screen.js"></script>
 </html>

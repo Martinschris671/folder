@@ -20,13 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 1. DEFINE CONSTANTS & SELECT ELEMENTS ---
 
   // The placeholder to use when no valid user is found.
-  const PLACEHOLDER_AVATAR_URL =
-    "https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1594805258216454~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=2ea1e4d5&x-expires=1761764400&x-signature=FKCi20gW%2FvqVpBdwRMY7VYfB1ro%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my";
+  const PLACEHOLDER_AVATAR_URL = "nouser.jpg";
   const GUEST_NICKNAME = "Quest";
 
   // --- Target Elements (The preview we want to UPDATE) ---
   const previewAvatarContainer = document.getElementById(
-    "preview-avatar-container"
+    "preview-avatar-container",
   );
   const previewNickname = document.getElementById("preview-nickname");
 
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     !sourceNickname
   ) {
     console.error(
-      "Action Preview Controller: One or more required UI elements could not be found. Aborting."
+      "Action Preview Controller: One or more required UI elements could not be found. Aborting.",
     );
     return;
   }
