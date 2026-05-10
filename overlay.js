@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Dynamic content elements in the TUXSheet that we will update
   const purchaseCoinNumDisplay = document.getElementById("purchase-coin-num");
   const purchaseCoinPriceDisplay = document.getElementById(
-    "purchase-coin-price"
+    "purchase-coin-price",
   );
 
   //   this cruiial cause this what fetches the total price that is suppose to show on the succes overlay
   const purchaseTotalPriceDisplay = document.getElementById(
-    "purchase-total-price"
+    "purchase-total-price",
   );
 
   // --- 2. DEFINE CORE OVERLAY VISIBILITY FUNCTIONS ---
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (purchaseCoinNumDisplay) {
         // Use Intl.NumberFormat for clean, comma-separated numbers.
         const formattedCoins = new Intl.NumberFormat("en-US").format(
-          finalCoins
+          finalCoins,
         );
         purchaseCoinNumDisplay.textContent = `Purchase of ${formattedCoins} Coins`;
       }

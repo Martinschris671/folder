@@ -99,6 +99,25 @@ document.addEventListener("DOMContentLoaded", () => {
       onComplete: () => {
         gsap.set(successOverlay, { visibility: "hidden", opacity: 0 });
         if (typeof pf_resetAnimation === "function") pf_resetAnimation();
+
+        // -------------------------------------------------------------
+        // NEW FEATURE: Animate out TUXSheet Overlay and clear username
+        // -------------------------------------------------------------
+
+        // 1. Close TUXSheet Modal (Animates out based on your CSS class)
+        const overlay = document.querySelector(".TUXSheet-overlay");
+        const sheetContainer = document.querySelector(".TUXSheet-container");
+        if (overlay) overlay.classList.remove("is-active");
+        if (sheetContainer) sheetContainer.classList.remove("is-active");
+
+        // 2. Clear Username Input and Reset UI
+        const lookupInput = document.getElementById("lookup_input");
+        if (lookupInput) {
+          lookupInput.value = "";
+          // Dispatching "input" event makes the lookup script naturally hide the preview UI
+          lookupInput.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+        // -------------------------------------------------------------
       },
     });
   };
