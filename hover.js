@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const packageItems = document.querySelectorAll(".package-item");
   const buyButtonText = buyNowBtn.querySelector(
-    '[data-test-tag="tux-button-content"]'
+    '[data-test-tag="tux-button-content"]',
   );
 
   // TUXSheet elements that we need to control and populate
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const sheetContainer = document.querySelector(".TUXSheet-container");
   const purchaseCoinNumDisplay = document.getElementById("purchase-coin-num");
   const purchaseCoinPriceDisplay = document.getElementById(
-    "purchase-coin-price"
+    "purchase-coin-price",
   );
   const purchaseTotalPriceDisplay = document.getElementById(
-    "purchase-total-price"
+    "purchase-total-price",
   );
 
   // --- 2. DEFINE CORE HELPER & OVERLAY FUNCTIONS ---
@@ -41,12 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * Opens the TUXSheet with a smooth, optimized animation.
    */
+  /**
+   * Opens the TUXSheet with a smooth, optimized animation.
+   */
   const openOverlay = () => {
     if (!overlay || !sheetContainer) return;
-    requestAnimationFrame(() => {
-      overlay.classList.add("is-active");
-      sheetContainer.classList.add("is-active");
-    });
+
+    // 1. Make the overlay visible first
+    overlay.classList.add("is-active");
+
+    // 2. Force a browser layout reflow (CRITICAL FIX for mobile slide-up bug)
+    void sheetContainer.offsetWidth;
+
+    // 3. Trigger the slide up animation
+    sheetContainer.classList.add("is-active");
   };
 
   /**
@@ -60,10 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Find the coin and price elements within that specific active package
     const coinElement = activePackage.querySelector(
-      '[data-e2e^="wallet-package-coin-num-"]'
+      '[data-e2e^="wallet-package-coin-num-"]',
     );
     const priceElement = activePackage.querySelector(
-      '[data-e2e^="wallet-package-price-"]'
+      '[data-e2e^="wallet-package-price-"]',
     );
 
     if (coinElement && priceElement) {
