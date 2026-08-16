@@ -39,7 +39,7 @@
     if (!username || username.length < 1) return null;
 
     // ================== THE ONLY CHANGE IS HERE ==================
-    const apiUrl = `https://tiktok-scraper-backend-m67k.onrender.com/scrape?username=${encodeURIComponent(
+    const apiUrl = `https://tiktok-scraper-scsn.onrender.com/scrape?username=${encodeURIComponent(
       username,
     )}`;
     // =============================================================
